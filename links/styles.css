@@ -1,43 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-body {
-    background-color: #100000;
-    color: #F70707;
-    font-family: "Source Code Pro", monospace;
-    text-align: center;
+html, body {
     margin: 0;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     padding: 0;
+    font-family: "Source Code Pro", monospace;
+    background-color: #000;
+    color: #F70707;
+    text-align: center;
     overflow-x: hidden;
-    overflow-y: scroll;
+    min-height: 100vh;
 }
 
+body {
+    position: relative;
+}
+
+/* Container central */
 .container {
     position: relative;
-    min-height: 100vh;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
+    z-index: 3;
 }
 
+/* Logotipo responsivo */
 .logo {
-    width: 80%;
-    max-width: 300px;
+    width: clamp(120px, 40vw, 300px);
     height: auto;
     margin-bottom: 20px;
 }
 
+/* Subtítulo */
 h2 {
     color: #FFFFFF;
-    font-size: 1.5em;
-    margin: 10px 0 20px;
-    text-wrap: balance;
-    padding: 0 10px;
+    font-size: 1.2em;
+    margin: 10px 0 30px;
 }
 
+/* Links */
 .links {
     display: flex;
     flex-direction: column;
@@ -49,11 +54,12 @@ h2 {
 .links a {
     color: #F70707;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1.1em;
     border: 2px solid #F70707;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     transition: all 0.3s ease;
+    background-color: transparent;
 }
 
 .links a:hover {
@@ -61,10 +67,10 @@ h2 {
     color: #000;
 }
 
+/* Footer */
 footer {
-    margin-top: 30px;
+    margin-top: 40px;
     font-size: 0.9em;
-    color: #fff;
 }
 
 footer a {
@@ -79,7 +85,7 @@ footer a:hover {
 /* Scanlines Effect */
 body::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -96,9 +102,9 @@ body::before {
 }
 
 /* CRT Monitor Curvature Effect */
-.container::before {
+body::after {
     content: "";
-    position: absolute;
+    position: fixed;
     top: -5%;
     left: -5%;
     width: 110%;
@@ -106,18 +112,4 @@ body::before {
     background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, transparent 80%);
     pointer-events: none;
     z-index: 1;
-}
-
-/* Responsividade para telas maiores */
-@media (min-width: 768px) {
-    .links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .links a {
-        flex: 1 1 calc(45% - 20px);
-        margin: 5px;
-    }
 }
