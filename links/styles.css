@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
 
 body {
     background-color: #000;
@@ -12,7 +12,8 @@ body {
 
 .container {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,28 +21,26 @@ body {
 }
 
 .logo {
-    width: 150px;
+    width: 80%;
+    max-width: 300px;
     height: auto;
     margin-bottom: 20px;
-}
-
-h1 {
-    text-transform: uppercase;
-    font-size: 3em;
-    margin: 0;
-    
 }
 
 h2 {
     color: #FFFFFF;
     font-size: 1.5em;
     margin: 10px 0 20px;
+    text-wrap: balance;
+    padding: 0 10px;
 }
 
 .links {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .links a {
@@ -62,6 +61,7 @@ h2 {
 footer {
     margin-top: 30px;
     font-size: 0.9em;
+    color: #fff;
 }
 
 footer a {
@@ -103,4 +103,18 @@ body::before {
     background: radial-gradient(circle, rgba(0, 0, 0, 0.5) 0%, transparent 80%);
     pointer-events: none;
     z-index: 1;
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 768px) {
+    .links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .links a {
+        flex: 1 1 calc(45% - 20px);
+        margin: 5px;
+    }
 }
