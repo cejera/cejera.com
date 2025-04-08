@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cejera — Em construção</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0000;
+      color: #F70707;
+      font-family: 'Source Code Pro', monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    img {
+      width: 120px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 5px #F70707);
+      z-index: 2;
+    }
+
+    .glow-text {
+      font-size: 1.2rem;
+      text-align: center;
+      text-transform: uppercase;
+      animation: flicker 1.2s infinite alternate;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 1; text-shadow: 0 0 5px #F70707, 0 0 10px #F70707; }
+      50%  { opacity: 0.5; text-shadow: none; }
+      100% { opacity: 1; text-shadow: 0 0 7px #F70707, 0 0 15px #F70707; }
+    }
+
+    .grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#220000 1px, transparent 1px), linear-gradient(90deg, #220000 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 3;
+      animation: scanMove 3s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .crt-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1;
+      mix-blend-mode: screen;
+      border-radius: 8px;
+      filter: blur(0.6px);
+      transform: scaleX(1.02) scaleY(1.04);
+    }
+
+    .crt-warp {
+      width: 100%;
+      height: 100%;
+      transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="crt-warp">
+    <img src="cejera-00.svg" alt="Logo Cejera" />
+    <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
+  </div>
+  <div class="crt-effect"></div>
+  <div class="scanlines"></div>
+</body>
+</html>
