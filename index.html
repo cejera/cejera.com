@@ -30,6 +30,7 @@
       margin-bottom: 30px;
       filter: drop-shadow(0 0 5px #F70707);
       z-index: 2;
+      cursor: pointer;
     }
 
     .glow-text {
@@ -106,15 +107,185 @@
       justify-content: center;
       align-items: center;
     }
+
+    /* Estilos do Jogo */
+    .game-ui {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      text-align: center;
+    }
+
+    .stats {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(13, 0, 0, 0.8);
+      padding: 15px;
+      border: 1px solid #F70707;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #F70707;
+    }
+
+    .upgrades {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      background: #220000;
+      color: #F70707;
+      border: 1px solid #F70707;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: 'Source Code Pro', monospace;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #F70707;
+      color: #0d0000;
+      box-shadow: 0 0 15px #F70707;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
   <div class="grid"></div>
   <div class="crt-warp">
-    <img src="cejera-00.svg" alt="Logo Cejera" />
+    <img id="cherry" src="cejera-00.svg" alt="Logo Cejera" />
     <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
   </div>
   <div class="crt-effect"></div>
   <div class="scanlines"></div>
+
+  <!-- Interface do Jogo -->
+  <div class="game-ui">
+    <div class="stats">
+      <div>Cerejas: <span id="points">0</span></div>
+      <div>Auto-Clickers: <span id="autoclickers">0</span></div>
+      <div>Multiplicador: <span id="multiplier">1x</span></div>
+    </div>
+    
+    <div class="upgrades">
+      <button class="btn" id="buyAutoclicker">
+        Auto-Clicker (<span id="autoclickerCost">50</span>)
+      </button>
+      <button class="btn" id="buyMultiplier">
+        Multiplicador (<span id="multiplierCost">100</span>)
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Easter Egg Activation
+    let clickCount = 0;
+    const cherry = document.getElementById('cherry');
+    const constructionText = document.querySelector('.glow-text');
+    const gameUI = document.querySelector('.game-ui');
+
+    cherry.addEventListener('click', () => {
+      clickCount++;
+      if(clickCount === 7) {
+        constructionText.style.display = 'none';
+        gameUI.style.display = 'block';
+        initGame();
+      }
+    });
+
+    // Game Logic
+    let points = 0;
+    let autoclickers = 0;
+    let multiplier = 1;
+    let autoclickerCost = 50;
+    let multiplierCost = 100;
+
+    function initGame() {
+      loadGame();
+      startGameLoop();
+      
+      // Click Handler
+      cherry.addEventListener('click', () => {
+        points += multiplier;
+        updateDisplay();
+      });
+
+      // Upgrade Handlers
+      document.getElementById('buyAutoclicker').addEventListener('click', () => {
+        if(points >= autoclickerCost) {
+          points -= autoclickerCost;
+          autoclickers++;
+          autoclickerCost = Math.floor(autoclickerCost * 1.5);
+          updateDisplay();
+        }
+      });
+
+      document.getElementById('buyMultiplier').addEventListener('click', () => {
+        if(points >= multiplierCost) {
+          points -= multiplierCost;
+          multiplier++;
+          multiplierCost = Math.floor(multiplierCost * 2);
+          updateDisplay();
+        }
+      });
+    }
+
+    function updateDisplay() {
+      document.getElementById('points').textContent = Math.floor(points);
+      document.getElementById('autoclickers').textContent = autoclickers;
+      document.getElementById('multiplier').textContent = `${multiplier}x`;
+      
+      document.getElementById('autoclickerCost').textContent = autoclickerCost;
+      document.getElementById('multiplierCost').textContent = multiplierCost;
+      
+      document.getElementById('buyAutoclicker').disabled = points < autoclickerCost;
+      document.getElementById('buyMultiplier').disabled = points < multiplierCost;
+      
+      saveGame();
+    }
+
+    function startGameLoop() {
+      setInterval(() => {
+        points += autoclickers * multiplier;
+        updateDisplay();
+      }, 1000);
+    }
+
+    // Save/Load System
+    function saveGame() {
+      const gameData = {
+        points,
+        autoclickers,
+        multiplier,
+        autoclickerCost,
+        multiplierCost
+      };
+      localStorage.setItem('cherryClickerSave', JSON.stringify(gameData));
+    }
+
+    function loadGame() {
+      const savedData = localStorage.getItem('cherryClickerSave');
+      if(savedData) {
+        const gameData = JSON.parse(savedData);
+        points = gameData.points || 0;
+        autoclickers = gameData.autoclickers || 0;
+        multiplier = gameData.multiplier || 1;
+        autoclickerCost = gameData.autoclickerCost || 50;
+        multiplierCost = gameData.multiplierCost || 100;
+        updateDisplay();
+      }
+    }
+  </script>
 </body>
 </html>
