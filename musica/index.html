@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cejera — Em construção</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0000;
+      color: #F70707;
+      font-family: 'Source Code Pro', monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    img {
+      width: 120px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 5px #F70707);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .glow-text {
+      font-size: 1.2rem;
+      text-align: center;
+      text-transform: uppercase;
+      animation: flicker 1.2s infinite alternate;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 1; text-shadow: 0 0 5px #F70707, 0 0 10px #F70707; }
+      50%  { opacity: 0.5; text-shadow: none; }
+      100% { opacity: 1; text-shadow: 0 0 7px #F70707, 0 0 15px #F70707; }
+    }
+
+    .grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#220000 1px, transparent 1px), linear-gradient(90deg, #220000 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 3;
+      animation: scanMove 3s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .crt-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1;
+      mix-blend-mode: screen;
+      border-radius: 8px;
+      filter: blur(0.6px);
+      transform: scaleX(1.02) scaleY(1.04);
+    }
+
+    .crt-warp {
+      width: 100%;
+      height: 100%;
+      transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Estilos do Jogo */
+    .game-ui {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      text-align: center;
+    }
+
+    .stats {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(13, 0, 0, 0.8);
+      padding: 15px;
+      border: 1px solid #F70707;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #F70707;
+    }
+
+    .upgrades {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      background: #220000;
+      color: #F70707;
+      border: 1px solid #F70707;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: 'Source Code Pro', monospace;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #F70707;
+      color: #0d0000;
+      box-shadow: 0 0 15px #F70707;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="crt-warp">
+    <img id="cherry" src="cejera-00.svg" alt="Logo Cejera" />
+    <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
+  </div>
+  <div class="crt-effect"></div>
+  <div class="scanlines"></div>
+
+  <!-- Interface do Jogo -->
+  <div class="game-ui">
+    <div class="stats">
+      <div>Cerejas: <span id="points">0</span></div>
+      <div>Auto-Clickers: <span id="autoclickers">0</span></div>
+      <div>Multiplicador: <span id="multiplier">1x</span></div>
+    </div>
+    
+    <div class="upgrades">
+      <button class="btn" id="buyAutoclicker">
+        Auto-Clicker (<span id="autoclickerCost">50</span>)
+      </button>
+      <button class="btn" id="buyMultiplier">
+        Multiplicador (<span id="multiplierCost">100</span>)
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Easter Egg Activation
+    let clickCount = 0;
+    const cherry = document.getElementById('cherry');
+    const constructionText = document.querySelector('.glow-text');
+    const gameUI = document.querySelector('.game-ui');
+
+    cherry.addEventListener('click', () => {
+      clickCount++;
+      if(clickCount === 7) {
+        constructionText.style.display = 'none';
+        gameUI.style.display = 'block';
+        initGame();
+      }
+    });
+
+    // Game Logic
+    let points = 0;
+    let autoclickers = 0;
+    let multiplier = 1;
+    let autoclickerCost = 50;
+    let multiplierCost = 100;
+
+    function initGame() {
+      loadGame();
+      startGameLoop();
+      
+      // Click Handler
+      cherry.addEventListener('click', () => {
+        points += multiplier;
+        updateDisplay();
+      });
+
+      // Upgrade Handlers
+      document.getElementById('buyAutoclicker').addEventListener('click', () => {
+        if(points >= autoclickerCost) {
+          points -= autoclickerCost;
+          autoclickers++;
+          autoclickerCost = Math.floor(autoclickerCost * 1.5);
+          updateDisplay();
+        }
+      });
+
+      document.getElementById('buyMultiplier').addEventListener('click', () => {
+        if(points >= multiplierCost) {
+          points -= multiplierCost;
+          multiplier++;
+          multiplierCost = Math.floor(multiplierCost * 2);
+          updateDisplay();
+        }
+      });
+    }
+
+    function updateDisplay() {
+      document.getElementById('points').textContent = Math.floor(points);
+      document.getElementById('autoclickers').textContent = autoclickers;
+      document.getElementById('multiplier').textContent = `${multiplier}x`;
+      
+      document.getElementById('autoclickerCost').textContent = autoclickerCost;
+      document.getElementById('multiplierCost').textContent = multiplierCost;
+      
+      document.getElementById('buyAutoclicker').disabled = points < autoclickerCost;
+      document.getElementById('buyMultiplier').disabled = points < multiplierCost;
+      
+      saveGame();
+    }
+
+    function startGameLoop() {
+      setInterval(() => {
+        points += autoclickers * multiplier;
+        updateDisplay();
+      }, 1000);
+    }
+
+    // Save/Load System
+    function saveGame() {
+      const gameData = {
+        points,
+        autoclickers,
+        multiplier,
+        autoclickerCost,
+        multiplierCost
+      };
+      localStorage.setItem('cherryClickerSave', JSON.stringify(gameData));
+    }
+
+    function loadGame() {
+      const savedData = localStorage.getItem('cherryClickerSave');
+      if(savedData) {
+        const gameData = JSON.parse(savedData);
+        points = gameData.points || 0;
+        autoclickers = gameData.autoclickers || 0;
+        multiplier = gameData.multiplier || 1;
+        autoclickerCost = gameData.autoclickerCost || 50;
+        multiplierCost = gameData.multiplierCost || 100;
+        updateDisplay();
+      }
+    }
+  </script>
+</body>
+</html>
