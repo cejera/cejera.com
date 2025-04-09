@@ -102,65 +102,129 @@
       font-size: 1.2rem;
     }
 
-    .confidential-file {
-      text-align: left;
-      background: #0d0000;
-      border: 2px solid #F70707;
-      border-radius: 7px;
-      padding: 2rem;
-      margin: 3rem 0;
-      margin-top: 3rem;
-      position: relative;
-      box-shadow: 0 0 20px rgba(247,7,7,0.2);
-    }
+.confidential-file {
+  text-align: left;
+  background: #0d0000;
+  border: 2px solid #F70707;
+  border-radius: 7px;
+  padding: 2rem;
+  margin: 3rem 0;
+  position: relative;
+  box-shadow: 0 0 20px rgba(247,7,7,0.2);
+  overflow: visible; /* Novo - para conter elementos flutuantes */
+}
 
-    .confidential-stamp {
-      position: absolute;
-      left: -20px;
-      top: -20px;
-      background: #F70707;
-      color: #0d0000;
-      padding: 0.5rem 1rem;
-      transform: rotate(-15deg);
-      font-size: 0.9rem;
-      z-index: 2;
-    }
+.confidential-stamp {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  background: #F70707;
+  color: #0d0000;
+  padding: 0.5rem 1rem;
+  transform: rotate(-15deg);
+  font-size: 0.9rem;
+  z-index: 500;
+  border-radius: 3px; /* Novo */
+}
 
-    .profile-image {
-      width: 200px;
-      border: 3px solid #F70707;
-      border-radius: 7px;
-      box-shadow: 0 0 20px #F70707;
-      margin: 2rem 1rem 2rem 0;
-      float: left;
-      filter: grayscale(100%);
-      transition: all 0.5s ease;
-    }
+.profile-image {
+  width: 200px;
+  border: 3px solid #F70707;
+  border-radius: 7px;
+  box-shadow: 0 0 20px #F70707;
+  margin: 2rem 1rem 2rem 0;
+  float: left;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
 
-    .profile-image:hover {
-      filter: none;
-      box-shadow: 0 0 30px #F70707;
-    }
+.profile-image:hover {
+  filter: none;
+  box-shadow: 0 0 30px #F70707;
+}
 
-    .portfolio-folder {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-      z-index: 2;
-    }
+.portfolio-folder {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 2;
+}
 
-    .portfolio-folder:hover {
-      transform: translateY(-5px);
-    }
+.portfolio-folder:hover {
+  transform: translateY(-5px);
+}
 
-    .folder-icon {
-      width: 120px;
-      filter: drop-shadow(0 0 5px #F70707);
-    }
+.folder-icon {
+  width: 120px;
+  filter: drop-shadow(0 0 5px #F70707);
+}
 
+/* Responsividade */
+@media (max-width: 768px) {
+  .confidential-file {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .profile-image {
+    float: none;
+    display: block;
+    margin: 0 auto 1.5rem;
+    width: 150px;
+  }
+
+  .confidential-stamp {
+    left: -15px;
+    top: -15px;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .portfolio-folder {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin: 1.5rem auto 0;
+    text-align: center;
+  }
+
+  .folder-icon {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .confidential-file {
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 130px;
+  }
+
+  .confidential-stamp {
+    left: -10px;
+    top: -10px;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    z-index: 500;
+  }
+
+  ul {
+    text-align: left;
+    margin-left: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+  .folder-icon {
+    width: 80px;
+  }
+}
     footer {
       background: #220000;
       padding: 2rem;
