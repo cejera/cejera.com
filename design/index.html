@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cejera Design</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    body {
+      background-color: #0d0000;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(34, 0, 0, 0.9);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
+    }
+
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+
+    .header-title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+    }
+
+    .cta-button {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+    }
+
+    .cta-button:hover {
+      background: #ffffff;
+      box-shadow: 0 0 15px #F70707;
+    }
+
+    .matrix-banner {
+      height: 70vh;
+      background: #000;
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .matrix-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(rgba(13,0,0,0.9), rgba(13,0,0,0.9));
+    }
+
+    .banner-text {
+      font-size: 3rem;
+      color: #ffffff;
+      z-index: 1000;
+      text-align: center;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.8; text-shadow: 0 0 10px #F70707; }
+      100% { opacity: 1; text-shadow: 0 0 20px #F70707; }
+    }
+
+    .content-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 7px;
+      font-size: 1.2rem;
+    }
+
+    .confidential-file {
+      text-align: left;
+      background: #0d0000;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      padding: 2rem;
+      margin: 3rem 0;
+      margin-top: 3rem;
+      position: relative;
+      box-shadow: 0 0 20px rgba(247,7,7,0.2);
+    }
+
+    .confidential-stamp {
+      position: absolute;
+      left: -20px;
+      top: -20px;
+      background: #F70707;
+      color: #0d0000;
+      padding: 0.5rem 1rem;
+      transform: rotate(-15deg);
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+
+    .profile-image {
+      width: 200px;
+      border: 3px solid #F70707;
+      border-radius: 7px;
+      box-shadow: 0 0 20px #F70707;
+      margin: 2rem 1rem 2rem 0;
+      float: left;
+      filter: grayscale(100%);
+      transition: all 0.5s ease;
+    }
+
+    .profile-image:hover {
+      filter: none;
+      box-shadow: 0 0 30px #F70707;
+    }
+
+    .portfolio-folder {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      z-index: 2;
+    }
+
+    .portfolio-folder:hover {
+      transform: translateY(-5px);
+    }
+
+    .folder-icon {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 1001;
+      animation: scanMove 3s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .crt-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1001;
+      mix-blend-mode: screen;
+      filter: blur(0.6px);
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="crt-effect"></div>
+
+  <header class="header">
+    <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+    <h1 class="header-title">DESIGN</h1>
+    <button class="cta-button">Orçamento</button>
+  </header>
+
+  <div class="matrix-banner">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="matrix-overlay">
+      <h2 class="banner-text">EXCENTRICIDADE E AUTENTICIDADE</h2>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2 style="color: #F70707; margin-bottom: 2rem; font-size: 2.5rem;">REVOLUÇÃO ESTRATÉGICA EM DESIGN</h2>
+    
+  <p>Design não é firula — é ferramenta.</p>
+  <p>Aqui, cada detalhe tem motivo. Cada projeto tem contexto. Cada marca tem voz.</p>
+  <p>Eu crio pra impactar, posicionar e provocar.</p>
+  <p>Visual forte, conceito sólido, execução estratégica.</p>
+  <p>Se for só bonito, não serve. Se for raso, não entra. Se for cópia, nem começa.</p>
+  <p><strong>Isso é revolução visual com propósito.</strong></p>
+
+    <div class="confidential-file">
+      <div class="confidential-stamp">NÍVEL 5 - CONFIDENCIAL</div>
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQFmrxWxnh2Icw/profile-displayphoto-shrink_800_800/B4DZT_8nG4HwAg-/0/1739460866959?e=1749686400&v=beta&t=god_1zLJapQ852GR588LUAvHIiKIXMrU5dyowUpu7d0" 
+           class="profile-image" 
+           alt="Alexandre Cejera"
+           onmouseover="this.style.transform='scale(1.02)'"
+           onmouseout="this.style.transform='scale(1)'">
+      
+      <h3 style="color: #F70707; margin-bottom: 0.5rem;">ALEXANDRE "CEJERA" SILVA</h3>
+      <p>> <strong>Áreas de Domínio:</strong></p>
+      <ul style="margin: 0.5rem 0; margin-left: 20%; padding-left: 1.5rem;">
+        <li>Design Gráfico</li>
+        <li>Branding Estratégico</li>
+        <li>Experiência do Usuário (UX/UI)</li>
+        <li>Estruturação de campanhas</li>
+        <li>Marketing de influência</li>
+        <li>Psicologia da Percepção Visual</li>
+      </ul>
+      
+      <p>> <strong>Formação Tática:</strong></p>
+      <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+        <li>Bacharelado em Design Gráfico (UNIFRAN)</li>
+        <li>Especialização em Design de Interação</li>
+        <li>Especialização em Design Digital</li>
+        <li>Especialização em Marketing de Conteúdo</li>
+        <li>Certificação em Branding</li>
+        <li>Certificação em UX/UI</li>
+        <li>Certificação em Marketing de Influência</li>
+      </ul>
+      
+      <p>> <strong>Campanhas Notáveis:</strong></p>
+      <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+        <li>Reposicionamento de marca para 12+ empresas</li>
+        <li>Sistemas visuais para influenciadores digitais (1M+ seguidores)</li>
+        <li>Direção criativa para campanhas virais (15M+ views)</li>
+      </ul>
+
+      <div class="portfolio-folder" onclick="window.open('https://behance.net/AlexandreFSilva', '_blank')">
+        <img src="pasta-00.svg" class="folder-icon" alt="Portfólio">
+        <div class="folder-name" style="color: #F70707; margin-top: 0.5rem;">P0R7F0L10</div>
+      </div>
+    </div>
+
+    <h2 style="color: #F70707; margin: 3rem 0 2rem; font-size: 2rem;">SE TUDO PARECE IGUAL, A GENTE FAZ DIFERENTE</h2>
+  <p>Tem um monte de gente oferecendo "design profissional".</p>
+  <p>Mas o que eu faço é mais do que visual bonito — é construção de presença.</p>
+  <p>Trabalho com <strong>excentricidade, autenticidade e intenção</strong>.</p>
+  <p>Traduzo essência em linguagem visual. Faço sua marca se tornar impossível de ignorar.</p>
+  <p>Não é sobre me mostrar como designer. É sobre mostrar você como marca.</p>
+  <p><em>Design bom não precisa gritar. Mas quando é feito certo, todo mundo escuta.</em></p>
+    <h2 style="color: #F70707; margin: 3rem 0 2rem; font-size: 2rem;">NÃO FIQUE PARA TRÁS.</h2>  
+     <button class="cta-button">Solicite seu orçamento</button>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Matrix Animation
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = 'CEJERA010101';
+    const fontSize = 20;
+    const columns = canvas.width/fontSize;
+    const drops = [];
+
+    for(let x = 0; x < columns; x++) drops[x] = 1;
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.font = fontSize + 'px monospace';
+
+      for(let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillStyle = Math.random() > 0.1 ? '#8B0000' : '#F70707';
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50);
+
+    // CTA Buttons
+    document.querySelectorAll('.cta-button').forEach(button => {
+      button.addEventListener('click', () => {
+        window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%2C%20Cejera%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.';
+      });
+    });
+  </script>
+</body>
+</html>
