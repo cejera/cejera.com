@@ -267,6 +267,58 @@
       mix-blend-mode: screen;
       filter: blur(0.6px);
     }
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .header-logo {
+    width: 90px;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .banner-text {
+    font-size: 1.8rem;
+    padding: 0 1rem;
+  }
+
+  .content-section {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.2rem;
+  }
+
+  .banner-text {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .content-section {
+    font-size: 0.95rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -274,7 +326,9 @@
   <div class="crt-effect"></div>
 
   <header class="header">
+   <a href="https://cejera.com/home">
     <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+   </a> 
     <h1 class="header-title">DESIGN</h1>
     <button class="cta-button">Orçamento</button>
   </header>
