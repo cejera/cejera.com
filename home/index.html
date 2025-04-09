@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.1">
   <title>Cejera - PR0J3T05</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
@@ -18,13 +19,13 @@
     body {
       background-color: #0d0000;
       color: #F70707;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       position: relative;
+      overflow-x: hidden;
     }
 
     .grid {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -33,6 +34,7 @@
       background-size: 40px 40px;
       opacity: 0.2;
       z-index: 0;
+      pointer-events: none;
     }
 
     header {
@@ -40,11 +42,14 @@
       padding: 3rem;
       border-bottom: 2px solid #F70707;
       margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
       width: 200px;
       filter: drop-shadow(0 0 10px #F70707);
+      transition: all 0.3s;
     }
 
     .tagline {
@@ -63,6 +68,8 @@
       padding: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .folder {
@@ -80,6 +87,7 @@
     .folder-icon {
       width: 120px;
       filter: drop-shadow(0 0 5px #F70707);
+      transition: all 0.3s;
     }
 
     .folder-name {
@@ -99,7 +107,8 @@
       border-left: 3px solid #F70707;
       padding: 2rem;
       box-shadow: -5px 0 30px rgba(247, 7, 7, 0.2);
-      border-radius: 10px 0 0 10px;
+      z-index: 3;
+      overflow-y: auto;
     }
 
     .code-buttons {
@@ -148,13 +157,14 @@
     }
 
     footer {
-      position: fixed;
-      bottom: 1rem;
-      width: 100%;
+      padding: 2rem;
       text-align: center;
       font-size: 0.8rem;
       opacity: 0.7;
       color: #ffffff;
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
     }
 
     .confidential {
@@ -163,7 +173,7 @@
     }
 
     .scanlines {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -176,7 +186,7 @@
         transparent 4px
       );
       pointer-events: none;
-      z-index: 3;
+      z-index: 1001;
       animation: scanMove 3s linear infinite;
     }
 
@@ -186,16 +196,126 @@
     }
 
     .crt-effect {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1;
+      z-index: 1001;
       mix-blend-mode: screen;
       filter: blur(0.6px);
+    }
+
+    /* Responsividade */
+    @media (max-width: 1200px) {
+      .projects {
+        gap: 3rem;
+        padding: 2rem 1rem;
+        margin-right: 320px;
+      }
+      .folder-icon {
+        width: 100px;
+      }
+      .folder-name {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      header {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .logo {
+        width: 150px;
+      }
+      .tagline {
+        font-size: 1.2rem;
+      }
+      .side-panel {
+        width: 250px;
+        padding: 1.5rem;
+      }
+      .projects {
+        margin-right: 270px;
+      }
+      .code-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+      #enter-btn {
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+      .projects {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 500px;
+        margin-right: 0;
+        padding: 2rem 15px;
+      }
+      .folder {
+        margin: 0 auto;
+        max-width: 200px;
+      }
+      .side-panel {
+        position: relative;
+        width: 100%;
+        border-left: none;
+        border-top: 3px solid #F70707;
+        margin-top: 2rem;
+        height: auto;
+      }
+      footer {
+        margin-top: 2rem;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 1.5rem;
+      }
+      .logo {
+        width: 120px;
+      }
+      .tagline {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+      .folder-icon {
+        width: 80px;
+      }
+      .folder-name {
+        font-size: 1rem;
+      }
+      .code-buttons {
+        gap: 0.5rem;
+      }
+      .code-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      #enter-btn {
+        height: 40px;
+        font-size: 1rem;
+      }
+      #code-input {
+        padding: 0.8rem;
+        font-size: 1rem;
+      }
+      footer {
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
@@ -271,6 +391,24 @@
         setTimeout(() => document.getElementById('code-input').value = '', 2000);
       }
     }
+
+    // Ajuste dinâmico do layout
+    function adjustLayout() {
+      const screenWidth = window.innerWidth;
+      const sidePanel = document.querySelector('.side-panel');
+      const projects = document.querySelector('.projects');
+
+      if(screenWidth < 768) {
+        document.body.insertBefore(sidePanel, document.querySelector('footer'));
+        projects.style.marginRight = '0';
+      } else {
+        document.body.appendChild(sidePanel);
+        projects.style.marginRight = sidePanel.offsetWidth + 'px';
+      }
+    }
+
+    window.addEventListener('resize', adjustLayout);
+    window.addEventListener('load', adjustLayout);
   </script>
 </body>
 </html>
