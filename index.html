@@ -2,54 +2,30 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cejera — Em construção</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.1">
+  <title>Cejera - PR0J3T05</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      cursor: default;
+      font-family: 'Source Code Pro', monospace;
     }
 
     body {
       background-color: #0d0000;
       color: #F70707;
-      font-family: 'Source Code Pro', monospace;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      min-height: 100vh;
       position: relative;
-    }
-
-    img {
-      width: 120px;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 0 5px #F70707);
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .glow-text {
-      font-size: 1.2rem;
-      text-align: center;
-      text-transform: uppercase;
-      animation: flicker 1.2s infinite alternate;
-      letter-spacing: 2px;
-      z-index: 2;
-    }
-
-    @keyframes flicker {
-      0%   { opacity: 1; text-shadow: 0 0 5px #F70707, 0 0 10px #F70707; }
-      50%  { opacity: 0.5; text-shadow: none; }
-      100% { opacity: 1; text-shadow: 0 0 7px #F70707, 0 0 15px #F70707; }
+      overflow-x: hidden;
     }
 
     .grid {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -58,10 +34,146 @@
       background-size: 40px 40px;
       opacity: 0.2;
       z-index: 0;
+      pointer-events: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem;
+      border-bottom: 2px solid #F70707;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 200px;
+      filter: drop-shadow(0 0 10px #F70707);
+      transition: all 0.3s;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+      color: #ffffff;
+      margin-top: 1rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+      justify-content: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .folder {
+      text-align: center;
+      transition: all 0.3s;
+      color: #F70707 !important;
+      text-decoration: none;
+    }
+
+    .folder:hover {
+      transform: translateY(-10px);
+      cursor: pointer;
+    }
+
+    .folder-icon {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+      transition: all 0.3s;
+    }
+
+    .folder-name {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      text-shadow: 0 0 5px #F70707;
+      color: #ffffff;
+    }
+
+    .side-panel {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background: #220000;
+      border-left: 3px solid #F70707;
+      padding: 2rem;
+      box-shadow: -5px 0 30px rgba(247, 7, 7, 0.2);
+      z-index: 3;
+      overflow-y: auto;
+    }
+
+    .code-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-btn {
+      background: #0d0000;
+      border: 2px solid #F70707;
+      color: #F70707;
+      width: 60px;
+      height: 60px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 5px;
+      font-family: sans-serif;
+    }
+
+    #enter-btn {
+      width: 100%;
+      height: 60px;
+      margin-top: 1.5rem;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    .code-btn:hover {
+      background: #F70707;
+      color: #0d0000;
+      border: 2px solid #ffffff;
+    }
+
+    #code-input {
+      width: 100%;
+      background: #0d0000;
+      border: 2px solid #F70707;
+      color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      color: #ffffff;
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+    }
+
+    .confidential {
+      cursor: not-allowed !important;
+      opacity: 0.5;
     }
 
     .scanlines {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -74,7 +186,7 @@
         transparent 4px
       );
       pointer-events: none;
-      z-index: 3;
+      z-index: 1001;
       animation: scanMove 3s linear infinite;
     }
 
@@ -84,208 +196,219 @@
     }
 
     .crt-effect {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1;
+      z-index: 1001;
       mix-blend-mode: screen;
-      border-radius: 8px;
       filter: blur(0.6px);
-      transform: scaleX(1.02) scaleY(1.04);
     }
 
-    .crt-warp {
-      width: 100%;
-      height: 100%;
-      transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    /* Responsividade */
+    @media (max-width: 1200px) {
+      .projects {
+        gap: 3rem;
+        padding: 2rem 1rem;
+        margin-right: 320px;
+      }
+      .folder-icon {
+        width: 100px;
+      }
+      .folder-name {
+        font-size: 1.2rem;
+      }
     }
 
-    /* Estilos do Jogo */
-    .game-ui {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
-      text-align: center;
+    @media (max-width: 992px) {
+      header {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .logo {
+        width: 150px;
+      }
+      .tagline {
+        font-size: 1.2rem;
+      }
+      .side-panel {
+        width: 250px;
+        padding: 1.5rem;
+      }
+      .projects {
+        margin-right: 270px;
+      }
+      .code-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+      #enter-btn {
+        height: 50px;
+      }
     }
 
-    .stats {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(13, 0, 0, 0.8);
-      padding: 15px;
-      border: 1px solid #F70707;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #F70707;
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+      }
+      .projects {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 500px;
+        margin-right: 0;
+        padding: 2rem 15px;
+      }
+      .folder {
+        margin: 0 auto;
+        max-width: 200px;
+      }
+      .side-panel {
+        position: relative;
+        width: 100%;
+        border-left: none;
+        border-top: 3px solid #F70707;
+        margin-top: 2rem;
+        height: auto;
+      }
+      footer {
+        margin-top: 2rem;
+        padding: 1rem;
+      }
     }
 
-    .upgrades {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-    }
-
-    .btn {
-      background: #220000;
-      color: #F70707;
-      border: 1px solid #F70707;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-family: 'Source Code Pro', monospace;
-      transition: all 0.3s;
-    }
-
-    .btn:hover {
-      background: #F70707;
-      color: #0d0000;
-      box-shadow: 0 0 15px #F70707;
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    @media (max-width: 480px) {
+      header {
+        padding: 1.5rem;
+      }
+      .logo {
+        width: 120px;
+      }
+      .tagline {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+      .folder-icon {
+        width: 80px;
+      }
+      .folder-name {
+        font-size: 1rem;
+      }
+      .code-buttons {
+        gap: 0.5rem;
+      }
+      .code-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      #enter-btn {
+        height: 40px;
+        font-size: 1rem;
+      }
+      #code-input {
+        padding: 0.8rem;
+        font-size: 1rem;
+      }
+      footer {
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="grid"></div>
-  <div class="crt-warp">
-    <img id="cherry" src="cejera-00.svg" alt="Logo Cejera" />
-    <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
-  </div>
   <div class="crt-effect"></div>
   <div class="scanlines"></div>
 
-  <!-- Interface do Jogo -->
-  <div class="game-ui">
-    <div class="stats">
-      <div>Cerejas: <span id="points">0</span></div>
-      <div>Auto-Clickers: <span id="autoclickers">0</span></div>
-      <div>Multiplicador: <span id="multiplier">1x</span></div>
-    </div>
-    
-    <div class="upgrades">
-      <button class="btn" id="buyAutoclicker">
-        Auto-Clicker (<span id="autoclickerCost">50</span>)
-      </button>
-      <button class="btn" id="buyMultiplier">
-        Multiplicador (<span id="multiplierCost">100</span>)
-      </button>
+  <header>
+    <img src="cejera-03.svg" class="logo" alt="Cejera">
+    <div class="tagline">EXCENTRICIDADE E AUTENTICIDADE</div>
+  </header>
+
+  <div class="projects">
+    <a href="https://cejera.com/design" class="folder">
+      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
+      <div class="folder-name">D351GN</div>
+    </a>
+    <a href="https://cejera.com/moda" class="folder">
+      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
+      <div class="folder-name">M0D4</div>
+    </a>
+    <a href="https://cejera.com/musica" class="folder">
+      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
+      <div class="folder-name">MUZ1K4</div>
+    </a>
+    <div id="confidential-folder" class="folder confidential" style="display: none;">
+      <img src="pasta-00.svg" class="folder-icon" alt="Pasta Bloqueada">
+      <div class="folder-name">C0NF1D3NC14L</div>
     </div>
   </div>
 
-  <script>
-    // Easter Egg Activation
-    let clickCount = 0;
-    const cherry = document.getElementById('cherry');
-    const constructionText = document.querySelector('.glow-text');
-    const gameUI = document.querySelector('.game-ui');
+  <div class="side-panel">
+    <input type="text" id="code-input" readonly>
+    <div class="code-buttons">
+      <button class="code-btn">ᛋ</button>
+      <button class="code-btn">∇</button>
+      <button class="code-btn">⟑</button>
+      <button class="code-btn">Ⱚ</button>
+      <button class="code-btn">ⷞ</button>
+      <button class="code-btn">ⲭ</button>
+      <button class="code-btn">ⴔ</button>
+      <button class="code-btn">⫝</button>
+      <button class="code-btn">⦡</button>
+    </div>
+    <button class="code-btn" id="enter-btn" onclick="checkCode()">3N7R4R</button>
+  </div>
 
-    cherry.addEventListener('click', () => {
-      clickCount++;
-      if(clickCount === 7) {
-        constructionText.style.display = 'none';
-        gameUI.style.display = 'block';
-        initGame();
-      }
+  <footer>
+    Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.
+  </footer>
+
+  <script>
+    const correctCode = ['ᛋ', '⟑', 'ⲭ', '⫝'];
+    let inputCode = [];
+
+    document.querySelectorAll('.code-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if(e.target.textContent !== '3N7R4R') {
+          inputCode.push(e.target.textContent);
+          document.getElementById('code-input').value = '*'.repeat(inputCode.length);
+        }
+      });
     });
 
-    // Game Logic
-    let points = 0;
-    let autoclickers = 0;
-    let multiplier = 1;
-    let autoclickerCost = 50;
-    let multiplierCost = 100;
-
-    function initGame() {
-      loadGame();
-      startGameLoop();
-      
-      // Click Handler
-      cherry.addEventListener('click', () => {
-        points += multiplier;
-        updateDisplay();
-      });
-
-      // Upgrade Handlers
-      document.getElementById('buyAutoclicker').addEventListener('click', () => {
-        if(points >= autoclickerCost) {
-          points -= autoclickerCost;
-          autoclickers++;
-          autoclickerCost = Math.floor(autoclickerCost * 1.5);
-          updateDisplay();
-        }
-      });
-
-      document.getElementById('buyMultiplier').addEventListener('click', () => {
-        if(points >= multiplierCost) {
-          points -= multiplierCost;
-          multiplier++;
-          multiplierCost = Math.floor(multiplierCost * 2);
-          updateDisplay();
-        }
-      });
-    }
-
-    function updateDisplay() {
-      document.getElementById('points').textContent = Math.floor(points);
-      document.getElementById('autoclickers').textContent = autoclickers;
-      document.getElementById('multiplier').textContent = `${multiplier}x`;
-      
-      document.getElementById('autoclickerCost').textContent = autoclickerCost;
-      document.getElementById('multiplierCost').textContent = multiplierCost;
-      
-      document.getElementById('buyAutoclicker').disabled = points < autoclickerCost;
-      document.getElementById('buyMultiplier').disabled = points < multiplierCost;
-      
-      saveGame();
-    }
-
-    function startGameLoop() {
-      setInterval(() => {
-        points += autoclickers * multiplier;
-        updateDisplay();
-      }, 1000);
-    }
-
-    // Save/Load System
-    function saveGame() {
-      const gameData = {
-        points,
-        autoclickers,
-        multiplier,
-        autoclickerCost,
-        multiplierCost
-      };
-      localStorage.setItem('cherryClickerSave', JSON.stringify(gameData));
-    }
-
-    function loadGame() {
-      const savedData = localStorage.getItem('cherryClickerSave');
-      if(savedData) {
-        const gameData = JSON.parse(savedData);
-        points = gameData.points || 0;
-        autoclickers = gameData.autoclickers || 0;
-        multiplier = gameData.multiplier || 1;
-        autoclickerCost = gameData.autoclickerCost || 50;
-        multiplierCost = gameData.multiplierCost || 100;
-        updateDisplay();
+    function checkCode() {
+      if(inputCode.join('') === correctCode.join('')) {
+        document.getElementById('confidential-folder').style.display = 'block';
+        document.getElementById('code-input').value = '4C3S50 C0NC3D1D0';
+      } else {
+        document.getElementById('code-input').value = 'S3NH4 1NC0RR374';
+        inputCode = [];
+        setTimeout(() => document.getElementById('code-input').value = '', 2000);
       }
     }
+
+    // Ajuste dinâmico do layout
+    function adjustLayout() {
+      const screenWidth = window.innerWidth;
+      const sidePanel = document.querySelector('.side-panel');
+      const projects = document.querySelector('.projects');
+
+      if(screenWidth < 768) {
+        document.body.insertBefore(sidePanel, document.querySelector('footer'));
+        projects.style.marginRight = '0';
+      } else {
+        document.body.appendChild(sidePanel);
+        projects.style.marginRight = sidePanel.offsetWidth + 'px';
+      }
+    }
+
+    window.addEventListener('resize', adjustLayout);
+    window.addEventListener('load', adjustLayout);
   </script>
 </body>
 </html>
