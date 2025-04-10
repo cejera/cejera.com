@@ -2,54 +2,28 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cejera — Em construção</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cejera - MÚSICA</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Source Code Pro', monospace;
     }
 
     body {
       background-color: #0d0000;
-      color: #F70707;
-      font-family: 'Source Code Pro', monospace;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      color: #ffffff;
+      min-height: 100vh;
       position: relative;
-    }
-
-    img {
-      width: 120px;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 0 5px #F70707);
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .glow-text {
-      font-size: 1.2rem;
-      text-align: center;
-      text-transform: uppercase;
-      animation: flicker 1.2s infinite alternate;
-      letter-spacing: 2px;
-      z-index: 2;
-    }
-
-    @keyframes flicker {
-      0%   { opacity: 1; text-shadow: 0 0 5px #F70707, 0 0 10px #F70707; }
-      50%  { opacity: 0.5; text-shadow: none; }
-      100% { opacity: 1; text-shadow: 0 0 7px #F70707, 0 0 15px #F70707; }
+      overflow-x: hidden;
     }
 
     .grid {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -58,10 +32,313 @@
       background-size: 40px 40px;
       opacity: 0.2;
       z-index: 0;
+      pointer-events: none;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(34, 0, 0, 0.9);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
+    }
+
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+
+    .header-title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+    }
+
+    .cta-button {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .cta-button:hover {
+      background: #ffffff;
+      box-shadow: 0 0 15px #F70707;
+      transform: translateY(-2px);
+    }
+
+    .dj-section {
+      padding-top: 120px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 5rem;
+    }
+
+    .dj-title {
+      font-size: 3rem;
+      color: #F70707;
+      text-align: center;
+      margin: 2rem 0;
+      text-shadow: 0 0 20px #F70707;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    .dj-booth {
+      width: 90%;
+      max-width: 800px;
+      background: #110000;
+      border: 3px solid #F70707;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 0 30px rgba(247, 7, 7, 0.3);
+    }
+
+    .booth-logo {
+      text-align: center;
+      margin: 1rem 0;
+      padding: 1rem;
+      filter: drop-shadow(0 0 10px #F70707);
+      animation: pulse 2s infinite alternate;
+    }
+
+    .booth-logo img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .turntables {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem 0;
+      gap: 20px;
+    }
+
+    .turntable {
+      width: 220px;
+      height: 220px;
+      background: #0d0000;
+      border: 3px solid #F70707;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(247,7,7,0.5);
+    }
+
+    .turntable:hover {
+      transform: scale(1.03);
+    }
+
+    .vinyl {
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at center, #0d0000 0%, #0d0000 20%, transparent 20.5%, transparent 100%),
+        repeating-radial-gradient(circle at center, #0d0000 0%, #0d0000 2px, #333 2px, #333 4px);
+      animation: spin 3s linear infinite;
+      animation-play-state: paused;
+      position: relative;
+    }
+
+    .vinyl::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background: #F70707;
+      border-radius: 50%;
+      border: 2px solid #0d0000;
+      z-index: 2;
+    }
+
+    .vinyl::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 15px;
+      height: 15px;
+      background: #0d0000;
+      border-radius: 50%;
+      z-index: 3;
+    }
+
+    .vinyl-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: #F70707;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .vinyl-logo {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    }
+
+    .vinyl-grooves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0%,
+          transparent 20%,
+          rgba(255,255,255,0.1) 20.5%,
+          rgba(255,255,255,0.1) 21%,
+          transparent 21.5%,
+          transparent 40%,
+          rgba(255,255,255,0.1) 40.5%,
+          rgba(255,255,255,0.1) 41%,
+          transparent 41.5%
+        );
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .control-btn {
+      background: #0d0000;
+      border: 2px solid #F70707;
+      color: #F70707;
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .control-btn:hover {
+      background: #F70707;
+      color: #0d0000;
+      box-shadow: 0 0 15px #F70707;
+    }
+
+    .control-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .control-btn:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+
+    .dj-bio {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #0d0000;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      box-shadow: 0 0 20px rgba(247, 7, 7, 0.2);
+      position: relative;
+    }
+
+    .dj-bio::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #F70707, transparent);
+    }
+
+    .dj-bio::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #F70707, transparent);
+    }
+
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
     }
 
     .scanlines {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -74,218 +351,396 @@
         transparent 4px
       );
       pointer-events: none;
-      z-index: 3;
+      z-index: 1002;
       animation: scanMove 3s linear infinite;
     }
 
     @keyframes scanMove {
-      0%   { transform: translateY(0); }
+      0% { transform: translateY(0); }
       100% { transform: translateY(4px); }
     }
 
     .crt-effect {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1;
+      z-index: 1001;
       mix-blend-mode: screen;
-      border-radius: 8px;
       filter: blur(0.6px);
-      transform: scaleX(1.02) scaleY(1.04);
     }
 
-    .crt-warp {
-      width: 100%;
-      height: 100%;
-      transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Estilos do Jogo */
-    .game-ui {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
+    .final-cta {
+      margin: 5rem 0 8rem;
       text-align: center;
     }
 
-    .stats {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(13, 0, 0, 0.8);
-      padding: 15px;
-      border: 1px solid #F70707;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #F70707;
-    }
-
-    .upgrades {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+    .equalizer {
       display: flex;
-      gap: 15px;
+      justify-content: center;
+      gap: 3px;
+      height: 40px;
+      margin: 1rem 0;
     }
 
-    .btn {
-      background: #220000;
-      color: #F70707;
-      border: 1px solid #F70707;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-family: 'Source Code Pro', monospace;
-      transition: all 0.3s;
-    }
-
-    .btn:hover {
+    .equalizer-bar {
+      width: 4px;
       background: #F70707;
-      color: #0d0000;
-      box-shadow: 0 0 15px #F70707;
+      animation: equalize 1.5s infinite ease-in-out;
+      transform-origin: bottom;
     }
 
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    .equalizer-bar:nth-child(1) { animation-delay: 0.1s; height: 30%; }
+    .equalizer-bar:nth-child(2) { animation-delay: 0.3s; height: 60%; }
+    .equalizer-bar:nth-child(3) { animation-delay: 0.5s; height: 40%; }
+    .equalizer-bar:nth-child(4) { animation-delay: 0.2s; height: 70%; }
+    .equalizer-bar:nth-child(5) { animation-delay: 0.4s; height: 50%; }
+    .equalizer-bar:nth-child(6) { animation-delay: 0.6s; height: 80%; }
+    .equalizer-bar:nth-child(7) { animation-delay: 0.1s; height: 30%; }
+
+    @keyframes equalize {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.5); }
+    }
+
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 1.5rem;
+      }
+
+      .dj-title {
+        font-size: 2rem;
+      }
+
+      .turntable {
+        width: 180px;
+        height: 180px;
+      }
+
+      .booth-logo img {
+        max-width: 150px;
+      }
+
+      .controls {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .turntables {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .dj-title {
+        font-size: 1.8rem;
+      }
+
+      .booth-logo img {
+        max-width: 120px;
+      }
+
+      .control-btn {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="grid"></div>
-  <div class="crt-warp">
-    <img id="cherry" src="cejera-00.svg" alt="Logo Cejera" />
-    <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
-  </div>
   <div class="crt-effect"></div>
   <div class="scanlines"></div>
 
-  <!-- Interface do Jogo -->
-  <div class="game-ui">
-    <div class="stats">
-      <div>Cerejas: <span id="points">0</span></div>
-      <div>Auto-Clickers: <span id="autoclickers">0</span></div>
-      <div>Multiplicador: <span id="multiplier">1x</span></div>
-    </div>
+  <header class="header">
+    <a href="https://cejera.com/home">
+      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+    </a>
+    <h1 class="header-title">MÚSICA</h1>
+    <button class="cta-button">CONTATO</button>
+  </header>
+
+  <div class="dj-section">
+    <h2 class="dj-title">SUA FESTA PRECISA DE ALGUÉM EXCÊNTRICO</h2>
     
-    <div class="upgrades">
-      <button class="btn" id="buyAutoclicker">
-        Auto-Clicker (<span id="autoclickerCost">50</span>)
-      </button>
-      <button class="btn" id="buyMultiplier">
-        Multiplicador (<span id="multiplierCost">100</span>)
-      </button>
+    <div class="dj-booth">
+      <div class="equalizer">
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+        <div class="equalizer-bar"></div>
+      </div>
+      
+      <!-- Logo central da mesa -->
+      <div class="booth-logo">
+        <img src="cejera-04.svg" alt="Cejera DJ">
+      </div>
+      
+      <div class="turntables">
+        <div class="turntable" onclick="playSound(1)">
+          <div class="vinyl">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label">
+              <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
+            </div>
+          </div>
+        </div>
+        <div class="turntable" onclick="playSound(2)">
+          <div class="vinyl">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label">
+              <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn" onclick="adjustBPM(5)">BPM +</button>
+        <button class="control-btn" onclick="addEffect()">Efeitos</button>
+        <button class="control-btn" onclick="adjustBPM(-5)">BPM -</button>
+        <button class="control-btn" onclick="toggleFilter()">Filter</button>
+        <button class="control-btn" onclick="toggleLoop()">Loop</button>
+        <button class="control-btn" onclick="crossfade()">Mix</button>
+      </div>
+    </div>
+
+    <div class="dj-bio">
+      <h3 style="color: #F70707; text-align: center;">CEJERA - O DJ</h3>
+      <p>Já ouviu falar em sinestesia? Não dá pra explicar... Só sentindo pra saber:</p>
+      <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+        <li>Mixagem criativa entre gêneros</li>
+        <li>Transições (viradas) perfeitas</li>
+        <li>Sensibilidade para a energia da pista</li>
+        <li>Setlist personalizada para cada evento</li>
+        <li>Criação de sets sob demanda</li>
+      </ul>
+      <p>Especialista em funk, techno, house e fusões eletrônicas experimentais.</p>
+    </div>
+
+    <div class="final-cta">
+      <button class="cta-button">ENTRE EM CONTATO</button>
     </div>
   </div>
 
-  <script>
-    // Easter Egg Activation
-    let clickCount = 0;
-    const cherry = document.getElementById('cherry');
-    const constructionText = document.querySelector('.glow-text');
-    const gameUI = document.querySelector('.game-ui');
+  <footer>
+    <div class="footer-content">
+      <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+    </div>
+  </footer>
 
-    cherry.addEventListener('click', () => {
-      clickCount++;
-      if(clickCount === 7) {
-        constructionText.style.display = 'none';
-        gameUI.style.display = 'block';
-        initGame();
-      }
+  <script>
+    // Sons interativos melhorados
+    const sounds = {
+      track1: new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'),
+      track2: new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'),
+      effect1: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-flash-bang-2925.mp3'),
+      effect2: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-game-show-suspense-waiting-668.mp3'),
+      filter: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-beep-218.mp3')
+    };
+    
+    // Configuração inicial
+    let currentBPM = 120;
+    let isFilterOn = false;
+    let isLooping = false;
+    let activeTrack = null;
+    
+    // Precarregar sons
+    Object.values(sounds).forEach(sound => {
+      sound.load();
     });
 
-    // Game Logic
-    let points = 0;
-    let autoclickers = 0;
-    let multiplier = 1;
-    let autoclickerCost = 50;
-    let multiplierCost = 100;
-
-    function initGame() {
-      loadGame();
-      startGameLoop();
+    function playSound(index) {
+      const turntable = event.currentTarget;
+      const vinyl = turntable.querySelector('.vinyl');
+      const track = index === 1 ? sounds.track1 : sounds.track2;
       
-      // Click Handler
-      cherry.addEventListener('click', () => {
-        points += multiplier;
-        updateDisplay();
-      });
+      // Alternar animação e reprodução
+      if(vinyl.style.animationPlayState === 'paused' || !vinyl.style.animationPlayState) {
+        vinyl.style.animationPlayState = 'running';
+        track.currentTime = 0;
+        track.play();
+        activeTrack = track;
+      } else {
+        vinyl.style.animationPlayState = 'paused';
+        track.pause();
+        activeTrack = null;
+      }
+      
+      // Efeito visual
+      turntable.style.boxShadow = '0 0 30px #F70707';
+      setTimeout(() => {
+        turntable.style.boxShadow = '0 0 15px rgba(247,7,7,0.5)';
+      }, 2000);
+    }
 
-      // Upgrade Handlers
-      document.getElementById('buyAutoclicker').addEventListener('click', () => {
-        if(points >= autoclickerCost) {
-          points -= autoclickerCost;
-          autoclickers++;
-          autoclickerCost = Math.floor(autoclickerCost * 1.5);
-          updateDisplay();
+    function adjustBPM(change) {
+      currentBPM += change;
+      document.querySelectorAll('.vinyl').forEach(vinyl => {
+        if(vinyl.style.animationPlayState === 'running') {
+          const currentRotation = getRotationDegrees(vinyl);
+          const newDuration = (60 / currentBPM) * 2; // 2 batidas por rotação
+          vinyl.style.animation = 'none';
+          setTimeout(() => {
+            vinyl.style.animation = `spin ${newDuration}s linear infinite`;
+            vinyl.style.animationPlayState = 'running';
+            vinyl.style.transform = `rotate(${currentRotation}deg)`;
+          }, 10);
         }
       });
+      
+      // Efeito visual
+      const bpmDisplay = document.createElement('div');
+      bpmDisplay.textContent = `BPM: ${currentBPM}`;
+      bpmDisplay.style.position = 'fixed';
+      bpmDisplay.style.bottom = '20px';
+      bpmDisplay.style.right = '20px';
+      bpmDisplay.style.color = '#F70707';
+      bpmDisplay.style.fontSize = '24px';
+      bpmDisplay.style.zIndex = '1000';
+      document.body.appendChild(bpmDisplay);
+      
+      setTimeout(() => {
+        bpmDisplay.style.transition = 'opacity 1s';
+        bpmDisplay.style.opacity = '0';
+        setTimeout(() => bpmDisplay.remove(), 1000);
+      }, 2000);
+    }
 
-      document.getElementById('buyMultiplier').addEventListener('click', () => {
-        if(points >= multiplierCost) {
-          points -= multiplierCost;
-          multiplier++;
-          multiplierCost = Math.floor(multiplierCost * 2);
-          updateDisplay();
+    function getRotationDegrees(element) {
+      const style = window.getComputedStyle(element);
+      const matrix = style.transform || style.webkitTransform || style.mozTransform;
+      if(matrix === 'none') return 0;
+      const values = matrix.split('(')[1].split(')')[0].split(',');
+      const a = values[0];
+      const b = values[1];
+      const angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+      return angle < 0 ? angle + 360 : angle;
+    }
+
+    function addEffect() {
+      const randomEffect = Math.random() > 0.5 ? sounds.effect1 : sounds.effect2;
+      randomEffect.currentTime = 0;
+      randomEffect.play();
+      
+      // Efeito visual
+      const effect = document.createElement('div');
+      effect.style.position = 'fixed';
+      effect.style.top = '0';
+      effect.style.left = '0';
+      effect.style.width = '100%';
+      effect.style.height = '100%';
+      effect.style.background = 'radial-gradient(circle, rgba(247,7,7,0.3) 0%, transparent 70%)';
+      effect.style.zIndex = '1000';
+      effect.style.pointerEvents = 'none';
+      document.body.appendChild(effect);
+      
+      setTimeout(() => {
+        effect.style.transition = 'opacity 0.5s';
+        effect.style.opacity = '0';
+        setTimeout(() => effect.remove(), 500);
+      }, 300);
+    }
+
+    function toggleFilter() {
+      isFilterOn = !isFilterOn;
+      sounds.filter.currentTime = 0;
+      sounds.filter.play();
+      
+      // Efeito visual nos vinis
+      document.querySelectorAll('.vinyl').forEach(vinyl => {
+        if(isFilterOn) {
+          vinyl.style.filter = 'sepia(100%) hue-rotate(300deg) saturate(500%)';
+        } else {
+          vinyl.style.filter = 'none';
         }
       });
     }
 
-    function updateDisplay() {
-      document.getElementById('points').textContent = Math.floor(points);
-      document.getElementById('autoclickers').textContent = autoclickers;
-      document.getElementById('multiplier').textContent = `${multiplier}x`;
+    function toggleLoop() {
+      isLooping = !isLooping;
+      if(activeTrack) {
+        activeTrack.loop = isLooping;
+      }
       
-      document.getElementById('autoclickerCost').textContent = autoclickerCost;
-      document.getElementById('multiplierCost').textContent = multiplierCost;
+      // Efeito visual
+      const loopIndicator = document.createElement('div');
+      loopIndicator.textContent = isLooping ? 'LOOP ON' : 'LOOP OFF';
+      loopIndicator.style.position = 'fixed';
+      loopIndicator.style.top = '50%';
+      loopIndicator.style.left = '50%';
+      loopIndicator.style.transform = 'translate(-50%, -50%)';
+      loopIndicator.style.color = '#F70707';
+      loopIndicator.style.fontSize = '48px';
+      loopIndicator.style.fontWeight = 'bold';
+      loopIndicator.style.zIndex = '1000';
+      loopIndicator.style.textShadow = '0 0 10px #000';
+      document.body.appendChild(loopIndicator);
       
-      document.getElementById('buyAutoclicker').disabled = points < autoclickerCost;
-      document.getElementById('buyMultiplier').disabled = points < multiplierCost;
-      
-      saveGame();
-    }
-
-    function startGameLoop() {
-      setInterval(() => {
-        points += autoclickers * multiplier;
-        updateDisplay();
+      setTimeout(() => {
+        loopIndicator.style.transition = 'opacity 1s';
+        loopIndicator.style.opacity = '0';
+        setTimeout(() => loopIndicator.remove(), 1000);
       }, 1000);
     }
 
-    // Save/Load System
-    function saveGame() {
-      const gameData = {
-        points,
-        autoclickers,
-        multiplier,
-        autoclickerCost,
-        multiplierCost
-      };
-      localStorage.setItem('cherryClickerSave', JSON.stringify(gameData));
+    function crossfade() {
+      if(!sounds.track1.paused && !sounds.track2.paused) {
+        // Efeito de crossfade
+        sounds.track1.volume = 0.5;
+        sounds.track2.volume = 0.5;
+        
+        const fadeInterval = setInterval(() => {
+          if(sounds.track1.volume > 0) {
+            sounds.track1.volume -= 0.05;
+            sounds.track2.volume += 0.05;
+          } else {
+            clearInterval(fadeInterval);
+            sounds.track1.pause();
+            document.querySelectorAll('.vinyl')[0].style.animationPlayState = 'paused';
+          }
+        }, 100);
+      }
+      
+      // Efeito visual
+      const mixer = document.createElement('div');
+      mixer.style.position = 'fixed';
+      mixer.style.top = '0';
+      mixer.style.left = '0';
+      mixer.style.width = '100%';
+      mixer.style.height = '100%';
+      mixer.style.background = 'linear-gradient(90deg, rgba(247,7,7,0.1) 0%, rgba(247,7,7,0.3) 50%, rgba(247,7,7,0.1) 100%)';
+      mixer.style.zIndex = '1000';
+      mixer.style.pointerEvents = 'none';
+      document.body.appendChild(mixer);
+      
+      setTimeout(() => {
+        mixer.style.transition = 'opacity 1s';
+        mixer.style.opacity = '0';
+        setTimeout(() => mixer.remove(), 1000);
+      }, 1000);
     }
 
-    function loadGame() {
-      const savedData = localStorage.getItem('cherryClickerSave');
-      if(savedData) {
-        const gameData = JSON.parse(savedData);
-        points = gameData.points || 0;
-        autoclickers = gameData.autoclickers || 0;
-        multiplier = gameData.multiplier || 1;
-        autoclickerCost = gameData.autoclickerCost || 50;
-        multiplierCost = gameData.multiplierCost || 100;
-        updateDisplay();
-      }
-    }
+    // Controle dos botões de contato
+    document.querySelectorAll('.cta-button').forEach(button => {
+      button.addEventListener('click', () => {
+        window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
+      });
+    });
+
+    // Efeito de equalizador aleatório
+    setInterval(() => {
+      document.querySelectorAll('.equalizer-bar').forEach(bar => {
+        const randomHeight = Math.floor(Math.random() * 70) + 10;
+        bar.style.height = `${randomHeight}%`;
+      });
+    }, 300);
   </script>
 </body>
 </html>
