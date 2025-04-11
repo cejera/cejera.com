@@ -2,66 +2,64 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cejera — Em construção</title>
+  <title>Cejera Loja</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Link do Font Awesome -->
+  <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Source Code Pro', monospace;
     }
 
     body {
       background-color: #0d0000;
-      color: #F70707;
-      font-family: 'Source Code Pro', monospace;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
+      color: #ffffff;
+      line-height: 1.6;
     }
-
-    img {
-      width: 120px;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 0 5px #F70707);
-      z-index: 2;
-      cursor: pointer;
-    }
-
-    .glow-text {
-      font-size: 1.2rem;
-      text-align: center;
-      text-transform: uppercase;
-      animation: flicker 1.2s infinite alternate;
-      letter-spacing: 2px;
-      z-index: 2;
-    }
-
-    @keyframes flicker {
-      0%   { opacity: 1; text-shadow: 0 0 5px #F70707, 0 0 10px #F70707; }
-      50%  { opacity: 0.5; text-shadow: none; }
-      100% { opacity: 1; text-shadow: 0 0 7px #F70707, 0 0 15px #F70707; }
-    }
-
-    .grid {
-      position: absolute;
+    /* Header, scanlines, CRT e footer – mesmo estilo do código de referência */
+    .header {
+      position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(#220000 1px, transparent 1px), linear-gradient(90deg, #220000 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.2;
-      z-index: 0;
+      background: rgba(34, 0, 0, 0.9);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
     }
-
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+    .header-title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+    }
+    .cta-button {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+    }
+    .cta-button:hover {
+      background: #ffffff;
+      box-shadow: 0 0 15px #F70707;
+    }
     .scanlines {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -74,218 +72,366 @@
         transparent 4px
       );
       pointer-events: none;
-      z-index: 3;
+      z-index: 1001;
       animation: scanMove 3s linear infinite;
     }
-
     @keyframes scanMove {
-      0%   { transform: translateY(0); }
+      0% { transform: translateY(0); }
       100% { transform: translateY(4px); }
     }
-
     .crt-effect {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
       background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1;
+      z-index: 1001;
       mix-blend-mode: screen;
-      border-radius: 8px;
       filter: blur(0.6px);
-      transform: scaleX(1.02) scaleY(1.04);
     }
-
-    .crt-warp {
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+      margin-top: 2rem;
+    }
+    /* Nota de frete */
+    .frete-info {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 1rem;
+    }
+    /* Banner principal com placeholder e efeito de colorir ao passar o mouse */
+    .banner {
+      margin-top: 80px;
+      height: 70vh;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    .banner img {
       width: 100%;
       height: 100%;
-      transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
     }
-
-    /* Estilos do Jogo */
-    .game-ui {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
+    .banner img:hover {
+      filter: grayscale(0);
+    }
+    /* Sessões de conteúdo */
+    .content-section {
       text-align: center;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 7px;
+      font-size: 1.2rem;
     }
-
-    .stats {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(13, 0, 0, 0.8);
-      padding: 15px;
-      border: 1px solid #F70707;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #F70707;
-    }
-
-    .upgrades {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-    }
-
-    .btn {
-      background: #220000;
+    .section-title {
       color: #F70707;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    .section-description {
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    /* Estilo para os cards de produtos */
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .product-card {
+      background: #1a0000;
       border: 1px solid #F70707;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-family: 'Source Code Pro', monospace;
-      transition: all 0.3s;
+      padding: 1rem;
+      border-radius: 7px;
+      width: 300px;
+      position: relative;
     }
-
-    .btn:hover {
+    .product-title {
+      font-size: 1.3rem;
+      margin: 0.5rem 0;
+    }
+    .product-price {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .old-price s {
+      color: #888;
+    }
+    .discount-tag {
+      background: red;
+      color: #fff;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+    }
+    /* Botão WhatsApp */
+    .whatsapp-button {
+      display: inline-block;
       background: #F70707;
-      color: #0d0000;
-      box-shadow: 0 0 15px #F70707;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-top: 1rem;
     }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    .whatsapp-button:hover {
+      background: #1ebc57;
+      transform: scale(1.02);
+    }
+    /* Carousel básico para imagens com opções de cores */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+    }
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      filter: grayscale(10%);
+    }
+    .carousel img.active {
+      opacity: 1;
+    }
+    .carousel img:hover {
+      filter: grayscale(0);
+    }
+    /* Estilo para a sessão C1B3R: imagem corrompida com efeito matrix */
+    .matrix-product {
+      width: 300px;
+      height: 300px;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      margin: 0 auto;
+    }
+    .matrix-product canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .product-grid {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="grid"></div>
-  <div class="crt-warp">
-    <img id="cherry" src="cejera-00.svg" alt="Logo Cejera" />
-    <div class="glow-text">EM CONSTRUÇÃO | UNDER CONSTRUCTION</div>
-  </div>
-  <div class="crt-effect"></div>
   <div class="scanlines"></div>
+  <div class="crt-effect"></div>
 
-  <!-- Interface do Jogo -->
-  <div class="game-ui">
-    <div class="stats">
-      <div>Cerejas: <span id="points">0</span></div>
-      <div>Auto-Clickers: <span id="autoclickers">0</span></div>
-      <div>Multiplicador: <span id="multiplier">1x</span></div>
-    </div>
-    
-    <div class="upgrades">
-      <button class="btn" id="buyAutoclicker">
-        Auto-Clicker (<span id="autoclickerCost">50</span>)
-      </button>
-      <button class="btn" id="buyMultiplier">
-        Multiplicador (<span id="multiplierCost">100</span>)
-      </button>
-    </div>
+  <header class="header">
+    <a href="https://cejera.com/home">
+      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+    </a>
+    <h1 class="header-title">LOJA</h1>
+    <button class="cta-button" onclick="window.location.href='https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer um pedido na sua loja.'">Fazer pedido</button>
+  </header>
+
+  <!-- Banner principal com placeholder -->
+  <div class="banner">
+    <img src="banner-site.png" alt="Banner da Loja">
   </div>
+
+  <!-- Sessão BAZIKA -->
+  <section class="content-section" id="bazika">
+    <h2 class="section-title">BAZIKA</h2>
+    <p class="section-description">O básico que funciona (para causar impacto)</p>
+    <div class="product-grid">
+      <!-- Produto: Camiseta Bazika -->
+      <div class="product-card">
+        <div class="carousel" id="carousel-camiseta-bazika">
+          <!-- Três imagens para as cores: Preta, Vermelha e Branca -->
+          <img src="Camiseta+Preta.jpg" alt="Camiseta Bazika - Preta" class="active">
+          <img src="Camiseta+Vermelha.jpg" alt="Camiseta Bazika - Vermelha">
+          <img src="Camiseta+Branca.jpg" alt="Camiseta Bazika - Branca">
+        </div>
+        <h3 class="product-title">Camiseta Bazika</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$155,40</s></span><br> Por: R$77,70 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika (com opções de cor: Preta/Vermelha/Branca)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+      <!-- Produto: Calça Bazika -->
+      <div class="product-card">
+        <div class="carousel">
+          <img src="calca-bazika.jpg" alt="Calça Bazika" class="active">
+        </div>
+        <h3 class="product-title">Calça Bazika</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$175,40</s></span><br> Por: R$87,70 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Calça Bazika (Preta)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+      <!-- Produto: Corta-vento Bazika -->
+      <div class="product-card">
+        <div class="carousel" id="carousel-cortavento-bazika">
+          <!-- Três imagens: Preta, Vermelha e Branca -->
+          <img src="Corta-vento+Preto.jpg" alt="Corta-vento Bazika - Preto" class="active">
+          <img src="Corta-vento+Vermelho.jpg" alt="Corta-vento Bazika - Vermelho">
+          <img src="Corta-vento+Branco.jpg" alt="Corta-vento Bazika - Branco">
+        </div>
+        <h3 class="product-title">Corta-vento Bazika</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$215,40</s></span><br> Por: R$107,70 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Corta-vento Bazika (com opções de cor: Preto/Vermelho/Branco)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sessão AKA -->
+  <section class="content-section" id="aka">
+    <h2 class="section-title">AKA</h2>
+    <p class="section-description">Feita pra quem também é conhecido como.</p>
+    <div class="product-grid">
+      <!-- Produto: Camiseta AKA -->
+      <div class="product-card">
+        <div class="carousel" id="carousel-camiseta-aka">
+          <!-- Quatro imagens: Preto, Branco, Vermelho e Cinza -->
+          <img src="Camiseta-aka+Preta.jpg" alt="Camiseta AKA - Preto" class="active">
+          <img src="Camiseta-aka+Branca.jpg" alt="Camiseta AKA - Branca">
+          <img src="Camiseta-aka+Vermelha.jpg" alt="Camiseta AKA - Vermelha">
+          <img src="Camiseta-aka+Cinza.jpg" alt="Camiseta AKA - Cinza">
+        </div>
+        <h3 class="product-title">Camiseta AKA</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$95,40</s></span><br> Por: R$47,70 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta AKA (com opções de cor: Preto/Branco/Vermelho/Cinza)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+      <!-- Produto: Short AKA -->
+      <div class="product-card">
+        <div class="carousel" id="carousel-short-aka">
+          <!-- Quatro imagens: Preto, Branco, Vermelho e Cinza -->
+          <img src="Short+Preto.jpg" alt="Short AKA - Preto" class="active">
+          <img src="Short+Branco.jpg" alt="Short AKA - Branco">
+          <img src="Short+Vermelho.jpg" alt="Short AKA - Vermelho">
+          <img src="Short+Cinza.jpg" alt="Short AKA - Cinza">
+        </div>
+        <h3 class="product-title">Short AKA</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$95,40</s></span><br> Por: R$47,70 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Short AKA (com opções de cor: Preto/Branco/Vermelho/Cinza)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sessão C1B3R -->
+  <section class="content-section" id="c1b3r">
+    <h2 class="section-title">C1B3R</h2>
+    <p class="section-description">Edição única. Pura <em>excentricidade</em>.</p>
+    <div class="product-grid" style="justify-content: center;">
+      <div class="product-card">
+        <div class="matrix-product">
+          <canvas id="matrix-c1b3r"><img src="c1b3r.jpg" alt="C1B3R" class="active"></canvas>
+
+        </div>
+        <h3 class="product-title">NÃO ENCONTRADO</h3>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$1.555,54</s></span><br> Por: R$777,77 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera. Gostaria de saber mais sobre o produto misterioso de sua loja." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+      <p class="frete-info">*Frete não está incluso no valor; o frete é calculado no momento do pedido.</p>
+    </div>
+  </footer>
 
   <script>
-    // Easter Egg Activation
-    let clickCount = 0;
-    const cherry = document.getElementById('cherry');
-    const constructionText = document.querySelector('.glow-text');
-    const gameUI = document.querySelector('.game-ui');
-
-    cherry.addEventListener('click', () => {
-      clickCount++;
-      if(clickCount === 7) {
-        constructionText.style.display = 'none';
-        gameUI.style.display = 'block';
-        initGame();
+    // Função para o efeito matrix na sessão C1B3R (canvas)
+    (function(){
+      const canvas = document.getElementById('matrix-c1b3r');
+      const ctx = canvas.getContext('2d');
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      
+      const chars = 'C1B3R010101';
+      const fontSize = 18;
+      const columns = canvas.width / fontSize;
+      const drops = [];
+      for(let i = 0; i < columns; i++) {
+        drops[i] = 1;
       }
-    });
-
-    // Game Logic
-    let points = 0;
-    let autoclickers = 0;
-    let multiplier = 1;
-    let autoclickerCost = 50;
-    let multiplierCost = 100;
-
-    function initGame() {
-      loadGame();
-      startGameLoop();
       
-      // Click Handler
-      cherry.addEventListener('click', () => {
-        points += multiplier;
-        updateDisplay();
-      });
-
-      // Upgrade Handlers
-      document.getElementById('buyAutoclicker').addEventListener('click', () => {
-        if(points >= autoclickerCost) {
-          points -= autoclickerCost;
-          autoclickers++;
-          autoclickerCost = Math.floor(autoclickerCost * 1.5);
-          updateDisplay();
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSize + 'px monospace';
+        for(let i = 0; i < drops.length; i++) {
+          const text = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = Math.random() > 0.1 ? '#8B0000' : '#F70707';
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
         }
-      });
+      }
+      setInterval(drawMatrix, 50);
+    })();
 
-      document.getElementById('buyMultiplier').addEventListener('click', () => {
-        if(points >= multiplierCost) {
-          points -= multiplierCost;
-          multiplier++;
-          multiplierCost = Math.floor(multiplierCost * 2);
-          updateDisplay();
-        }
-      });
-    }
-
-    function updateDisplay() {
-      document.getElementById('points').textContent = Math.floor(points);
-      document.getElementById('autoclickers').textContent = autoclickers;
-      document.getElementById('multiplier').textContent = `${multiplier}x`;
-      
-      document.getElementById('autoclickerCost').textContent = autoclickerCost;
-      document.getElementById('multiplierCost').textContent = multiplierCost;
-      
-      document.getElementById('buyAutoclicker').disabled = points < autoclickerCost;
-      document.getElementById('buyMultiplier').disabled = points < multiplierCost;
-      
-      saveGame();
-    }
-
-    function startGameLoop() {
+    // Função para o carrossel dos produtos (troca de imagens a cada 3 segundos)
+    function initCarousel(carouselId, interval = 3000) {
+      const carousel = document.getElementById(carouselId);
+      if(!carousel) return;
+      const images = carousel.querySelectorAll('img');
+      let current = 0;
       setInterval(() => {
-        points += autoclickers * multiplier;
-        updateDisplay();
-      }, 1000);
+        images[current].classList.remove('active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('active');
+      }, interval);
     }
-
-    // Save/Load System
-    function saveGame() {
-      const gameData = {
-        points,
-        autoclickers,
-        multiplier,
-        autoclickerCost,
-        multiplierCost
-      };
-      localStorage.setItem('cherryClickerSave', JSON.stringify(gameData));
-    }
-
-    function loadGame() {
-      const savedData = localStorage.getItem('cherryClickerSave');
-      if(savedData) {
-        const gameData = JSON.parse(savedData);
-        points = gameData.points || 0;
-        autoclickers = gameData.autoclickers || 0;
-        multiplier = gameData.multiplier || 1;
-        autoclickerCost = gameData.autoclickerCost || 50;
-        multiplierCost = gameData.multiplierCost || 100;
-        updateDisplay();
-      }
-    }
+    // Inicializa os carrosséis
+    initCarousel('carousel-camiseta-bazika');
+    initCarousel('carousel-cortavento-bazika');
+    initCarousel('carousel-camiseta-aka');
+    initCarousel('carousel-short-aka');
   </script>
 </body>
 </html>
