@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Short AKA | Cejera | Loja</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
+  <style>
+    /* Mantenha todos os estilos anteriores */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    body {
+      background-color: #0d0000;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(34, 0, 0, 0.9);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
+    }
+
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 1001;
+      animation: scanMove 3s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .crt-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1001;
+      mix-blend-mode: screen;
+      filter: blur(0.6px);
+    }
+
+    .product-detail-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 100px auto 50px;
+      padding: 2rem;
+      gap: 3rem;
+      position: relative;
+      z-index: 100;
+    }
+
+    .product-gallery {
+      flex: 1;
+      position: relative;
+    }
+
+    .product-info {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .carousel-detail {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+    }
+
+    .carousel-detail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .carousel-detail img.active {
+      opacity: 1;
+    }
+
+    .color-dots {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .color-dot {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #444;
+      transition: all 0.3s;
+    }
+
+    .color-dot.active {
+      border-color: #F70707;
+      box-shadow: 0 0 10px #F70707;
+    }
+
+    .product-title-detail {
+      color: #F70707;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px #F70707;
+    }
+
+    .product-description {
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .option-group {
+      margin-bottom: 2rem;
+    }
+
+    .option-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #F70707;
+      font-size: 1.1rem;
+    }
+
+    .size-options {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .size-btn {
+      background: #1a0000;
+      color: #fff;
+      border: 2px solid #444;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+
+    .size-btn:hover, .size-btn.active {
+      border-color: #F70707;
+      color: #F70707;
+      box-shadow: 0 0 10px #F70707;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity-btn {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .quantity-btn:hover {
+      background: #ff4444;
+    }
+
+    #quantity {
+      background: #1a0000;
+      color: #fff;
+      border: 2px solid #444;
+      width: 70px;
+      text-align: center;
+      padding: 0.5rem;
+      -moz-appearance: textfield;
+      font-size: 1.1rem;
+    }
+
+    #quantity::-webkit-outer-spin-button,
+    #quantity::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .whatsapp-button-detail {
+      display: block;
+      width: 100%;
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      text-align: center;
+      background: #F70707;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 7px;
+      transition: all 0.3s;
+      margin-top: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .whatsapp-button-detail:hover {
+      background: #25D366;
+      box-shadow: 0 0 15px #25D366;
+    }
+
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-container {
+        flex-direction: column;
+        margin-top: 80px;
+        padding: 1rem;
+      }
+      
+      .carousel-detail {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+  <div class="crt-effect"></div>
+
+  <header class="header">
+    <a href="https://cejera.com/home">
+      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+    </a>
+  </header>
+
+  <div class="product-detail-container">
+    <div class="product-gallery">
+      <div class="carousel-detail" id="productCarousel">
+        <!-- Imagens serão inseridas via JavaScript -->
+      </div>
+      <div class="color-dots" id="colorDots">
+        <!-- Pontos de cor serão gerados via JavaScript -->
+      </div>
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-title-detail">Short AKA Dryfit</h1>
+      <p class="product-description">
+        Short de performance em tecido Dryfit com tecnologia anti-odor. Cintura elástica com cordão e bolsos laterais.
+        Disponível em 4 cores: Preto, Branco, Vermelho e Cinza. Ideal para crossfit, musculação e treinos funcionais.
+      </p>
+
+      <div class="option-group">
+        <label>CORES:</label>
+        <div class="color-dots" id="colorOptions"></div>
+      </div>
+
+      <div class="option-group">
+        <label>TAMANHO:</label>
+        <div class="size-options">
+          <button class="size-btn" data-size="P">P</button>
+          <button class="size-btn" data-size="M">M</button>
+          <button class="size-btn" data-size="G">G</button>
+          <button class="size-btn" data-size="G2">G2</button>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <label>QUANTIDADE:</label>
+        <div class="quantity-control">
+          <button class="quantity-btn" id="decrement">-</button>
+          <input type="number" id="quantity" value="1" min="1" max="99">
+          <button class="quantity-btn" id="increment">+</button>
+        </div>
+      </div>
+
+      <button class="whatsapp-button-detail" id="whatsappButton">
+        <i class="fab fa-whatsapp"></i> COMPRAR AGORA
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+      <p class="frete-info">*Frete não está incluso no valor; o frete é calculado no momento do pedido.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Dados do Produto
+    const product = {
+      name: 'Short AKA Dryfit',
+      colors: [
+        {
+          name: 'Preto',
+          code: '#000000',
+          images: ['short-preto-1.jpg', 'short-preto-2.jpg', 'short-preto-3.jpg']
+        },
+        {
+          name: 'Branco',
+          code: '#FFFFFF',
+          images: ['short-branco-1.jpg', 'short-branco-2.jpg', 'short-branco-3.jpg']
+        },
+        {
+          name: 'Vermelho',
+          code: '#FF0000',
+          images: ['short-vermelho-1.jpg', 'short-vermelho-2.jpg', 'short-vermelho-3.jpg']
+        },
+        {
+          name: 'Cinza',
+          code: '#808080',
+          images: ['short-cinza-1.jpg', 'short-cinza-2.jpg', 'short-cinza-3.jpg']
+        }
+      ],
+      sizes: ['P', 'M', 'G', 'G2']
+    };
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', () => {
+      // Configurar cores
+      const colorDots = document.getElementById('colorDots');
+      product.colors.forEach((color, index) => {
+        const dot = document.createElement('div');
+        dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
+        dot.style.backgroundColor = color.code;
+        dot.dataset.colorIndex = index;
+        dot.addEventListener('click', changeColor);
+        colorDots.appendChild(dot);
+      });
+
+      // Carregar primeira cor
+      loadColorImages(0);
+
+      // Eventos de tamanho
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // Controle de quantidade
+      document.getElementById('increment').addEventListener('click', () => {
+        const quantity = document.getElementById('quantity');
+        if(quantity.value < 99) quantity.value++;
+      });
+
+      document.getElementById('decrement').addEventListener('click', () => {
+        const quantity = document.getElementById('quantity');
+        if(quantity.value > 1) quantity.value--;
+      });
+
+      // WhatsApp
+      document.getElementById('whatsappButton').addEventListener('click', sendWhatsApp);
+    });
+
+    function changeColor(e) {
+      const index = e.target.dataset.colorIndex;
+      document.querySelectorAll('.color-dot').forEach(dot => {
+        dot.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      loadColorImages(index);
+    }
+
+    function loadColorImages(colorIndex) {
+      const carousel = document.getElementById('productCarousel');
+      carousel.innerHTML = '';
+      
+      product.colors[colorIndex].images.forEach(img => {
+        const image = document.createElement('img');
+        image.src = img;
+        image.alt = `${product.name} - ${product.colors[colorIndex].name}`;
+        carousel.appendChild(image);
+      });
+
+      // Iniciar carrossel
+      let currentImage = 0;
+      const images = carousel.querySelectorAll('img');
+      images[currentImage].classList.add('active');
+      
+      setInterval(() => {
+        images[currentImage].classList.remove('active');
+        currentImage = (currentImage + 1) % images.length;
+        images[currentImage].classList.add('active');
+      }, 3000);
+    }
+
+    function sendWhatsApp() {
+      const color = document.querySelector('.color-dot.active').style.backgroundColor;
+      const size = document.querySelector('.size-btn.active')?.dataset.size || 'Não selecionado';
+      const quantity = document.getElementById('quantity').value;
+
+      const message = `🩳 *PEDIDO CEJERA - SHORT AKA* 🩳\n\n` +
+        `*Produto:* ${product.name}\n` +
+        `*Cor:* ${getColorName(color)}\n` +
+        `*Tamanho:* ${size}\n` +
+        `*Quantidade:* ${quantity}\n\n` +
+        `Por favor, confirme a disponibilidade.`;
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/5535999286246?text=${encodedMessage}`, '_blank');
+    }
+
+    function getColorName(hex) {
+      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase()).name;
+    }
+  </script>
+</body>
+</html>
