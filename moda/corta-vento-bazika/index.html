@@ -117,7 +117,6 @@
     .color-dots {
       display: flex;
       gap: 1rem;
-      justify-content: center;
       margin-top: 1rem;
     }
 
@@ -281,9 +280,7 @@ footer {
       <div class="carousel-detail" id="productCarousel">
         <!-- Imagens serão inseridas via JavaScript -->
       </div>
-      <div class="color-dots" id="colorDots">
-        <!-- Pontos de cor serão gerados via JavaScript -->
-      </div>
+
     </div>
 
     <div class="product-info">
@@ -295,7 +292,8 @@ footer {
 
       <div class="option-group">
         <label>CORES:</label>
-        <div class="color-dots" id="colorOptions"></div>
+      <div class="color-dots" id="colorDots">
+      </div>
       </div>
 
       <div class="option-group">
@@ -321,6 +319,15 @@ footer {
   </footer>
 
   <script>
+    // Função para converter RGB para Hex
+    function rgbToHex(rgb) {
+      const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      if (!match) return '#000000';
+      
+      const hex = (x) => ('0' + parseInt(x).toString(16)).slice(-2);
+      return '#' + hex(match[1]) + hex(match[2]) + hex(match[3]);
+    }
+
     // Dados do Produto
     const product = {
       name: 'Corta-vento Bazika',
@@ -341,15 +348,16 @@ footer {
           images: ['Corta-vento+Branco.jpg', 'corta-detalhe5.jpg', 'corta-detalhe6.jpg']
         }
       ],
-      sizes: ['P', 'M', 'G'] // Removido G2
+      sizes: ['P', 'M', 'G']
     };
+
     // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
       // Configurar cores
       const colorDots = document.getElementById('colorDots');
       product.colors.forEach((color, index) => {
         const dot = document.createElement('div');
-        dot.className = 'color-dot' + (index === 0 ? ' active' : '');
+        dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
         dot.style.backgroundColor = color.code;
         dot.dataset.colorIndex = index;
         dot.addEventListener('click', changeColor);
@@ -365,17 +373,6 @@ footer {
           document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
         });
-      });
-
-      // Controle de quantidade
-      document.getElementById('increment').addEventListener('click', () => {
-        const quantity = document.getElementById('quantity');
-        if(quantity.value < 99) quantity.value++;
-      });
-
-      document.getElementById('decrement').addEventListener('click', () => {
-        const quantity = document.getElementById('quantity');
-        if(quantity.value > 1) quantity.value--;
       });
 
       // WhatsApp
@@ -415,15 +412,17 @@ footer {
     }
 
     function sendWhatsApp() {
-      const color = document.querySelector('.color-dot.active').style.backgroundColor;
+      const colorDot = document.querySelector('.color-dot.active');
       const size = document.querySelector('.size-btn.active')?.dataset.size || 'Não selecionado';
-      const quantity = document.getElementById('quantity').value;
+      
+      // Converter cor para hex
+      const rgbColor = getComputedStyle(colorDot).backgroundColor;
+      const hexColor = rgbToHex(rgbColor);
 
       const message = `📦 *PEDIDO CEJERA* 📦\n\n` +
         `*Produto:* ${product.name}\n` +
-        `*Cor:* ${getColorName(color)}\n` +
-        `*Tamanho:* ${size}\n` +
-        `*Quantidade:* ${quantity}\n\n` +
+        `*Cor:* ${getColorName(hexColor)}\n` +
+        `*Tamanho:* ${size}\n\n` +
         `Por favor, confirme a disponibilidade.`;
 
       const encodedMessage = encodeURIComponent(message);
@@ -431,7 +430,7 @@ footer {
     }
 
     function getColorName(hex) {
-      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase()).name;
+      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase())?.name || 'Não especificada';
     }
   </script>
 </body>
