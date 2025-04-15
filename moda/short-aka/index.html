@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Short AKA | Cejera | Loja</title>
+  <title>Short AKA Dryfit | Cejera | Loja</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
@@ -121,7 +121,6 @@
     .color-dots {
       display: flex;
       gap: 1rem;
-      justify-content: center;
       margin-top: 1rem;
     }
 
@@ -290,9 +289,7 @@
       <div class="carousel-detail" id="productCarousel">
         <!-- Imagens serão inseridas via JavaScript -->
       </div>
-      <div class="color-dots" id="colorDots">
-        <!-- Pontos de cor serão gerados via JavaScript -->
-      </div>
+      <div class="color-dots" id="colorDots"></div>
     </div>
 
     <div class="product-info">
@@ -340,6 +337,14 @@
   </footer>
 
   <script>
+    // Função para converter RGB para Hex
+    function rgbToHex(rgb) {
+      const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      if (!match) return '#000000';
+      const hex = (x) => ('0' + parseInt(x).toString(16)).slice(-2);
+      return '#' + hex(match[1]) + hex(match[2]) + hex(match[3]);
+    }
+
     // Dados do Produto
     const product = {
       name: 'Short AKA Dryfit',
@@ -371,14 +376,14 @@
     // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
       // Configurar cores
-      const colorDots = document.getElementById('colorDots');
+      const colorOptions = document.getElementById('colorOptions');
       product.colors.forEach((color, index) => {
         const dot = document.createElement('div');
         dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
         dot.style.backgroundColor = color.code;
         dot.dataset.colorIndex = index;
         dot.addEventListener('click', changeColor);
-        colorDots.appendChild(dot);
+        colorOptions.appendChild(dot);
       });
 
       // Carregar primeira cor
@@ -440,13 +445,17 @@
     }
 
     function sendWhatsApp() {
-      const color = document.querySelector('.color-dot.active').style.backgroundColor;
+      const colorDot = document.querySelector('.color-dot.active');
       const size = document.querySelector('.size-btn.active')?.dataset.size || 'Não selecionado';
       const quantity = document.getElementById('quantity').value;
 
+      // Converter cor para hex
+      const rgbColor = getComputedStyle(colorDot).backgroundColor;
+      const hexColor = rgbToHex(rgbColor);
+
       const message = `🩳 *PEDIDO CEJERA - SHORT AKA* 🩳\n\n` +
         `*Produto:* ${product.name}\n` +
-        `*Cor:* ${getColorName(color)}\n` +
+        `*Cor:* ${getColorName(hexColor)}\n` +
         `*Tamanho:* ${size}\n` +
         `*Quantidade:* ${quantity}\n\n` +
         `Por favor, confirme a disponibilidade.`;
@@ -456,7 +465,7 @@
     }
 
     function getColorName(hex) {
-      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase()).name;
+      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase())?.name || 'Não especificada';
     }
   </script>
 </body>
