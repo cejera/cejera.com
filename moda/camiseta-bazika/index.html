@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
   <style>
-    /* Estilos originais mantidos */
+    /* Estilos corrigidos e otimizados */
     * {
       margin: 0;
       padding: 0;
@@ -57,6 +57,11 @@
       animation: scanMove 3s linear infinite;
     }
 
+    @keyframes scanMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
     .crt-effect {
       position: fixed;
       top: 0;
@@ -70,7 +75,6 @@
       filter: blur(0.6px);
     }
 
-    /* Estilos específicos da página de produto */
     .product-detail-container {
       display: flex;
       max-width: 1200px;
@@ -117,7 +121,6 @@
     .color-dots {
       display: flex;
       gap: 1rem;
-      justify-content: center;
       margin-top: 1rem;
     }
 
@@ -225,7 +228,7 @@
       padding: 1.5rem;
       font-size: 1.2rem;
       text-align: center;
-      background: #f70707;
+      background: #F70707;
       color: #fff;
       text-decoration: none;
       border-radius: 7px;
@@ -240,6 +243,24 @@
       box-shadow: 0 0 15px #25D366;
     }
 
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 20px;
+    }
+
     @media (max-width: 768px) {
       .product-detail-container {
         flex-direction: column;
@@ -251,19 +272,6 @@
         height: 300px;
       }
     }
-footer {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  min-height: 150px; /* Ajuste conforme necessário */
-}
-
-.footer-content {
-  max-width: 1200px;
-  width: 100%;
-  padding: 0 20px;
-}
   </style>
 </head>
 <body>
@@ -354,17 +362,26 @@ footer {
       sizes: ['P', 'M', 'G', 'G2']
     };
 
+    // Função para converter RGB para Hex
+    function rgbToHex(rgb) {
+      const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      if (!match) return '#000000';
+      
+      const hex = (x) => ('0' + parseInt(x).toString(16)).slice(-2);
+      return '#' + hex(match[1]) + hex(match[2]) + hex(match[3]);
+    }
+
     // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
       // Configurar cores
-      const colorDots = document.getElementById('colorDots');
+      const colorOptions = document.getElementById('colorOptions');
       product.colors.forEach((color, index) => {
         const dot = document.createElement('div');
-        dot.className = 'color-dot' + (index === 0 ? ' active' : '');
+        dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
         dot.style.backgroundColor = color.code;
         dot.dataset.colorIndex = index;
         dot.addEventListener('click', changeColor);
-        colorDots.appendChild(dot);
+        colorOptions.appendChild(dot);
       });
 
       // Carregar primeira cor
@@ -426,13 +443,17 @@ footer {
     }
 
     function sendWhatsApp() {
-      const color = document.querySelector('.color-dot.active').style.backgroundColor;
+      const colorDot = document.querySelector('.color-dot.active');
       const size = document.querySelector('.size-btn.active')?.dataset.size || 'Não selecionado';
       const quantity = document.getElementById('quantity').value;
 
+      // Converter cor para hex
+      const rgbColor = getComputedStyle(colorDot).backgroundColor;
+      const hexColor = rgbToHex(rgbColor);
+
       const message = `📦 *PEDIDO CEJERA* 📦\n\n` +
         `*Produto:* ${product.name}\n` +
-        `*Cor:* ${getColorName(color)}\n` +
+        `*Cor:* ${getColorName(hexColor)}\n` +
         `*Tamanho:* ${size}\n` +
         `*Quantidade:* ${quantity}\n\n` +
         `Por favor, confirme a disponibilidade.`;
@@ -442,7 +463,7 @@ footer {
     }
 
     function getColorName(hex) {
-      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase()).name;
+      return product.colors.find(c => c.code.toLowerCase() === hex.toLowerCase())?.name || 'Não especificada';
     }
   </script>
 </body>
