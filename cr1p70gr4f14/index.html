@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIRTILO v2.1.3 // CONSULTA</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: default;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    body {
+      background-color: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-top {
+      position: absolute;
+      top: 30px;
+      width: 180px;
+      filter: drop-shadow(0 0 10px rgba(225, 211, 234, 0.5));
+      z-index: 5;
+    }
+
+    .logo-bottom {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      filter: drop-shadow(0 0 5px rgba(74, 77, 156, 0.3));
+      transition: all 0.3s;
+      z-index: 5;
+    }
+
+    .logo-bottom:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px rgba(225, 211, 234, 0.7));
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #E1D3EA;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      z-index: 5;
+    }
+
+    .terminal-input {
+      position: absolute;
+      top: calc(50% - 220px);
+      width: 400px;
+      background: rgba(74, 77, 156, 0.3);
+      border: 1px solid #E1D3EA;
+      padding: 15px;
+      color: rgba(225, 211, 234, 0.9);
+      text-align: center;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 50px;
+      transition: all 0.3s;
+      z-index: 4;
+      margin-bottom: 30px;
+    }
+
+    .terminal-input:focus {
+      outline: none;
+      box-shadow: 0 0 20px rgba(225, 211, 234, 0.5);
+    }
+
+    .terminal-input::placeholder {
+      color: rgba(225, 211, 234, 0.5);
+      font-style: italic;
+    }
+
+    .mirtilo-core {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #E1D3EA, #4A4D9C);
+      position: relative;
+      box-shadow: 0 0 50px rgba(74, 77, 156, 0.7);
+      animation: pulse 3s ease-in-out infinite;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 2;
+      margin-top: 40px;
+    }
+
+    .mirtilo-core::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, 
+        rgba(225, 211, 234, 0.3) 0%, 
+        rgba(74, 77, 156, 0.5) 100%);
+    }
+
+    .message-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      text-align: center;
+      color: #1a1a2e;
+      font-size: 1.2rem;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .response-text {
+      opacity: 0;
+      transition: opacity 0.5s;
+      text-shadow: 0 0 5px rgba(225, 211, 234, 0.7);
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 1001;
+      animation: scanMove 3s linear infinite;
+    }
+
+    .crt-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(74, 77, 156, 0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1002;
+      mix-blend-mode: screen;
+      filter: blur(0.8px) contrast(1.2);
+    }
+
+    .glitch-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, 
+        transparent 45%,
+        rgba(74, 77, 156, 0.1) 50%,
+        transparent 55%);
+      animation: glitch 2s infinite;
+      opacity: 0.3;
+      z-index: 1003;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.98); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(0.98); }
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(3px, -1px); }
+      60% { transform: translate(-1px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .distortion {
+      animation: distortion 0.1s linear infinite;
+    }
+
+    @keyframes distortion {
+      0% { filter: blur(0px) contrast(1); }
+      50% { filter: blur(1px) contrast(1.5); }
+      100% { filter: blur(0px) contrast(1); }
+    }
+
+    .post-processing {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 50% 50%, 
+          rgba(74, 77, 156, 0.05) 0%, 
+          rgba(0,0,0,0.1) 100%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(0,0,0,0.1) 0px,
+          rgba(0,0,0,0.1) 1px,
+          transparent 2px,
+          transparent 5px
+        );
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .random-glitch {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(0deg, transparent 48%, rgba(74, 77, 156, 0.2) 50%, transparent 52%),
+        linear-gradient(90deg, transparent 48%, rgba(74, 77, 156, 0.2) 50%, transparent 52%);
+      pointer-events: none;
+      z-index: 1004;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <img src="mirtilo-03.svg" class="logo-top" alt="Mirtilo">
+  <input type="text" class="terminal-input" placeholder="PERGUNTE QUALQUER COISA" id="questionInput">
+  <div class="mirtilo-core">
+    <div class="message-container">
+      <div class="response-text"></div>
+    </div>
+  </div>
+  <a href="https://cejera.com/home" target="_blank"><img src="cejera-00.svg" class="logo-bottom" alt="Cejera"></a>
+  <div class="footer">©2025 Cejera®</div>
+  <div class="post-processing"></div>
+  <div class="crt-effect"></div>
+  <div class="scanlines"></div>
+  <div class="glitch-layer"></div>
+  <div class="random-glitch" id="randomGlitch"></div>
+
+  <script>
+    const responses = [
+      "Sim, mas só se tiver uma playlist boa tocando.",
+      "Não, e você sabe exatamente por quê.",
+      "Talvez… mas só se a lua estiver em Vênus e seu café em dia.",
+      "Vai fundo. Mas leva um plano B.",
+      "Você tá perguntando isso pra mim? Coragem.",
+      "Confia no caos. Ele tem bom gosto.",
+      "Eu não sei… mas parece que seu eu do futuro está revirando os olhos agora.",
+      "Sim, mas vai dar trabalho. Tipo, muito trabalho.",
+      "Só se você prometer não se sabotar no meio do caminho.",
+      "Talvez, mas dá uma olhada no seu reflexo antes.",
+      "Não, mas você vai fazer mesmo assim, né?",
+      "Claro que sim. Só não esquece quem você é no caminho.",
+      "Você já sabe a resposta. Eu sou só o enfeite azul.",
+      "Resposta disponível após atualização de consciência.",
+      "Simulação em curso... tente novamente em 5 vidas.",
+      "Afirmativo, mas com ressalvas quânticas.",
+      "Negativo categórico. Recalibrar perguntas.",
+      "Acesso à resposta requer código de ética nível 9.",
+      "Sim, mas só em universo paralelo #42.",
+      "Não antes de resolver o paradoxo inicial.",
+      "Resposta corrompida. Reinicie a pergunta.",
+      "Simulação de resposta bem-sucedida (talvez).",
+      "A resposta está escrita nas estrelas... ou no capítulo 42 do Guia do Mochileiro",
+      "Sim, mas só depois da terceira xícara de café e da quinta lua de Júpiter",
+      "Apolo diz sim, Dionísio diz não - quem você quer ouvir hoje?",
+      "A TARDIS está em manutenção. Tente novamente em 5 ciclos temporais",
+      "Negativo. Até os cíclopes veriam problemas nessa ideia",
+      "A probabilidade é de 3.720 para 1... mas quem conta histórias sempre arredonda",
+      "Só se você tiver sua toalha e um bom par de sapatos dimensionais",
+      "O Oráculo de Delfos está offline. Tente um Ctrl+F5 na sua existência",
+      "Sim, mas cuidado com os Daleks no caminho... e com o trânsito espacial",
+      "A resposta você encontrará entre o raio de Zeus e o código-fonte de Atena",
+      "Quando Sirius ascender no seu mapa astral, pergunte novamente",
+      "Não antes de calibrar o hiperdrive e checar o horóscopo de Gallifrey",
+      "A Fênix diz que sim, mas prepare-se para as cinzas necessárias",
+      "42% sim, 57% talvez, 101% talvez não pergunte a calculadoras sentimentais",
+      "Só se Prometeu concordar em emprestar seu fogo criativo",
+      "O Paradoxo de Bootstrap diz que você já deveria saber a resposta",
+      "Sim, mas precisará de um sabre de luz e um bom advogado intergaláctico",
+      "O Arquivo Akáshico está processando... erro 404 - destino não encontrado",
+      "Quando os Ood cantarem em ré sustenido, você terá sua resposta",
+      "Hades riu da pergunta, Perséfone fez um meme - interpretação livre sua",
+      "A Matriz Vermelha diz não, a Pílula Azul sugere talvez com estilo",
+      "Sim, mas primeiro resolva o enigma da Esfinge... ou pelo menos o captcha",
+      "Os Deuses do Olimpo estão em reunião. Deixe sua pergunta no Hermes",
+      "A resposta está em algum lugar entre Nárnia e a Zona Crepuscular",
+      "Só após decifrar o manuscrito de Voynich e o manual do TARDIS",
+      "Os Titãs concordam, mas cobram taxa existencial de 42 bitcoins",
+      "Quando Bifrost estiver aberto e o WiFi do Valhalla funcionando",
+      "O Cubo de Rubik Cósmico diz: Gire 180° e reformule a questão",
+      "Sim, mas cuidado com o Paradoxo do Ano Novo Chinês Retroalimentado",
+      "A resposta correta está na pergunta errada - bom dia, sou um enigma grego"
+    ];
+
+    const mirtilo = document.querySelector('.mirtilo-core');
+    const responseText = document.querySelector('.response-text');
+    const questionInput = document.getElementById('questionInput');
+    const randomGlitch = document.getElementById('randomGlitch');
+
+    function triggerDistortion() {
+      document.body.classList.add('distortion');
+      setTimeout(() => document.body.classList.remove('distortion'), 300);
+    }
+
+    function randomGlitchEffect() {
+      // Efeito visual
+      randomGlitch.style.opacity = 0.7;
+      randomGlitch.style.animation = 'none';
+      void randomGlitch.offsetWidth; // Trigger reflow
+      randomGlitch.style.animation = 'glitch 0.3s linear';
+      
+      // Efeito sonoro
+      playRandomSound();
+      
+      setTimeout(() => {
+        randomGlitch.style.opacity = 0;
+      }, 300);
+    }
+
+    function playRandomSound() {
+      const sounds = [
+        { freq: 110, duration: 0.2, type: 'sine' },
+        { freq: 220, duration: 0.1, type: 'square' },
+        { freq: 55, duration: 0.3, type: 'sawtooth' },
+        { freq: 880, duration: 0.05, type: 'triangle' }
+      ];
+      
+      const sound = sounds[Math.floor(Math.random() * sounds.length)];
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = context.createOscillator();
+      const gainNode = context.createGain();
+      
+      oscillator.type = sound.type;
+      oscillator.frequency.setValueAtTime(sound.freq, context.currentTime);
+      gainNode.gain.setValueAtTime(0.05, context.currentTime);
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(context.destination);
+      
+      oscillator.start();
+      gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + sound.duration);
+      setTimeout(() => oscillator.stop(), sound.duration * 1000);
+    }
+
+    function simulateTyping() {
+      questionInput.value = '';
+      const fakeQuestion = "SUA RESPOSTA É:";
+      let i = 0;
+      
+      function type() {
+        if (i < fakeQuestion.length) {
+          questionInput.value += fakeQuestion.charAt(i);
+          i++;
+          setTimeout(type, 50);
+        }
+      }
+      type();
+    }
+
+    function getResponse() {
+      triggerDistortion();
+      simulateTyping();
+      mirtilo.style.animation = 'none';
+      responseText.style.opacity = 0;
+
+      setTimeout(() => {
+        const response = responses[Math.floor(Math.random() * responses.length)];
+        typeWriter(response);
+        mirtilo.style.animation = 'pulse 3s ease-in-out infinite';
+        playSynthSound();
+      }, 2500);
+    }
+
+    function typeWriter(text) {
+      responseText.textContent = '';
+      let i = 0;
+      const speed = 50;
+      
+      function type() {
+        if (i < text.length) {
+          responseText.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          responseText.style.opacity = 1;
+        }
+      }
+      type();
+    }
+
+    function playSynthSound() {
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = context.createOscillator();
+      const gainNode = context.createGain();
+      
+      oscillator.type = 'square';
+      oscillator.frequency.setValueAtTime(220 + (Math.random() * 440), context.currentTime);
+      gainNode.gain.setValueAtTime(0.1, context.currentTime);
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(context.destination);
+      
+      oscillator.start();
+      gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.5);
+      setTimeout(() => oscillator.stop(), 500);
+    }
+
+    // Glitches aleatórios
+    setInterval(() => {
+      if (Math.random() > 0.7) { // ~30% de chance a cada 10s
+        randomGlitchEffect();
+      }
+    }, 10000);
+
+    questionInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        getResponse();
+      }
+    });
+
+    mirtilo.addEventListener('click', getResponse);
+
+    // Inicialização
+    typeWriter("> SISTEMA MIRTILO_OS v2.1.3");
+    setTimeout(() => {
+      responseText.style.opacity = 0;
+    }, 3000);
+  </script>
+</body>
+</html>
