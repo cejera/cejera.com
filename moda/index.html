@@ -5,7 +5,6 @@
   <title>Cejera Loja</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Link do Font Awesome -->
   <script src="https://kit.fontawesome.com/e71aade5c7.js" crossorigin="anonymous"></script>
   <style>
     * {
@@ -18,13 +17,11 @@
       color: #f70707;
       text-decoration: none;
     }
-
     body {
       background-color: #0d0000;
       color: #ffffff;
       line-height: 1.6;
     }
-    /* Header, scanlines, CRT e footer – mesmo estilo do código de referência */
     .header {
       position: fixed;
       top: 0;
@@ -102,13 +99,11 @@
       border-top: 2px solid #F70707;
       margin-top: 2rem;
     }
-    /* Nota de frete */
     .frete-info {
       font-size: 0.9rem;
       color: #ccc;
       margin-top: 1rem;
     }
-    /* Banner principal com placeholder e efeito de colorir ao passar o mouse */
     .banner {
       margin-top: 80px;
       height: 70vh;
@@ -126,7 +121,6 @@
     .banner img:hover {
       filter: grayscale(0);
     }
-    /* Sessões de conteúdo */
     .content-section {
       text-align: center;
       padding: 4rem 2rem;
@@ -144,7 +138,6 @@
       margin-bottom: 2rem;
       font-style: italic;
     }
-    /* Estilo para os cards de produtos */
     .product-grid {
       display: flex;
       flex-wrap: wrap;
@@ -179,7 +172,6 @@
       margin-left: 0.5rem;
       font-size: 0.9rem;
     }
-    /* Botão WhatsApp */
     .whatsapp-button {
       display: inline-block;
       background: #F70707;
@@ -195,7 +187,6 @@
       background: #1ebc57;
       transform: scale(1.02);
     }
-    /* Carousel básico para imagens com opções de cores */
     .carousel {
       position: relative;
       width: 100%;
@@ -221,7 +212,6 @@
     .carousel img:hover {
       filter: grayscale(0);
     }
-    /* Estilo para a sessão C1B3R: imagem corrompida com efeito matrix */
     .matrix-product {
       width: 300px;
       height: 300px;
@@ -237,7 +227,42 @@
       height: 100%;
       display: block;
     }
-    /* Responsividade */
+    /* Novos estilos adicionados */
+    .whatsapp-button.disabled-button {
+      background: #8B0000;
+      cursor: not-allowed;
+      position: relative;
+    }
+    .whatsapp-button.disabled-button:hover {
+      background: #8B0000;
+      box-shadow: none;
+    }
+    .whatsapp-button.disabled-button:hover::after {
+      content: "LANÇAMENTO EM BREVE";
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #8B0000;
+      padding: 5px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #f70707, 0 0 10px #f70707, 0 0 15px #f70707;
+      }
+      to {
+        text-shadow: 0 0 10px #f70707, 0 0 20px #f70707, 0 0 30px #f70707;
+      }
+    }
+    .release-text {
+      color: #F70707 !important;
+      text-shadow: 0 0 10px #F70707;
+      animation: glow 1s ease-in-out infinite alternate;
+      margin: 15px 0;
+    }
     @media (max-width: 768px) {
       .product-grid {
         flex-direction: column;
@@ -258,125 +283,159 @@
     <button class="cta-button" onclick="window.location.href='https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer um pedido na sua loja.'">Fazer pedido</button>
   </header>
 
-  <!-- Banner principal com placeholder -->
+  <!-- Banner principal -->
   <div class="banner">
     <img src="banner-site.png" alt="Banner da Loja">
   </div>
 
-  <!-- Sessão BAZIKA -->
+  <!-- Nova coleção ROT -->
+  <section class="content-section" id="rot">
+    <h2 class="section-title">ROT</h2>
+    <p class="section-description release-text">JÁ DISPONÍVEL! PEÇA AGORA!</p>
+    <p class="section-description">"Oi, eu sou o Rot! x_x" - Disse Rot. Rot não aparenta ser muito amigável, mas ele é bem legal.</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="https://cejera.com/moda/moletom-rot-preto">
+          <div class="carousel">
+            <img src="moletom-rot-preto.png" alt="Moletom Preto Rot" class="active">
+          </div>
+          <h3 class="product-title">Moletom Preto Rot (sem capuz)</h3>
+        </a>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$199,80</s></span><br> Por: R$99,90 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Preto Rot (sem capuz)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+      <div class="product-card">
+        <a href="https://cejera.com/moda/moletom-rot-branco">
+          <div class="carousel">
+            <img src="moletom-rot-branco.png" alt="Moletom Branco Rot Cejera" class="active">
+          </div>
+          <h3 class="product-title">Moletom Branco Rot Cejera (com capuz)</h3>
+        </a>
+        <p class="product-price">
+          De: <span class="old-price"><s>R$199,80</s></span><br> Por: R$99,90 <span class="discount-tag">50%</span>
+        </p>
+        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Branco Rot Cejera (com capuz)." class="whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="content-section" id="bazika">
     <h2 class="section-title">BAZIKA</h2>
     <p class="section-description">O básico que funciona (para causar impacto)</p>
+    <p class="release-text">(LANÇAMENTO PREVISTO: INVERNO DE 2025)</p>
     <div class="product-grid">
-      <!-- Produto: Camiseta Bazika -->
+      <!-- Camiseta Bazika -->
       <div class="product-card">
-        <a href="https://cejera.com/moda/camiseta-bazika">
-        <div class="carousel" id="carousel-camiseta-bazika">
-          <!-- Três imagens para as cores: Preta, Vermelha e Branca -->
-          <img src="Camiseta+Preta.jpg" alt="Camiseta Bazika - Preta" class="active">
-          <img src="Camiseta+Vermelha.jpg" alt="Camiseta Bazika - Vermelha">
-          <img src="Camiseta+Branca.jpg" alt="Camiseta Bazika - Branca">
-        </div>
-        <h3 class="product-title">Camiseta Bazika</h3>
-        </a>
+        <!-- <a href="https://cejera.com/moda/camiseta-bazika"> -->
+          <div class="carousel" id="carousel-camiseta-bazika">
+            <img src="Camiseta+Preta.jpg" alt="Camiseta Bazika - Preta" class="active">
+            <img src="Camiseta+Vermelha.jpg" alt="Camiseta Bazika - Vermelha">
+            <img src="Camiseta+Branca.jpg" alt="Camiseta Bazika - Branca">
+          </div>
+          <h3 class="product-title">Camiseta Bazika</h3>
+        <!-- </a> -->
         <p class="product-price">
           De: <span class="old-price"><s>R$155,40</s></span><br> Por: R$77,70 <span class="discount-tag">50%</span>
         </p>
-        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika (com opções de cor: Preta/Vermelha/Branca)." class="whatsapp-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
-        </a>
+        <span class="whatsapp-button disabled-button">
+          <i class="fab fa-whatsapp"></i> LANÇAMENTO EM BREVE
+        </span>
       </div>
-      <!-- Produto: Calça Bazika -->
+
+      <!-- Calça Bazika -->
       <div class="product-card">
-        <a href="https://cejera.com/moda/calca-bazika">
-        <div class="carousel">
-          <img src="calca-bazika.jpg" alt="Calça Bazika" class="active">
-        </div>
-        <h3 class="product-title">Calça Bazika</h3>
-        </a>
+        <!-- <a href="https://cejera.com/moda/calca-bazika"> -->
+          <div class="carousel" id="carousel-calca-bazika">
+            <img src="calca-bazika.jpg" alt="Calça Bazika" class="active">
+          </div>
+          <h3 class="product-title">Calça Bazika</h3>
+        <!-- </a> -->
         <p class="product-price">
           De: <span class="old-price"><s>R$175,40</s></span><br> Por: R$87,70 <span class="discount-tag">50%</span>
         </p>
-        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Calça Bazika (Preta)." class="whatsapp-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
-        </a>
+        <span class="whatsapp-button disabled-button">
+          <i class="fab fa-whatsapp"></i> LANÇAMENTO EM BREVE
+        </span>
       </div>
-      <!-- Produto: Corta-vento Bazika -->
+
+      <!-- Corta-vento Bazika -->
       <div class="product-card">
-        <a href="https://cejera.com/moda/corta-vento-bazika">
-        <div class="carousel" id="carousel-cortavento-bazika">
-          <!-- Três imagens: Preta, Vermelha e Branca -->
-          <img src="Corta-vento+Preto.jpg" alt="Corta-vento Bazika - Preto" class="active">
-          <img src="Corta-vento+Vermelho.jpg" alt="Corta-vento Bazika - Vermelho">
-          <img src="Corta-vento+Branco.jpg" alt="Corta-vento Bazika - Branco">
-        </div>
-        <h3 class="product-title">Corta-vento Bazika</h3>
-        </a>
+        <!-- <a href="https://cejera.com/moda/corta-vento-bazika"> -->
+          <div class="carousel" id="carousel-cortavento-bazika">
+            <img src="Corta-vento+Preto.jpg" alt="Corta-vento Bazika - Preto" class="active">
+            <img src="Corta-vento+Vermelho.jpg" alt="Corta-vento Bazika - Vermelho">
+            <img src="Corta-vento+Branco.jpg" alt="Corta-vento Bazika - Branco">
+          </div>
+          <h3 class="product-title">Corta-vento Bazika</h3>
+        <!-- </a> -->
         <p class="product-price">
           De: <span class="old-price"><s>R$215,40</s></span><br> Por: R$107,70 <span class="discount-tag">50%</span>
         </p>
-        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Corta-vento Bazika (com opções de cor: Preto/Vermelho/Branco)." class="whatsapp-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
-        </a>
+        <span class="whatsapp-button disabled-button">
+          <i class="fab fa-whatsapp"></i> LANÇAMENTO EM BREVE
+        </span>
       </div>
     </div>
   </section>
 
-  <!-- Sessão AKA -->
+  <!-- Sessão AKA modificada -->
   <section class="content-section" id="aka">
     <h2 class="section-title">AKA</h2>
     <p class="section-description">Feita pra quem também é conhecido como.</p>
+    <p class="release-text">(LANÇAMENTO PREVISTO: PRIMAVERA DE 2025)</p>
     <div class="product-grid">
-      <!-- Produto: Camiseta AKA -->
+      <!-- Camiseta AKA -->
       <div class="product-card">
-        <a href="https://cejera.com/moda/camiseta-aka">
-        <div class="carousel" id="carousel-camiseta-aka">
-          <!-- Quatro imagens: Preto, Branco, Vermelho e Cinza -->
-          <img src="Camiseta-aka+Preta.jpg" alt="Camiseta AKA - Preto" class="active">
-          <img src="Camiseta-aka+Branca.jpg" alt="Camiseta AKA - Branca">
-          <img src="Camiseta-aka+Vermelha.jpg" alt="Camiseta AKA - Vermelha">
-          <img src="Camiseta-aka+Cinza.jpg" alt="Camiseta AKA - Cinza">
-        </div>
-        <h3 class="product-title">Camiseta AKA</h3>
-        </a>
+        <!-- <a href="https://cejera.com/moda/camiseta-aka"> -->
+          <div class="carousel" id="carousel-camiseta-aka">
+            <img src="Camiseta-aka+Preta.jpg" alt="Camiseta AKA - Preto" class="active">
+            <img src="Camiseta-aka+Branca.jpg" alt="Camiseta AKA - Branca">
+            <img src="Camiseta-aka+Vermelha.jpg" alt="Camiseta AKA - Vermelha">
+            <img src="Camiseta-aka+Cinza.jpg" alt="Camiseta AKA - Cinza">
+          </div>
+          <h3 class="product-title">Camiseta AKA</h3>
+        <!-- </a> -->
         <p class="product-price">
-          De: <span class="old-price"><s>R$95,40</s></span><br> Por: R$47,70 <span class="discount-tag">50%</span>
+          De: <span class="old-price"><s>R$??,??</s></span><br> Por: R$??,?? <span class="discount-tag">50%</span>
         </p>
-        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta AKA (com opções de cor: Preto/Branco/Vermelho/Cinza)." class="whatsapp-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
-        </a>
+        <span class="whatsapp-button disabled-button">
+          <i class="fab fa-whatsapp"></i> LANÇAMENTO EM BREVE
+        </span>
       </div>
-      <!-- Produto: Short AKA -->
+
+      <!-- Short AKA -->
       <div class="product-card">
-        <a href="https://cejera.com/moda/short-aka">
-        <div class="carousel" id="carousel-short-aka">
-          <!-- Quatro imagens: Preto, Branco, Vermelho e Cinza -->
-          <img src="Short+Preto.jpg" alt="Short AKA - Preto" class="active">
-          <img src="Short+Branco.jpg" alt="Short AKA - Branco">
-          <img src="Short+Vermelho.jpg" alt="Short AKA - Vermelho">
-          <img src="Short+Cinza.jpg" alt="Short AKA - Cinza">
-        </div>
-        <h3 class="product-title">Short AKA</h3>
-        </a>
+        <!-- <a href="https://cejera.com/moda/short-aka"> -->
+          <div class="carousel" id="carousel-short-aka">
+            <img src="Short+Preto.jpg" alt="Short AKA - Preto" class="active">
+            <img src="Short+Branco.jpg" alt="Short AKA - Branco">
+            <img src="Short+Vermelho.jpg" alt="Short AKA - Vermelho">
+            <img src="Short+Cinza.jpg" alt="Short AKA - Cinza">
+          </div>
+          <h3 class="product-title">Short AKA</h3>
+        <!-- </a> -->
         <p class="product-price">
-          De: <span class="old-price"><s>R$95,40</s></span><br> Por: R$47,70 <span class="discount-tag">50%</span>
+          De: <span class="old-price"><s>R$??,??</s></span><br> Por: R$??,?? <span class="discount-tag">50%</span>
         </p>
-        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Short AKA (com opções de cor: Preto/Branco/Vermelho/Cinza)." class="whatsapp-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
-        </a>
+        <span class="whatsapp-button disabled-button">
+          <i class="fab fa-whatsapp"></i> LANÇAMENTO EM BREVE
+        </span>
       </div>
     </div>
   </section>
-
-  <!-- Sessão C1B3R -->
   <section class="content-section" id="c1b3r">
     <h2 class="section-title">C1B3R</h2>
     <p class="section-description">Edição única. Pura <em>excentricidade</em>.</p>
     <div class="product-grid" style="justify-content: center;">
       <div class="product-card">
         <div class="matrix-product">
-          <canvas id="matrix-c1b3r"><img src="c1b3r.jpg" alt="C1B3R" class="active"></canvas>
-
+          <canvas id="matrix-c1b3r"></canvas>
         </div>
         <h3 class="product-title">NÃO ENCONTRADO</h3>
         <p class="product-price">
@@ -397,7 +456,7 @@
   </footer>
 
   <script>
-    // Função para o efeito matrix na sessão C1B3R (canvas)
+    // Efeito Matrix
     (function(){
       const canvas = document.getElementById('matrix-c1b3r');
       const ctx = canvas.getContext('2d');
@@ -429,7 +488,7 @@
       setInterval(drawMatrix, 50);
     })();
 
-    // Função para o carrossel dos produtos (troca de imagens a cada 3 segundos)
+    // Carrosséis
     function initCarousel(carouselId, interval = 3000) {
       const carousel = document.getElementById(carouselId);
       if(!carousel) return;
@@ -441,7 +500,6 @@
         images[current].classList.add('active');
       }, interval);
     }
-    // Inicializa os carrosséis
     initCarousel('carousel-camiseta-bazika');
     initCarousel('carousel-cortavento-bazika');
     initCarousel('carousel-camiseta-aka');
