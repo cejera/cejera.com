@@ -695,7 +695,7 @@
       <div class="generate-btn-container">
         <button class="generate-btn" id="generate-btn">
           <i class="fas fa-magic"></i>
-          GERAR PALETA ESTRATÉGICA
+          GERAR PALETA DE CORES
         </button>
       </div>
       
@@ -1049,7 +1049,7 @@
     exportBtn.addEventListener('click', () => {
       const palette = generateStrategicPalette();
       const paletteData = {
-        name: "Paleta Estratégica Cejera",
+        name: "Paleta de cores",
         created: new Date().toISOString(),
         colors: palette
       };
@@ -1057,7 +1057,7 @@
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(paletteData, null, 2));
       const downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href", dataStr);
-      downloadAnchorNode.setAttribute("download", "paleta-estrategica-cejera.json");
+      downloadAnchorNode.setAttribute("download", "paleta-gerada-cejera.json");
       document.body.appendChild(downloadAnchorNode);
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
