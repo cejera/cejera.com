@@ -89,6 +89,9 @@
       font-weight: 700;
       letter-spacing: 1px;
       box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
+      display: center;
+      align-items: center;
+      gap: 8px;
     }
 
     .cta-button:hover {
@@ -217,13 +220,12 @@
     }
 
     .portfolio-folder {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s;
       z-index: 2;
+      margin-top: 20px;
+      width: 100%;
     }
 
     .portfolio-folder:hover {
@@ -364,9 +366,18 @@
     }
 
     @media (max-width: 768px) {
+      .header {
+        padding: 0.8rem;
+      }
+      
+      .header-title {
+        display: none; /* Removido o título "DESIGN" */
+      }
+      
       .confidential-file {
         padding: 1.5rem;
         margin: 2rem 0;
+        flex-direction: column;
       }
 
       .profile-image-container {
@@ -384,10 +395,9 @@
 
       .portfolio-folder {
         position: relative;
-        right: auto;
-        bottom: auto;
         margin: 1.5rem auto 0;
         text-align: center;
+        order: 3;
       }
 
       .folder-icon {
@@ -407,18 +417,18 @@
         font-size: 2rem;
         letter-spacing: 2px;
       }
+      
+      .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
     }
 
     @media (max-width: 576px) {
       .header {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        justify-content: space-between;
         padding: 0.8rem;
-      }
-      
-      .header-title {
-        margin: 10px 0;
-        font-size: 1.8rem;
       }
       
       .banner-text {
@@ -435,8 +445,19 @@
       }
       
       .cta-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        padding: 0.8rem;
+        min-width: auto;
+      }
+      
+      .cta-button span {
+        display: none;
+      }
+      
+      .cta-button::before {
+        content: "\f232";
+        font-family: "Font Awesome 5 Brands";
+        font-weight: 400;
+        font-size: 1.5rem;
       }
       
       .confidential-file h3 {
@@ -480,6 +501,17 @@
       
       .behance-project {
         height: 300px;
+      }
+      
+      /* Botão WhatsApp verde apenas em mobile */
+      .cta-button {
+        background: #25D366;
+        box-shadow: 0 4px 0 rgba(37, 211, 102, 0.8);
+      }
+      
+      .cta-button:hover {
+        background: #128C7E;
+        box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
       }
     }
 
@@ -584,8 +616,7 @@
    <a href="https://cejera.com/home">
     <img src="cejera-03.svg" class="header-logo" alt="Cejera">
     </a> 
-    <h1 class="header-title">DESIGN</h1>
-    <button class="cta-button">Orçamento</button>
+    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Orçamento</span></button>
   </header>
 
   <div class="matrix-banner">
@@ -603,7 +634,7 @@
     <p><strong>Revolução visual com propósito.</strong></p>
 
     <div class="confidential-file">
-      <div class="confidential-stamp">NÍVEL 5 - CONFIDENCIAL</div>
+      <div class="confidential-stamp">CUIDADO! • EXCÊNTRICO</div>
       
       <div class="profile-content">
         <h3 style="color: #F70707; margin-bottom: 0.5rem; letter-spacing: 2px;">ALEXANDRE "CEJERA" SILVA</h3>
@@ -640,10 +671,7 @@
              alt="Alexandre Cejera">
       </div>
 
-       <div class="portfolio-folder" onclick="window.open('https://behance.net/AlexandreFSilva', '_blank')">
-        <img src="pasta-00.svg" class="folder-icon" alt="Portfólio">
-        <div class="folder-name" style="color: #F70707; margin-top: 0.5rem; font-weight: bold;">P0R7F0L10</div>
-      </div>
+
     </div>
 
     <h2 style="margin: 3rem 0 2rem;">FAÇA DIFERENTE</h2>
@@ -652,7 +680,7 @@
     <p>Faça sua marca se tornar impossível de ignorar.</p>
     
     <h2 style="margin: 3rem 0 2rem;">NÃO FIQUE PARA TRÁS.</h2>  
-    <button class="cta-button">Solicite seu orçamento</button>
+    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Solicite seu orçamento</span></button>
   </div>
 
   <!-- Seção do Portfólio Behance -->
@@ -689,7 +717,7 @@
 
   <footer>
     <div class="footer-content">
-      <p>Todos os direitos reservados | © 2025 Cejera</p>
+      <p>Todos os direitos reservados | © 2025 Cejera®</p>
       <div class="social-links">
         <a href="https://behance.net/AlexandreFSilva" target="_blank" class="social-link">
           <i class="fab fa-behance social-icon"></i>
