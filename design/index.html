@@ -89,17 +89,147 @@
       font-weight: 700;
       letter-spacing: 1px;
       box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
-      display: center;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
     }
 
     .cta-button:hover {
-      background: #ffffff;
-      box-shadow: 0 0 15px #F70707, 0 6px 0 rgba(199, 7, 7, 0.8);
+      background: #25D366; /* Verde do WhatsApp no hover */
+      box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
       transform: translateY(-2px);
     }
 
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .header {
+        padding: 0.8rem;
+      }
+      
+      .header-title {
+        display: none;
+      }
+      
+      .confidential-file {
+        padding: 1.5rem;
+        margin: 2rem 0;
+        flex-direction: column;
+      }
+
+      .profile-image-container {
+        flex: 0 0 100%;
+        margin: 0 auto 1.5rem;
+        order: 1;
+      }
+
+      .confidential-stamp {
+        left: -15px;
+        top: -15px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.9rem;
+      }
+
+      .portfolio-folder {
+        position: relative;
+        margin: 1.5rem auto 0;
+        text-align: center;
+        order: 3;
+      }
+
+      .folder-icon {
+        width: 100px;
+      }
+      
+      .banner-text {
+        font-size: 2rem;
+        letter-spacing: 3px;
+      }
+      
+      .behance-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .content-section h2, .portfolio-header h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+      }
+      
+      .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.8rem;
+      }
+      
+      .banner-text {
+        font-size: 1.7rem;
+        letter-spacing: 2px;
+      }
+      
+      .content-section, .portfolio-section {
+        padding: 2rem 1rem;
+      }
+      
+      .portfolio-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .cta-button {
+        padding: 0.8rem 1.5rem; /* Texto sempre visível */
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .confidential-file {
+        padding: 1rem;
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+
+      .profile-image {
+        width: 100%;
+      }
+
+      .confidential-stamp {
+        left: -10px;
+        top: -10px;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+      }
+
+      ul {
+        text-align: left;
+        margin-left: 1rem !important;
+        padding-left: 1rem !important;
+      }
+
+      .folder-icon {
+        width: 80px;
+      }
+      
+      .banner-text {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+      }
+      
+      .behance-project {
+        height: 300px;
+      }
+      
+      /* Botões sempre vermelhos, apenas hover verde */
+      .cta-button {
+        background: #F70707;
+        box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
+      }
+    }
     .matrix-banner {
       height: 70vh;
       background: #000;
@@ -418,10 +548,7 @@
         letter-spacing: 2px;
       }
       
-      .cta-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-      }
+
     }
 
     @media (max-width: 576px) {
@@ -444,21 +571,7 @@
         font-size: 1.8rem;
       }
       
-      .cta-button {
-        padding: 0.8rem;
-        min-width: auto;
-      }
-      
-      .cta-button span {
-        display: none;
-      }
-      
-      .cta-button::before {
-        content: "\f232";
-        font-family: "Font Awesome 5 Brands";
-        font-weight: 400;
-        font-size: 1.5rem;
-      }
+
       
       .confidential-file h3 {
         font-size: 1.3rem;
@@ -503,16 +616,7 @@
         height: 300px;
       }
       
-      /* Botão WhatsApp verde apenas em mobile */
-      .cta-button {
-        background: #25D366;
-        box-shadow: 0 4px 0 rgba(37, 211, 102, 0.8);
-      }
-      
-      .cta-button:hover {
-        background: #128C7E;
-        box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
-      }
+
     }
 
     footer {
@@ -616,7 +720,7 @@
    <a href="https://cejera.com/home">
     <img src="cejera-03.svg" class="header-logo" alt="Cejera">
     </a> 
-    <button class="cta-button"><span>Orçamento</span></button>
+    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Orçamento</span></button>
   </header>
 
   <div class="matrix-banner">
@@ -680,7 +784,7 @@
     <p>Faça sua marca se tornar impossível de ignorar.</p>
     
     <h2 style="margin: 3rem 0 2rem;">NÃO FIQUE PARA TRÁS.</h2>  
-    <button class="cta-button"><span>Solicite seu orçamento</span></button>
+    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Solicite seu orçamento</span></button>
   </div>
 
   <!-- Seção do Portfólio Behance -->
