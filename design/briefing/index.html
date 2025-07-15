@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cejera - Briefing de Identidade Visual</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    body {
+      background-color: #0d0000;
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(to right, rgba(247, 7, 7, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(247, 7, 7, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(34, 0, 0, 0.9);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
+    }
+
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+      transition: transform 0.3s;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+    }
+
+    .cta-button {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .cta-button:hover {
+      background: #ffffff;
+      box-shadow: 0 0 15px #F70707;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 100px auto 0;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .briefing-container {
+      background: rgba(13, 0, 0, 0.8);
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 0 30px rgba(247, 7, 7, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .briefing-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        rgba(247, 7, 7, 0.05) 0%, 
+        rgba(247, 7, 7, 0.02) 20%,
+        rgba(247, 7, 7, 0.05) 40%,
+        rgba(247, 7, 7, 0.08) 60%,
+        rgba(247, 7, 7, 0.05) 80%,
+        rgba(247, 7, 7, 0.02) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .briefing-title {
+      color: #F70707;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(247, 7, 7, 0.5);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .briefing-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #F70707, transparent);
+    }
+
+    .progress-container {
+      margin-bottom: 2rem;
+      background: rgba(34, 0, 0, 0.7);
+      border: 1px solid #F70707;
+      border-radius: 7px;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress-bar {
+      height: 15px;
+      background: #220000;
+      border-radius: 10px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+      border: 1px solid #F70707;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f70707, #ff6b6b);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+
+    .section {
+      display: none;
+      background: rgba(34, 0, 0, 0.7);
+      border: 1px solid #F70707;
+      border-radius: 7px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      color: #F70707;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #aaa;
+    }
+
+    .form-group .required::after {
+      content: " *";
+      color: #F70707;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      background: #220000;
+      border: 1px solid #F70707;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #fff;
+      box-shadow: 0 0 10px rgba(247, 7, 7, 0.5);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .slider-container {
+      margin: 1.5rem 0;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      color: #aaa;
+    }
+
+    .slider {
+      width: 100%;
+      height: 10px;
+      -webkit-appearance: none;
+      background: #220000;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid #F70707;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #F70707;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(247, 7, 7, 0.8);
+    }
+
+    .mood-indicators {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .color-picker-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.selected {
+      border-color: #fff;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .nav-btn {
+      background: #220000;
+      border: 1px solid #F70707;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    .nav-btn:hover {
+      background: rgba(247, 7, 7, 0.3);
+    }
+
+    .download-btn {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .download-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 0 15px #F70707;
+      transform: translateY(-2px);
+    }
+
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 1001;
+      animation: scanMove 3s linear infinite;
+    }
+
+    @keyframes scanMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    .crt-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1001;
+      mix-blend-mode: screen;
+      filter: blur(0.6px);
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(34, 0, 0, 0.9);
+      border: 1px solid #F70707;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 7px;
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .notification.show {
+      opacity: 1;
+    }
+
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+      margin-top: 3rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .download-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .download-options .download-btn {
+      flex: 1;
+      min-width: 200px;
+      max-width: 300px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .warning-box {
+      background: rgba(247, 7, 7, 0.2);
+      border: 1px solid #F70707;
+      border-radius: 7px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    #briefing-screenshot {
+      position: absolute;
+      top: 0;
+      left: -9999px;
+      width: 1000px;
+      background: #0d0000;
+      color: #fff;
+      padding: 2rem;
+      border: 2px solid #F70707;
+      font-family: 'Source Code Pro', monospace;
+      z-index: -1;
+    }
+
+    .screenshot-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .screenshot-logo img {
+      width: 200px;
+      filter: drop-shadow(0 0 5px #F70707);
+    }
+
+    .screenshot-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #F70707;
+    }
+
+    .screenshot-title {
+      color: #F70707;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .screenshot-row {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    .screenshot-label {
+      flex: 0 0 30%;
+      font-weight: bold;
+      color: #aaa;
+    }
+
+    .screenshot-value {
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        padding: 0.8rem;
+      }
+      
+      .header-logo {
+        width: 100px;
+        margin-bottom: 0.5rem;
+      }
+      
+      .header-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+      }
+      
+      .container {
+        padding: 1.5rem;
+        margin-top: 120px;
+      }
+      
+      .briefing-container {
+        padding: 1.5rem;
+      }
+      
+      .briefing-title {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 1.2rem;
+      }
+      
+      .color-picker-container {
+        justify-content: center;
+      }
+      
+      .download-options .download-btn {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-title {
+        font-size: 1.3rem;
+      }
+      
+      .cta-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      
+      .container {
+        padding: 1rem;
+        margin-top: 140px;
+      }
+      
+      .briefing-container {
+        padding: 1rem;
+      }
+      
+      .briefing-title {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.1rem;
+      }
+      
+      .nav-btn, .download-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scanlines"></div>
+  <div class="crt-effect"></div>
+  
+  <div class="notification" id="notification"></div>
+
+  <header class="header">
+    <a href="https://cejera.com">
+    <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+    </a> 
+    <h1 class="header-title">BRIEFING DE IDENTIDADE VISUAL</h1>
+    <a href="https://cejera.com/design" class="cta-button">Quem sou eu?</a>
+  </header>
+
+  <div class="container">
+    <div class="briefing-container">
+      <h2 class="briefing-title">BRIEFING</h2>
+      
+      <div class="progress-container">
+        <div class="progress-text">
+          <span>Progresso</span>
+          <span id="progress-percentage">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      
+      <!-- Seção 1: Informações Básicas -->
+      <div class="section active" id="section-1">
+        <div class="section-title">
+          <i class="fas fa-user"></i>
+          <span>Informações Básicas</span>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="name">Nome Completo</label>
+          <input type="text" id="name" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="nickname">Apelido (como prefere ser chamado)</label>
+          <input type="text" id="nickname" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="company">Nome Fantasia/Empresa</label>
+          <input type="text" id="company" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="instagram">Instagram da Empresa</label>
+          <input type="text" id="instagram" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="email">Email para Contato</label>
+          <input type="email" id="email" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Telefone/WhatsApp</label>
+          <input type="tel" id="phone" class="form-control">
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn" disabled>
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button class="nav-btn next-btn" data-next="2">
+            Próximo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seção 2: Sobre o Negócio -->
+      <div class="section" id="section-2">
+        <div class="section-title">
+          <i class="fas fa-building"></i>
+          <span>Sobre o Negócio</span>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="business">Descreva seu negócio em 1 frase</label>
+          <input type="text" id="business" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="description">Descreva seu negócio com mais detalhes</label>
+          <textarea id="description" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="objectives">Quais são os objetivos principais da sua marca?</label>
+          <textarea id="objectives" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="values">Quais são os valores da sua empresa?</label>
+          <textarea id="values" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="message">Qual é a mensagem principal que você quer transmitir?</label>
+          <textarea id="message" class="form-control" required></textarea>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn prev-btn" data-prev="1">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button class="nav-btn next-btn" data-next="3">
+            Próximo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seção 3: Público-Alvo -->
+      <div class="section" id="section-3">
+        <div class="section-title">
+          <i class="fas fa-users"></i>
+          <span>Público-Alvo</span>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="audience">Descreva seu público-alvo</label>
+          <textarea id="audience" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="age">Faixa etária predominante</label>
+          <input type="text" id="age" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="gender">Gênero predominante</label>
+          <select id="gender" class="form-control">
+            <option value="">Selecione</option>
+            <option value="feminino">Feminino</option>
+            <option value="masculino">Masculino</option>
+            <option value="misto">Misto</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="interests">Quais são os interesses do seu público?</label>
+          <textarea id="interests" class="form-control"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="perception">Como você quer que seu público perceba sua marca?</label>
+          <textarea id="perception" class="form-control" required></textarea>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn prev-btn" data-prev="2">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button class="nav-btn next-btn" data-next="4">
+            Próximo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seção 4: Design e Estilo -->
+      <div class="section" id="section-4">
+        <div class="section-title">
+          <i class="fas fa-palette"></i>
+          <span>Design e Estilo</span>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="style">Qual estilo você prefere para sua identidade visual?</label>
+          <select id="style" class="form-control" required>
+            <option value="">Selecione um estilo</option>
+            <option value="minimalista">Minimalista</option>
+            <option value="moderno">Moderno</option>
+            <option value="vintage">Vintage/Retrô</option>
+            <option value="elegante">Elegante/Sofisticado</option>
+            <option value="descontraido">Descontraído</option>
+            <option value="tecnologico">Tecnológico/Futurista</option>
+            <option value="organico">Orgânico/Natural</option>
+            <option value="artesanal">Artesanal</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Selecione cores que gostaria de usar</label>
+          <div class="color-picker-container">
+            <div class="color-option selected" style="background-color: #F70707;" data-color="#F70707"></div>
+            <div class="color-option" style="background-color: #000000;" data-color="#000000"></div>
+            <div class="color-option" style="background-color: #FFFFFF;" data-color="#FFFFFF"></div>
+            <div class="color-option" style="background-color: #8c00ff;" data-color="#8c00ff"></div>
+            <div class="color-option" style="background-color: #0400ff;" data-color="#0400ff"></div>
+            <div class="color-option" style="background-color: #00d9ff;" data-color="#00d9ff"></div>
+            <div class="color-option" style="background-color: #00ff0d;" data-color="#00ff0d"></div>
+            <div class="color-option" style="background-color: #ffee00;" data-color="#ffee00"></div>
+            <div class="color-option" style="background-color: #ff7b00;" data-color="#ff7b00"></div>
+            <div class="color-option" style="background-color: #ff1500;" data-color="#ff1500"></div>
+            <div class="color-option" style="background-color: #ff00c8;" data-color="#ff00c8"></div>
+          </div>
+          <input type="hidden" id="selected-colors" value="#F70707">
+        </div>
+        
+        <div class="form-group">
+          <label for="avoid-colors">Cores que devem ser evitadas</label>
+          <input type="text" id="avoid-colors" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="references">Referências visuais (links ou descrições)</label>
+          <textarea id="references" class="form-control"></textarea>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn prev-btn" data-prev="3">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button class="nav-btn next-btn" data-next="5">
+            Próximo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seção 5: Humor da Marca -->
+      <div class="section" id="section-5">
+        <div class="section-title">
+          <i class="fas fa-smile"></i>
+          <span>Humor e Tom da Marca</span>
+        </div>
+        
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Conservador</span>
+            <span>Inovador</span>
+          </div>
+          <input type="range" min="1" max="10" value="5" class="slider" id="conservador-innovador">
+          <div class="mood-indicators">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+          </div>
+        </div>
+        
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Formal</span>
+            <span>Casual</span>
+          </div>
+          <input type="range" min="1" max="10" value="5" class="slider" id="formal-casual">
+          <div class="mood-indicators">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+          </div>
+        </div>
+        
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Sério</span>
+            <span>Descontraído</span>
+          </div>
+          <input type="range" min="1" max="10" value="5" class="slider" id="serio-descontraido">
+          <div class="mood-indicators">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+          </div>
+        </div>
+        
+        <div class="slider-container">
+          <div class="slider-label">
+            <span>Tradicional</span>
+            <span>Moderno</span>
+          </div>
+          <input type="range" min="1" max="10" value="5" class="slider" id="tradicional-moderno">
+          <div class="mood-indicators">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="personality">Se sua marca fosse uma pessoa, como seria sua personalidade?</label>
+          <textarea id="personality" class="form-control"></textarea>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn prev-btn" data-prev="4">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button class="nav-btn next-btn" data-next="6">
+            Próximo <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Seção 6: Concorrentes e Considerações -->
+      <div class="section" id="section-6">
+        <div class="section-title">
+          <i class="fas fa-chart-line"></i>
+          <span>Concorrentes e Considerações</span>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="competitors">Quem são seus principais concorrentes?</label>
+          <textarea id="competitors" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label class="required" for="diferential">O que diferencia seu negócio da concorrência?</label>
+          <textarea id="diferential" class="form-control" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="likes">O que você gosta na identidade visual dos seus concorrentes?</label>
+          <textarea id="likes" class="form-control"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="dislikes">O que você não gosta na identidade visual dos seus concorrentes?</label>
+          <textarea id="dislikes" class="form-control"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="deadline">Prazo desejado para entrega</label>
+          <input type="date" id="deadline" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="budget">Orçamento disponível (opcional)</label>
+          <input type="text" id="budget" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="comments">Outras informações importantes</label>
+          <textarea id="comments" class="form-control"></textarea>
+        </div>
+        
+        <div class="warning-box">
+          <i class="fas fa-exclamation-triangle"></i> A responsabilidade pelos dados fornecidos neste formulário é exclusivamente de quem o preenche. Este formulário é local e não possui envio automático de dados para qualquer servidor. Atenção ao enviar estes dados para desconhecidos.
+        </div>
+        
+        <div class="download-options">
+          <button class="download-btn" id="download-json-btn">
+            <i class="fas fa-file-code"></i> Baixar Briefing em JSON
+          </button>
+          <button class="download-btn" id="download-png-btn">
+            <i class="fas fa-file-image"></i> Baixar Briefing em PNG
+          </button>
+        </div>
+        
+        <div class="navigation">
+          <button class="nav-btn prev-btn" data-prev="5">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Elemento oculto para gerar o screenshot -->
+  <div id="briefing-screenshot">
+    <div class="screenshot-logo">
+      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+      <h1>BRIEFING DE IDENTIDADE VISUAL</h1>
+    </div>
+    
+    <!-- O conteúdo será preenchido via JavaScript -->
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>Todos os direitos reservados | © 2025 Cejera® | Briefing</p>
+    </div>
+  </footer>
+
+  <script>
+    // Configurações de progresso
+    const totalSections = 6;
+    let currentSection = 1;
+    
+    // Elementos DOM
+    const progressFill = document.getElementById('progress-fill');
+    const progressPercentage = document.getElementById('progress-percentage');
+    const notification = document.getElementById('notification');
+    
+    // Atualizar barra de progresso
+    function updateProgress() {
+      const progress = (currentSection / totalSections) * 100;
+      progressFill.style.width = `${progress}%`;
+      progressPercentage.textContent = `${Math.round(progress)}%`;
+    }
+    
+    // Navegação entre seções
+    document.querySelectorAll('.next-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const nextSection = btn.dataset.next;
+        document.getElementById(`section-${currentSection}`).classList.remove('active');
+        document.getElementById(`section-${nextSection}`).classList.add('active');
+        currentSection = parseInt(nextSection);
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    
+    document.querySelectorAll('.prev-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prevSection = btn.dataset.prev;
+        document.getElementById(`section-${currentSection}`).classList.remove('active');
+        document.getElementById(`section-${prevSection}`).classList.add('active');
+        currentSection = parseInt(prevSection);
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    
+    // Seletor de cores
+    document.querySelectorAll('.color-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const color = option.dataset.color;
+        const selectedColors = document.getElementById('selected-colors');
+        let currentColors = selectedColors.value.split(',');
+        
+        if (option.classList.contains('selected')) {
+          option.classList.remove('selected');
+          currentColors = currentColors.filter(c => c !== color);
+        } else {
+          option.classList.add('selected');
+          currentColors.push(color);
+        }
+        
+        selectedColors.value = currentColors.join(',');
+      });
+    });
+    
+    // Função para mostrar notificação
+    function showNotification(message) {
+      notification.textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Coletar todos os dados do formulário
+    function collectFormData() {
+      return {
+        name: document.getElementById('name').value,
+        nickname: document.getElementById('nickname').value,
+        company: document.getElementById('company').value,
+        instagram: document.getElementById('instagram').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        business: document.getElementById('business').value,
+        description: document.getElementById('description').value,
+        objectives: document.getElementById('objectives').value,
+        values: document.getElementById('values').value,
+        message: document.getElementById('message').value,
+        audience: document.getElementById('audience').value,
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        interests: document.getElementById('interests').value,
+        perception: document.getElementById('perception').value,
+        style: document.getElementById('style').value,
+        selectedColors: document.getElementById('selected-colors').value,
+        avoidColors: document.getElementById('avoid-colors').value,
+        references: document.getElementById('references').value,
+        conservadorInnovador: document.getElementById('conservador-innovador').value,
+        formalCasual: document.getElementById('formal-casual').value,
+        serioDescontraido: document.getElementById('serio-descontraido').value,
+        tradicionalModerno: document.getElementById('tradicional-moderno').value,
+        personality: document.getElementById('personality').value,
+        competitors: document.getElementById('competitors').value,
+        diferential: document.getElementById('diferential').value,
+        likes: document.getElementById('likes').value,
+        dislikes: document.getElementById('dislikes').value,
+        deadline: document.getElementById('deadline').value,
+        budget: document.getElementById('budget').value,
+        comments: document.getElementById('comments').value
+      };
+    }
+    
+    // Verificar campos obrigatórios
+    function validateForm() {
+      let valid = true;
+      document.querySelectorAll('.required input, .required select, .required textarea').forEach(field => {
+        if (!field.value.trim()) {
+          valid = false;
+          field.style.borderColor = '#F70707';
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+      
+      return valid;
+    }
+    
+    // Baixar dados em JSON
+    document.getElementById('download-json-btn').addEventListener('click', () => {
+      if (!validateForm()) {
+        showNotification('Preencha todos os campos obrigatórios!');
+        return;
+      }
+      
+      const formData = collectFormData();
+      const jsonData = JSON.stringify(formData, null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `briefing-${formData.company.replace(/\s+/g, '-')}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      showNotification('Briefing em JSON baixado com sucesso!');
+    });
+    
+    // Gerar screenshot para PNG
+    document.getElementById('download-png-btn').addEventListener('click', () => {
+      if (!validateForm()) {
+        showNotification('Preencha todos os campos obrigatórios!');
+        return;
+      }
+      
+      const formData = collectFormData();
+      const screenshotElement = document.getElementById('briefing-screenshot');
+      
+      // Construir conteúdo para o screenshot
+      let screenshotContent = `
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Informações Básicas</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Nome Completo:</div>
+            <div class="screenshot-value">${formData.name}</div>
+          </div>
+          ${formData.nickname ? `<div class="screenshot-row">
+            <div class="screenshot-label">Apelido:</div>
+            <div class="screenshot-value">${formData.nickname}</div>
+          </div>` : ''}
+          <div class="screenshot-row">
+            <div class="screenshot-label">Empresa:</div>
+            <div class="screenshot-value">${formData.company}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Instagram:</div>
+            <div class="screenshot-value">${formData.instagram}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Email:</div>
+            <div class="screenshot-value">${formData.email}</div>
+          </div>
+          ${formData.phone ? `<div class="screenshot-row">
+            <div class="screenshot-label">Telefone:</div>
+            <div class="screenshot-value">${formData.phone}</div>
+          </div>` : ''}
+        </div>
+        
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Sobre o Negócio</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Negócio:</div>
+            <div class="screenshot-value">${formData.business}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Descrição:</div>
+            <div class="screenshot-value">${formData.description}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Objetivos:</div>
+            <div class="screenshot-value">${formData.objectives}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Valores:</div>
+            <div class="screenshot-value">${formData.values}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Mensagem Principal:</div>
+            <div class="screenshot-value">${formData.message}</div>
+          </div>
+        </div>
+        
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Público-Alvo</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Público-Alvo:</div>
+            <div class="screenshot-value">${formData.audience}</div>
+          </div>
+          ${formData.age ? `<div class="screenshot-row">
+            <div class="screenshot-label">Faixa Etária:</div>
+            <div class="screenshot-value">${formData.age}</div>
+          </div>` : ''}
+          ${formData.gender ? `<div class="screenshot-row">
+            <div class="screenshot-label">Gênero:</div>
+            <div class="screenshot-value">${formData.gender}</div>
+          </div>` : ''}
+          ${formData.interests ? `<div class="screenshot-row">
+            <div class="screenshot-label">Interesses:</div>
+            <div class="screenshot-value">${formData.interests}</div>
+          </div>` : ''}
+          <div class="screenshot-row">
+            <div class="screenshot-label">Percepção Desejada:</div>
+            <div class="screenshot-value">${formData.perception}</div>
+          </div>
+        </div>
+        
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Design e Estilo</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Estilo:</div>
+            <div class="screenshot-value">${formData.style}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Cores Selecionadas:</div>
+            <div class="screenshot-value">${formData.selectedColors}</div>
+          </div>
+          ${formData.avoidColors ? `<div class="screenshot-row">
+            <div class="screenshot-label">Cores a Evitar:</div>
+            <div class="screenshot-value">${formData.avoidColors}</div>
+          </div>` : ''}
+          ${formData.references ? `<div class="screenshot-row">
+            <div class="screenshot-label">Referências:</div>
+            <div class="screenshot-value">${formData.references}</div>
+          </div>` : ''}
+        </div>
+        
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Humor e Tom da Marca</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Conservador-Inovador:</div>
+            <div class="screenshot-value">${formData.conservadorInnovador}/10</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Formal-Casual:</div>
+            <div class="screenshot-value">${formData.formalCasual}/10</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Sério-Descontraído:</div>
+            <div class="screenshot-value">${formData.serioDescontraido}/10</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Tradicional-Moderno:</div>
+            <div class="screenshot-value">${formData.tradicionalModerno}/10</div>
+          </div>
+          ${formData.personality ? `<div class="screenshot-row">
+            <div class="screenshot-label">Personalidade:</div>
+            <div class="screenshot-value">${formData.personality}</div>
+          </div>` : ''}
+        </div>
+        
+        <div class="screenshot-section">
+          <h2 class="screenshot-title">Concorrentes e Considerações</h2>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Concorrentes:</div>
+            <div class="screenshot-value">${formData.competitors}</div>
+          </div>
+          <div class="screenshot-row">
+            <div class="screenshot-label">Diferencial:</div>
+            <div class="screenshot-value">${formData.diferential}</div>
+          </div>
+          ${formData.likes ? `<div class="screenshot-row">
+            <div class="screenshot-label">Gosta nos Concorrentes:</div>
+            <div class="screenshot-value">${formData.likes}</div>
+          </div>` : ''}
+          ${formData.dislikes ? `<div class="screenshot-row">
+            <div class="screenshot-label">Não Gosta nos Concorrentes:</div>
+            <div class="screenshot-value">${formData.dislikes}</div>
+          </div>` : ''}
+          ${formData.deadline ? `<div class="screenshot-row">
+            <div class="screenshot-label">Prazo:</div>
+            <div class="screenshot-value">${formData.deadline}</div>
+          </div>` : ''}
+          ${formData.budget ? `<div class="screenshot-row">
+            <div class="screenshot-label">Orçamento:</div>
+            <div class="screenshot-value">${formData.budget}</div>
+          </div>` : ''}
+          ${formData.comments ? `<div class="screenshot-row">
+            <div class="screenshot-label">Outras Informações:</div>
+            <div class="screenshot-value">${formData.comments}</div>
+          </div>` : ''}
+        </div>
+        
+        <div class="screenshot-section" style="text-align: center; margin-top: 30px;">
+          <p>Todos os direitos reservados | © 2025 Cejera®</p>
+          <p>Gerado em: ${new Date().toLocaleDateString()}</p>
+        </div>
+      `;
+      
+      screenshotElement.innerHTML = screenshotContent;
+      
+      // Gerar imagem com html2canvas
+      html2canvas(screenshotElement, {
+        scale: 2,
+        backgroundColor: '#0d0000',
+        logging: false
+      }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = `briefing-${formData.company.replace(/\s+/g, '-')}.png`;
+        link.click();
+        
+        showNotification('Briefing em PNG baixado com sucesso!');
+      });
+    });
+    
+    // Atualizar progresso inicial
+    updateProgress();
+  </script>
+</body>
+</html>
