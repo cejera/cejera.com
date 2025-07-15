@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cejera - MÚSICA</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+  <title>Cejera | DJ Profissional</title>
+  <meta name="description" content="DJ especializado em funk, techno, house e fusões eletrônicas experimentais. Transforme sua festa com mixagens criativas e energia única.">
+  <meta name="keywords" content="Cejera, DJ, música, festas, eventos, techno, funk, house, mixagem, sets personalizados">
+  <meta name="author" content="Alexandre 'Cejera' Silva">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -28,313 +31,25 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(#220000 1px, transparent 1px), linear-gradient(90deg, #220000 1px, transparent 1px);
+      background: linear-gradient(#220000 1px, transparent 1px), 
+                  linear-gradient(90deg, #220000 1px, transparent 1px);
       background-size: 40px 40px;
       opacity: 0.2;
       z-index: 0;
       pointer-events: none;
     }
 
-    .header {
+    .crt-effect {
       position: fixed;
       top: 0;
-      width: 100%;
-      background: rgba(34, 0, 0, 0.9);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #F70707;
-      z-index: 1000;
-    }
-
-    .header-logo {
-      width: 120px;
-      filter: drop-shadow(0 0 5px #F70707);
-    }
-
-    .header-title {
-      font-size: 2rem;
-      color: #ffffff;
-      text-shadow: 0 0 10px #F70707;
-      letter-spacing: 3px;
-    }
-
-    .cta-button {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .cta-button:hover {
-      background: #ffffff;
-      box-shadow: 0 0 15px #F70707;
-      transform: translateY(-2px);
-    }
-
-    .dj-section {
-      padding-top: 120px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-      padding-bottom: 5rem;
-    }
-
-    .dj-title {
-      font-size: 3rem;
-      color: #F70707;
-      text-align: center;
-      margin: 2rem 0;
-      text-shadow: 0 0 20px #F70707;
-      animation: flicker 1.5s infinite alternate;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; }
-    }
-
-    .dj-booth {
-      width: 90%;
-      max-width: 800px;
-      background: #110000;
-      border: 3px solid #F70707;
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 0 30px rgba(247, 7, 7, 0.3);
-    }
-
-    .booth-logo {
-      text-align: center;
-      margin: 1rem 0;
-      padding: 1rem;
-      filter: drop-shadow(0 0 10px #F70707);
-      animation: pulse 2s infinite alternate;
-    }
-
-    .booth-logo img {
-      max-width: 200px;
-      height: auto;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
-    }
-
-    .turntables {
-      display: flex;
-      justify-content: space-around;
-      margin: 2rem 0;
-      gap: 20px;
-    }
-
-    .turntable {
-      width: 220px;
-      height: 220px;
-      background: #0d0000;
-      border: 3px solid #F70707;
-      border-radius: 50%;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(247,7,7,0.5);
-    }
-
-    .turntable:hover {
-      transform: scale(1.03);
-    }
-
-    .vinyl {
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at center, #0d0000 0%, #0d0000 20%, transparent 20.5%, transparent 100%),
-        repeating-radial-gradient(circle at center, #0d0000 0%, #0d0000 2px, #333 2px, #333 4px);
-      animation: spin 3s linear infinite;
-      animation-play-state: paused;
-      position: relative;
-    }
-
-    .vinyl::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      background: #F70707;
-      border-radius: 50%;
-      border: 2px solid #0d0000;
-      z-index: 2;
-    }
-
-    .vinyl::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 15px;
-      height: 15px;
-      background: #0d0000;
-      border-radius: 50%;
-      z-index: 3;
-    }
-
-    .vinyl-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background: #F70707;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-
-    .vinyl-logo {
-      width: 70%;
-      height: 70%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-    }
-
-    .vinyl-grooves {
-      position: absolute;
-      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        repeating-radial-gradient(
-          circle at center,
-          transparent 0%,
-          transparent 20%,
-          rgba(255,255,255,0.1) 20.5%,
-          rgba(255,255,255,0.1) 21%,
-          transparent 21.5%,
-          transparent 40%,
-          rgba(255,255,255,0.1) 40.5%,
-          rgba(255,255,255,0.1) 41%,
-          transparent 41.5%
-        );
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .control-btn {
-      background: #0d0000;
-      border: 2px solid #F70707;
-      color: #F70707;
-      padding: 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-      text-transform: uppercase;
-      font-weight: bold;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .control-btn:hover {
-      background: #F70707;
-      color: #0d0000;
-      box-shadow: 0 0 15px #F70707;
-    }
-
-    .control-btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 5px;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.5);
-      opacity: 0;
-      border-radius: 100%;
-      transform: scale(1, 1) translate(-50%);
-      transform-origin: 50% 50%;
-    }
-
-    .control-btn:focus:not(:active)::after {
-      animation: ripple 1s ease-out;
-    }
-
-    @keyframes ripple {
-      0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(20, 20);
-        opacity: 0;
-      }
-    }
-
-    .dj-bio {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: #0d0000;
-      border: 2px solid #F70707;
-      border-radius: 7px;
-      box-shadow: 0 0 20px rgba(247, 7, 7, 0.2);
-      position: relative;
-    }
-
-    .dj-bio::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #F70707, transparent);
-    }
-
-    .dj-bio::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #F70707, transparent);
-    }
-
-    footer {
-      background: #220000;
-      padding: 2rem;
-      text-align: center;
-      border-top: 2px solid #F70707;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: 1001;
+      mix-blend-mode: screen;
+      filter: blur(0.6px);
     }
 
     .scanlines {
@@ -360,50 +75,404 @@
       100% { transform: translateY(4px); }
     }
 
-    .crt-effect {
+    /* Animação inicial */
+    .intro-animation {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1001;
-      mix-blend-mode: screen;
-      filter: blur(0.6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      background: #0d0000;
+      transition: opacity 1s ease-in-out;
     }
 
-    .final-cta {
-      margin: 5rem 0 8rem;
-      text-align: center;
+    .vinyl-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 40px;
+      cursor: grab;
+      transition: transform 0.3s ease;
     }
 
-    .equalizer {
+    .vinyl {
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at center, #0d0000 0%, #0d0000 20%, transparent 20.5%, transparent 100%),
+        repeating-radial-gradient(circle at center, #0d0000 0%, #0d0000 2px, #333 2px, #333 4px);
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 20px rgba(247, 7, 7, 0.5);
+      transition: transform 0.1s ease-out;
+    }
+
+    .vinyl::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: #F70707;
+      border-radius: 50%;
+      border: 4px solid #0d0000;
+      z-index: 2;
+    }
+
+    .vinyl::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25px;
+      height: 25px;
+      background: #0d0000;
+      border-radius: 50%;
+      z-index: 3;
+    }
+
+    .vinyl-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      background: #F70707;
+      border-radius: 50%;
       display: flex;
       justify-content: center;
-      gap: 3px;
-      height: 40px;
-      margin: 1rem 0;
+      align-items: center;
+      z-index: 1;
     }
 
-    .equalizer-bar {
-      width: 4px;
+    .vinyl-logo {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    }
+
+    .vinyl-grooves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0%,
+          transparent 20%,
+          rgba(255,255,255,0.1) 20.5%,
+          rgba(255,255,255,0.1) 21%,
+          transparent 21.5%,
+          transparent 40%,
+          rgba(255,255,255,0.1) 40.5%,
+          rgba(255,255,255,0.1) 41%,
+          transparent 41.5%
+        );
+    }
+
+    .scratch-instruction {
+      color: #fff;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      opacity: 0;
+      transition: opacity 1s;
+      text-align: center;
+      margin-top: 20px;
+      text-shadow: 0 0 10px rgba(247, 7, 7, 0.8);
+    }
+
+    .scratch-instruction.show {
+      opacity: 1;
+    }
+
+    /* Conteúdo principal - Inicialmente oculto */
+    .main-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(34, 0, 0, 0.95);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #F70707;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .header-logo {
+      width: 120px;
+      filter: drop-shadow(0 0 5px #F70707);
+      transition: transform 0.3s ease;
+    }
+
+    .header-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .header-title {
+      font-size: 2rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #F70707;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+    .cta-button {
       background: #F70707;
-      animation: equalize 1.5s infinite ease-in-out;
-      transform-origin: bottom;
+      color: #0d0000;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    .equalizer-bar:nth-child(1) { animation-delay: 0.1s; height: 30%; }
-    .equalizer-bar:nth-child(2) { animation-delay: 0.3s; height: 60%; }
-    .equalizer-bar:nth-child(3) { animation-delay: 0.5s; height: 40%; }
-    .equalizer-bar:nth-child(4) { animation-delay: 0.2s; height: 70%; }
-    .equalizer-bar:nth-child(5) { animation-delay: 0.4s; height: 50%; }
-    .equalizer-bar:nth-child(6) { animation-delay: 0.6s; height: 80%; }
-    .equalizer-bar:nth-child(7) { animation-delay: 0.1s; height: 30%; }
+    .cta-button:hover {
+      background: #25D366;
+      box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
+      transform: translateY(-2px);
+    }
 
-    @keyframes equalize {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(1.5); }
+    .profile-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      padding-top: 150px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      color: #F70707;
+      text-align: center;
+      margin: 2rem 0;
+      text-shadow: 0 0 20px #F70707;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    .confidential-file {
+      text-align: left;
+      background: #0d0000;
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      padding: 2rem;
+      margin: 3rem 0;
+      position: relative;
+      box-shadow: 0 0 20px rgba(247,7,7,0.2);
+      overflow: visible;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .confidential-file:hover {
+      box-shadow: 0 0 30px rgba(247,7,7,0.4);
+      transform: translateY(-3px);
+    }
+
+    .confidential-stamp {
+      position: absolute;
+      left: -20px;
+      top: -20px;
+      background: #F70707;
+      color: #0d0000;
+      padding: 0.5rem 1rem;
+      transform: rotate(-15deg);
+      font-size: 0.9rem;
+      z-index: 500;
+      border-radius: 3px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    }
+
+    .profile-image-container {
+      flex: 0 0 300px;
+      margin-left: 2rem;
+      order: 2;
+    }
+
+    .profile-image {
+      width: 100%;
+      border: 3px solid #F70707;
+      border-radius: 7px;
+      box-shadow: 0 0 20px #F70707;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .profile-image:hover {
+      box-shadow: 0 0 30px #F70707;
+      transform: scale(1.03);
+    }
+
+    .profile-content {
+      flex: 1;
+      min-width: 300px;
+      order: 1;
+    }
+
+    .profile-content h3 {
+      color: #F70707;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .profile-content p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .profile-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .profile-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .profile-content li::before {
+      content: "▶";
+      color: #F70707;
+      position: absolute;
+      left: -20px;
+    }
+
+    .talk-section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(13, 0, 0, 0.7);
+      border: 2px solid #F70707;
+      border-radius: 7px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(247, 7, 7, 0.3);
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .talk-section:hover {
+      border-color: #25D366;
+      box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .talk-section h3 {
+      color: #ffffff;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(247, 7, 7, 0.5);
+      transition: color 0.3s;
+    }
+
+    .talk-section:hover h3 {
+      color: #25D366;
+    }
+
+    .talk-btn {
+      background: #F70707;
+      color: #0d0000;
+      border: none;
+      padding: 1.2rem 2.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 7px;
+      text-transform: uppercase;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
+    }
+
+    .talk-btn:hover {
+      background: #25D366;
+      box-shadow: 0 0 20px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #220000;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #F70707;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: #F70707;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      font-size: 1.5rem;
+      color: #0d0000;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      background: #ffe5e5;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 217, 217, 0.5);
     }
 
     @media (max-width: 768px) {
@@ -411,41 +480,80 @@
         font-size: 1.5rem;
       }
 
-      .dj-title {
+      .section-title {
         font-size: 2rem;
       }
-
-      .turntable {
-        width: 180px;
-        height: 180px;
+      
+      .vinyl-container {
+        width: 250px;
+        height: 250px;
       }
 
-      .booth-logo img {
-        max-width: 150px;
+      .confidential-file {
+        padding: 1.5rem;
+        margin: 2rem 0;
+        flex-direction: column;
       }
 
-      .controls {
-        grid-template-columns: repeat(2, 1fr);
+      .profile-image-container {
+        flex: 0 0 100%;
+        margin: 0 auto 1.5rem;
+        order: 1;
+      }
+
+      .confidential-stamp {
+        left: -15px;
+        top: -15px;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.9rem;
+      }
+      
+      .scratch-instruction {
+        font-size: 1.2rem;
+      }
+      
+      .cta-button span {
+        display: inline;
       }
     }
 
     @media (max-width: 480px) {
-      .turntables {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+      .confidential-file {
+        padding: 1rem;
+        margin: 1.5rem 0;
       }
 
-      .dj-title {
+      .profile-image {
+        width: 100%;
+      }
+
+      .confidential-stamp {
+        left: -10px;
+        top: -10px;
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+      }
+      
+      .vinyl-container {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .section-title {
         font-size: 1.8rem;
       }
-
-      .booth-logo img {
-        max-width: 120px;
+      
+      .cta-button {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
       }
-
-      .control-btn {
-        font-size: 0.9rem;
+      
+      .cta-button span {
+        display: none;
+      }
+      
+      .header-title {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -455,292 +563,200 @@
   <div class="crt-effect"></div>
   <div class="scanlines"></div>
 
-  <header class="header">
-    <a href="https://cejera.com/home">
-      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
-    </a>
-    <h1 class="header-title">MÚSICA</h1>
-    <button class="cta-button">CONTATO</button>
-  </header>
-
-  <div class="dj-section">
-    <h2 class="dj-title">SUA FESTA PRECISA DE ALGUÉM EXCÊNTRICO</h2>
-    
-    <div class="dj-booth">
-      <div class="equalizer">
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-        <div class="equalizer-bar"></div>
-      </div>
-      
-      <!-- Logo central da mesa -->
-      <div class="booth-logo">
-        <img src="cejera-04.svg" alt="Cejera DJ">
-      </div>
-      
-      <div class="turntables">
-        <div class="turntable" onclick="playSound(1)">
-          <div class="vinyl">
-            <div class="vinyl-grooves"></div>
-            <div class="vinyl-label">
-              <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
-            </div>
-          </div>
-        </div>
-        <div class="turntable" onclick="playSound(2)">
-          <div class="vinyl">
-            <div class="vinyl-grooves"></div>
-            <div class="vinyl-label">
-              <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
-            </div>
-          </div>
+  <!-- Animação inicial -->
+  <div class="intro-animation" id="intro-animation">
+    <div class="vinyl-container" id="scratch-disk">
+      <div class="vinyl">
+        <div class="vinyl-grooves"></div>
+        <div class="vinyl-label">
+          <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
         </div>
       </div>
-
-      <div class="controls">
-        <button class="control-btn" onclick="adjustBPM(5)">BPM +</button>
-        <button class="control-btn" onclick="addEffect()">Efeitos</button>
-        <button class="control-btn" onclick="adjustBPM(-5)">BPM -</button>
-        <button class="control-btn" onclick="toggleFilter()">Filter</button>
-        <button class="control-btn" onclick="toggleLoop()">Loop</button>
-        <button class="control-btn" onclick="crossfade()">Mix</button>
-      </div>
     </div>
-
-    <div class="dj-bio">
-      <h3 style="color: #F70707; text-align: center;">CEJERA - O DJ</h3>
-      <p>Já ouviu falar em sinestesia? Não dá pra explicar... Só sentindo pra saber:</p>
-      <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-        <li>Mixagem criativa entre gêneros</li>
-        <li>Transições (viradas) perfeitas</li>
-        <li>Sensibilidade para a energia da pista</li>
-        <li>Setlist personalizada para cada evento</li>
-        <li>Criação de sets sob demanda</li>
-      </ul>
-      <p>Especialista em funk, techno, house e fusões eletrônicas experimentais.</p>
-    </div>
-
-    <div class="final-cta">
-      <button class="cta-button">ENTRE EM CONTATO</button>
-    </div>
+    <div class="scratch-instruction" id="scratch-instruction">ARRANHE O DISCO</div>
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+  <!-- Conteúdo principal - inicialmente oculto -->
+  <div class="main-content" id="main-content">
+    <header class="header">
+      <a href="https://cejera.com/home">
+        <img src="cejera-03.svg" class="header-logo" alt="Cejera">
+      </a>
+      <h1 class="header-title">MÚSICA</h1>
+      <button class="cta-button">
+        <i class="fab fa-whatsapp"></i>
+        <span>CONTATO</span>
+      </button>
+    </header>
+
+    <div class="profile-section">
+      <h2 class="section-title">SUA FESTA PRECISA DE ALGUÉM EXCÊNTRICO</h2>
+      
+      <div class="confidential-file">
+        <div class="confidential-stamp">• EXCÊNTRICO! •</div>
+        
+        <div class="profile-content">
+          <h3>CEJERA - O DJ</h3>
+          <p>Já ouviu falar em sinestesia? Não dá pra explicar... Só sentindo pra saber:</p>
+          <ul>
+            <li>Mixagem criativa entre gêneros</li>
+            <li>Transições (viradas) perfeitas</li>
+            <li>Sensibilidade para a energia da pista</li>
+            <li>Setlist personalizada para cada evento</li>
+            <li>Criação de sets sob demanda</li>
+          </ul>
+          <p>Especialista em funk, techno, house e fusões eletrônicas experimentais.</p>
+          <p>Minha abordagem única combina técnica apurada com sensibilidade musical, criando uma experiência imersiva para o público.</p>
+        </div>
+        
+        <div class="profile-image-container">
+          <img src="profile-pic.png" class="profile-image" alt="Alexandre Cejera">
+        </div>
+      </div>
+
+      <div class="talk-section">
+        <h3>PRONTO PARA LEVAR SUA FESTA AO PRÓXIMO NÍVEL?</h3>
+        <button class="talk-btn" id="talk-btn">
+          <i class="fab fa-whatsapp"></i> FALE COMIGO
+        </button>
+      </div>
     </div>
-  </footer>
+
+    <footer>
+      <div class="footer-content">
+        <p>Todos os direitos reservados | © 2025 Cejera | Feito com amor, excentricidade e autenticidade.</p>
+        <div class="social-links">
+          <a href="https://open.spotify.com/user/mr.xandoso?si=09faf4306ff54af8" target="_blank" class="social-link">
+            <i class="fab fa-spotify"></i>
+          </a>
+          <a href="https://instagram.com/cejeraa" target="_blank" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com/in/cejera" target="_blank" class="social-link">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script>
-    // Sons interativos melhorados
-    const sounds = {
-      track1: new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'),
-      track2: new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'),
-      effect1: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-flash-bang-2925.mp3'),
-      effect2: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-game-show-suspense-waiting-668.mp3'),
-      filter: new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-beep-218.mp3')
-    };
+    // Elementos DOM
+    const introAnimation = document.getElementById('intro-animation');
+    const mainContent = document.getElementById('main-content');
+    const scratchDisk = document.getElementById('scratch-disk');
+    const scratchInstruction = document.getElementById('scratch-instruction');
+    const vinyl = scratchDisk.querySelector('.vinyl');
     
-    // Configuração inicial
-    let currentBPM = 120;
-    let isFilterOn = false;
-    let isLooping = false;
-    let activeTrack = null;
+    // Mostrar instrução após 5 segundos
+    setTimeout(() => {
+      scratchInstruction.classList.add('show');
+    }, 5000);
     
-    // Precarregar sons
-    Object.values(sounds).forEach(sound => {
-      sound.load();
-    });
-
-    function playSound(index) {
-      const turntable = event.currentTarget;
-      const vinyl = turntable.querySelector('.vinyl');
-      const track = index === 1 ? sounds.track1 : sounds.track2;
+    // Variáveis para controle do arrasto
+    let isDragging = false;
+    let startX;
+    let rotation = 0;
+    let prevRotation = 0;
+    const scratchThreshold = 50; // Distância mínima para considerar como "arranhão"
+    
+    // Função para iniciar o arrasto
+    function startDrag(e) {
+      isDragging = true;
       
-      // Alternar animação e reprodução
-      if(vinyl.style.animationPlayState === 'paused' || !vinyl.style.animationPlayState) {
-        vinyl.style.animationPlayState = 'running';
-        track.currentTime = 0;
-        track.play();
-        activeTrack = track;
-      } else {
-        vinyl.style.animationPlayState = 'paused';
-        track.pause();
-        activeTrack = null;
+      // Obter coordenadas iniciais
+      if (e.type === 'mousedown') {
+        startX = e.clientX;
+      } else if (e.type === 'touchstart') {
+        startX = e.touches[0].clientX;
       }
       
-      // Efeito visual
-      turntable.style.boxShadow = '0 0 30px #F70707';
-      setTimeout(() => {
-        turntable.style.boxShadow = '0 0 15px rgba(247,7,7,0.5)';
-      }, 2000);
-    }
-
-    function adjustBPM(change) {
-      currentBPM += change;
-      document.querySelectorAll('.vinyl').forEach(vinyl => {
-        if(vinyl.style.animationPlayState === 'running') {
-          const currentRotation = getRotationDegrees(vinyl);
-          const newDuration = (60 / currentBPM) * 2; // 2 batidas por rotação
-          vinyl.style.animation = 'none';
-          setTimeout(() => {
-            vinyl.style.animation = `spin ${newDuration}s linear infinite`;
-            vinyl.style.animationPlayState = 'running';
-            vinyl.style.transform = `rotate(${currentRotation}deg)`;
-          }, 10);
-        }
-      });
+      // Salvar a rotação atual
+      prevRotation = rotation;
       
-      // Efeito visual
-      const bpmDisplay = document.createElement('div');
-      bpmDisplay.textContent = `BPM: ${currentBPM}`;
-      bpmDisplay.style.position = 'fixed';
-      bpmDisplay.style.bottom = '20px';
-      bpmDisplay.style.right = '20px';
-      bpmDisplay.style.color = '#F70707';
-      bpmDisplay.style.fontSize = '24px';
-      bpmDisplay.style.zIndex = '1000';
-      document.body.appendChild(bpmDisplay);
-      
-      setTimeout(() => {
-        bpmDisplay.style.transition = 'opacity 1s';
-        bpmDisplay.style.opacity = '0';
-        setTimeout(() => bpmDisplay.remove(), 1000);
-      }, 2000);
+      // Mudar cursor para "arranhando"
+      scratchDisk.style.cursor = 'grabbing';
     }
-
-    function getRotationDegrees(element) {
-      const style = window.getComputedStyle(element);
-      const matrix = style.transform || style.webkitTransform || style.mozTransform;
-      if(matrix === 'none') return 0;
-      const values = matrix.split('(')[1].split(')')[0].split(',');
-      const a = values[0];
-      const b = values[1];
-      const angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-      return angle < 0 ? angle + 360 : angle;
-    }
-
-    function addEffect() {
-      const randomEffect = Math.random() > 0.5 ? sounds.effect1 : sounds.effect2;
-      randomEffect.currentTime = 0;
-      randomEffect.play();
+    
+    // Função para arrastar
+    function drag(e) {
+      if (!isDragging) return;
       
-      // Efeito visual
-      const effect = document.createElement('div');
-      effect.style.position = 'fixed';
-      effect.style.top = '0';
-      effect.style.left = '0';
-      effect.style.width = '100%';
-      effect.style.height = '100%';
-      effect.style.background = 'radial-gradient(circle, rgba(247,7,7,0.3) 0%, transparent 70%)';
-      effect.style.zIndex = '1000';
-      effect.style.pointerEvents = 'none';
-      document.body.appendChild(effect);
+      let currentX;
       
-      setTimeout(() => {
-        effect.style.transition = 'opacity 0.5s';
-        effect.style.opacity = '0';
-        setTimeout(() => effect.remove(), 500);
-      }, 300);
-    }
-
-    function toggleFilter() {
-      isFilterOn = !isFilterOn;
-      sounds.filter.currentTime = 0;
-      sounds.filter.play();
-      
-      // Efeito visual nos vinis
-      document.querySelectorAll('.vinyl').forEach(vinyl => {
-        if(isFilterOn) {
-          vinyl.style.filter = 'sepia(100%) hue-rotate(300deg) saturate(500%)';
-        } else {
-          vinyl.style.filter = 'none';
-        }
-      });
-    }
-
-    function toggleLoop() {
-      isLooping = !isLooping;
-      if(activeTrack) {
-        activeTrack.loop = isLooping;
+      if (e.type === 'mousemove') {
+        currentX = e.clientX;
+      } else if (e.type === 'touchmove') {
+        currentX = e.touches[0].clientX;
       }
       
-      // Efeito visual
-      const loopIndicator = document.createElement('div');
-      loopIndicator.textContent = isLooping ? 'LOOP ON' : 'LOOP OFF';
-      loopIndicator.style.position = 'fixed';
-      loopIndicator.style.top = '50%';
-      loopIndicator.style.left = '50%';
-      loopIndicator.style.transform = 'translate(-50%, -50%)';
-      loopIndicator.style.color = '#F70707';
-      loopIndicator.style.fontSize = '48px';
-      loopIndicator.style.fontWeight = 'bold';
-      loopIndicator.style.zIndex = '1000';
-      loopIndicator.style.textShadow = '0 0 10px #000';
-      document.body.appendChild(loopIndicator);
+      // Calcular distância percorrida
+      const deltaX = currentX - startX;
       
-      setTimeout(() => {
-        loopIndicator.style.transition = 'opacity 1s';
-        loopIndicator.style.opacity = '0';
-        setTimeout(() => loopIndicator.remove(), 1000);
-      }, 1000);
-    }
-
-    function crossfade() {
-      if(!sounds.track1.paused && !sounds.track2.paused) {
-        // Efeito de crossfade
-        sounds.track1.volume = 0.5;
-        sounds.track2.volume = 0.5;
+      // Atualizar rotação do disco
+      rotation = prevRotation + deltaX * 0.5;
+      vinyl.style.transform = `rotate(${rotation}deg)`;
+      
+      // Verificar se atingiu o limiar para arranhar
+      if (Math.abs(deltaX) >= scratchThreshold) {
+        // Tocar som de arranhão
+        const scratchSound = new Audio('disc.ogg');
+        scratchSound.play();
         
-        const fadeInterval = setInterval(() => {
-          if(sounds.track1.volume > 0) {
-            sounds.track1.volume -= 0.05;
-            sounds.track2.volume += 0.05;
-          } else {
-            clearInterval(fadeInterval);
-            sounds.track1.pause();
-            document.querySelectorAll('.vinyl')[0].style.animationPlayState = 'paused';
-          }
-        }, 100);
+        // Efeito visual
+        vinyl.style.filter = 'brightness(1.5)';
+        setTimeout(() => {
+          vinyl.style.filter = 'none';
+        }, 200);
+        
+        // Carregar a página após o arranhão
+        setTimeout(() => {
+          // Animação de transição
+          introAnimation.style.opacity = '0';
+          
+          // Após a animação, mostrar conteúdo principal
+          setTimeout(() => {
+            introAnimation.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Animação de entrada do conteúdo principal
+            setTimeout(() => {
+              mainContent.style.opacity = '1';
+            }, 100);
+          }, 1000);
+        }, 300);
+        
+        // Parar o arrasto após o arranhão
+        isDragging = false;
       }
-      
-      // Efeito visual
-      const mixer = document.createElement('div');
-      mixer.style.position = 'fixed';
-      mixer.style.top = '0';
-      mixer.style.left = '0';
-      mixer.style.width = '100%';
-      mixer.style.height = '100%';
-      mixer.style.background = 'linear-gradient(90deg, rgba(247,7,7,0.1) 0%, rgba(247,7,7,0.3) 50%, rgba(247,7,7,0.1) 100%)';
-      mixer.style.zIndex = '1000';
-      mixer.style.pointerEvents = 'none';
-      document.body.appendChild(mixer);
-      
-      setTimeout(() => {
-        mixer.style.transition = 'opacity 1s';
-        mixer.style.opacity = '0';
-        setTimeout(() => mixer.remove(), 1000);
-      }, 1000);
     }
-
-    // Controle dos botões de contato
-    document.querySelectorAll('.cta-button').forEach(button => {
-      button.addEventListener('click', () => {
-        window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
-      });
+    
+    // Função para finalizar o arrasto
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      scratchDisk.style.cursor = 'grab';
+    }
+    
+    // Adicionar event listeners para mouse
+    scratchDisk.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', endDrag);
+    
+    // Adicionar event listeners para touch
+    scratchDisk.addEventListener('touchstart', startDrag);
+    document.addEventListener('touchmove', drag);
+    document.addEventListener('touchend', endDrag);
+    
+    // Botão "Fale comigo"
+    document.getElementById('talk-btn').addEventListener('click', () => {
+      window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
     });
-
-    // Efeito de equalizador aleatório
-    setInterval(() => {
-      document.querySelectorAll('.equalizer-bar').forEach(bar => {
-        const randomHeight = Math.floor(Math.random() * 70) + 10;
-        bar.style.height = `${randomHeight}%`;
-      });
-    }, 300);
+    
+    // Botão de contato no header
+    document.querySelector('.cta-button').addEventListener('click', () => {
+      window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
+    });
   </script>
 </body>
 </html>
