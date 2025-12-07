@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOBRE — CEJERA® | Excentricidade e Autenticidade</title>
+    <meta name="description" content="Conheça a história por trás da marca Cejera®: design, moda, música e a origem do nome. Descubra quem é o criador por trás da excentricidade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        /* Seção Sobre */
+        .sobre-hero {
+            padding: 100px 0 80px;
+        }
+
+        .sobre-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sobre-title::before,
+        .sobre-title::after {
+            content: '✱';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .sobre-title::before {
+            left: -40px;
+        }
+
+        .sobre-title::after {
+            right: -40px;
+        }
+
+        .sobre-subtitle {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        @media (min-width: 992px) {
+            .sobre-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .sobre-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .sobre-text p {
+            margin-bottom: 24px;
+        }
+
+        .sobre-highlight {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .sobre-list {
+            margin: 24px 0;
+            padding-left: 20px;
+        }
+
+        .sobre-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 24px;
+        }
+
+        .sobre-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        .sobre-image-container {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: white;
+        }
+
+        /* Efeito de scanlines na foto - MAIS FORTE */
+        .sobre-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.20) 2px,
+                transparent 2px,
+                transparent 3px,
+                rgba(0, 0, 0, 0.20) 3px,
+                rgba(0, 0, 0, 0.20) 4px,
+                transparent 5px
+            );
+            background-size: 100% 6px;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: scanline 10s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 600px;
+            }
+        }
+
+        .sobre-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius);
+        }
+
+        .sobre-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 5;
+        }
+
+        /* Timeline/História */
+        .historia-section {
+            padding: 60px 0 80px;
+        }
+
+        .historia-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .historia-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
+
+        .historia-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .historia-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--red);
+        }
+
+        .historia-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+
+        .historia-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--black);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .historia-content {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--red);
+        }
+
+        .historia-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--red);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-menu {
+                gap: 40px;
+            }
+
+            /* Footer social fullwidth no desktop */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .sobre-title::before {
+                left: -20px;
+            }
+
+            .sobre-title::after {
+                right: -20px;
+            }
+
+            .historia-timeline::before {
+                left: 25px;
+            }
+
+            .historia-item {
+                padding-left: 60px;
+            }
+
+            .historia-year {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
+            /* Footer social fullwidth no mobile */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link active" role="menuitem" aria-current="page">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section Sobre -->
+        <section class="sobre-hero container">
+            <h1 class="sobre-title">Sobre mim</h1>
+            <p class="sobre-subtitle">Excentricidade e Autenticidade</p>
+            
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>Tenho 25 anos, sou graduado em <span class="sobre-highlight">Design Gráfico (UNIFRAN)</span> e especializado em <span class="sobre-highlight">Marketing de Conteúdo e Design Digital</span>.</p>
+                    
+                    <p>Sou certificado em <span class="sobre-highlight">UX/UI</span>, <span class="sobre-highlight">Branding</span> e <span class="sobre-highlight">Marketing de Influência</span>. Além disso atuo como <span class="sobre-highlight">DJ</span> há 2 anos e tenho minha própria <span class="sobre-highlight">marca de roupas</span>.</p>
+                    
+                    <p>O apelido <span class="sobre-highlight">"Cejera"</span> veio de um erro de dicção que acabou virando apelido entre os amigos, e depois disso, minha marca oficialmente registrada.</p>
+                    
+                    <p>Minha abordagem é baseada na crença de que <span class="sobre-highlight">a autenticidade é o maior superpoder</span> que qualquer marca ou indivíduo pode ter. Em um mundo cheio de cópias, me dedico a criar coisas que são genuinamente diferentes.</p>
+                    
+                    <ul class="sobre-list">
+                        <li>Design Gráfico pela UNIFRAN</li>
+                        <li>Especialização em Marketing de Conteúdo e Design Digital</li>
+                        <li>Certificado em UX/UI, Branding e Marketing de Influência</li>
+                        <li>DJ profissional há 2 anos</li>
+                        <li>Fundador da Cejera®</li>
+                    </ul>
+                    
+                    <p>Através da minha marca, busco unir <span class="sobre-highlight">moda autêntica, design estrategicamente bonito e música com sentido</span>. Porque ser normal é muito chato, e ser autêntico é meu superpoder.</p>
+                </div>
+                
+                <div class="sobre-image-container">
+                    <span class="sobre-badge">— CEJERA®</span>
+                    <img src="fotocejera.png" alt="Cejera - Criador da marca" class="sobre-image" loading="lazy" decoding="async">
+                </div>
+            </div>
+        </section>
+
+        <!-- História da Marca -->
+        <section class="historia-section container">
+            <h2 class="historia-title">Minha linha do tempo</h2>
+            
+            <div class="historia-timeline">
+                <div class="historia-item">
+                    <div class="historia-year">2011</div>
+                    <div class="historia-content">
+                        <h3>Começo a fazer animações</h3>
+                        <p>Com 11 anos eu conheci um programinha de animar stickmans. Criei meu primeiro canal no YouTube e coloquei toda minha criatividade nisso. Foi bom para mim (eu acho).</p>
+                    </div>
+                </div>
+            
+
+            <div class="historia-timeline">
+                <div class="historia-item">
+                    <div class="historia-year">2015</div>
+                    <div class="historia-content">
+                        <h3>Me descubro como artista</h3>
+                        <p>Depois de ter feito teatro, cinema/audiovisual, aprendido a programar e criar artes incríveis no meu computador (vocês estariam surpresos com as minhas criações), entendi finalmente que eu era um artista mal compreendido. Que bom que eu era mal compreendido (até eu mesmo fico surpreso com o que eu fazia na época)...</p>
+                    </div>
+                </div>
+            <div class="historia-timeline">
+                <div class="historia-item">
+                    <div class="historia-year">2017</div>
+                    <div class="historia-content">
+                        <h3>A escadaria da fama</h3>
+                        <p>Começo a fazer lives e introduzo um cronograma de postagem de vídeos online (gameplays e vlogs), consolidando minha jornada pela escadaria da fama. Só esqueceram de avisar que haviam despejado óleo nela. Escorreguei e decidi ficar aqui em baixo mesmo.</p>
+                    </div>
+                </div>
+            <div class="historia-timeline">
+                <div class="historia-item">
+                    <div class="historia-year">2020</div>
+                    <div class="historia-content">
+                        <h3>Design?</h3>
+                        <p>Comecei a estudar design na faculdade. Foi um choque pra mim quando descobri que sabia desenhar. Só não foi um choque maior que saber que eu iria ter que ficar em casa pelos próximos 3 anos por causa de um bichinho que a gente nem consegue ver. Corona vírus, se eu te vejo na rua eu te dou um soco.</p>
+                    </div>
+                </div>
+            
+            <div class="historia-timeline">
+                <div class="historia-item">
+                    <div class="historia-year">20/21</div>
+                    <div class="historia-content">
+                        <h3>O erro de dicção</h3>
+                        <p>Em uma festa de Reveillon, eu estava comendo cerejas. Então um amigo me perguntou o que eu estava comendo. Ao tentar falar, cometi um erro de dicção que resultou em "Cejera". O apelido pegou instantaneamente entre o grupinho da bagunça.</p>
+                    </div>
+                </div>
+                
+                <div class="historia-item">
+                    <div class="historia-year">2021</div>
+                    <div class="historia-content">
+                        <h3>Do apelido à marca</h3>
+                        <p>Percebendo que o nome tinha personalidade e era memorável, comecei a usar "Cejera" em meus projetos criativos. O feedback foi tão positivo que decidi transformá-lo em uma marca registrada.</p>
+                    </div>
+                </div>
+                
+                <div class="historia-item">
+                    <div class="historia-year">2022</div>
+                    <div class="historia-content">
+                        <h3>Experiências</h3>
+                        <p>Ser o Cejera me proporcionou muitas experiências enriquecedoras. Descobri que é bem difícil passar credibilidade tendo essa skin de adolescente mimado.</p>
+                    </div>
+                </div>
+                <div class="historia-item">
+                    <div class="historia-year">2024</div>
+                    <div class="historia-content">
+                        <h3>"Sem tempo, irmão"</h3>
+                        <p>Ficar sem tempo me fez entender que preciso redefinir minhas prioridades. Adeus lives e games. Olá mundo sombrio do CLT.</p>
+                    </div>
+                </div>
+                
+                <div class="historia-item">
+                    <div class="historia-year">HOJE</div>
+                    <div class="historia-content">
+                        <h3>Excentricidade e Autenticidade</h3>
+                        <p>Cejera® representa mais que uma marca. É uma comunidade. Um grito de autenticidade. Uma fusão de design inteligente, moda com atitude e música que toca a alma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" 
+                               id="waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            // Trap focus no menu quando aberto
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Botão do clubinho no header
+        document.querySelector('.header-cta .btn').addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') {
+                e.preventDefault();
+                const message = encodeURIComponent("Cejera, quero saber mais sobre o clubinho!");
+                const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        });
+
+        // Formulário de lista de espera
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Validar formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
