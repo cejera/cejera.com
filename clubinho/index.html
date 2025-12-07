@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUBINHO — CEJERA® | Exclusivo para Membros</title>
+    <meta name="description" content="Área exclusiva do Clubinho Cejera®. Acesso restrito para membros selecionados. Excentricidade e Autenticidade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        /* Seção do Clubinho - Tela de Login */
+        .clubinho-hero {
+            padding: 100px 0 80px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clubinho-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        .clubinho-title::before,
+        .clubinho-title::after {
+            content: '★';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .clubinho-title::before {
+            left: -40px;
+        }
+
+        .clubinho-title::after {
+            right: -40px;
+        }
+
+        .clubinho-subtitle {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid var(--red);
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 3;
+            white-space: nowrap;
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1rem;
+            background: rgba(247, 247, 247, 0.8);
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(247, 7, 7, 0.1);
+            background: white;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .toggle-password:hover {
+            color: var(--red);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .forgot-password {
+            color: var(--red);
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 4px;
+        }
+
+        .forgot-password:hover {
+            text-decoration-color: var(--red);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--red), #d90606);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .login-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .waitlist-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .waitlist-title {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        .waitlist-description {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .waitlist-btn {
+            background: var(--black);
+            color: var(--light);
+            border: 2px solid var(--black);
+        }
+
+        .waitlist-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        /* Pop-up de curiosidade */
+        .curiosity-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--black);
+            color: var(--light);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 3px solid var(--red);
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            animation: popupAppear 0.5s ease;
+        }
+
+        @keyframes popupAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -60%) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .curiosity-popup.show {
+            display: block;
+        }
+
+        .curiosity-icon {
+            font-size: 60px;
+            color: var(--red);
+            margin-bottom: 20px;
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .curiosity-title {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--red);
+        }
+
+        .curiosity-message {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .curiosity-btn {
+            background: var(--red);
+            color: var(--light);
+            margin-top: 15px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .curiosity-btn:hover {
+            background: #d90606;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(247, 7, 7, 0.3);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .close-popup:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        /* Timer visual */
+        .timer-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--black);
+            color: var(--light);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0.3;
+            transition: var(--transition);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-container:hover {
+            opacity: 1;
+        }
+
+        .timer-icon {
+            color: var(--red);
+        }
+
+        /* Pegadinha do "Esqueceu sua senha" */
+        .prank-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: var(--light);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 5px 20px rgba(247, 7, 7, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .prank-message.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-menu {
+                gap: 40px;
+            }
+
+            /* Footer social fullwidth no desktop */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .clubinho-title::before {
+                left: -20px;
+            }
+
+            .clubinho-title::after {
+                right: -20px;
+            }
+
+            .login-container {
+                padding: 40px 25px;
+            }
+
+            /* Footer social fullwidth no mobile */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Clubinho Login -->
+        <section class="clubinho-hero container">
+            <h1 class="clubinho-title">Clubinho</h1>
+            <p class="clubinho-subtitle">Área Exclusiva para Membros</p>
+            
+            <div class="login-container">
+                <div class="login-badge">✱ ACESSO RESTRITO ✱</div>
+                
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="email" class="form-label">E-mail do Membro</label>
+                        <input type="email" id="email" class="form-input" placeholder="membro@exclusivo.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Senha Secreta</label>
+                        <div class="password-container">
+                            <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" id="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember">
+                            <span>Lembrar acesso</span>
+                        </label>
+                        <a href="#" class="forgot-password" id="forgot-password">Esqueceu sua senha?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn login-btn" id="login-btn">
+                        <span>ACESSAR CLUBINHO</span>
+                    </button>
+                    
+                    <div class="form-note">
+                        <p style="font-size: 0.85rem; color: #666; text-align: center;">
+                            <i class="fas fa-shield-alt" style="color: var(--red); margin-right: 5px;"></i>
+                            Conexão segura • Acesso monitorado • Dados criptografados
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="waitlist-section">
+                    <h3 class="waitlist-title">Não é membro ainda?</h3>
+                    <p class="waitlist-description">
+                        O Clubinho é uma comunidade exclusiva com benefícios especiais, 
+                        conteúdos secretos e experiências únicas. As vagas são limitadas.
+                    </p>
+                    <button class="btn waitlist-btn" id="waitlist-btn">
+                        Entrar na Lista de Espera
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Timer visual -->
+        <div class="timer-container" id="timer-container">
+            <i class="fas fa-clock timer-icon"></i>
+            <span id="timer">00:00</span>
+        </div>
+        
+        <!-- Pegadinha do "Esqueceu sua senha" -->
+        <div class="prank-message" id="prank-message">
+            🤔 Não esqueceu não.
+        </div>
+        
+        <!-- Pop-up de curiosidade (aparece após 5 minutos) -->
+        <div class="curiosity-popup" id="curiosity-popup">
+            <button class="close-popup" id="close-popup">&times;</button>
+            <i class="fas fa-user-secret curiosity-icon"></i>
+            <h3 class="curiosity-title">Olá, curios@</h3>
+            <p class="curiosity-message">
+                Você tem uma curiosidade fora do comum. Gostei de você.<br>
+                Clica aqui e me chama, tenho um presente pra vc.
+            </p>
+            <button class="btn curiosity-btn" id="curiosity-btn">
+                <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+            </button>
+            <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">
+                Esta mensagem aparece apenas para pessoas persistentes.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="footer-waitlist-form">
+                        <input type="email" 
+                               id="footer-waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Mostrar/ocultar senha
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Alternar ícone
+            const icon = this.querySelector('i');
+            if (type === 'text') {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+        // Pegadinha do "Esqueceu sua senha"
+        const forgotPasswordLink = document.getElementById('forgot-password');
+        const prankMessage = document.getElementById('prank-message');
+        
+        forgotPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Mostrar mensagem de pegadinha
+            prankMessage.classList.add('show');
+            
+            // Esconder após 3 segundos
+            setTimeout(() => {
+                prankMessage.classList.remove('show');
+            }, 3000);
+        });
+
+        // Botão de login (fictício)
+        const loginBtn = document.getElementById('login-btn');
+        
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            // Simular verificação
+            loginBtn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Verificando...</span>';
+            loginBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Acesso negado. As credenciais estão incorretas ou sua conta não está ativa.');
+                loginBtn.innerHTML = '<span>🔐 ACESSAR CLUBINHO</span>';
+                loginBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Botão da lista de espera
+        const waitlistBtn = document.getElementById('waitlist-btn');
+        
+        waitlistBtn.addEventListener('click', function() {
+            const email = prompt('Digite seu e-mail para entrar na lista de espera:');
+            
+            if (email) {
+                const encodedMessage = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+                const whatsappUrl = `https://wa.me/5535999286246?text=${encodedMessage}`;
+                
+                window.open(whatsappUrl, '_blank');
+                alert('Redirecionando para o WhatsApp para completar sua inscrição!');
+            }
+        });
+
+        // Formulário de lista de espera no footer
+        document.getElementById('footer-waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('footer-waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            const encodedMessage = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Pop-up de curiosidade (aparece após 5 minutos)
+        const curiosityPopup = document.getElementById('curiosity-popup');
+        const closePopupBtn = document.getElementById('close-popup');
+        const curiosityBtn = document.getElementById('curiosity-btn');
+        const timerDisplay = document.getElementById('timer');
+        const timerContainer = document.getElementById('timer-container');
+        
+        let seconds = 0;
+        let minutes = 0;
+        let timerInterval;
+        
+        // Iniciar timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                seconds++;
+                
+                if (seconds === 60) {
+                    minutes++;
+                    seconds = 0;
+                }
+                
+                // Formatar display
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = seconds.toString().padStart(2, '0');
+                timerDisplay.textContent = `${formattedMinutes}:${formattedSeconds}`;
+                
+                // Mostrar pop-up após 5 minutos (300 segundos)
+                if (minutes >= 5) {
+                    showCuriosityPopup();
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+        
+        // Mostrar pop-up
+        function showCuriosityPopup() {
+            curiosityPopup.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Impedir scroll
+        }
+        
+        // Fechar pop-up
+        closePopupBtn.addEventListener('click', function() {
+            curiosityPopup.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Permitir scroll novamente
+        });
+        
+        // Botão do pop-up (WhatsApp com mensagem especial)
+        curiosityBtn.addEventListener('click', function() {
+            const encodedMessage = encodeURIComponent('Cejera, sou uma pessoa extremamente curiosa e a senha é "JARDIM". Me mostre o que eu ganho com isso.');
+            const whatsappUrl = `https://wa.me/5535999286246?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            curiosityPopup.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Fechar pop-up ao clicar fora
+        window.addEventListener('click', function(e) {
+            if (e.target === curiosityPopup) {
+                curiosityPopup.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Iniciar timer quando a página carregar
+        window.addEventListener('load', function() {
+            startTimer();
+            
+            // Focar no campo de email
+            document.getElementById('email').focus();
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+                
+                // Fechar pop-up também com Escape
+                if (curiosityPopup.classList.contains('show')) {
+                    curiosityPopup.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Easter egg: tentar senha "JARDIM"
+        passwordInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter' && this.value.toUpperCase() === 'JARDIM') {
+                alert('🎉 Parabéns! Você descobriu um segredo! Use essa senha no WhatsApp para ganhar seu presente.');
+            }
+        });
+    </script>
+</body>
+</html>
