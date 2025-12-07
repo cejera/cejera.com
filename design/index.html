@@ -140,64 +140,56 @@
             height: 60px;
         }
 
+
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             position: relative;
             z-index: 1001;
-            padding: 5px;
-            border-radius: var(--radius);
+            padding: 0;
+            border-radius: 50%;
+            background-color: transparent;
             transition: var(--transition);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .menu-toggle:hover {
-            background-color: rgba(247, 7, 7, 0.1);
-        }
-
-        .hamburger,
-        .hamburger::before,
-        .hamburger::after {
-            background-color: var(--black);
-            width: 30px;
-            height: 3px;
-            position: absolute;
-            left: 5px;
-            transition: var(--transition);
+            background-color: rgba(189, 189, 189, 0.1);
         }
 
         .hamburger {
-            top: 50%;
-            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            position: relative;
         }
 
-        .hamburger::before {
-            content: '';
-            top: -8px;
-        }
-
-        .hamburger::after {
-            content: '';
-            bottom: -8px;
-        }
-
-        .menu-toggle[aria-expanded="true"] .hamburger {
-            background-color: transparent;
-        }
-
-        .menu-toggle[aria-expanded="true"] .hamburger::before {
-            top: 0;
-            transform: rotate(45deg);
+        .hamburger-line {
+            width: 100%;
+            height: 3px;
             background-color: var(--red);
+            border-radius: 3px;
+            transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger::after {
-            bottom: 0;
-            transform: rotate(-45deg);
-            background-color: var(--red);
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+            opacity: 0.7;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+            opacity: 0.7;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+            opacity: 0.7;
         }
 
         nav {
@@ -940,57 +932,52 @@
 
         @media (max-width: 767px) {
             .menu-toggle {
-                display: block;
+                display: flex;
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 280px;
                 height: 100vh;
                 background-color: var(--light);
                 flex-direction: column;
                 justify-content: flex-start;
                 gap: 40px;
-                transition: right 0.3s ease-in-out;
-                padding: 100px 40px 40px;
+                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                padding: 100px 30px 40px;
                 box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
                 z-index: 1000;
                 overflow-y: auto;
-            }
-
-            nav::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: -1;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                pointer-events: none;
+                border-left: 2px solid var(--red);
             }
 
             nav[data-visible="true"] {
                 right: 0;
             }
 
-            nav[data-visible="true"]::before {
-                opacity: 1;
-                pointer-events: all;
-            }
-
             .nav-menu {
                 flex-direction: column;
-                align-items: center;
-                gap: 24px;
+                align-items: flex-start;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 10px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-link:last-child {
+                border-bottom: none;
             }
 
             .header-cta {
-                margin-top: 20px;
+                margin-top: 30px;
+                width: 100%;
             }
 
             .logo-img {
@@ -1090,7 +1077,11 @@
             </div>
 
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <span class="hamburger"></span>
+                <div class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -1362,10 +1353,10 @@
                     <ul class="footer-links">
                         <li><a href="https://cejera.com/home">Início</a></li>
                         <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="#design">Design</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
                         <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
                         <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
                     </ul>
                 </div>
