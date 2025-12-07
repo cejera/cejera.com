@@ -1,762 +1,1290 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cejera | DJ Profissional</title>
-  <meta name="description" content="DJ especializado em funk, techno, house e fusões eletrônicas experimentais. Transforme sua festa com mixagens criativas e energia única.">
-  <meta name="keywords" content="Cejera, DJ, música, festas, eventos, techno, funk, house, mixagem, sets personalizados">
-  <meta name="author" content="Alexandre 'Cejera' Silva">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Source Code Pro', monospace;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJERA® — MÚSICA | Experiências Sonoras Únicas</title>
+    <meta name="description" content="DJ e produtor musical especializado em experiências sonoras únicas. Sinestesia, excentricidade e autenticidade em cada set. Funk, techno, house e fusões experimentais.">
+    <meta name="keywords" content="Cejera, DJ, música, festas, eventos, techno, funk, house, mixagem, sets personalizados, sinestesia">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca de ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System Baseado em Neurodesign */
+        :root {
+            --red: #F70707;
+            --red-light: rgba(247, 7, 7, 0.1);
+            --red-dark: #C00505;
+            --light: #F7F7F7;
+            --dark: #0A0A0A;
+            --gray: #1A1A1A;
+            --gray-light: #2A2A2A;
+            --radius: 12px;
+            --radius-lg: 24px;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-hover: 0 12px 32px rgba(247, 7, 7, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-    body {
-      background-color: #0d0000;
-      color: #ffffff;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
+        /* Reset & Base - Princípios de Neurodesign */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(#220000 1px, transparent 1px), 
-                  linear-gradient(90deg, #220000 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.2;
-      z-index: 0;
-      pointer-events: none;
-    }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
 
-    .crt-effect {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1001;
-      mix-blend-mode: screen;
-      filter: blur(0.6px);
-    }
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--light);
+            background-color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.15) 0px,
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 1002;
-      animation: scanMove 3s linear infinite;
-    }
+        /* Tipografia com hierarquia clara (neurodesign) */
+        h1, h2, h3, h4, .logo, .section-title, .hero-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    @keyframes scanMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(4px); }
-    }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
 
-    /* Animação inicial */
-    .intro-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      background: #0d0000;
-      transition: opacity 1s ease-in-out;
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
 
-    .vinyl-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-      margin-bottom: 40px;
-      cursor: grab;
-      transition: transform 0.3s ease;
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .vinyl {
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at center, #0d0000 0%, #0d0000 20%, transparent 20.5%, transparent 100%),
-        repeating-radial-gradient(circle at center, #0d0000 0%, #0d0000 2px, #333 2px, #333 4px);
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 20px rgba(247, 7, 7, 0.5);
-      transition: transform 0.1s ease-out;
-    }
+        ul {
+            list-style: none;
+        }
 
-    .vinyl::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      background: #F70707;
-      border-radius: 50%;
-      border: 4px solid #0d0000;
-      z-index: 2;
-    }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .vinyl::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 25px;
-      height: 25px;
-      background: #0d0000;
-      border-radius: 50%;
-      z-index: 3;
-    }
+        /* Botões com contraste forte (neurodesign: call-to-action claro) */
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .vinyl-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      background: #F70707;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
 
-    .vinyl-logo {
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-    }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background: var(--red-dark);
+        }
 
-    .vinyl-grooves {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        repeating-radial-gradient(
-          circle at center,
-          transparent 0%,
-          transparent 20%,
-          rgba(255,255,255,0.1) 20.5%,
-          rgba(255,255,255,0.1) 21%,
-          transparent 21.5%,
-          transparent 40%,
-          rgba(255,255,255,0.1) 40.5%,
-          rgba(255,255,255,0.1) 41%,
-          transparent 41.5%
-        );
-    }
+        .btn:hover::before {
+            left: 100%;
+        }
 
-    .scratch-instruction {
-      color: #fff;
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      opacity: 0;
-      transition: opacity 1s;
-      text-align: center;
-      margin-top: 20px;
-      text-shadow: 0 0 10px rgba(247, 7, 7, 0.8);
-    }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--red);
+            color: var(--red);
+        }
 
-    .scratch-instruction.show {
-      opacity: 1;
-    }
+        .btn-outline:hover {
+            background: var(--red);
+            color: var(--light);
+        }
 
-    /* Conteúdo principal - Inicialmente oculto */
-    .main-content {
-      display: none;
-      opacity: 0;
-      transition: opacity 1s;
-      position: relative;
-      z-index: 10;
-    }
+        /* Skip to content para acessibilidade */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--red);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            z-index: 9999;
+            font-weight: 600;
+        }
 
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(34, 0, 0, 0.95);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #F70707;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-    }
+        .skip-link:focus {
+            top: 20px;
+        }
 
-    .header-logo {
-      width: 120px;
-      filter: drop-shadow(0 0 5px #F70707);
-      transition: transform 0.3s ease;
-    }
+        /* Header com efeito de vidro (glassmorphism) */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(247, 7, 7, 0.2);
+            transition: var(--transition);
+        }
 
-    .header-logo:hover {
-      transform: scale(1.05);
-    }
+        header.header-scroll {
+            padding: 15px 0;
+            background-color: rgba(10, 10, 10, 0.98);
+        }
 
-    .header-title {
-      font-size: 2rem;
-      color: #ffffff;
-      text-shadow: 0 0 10px #F70707;
-      letter-spacing: 3px;
-      font-weight: 700;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .cta-button {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .cta-button:hover {
-      background: #25D366;
-      box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
-      transform: translateY(-2px);
-    }
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+            filter: drop-shadow(0 0 5px rgba(247, 7, 7, 0.5));
+        }
 
-    .profile-section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-      padding: 2rem;
-      padding-top: 150px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
 
-    .section-title {
-      font-size: 3rem;
-      color: #F70707;
-      text-align: center;
-      margin: 2rem 0;
-      text-shadow: 0 0 20px #F70707;
-      animation: flicker 1.5s infinite alternate;
-    }
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 1001;
+            padding: 0;
+        }
 
-    @keyframes flicker {
-      0% { opacity: 0.8; }
-      100% { opacity: 1; }
-    }
+        .hamburger {
+            width: 100%;
+            height: 2px;
+            background-color: var(--light);
+            position: relative;
+            transition: var(--transition);
+        }
 
-    .confidential-file {
-      text-align: left;
-      background: #0d0000;
-      border: 2px solid #F70707;
-      border-radius: 7px;
-      padding: 2rem;
-      margin: 3rem 0;
-      position: relative;
-      box-shadow: 0 0 20px rgba(247,7,7,0.2);
-      overflow: visible;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 900px;
-      width: 100%;
-    }
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--light);
+            left: 0;
+            transition: var(--transition);
+        }
 
-    .confidential-file:hover {
-      box-shadow: 0 0 30px rgba(247,7,7,0.4);
-      transform: translateY(-3px);
-    }
+        .hamburger::before {
+            top: -8px;
+        }
 
-    .confidential-stamp {
-      position: absolute;
-      left: -20px;
-      top: -20px;
-      background: #F70707;
-      color: #0d0000;
-      padding: 0.5rem 1rem;
-      transform: rotate(-15deg);
-      font-size: 0.9rem;
-      z-index: 500;
-      border-radius: 3px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-    }
+        .hamburger::after {
+            bottom: -8px;
+        }
 
-    .profile-image-container {
-      flex: 0 0 300px;
-      margin-left: 2rem;
-      order: 2;
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
 
-    .profile-image {
-      width: 100%;
-      border: 3px solid #F70707;
-      border-radius: 7px;
-      box-shadow: 0 0 20px #F70707;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      transition: all 0.5s ease;
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
 
-    .profile-image:hover {
-      box-shadow: 0 0 30px #F70707;
-      transform: scale(1.03);
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
 
-    .profile-content {
-      flex: 1;
-      min-width: 300px;
-      order: 1;
-    }
+        /* Navegação */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
 
-    .profile-content h3 {
-      color: #F70707;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-    }
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
 
-    .profile-content p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
 
-    .profile-content ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
 
-    .profile-content li {
-      margin-bottom: 0.5rem;
-      position: relative;
-    }
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
 
-    .profile-content li::before {
-      content: "▶";
-      color: #F70707;
-      position: absolute;
-      left: -20px;
-    }
+        .nav-link.active {
+            color: var(--red);
+        }
 
-    .talk-section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: rgba(13, 0, 0, 0.7);
-      border: 2px solid #F70707;
-      border-radius: 7px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(247, 7, 7, 0.3);
-      width: 100%;
-      transition: all 0.3s ease;
-    }
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-    .talk-section:hover {
-      border-color: #25D366;
-      box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
-    }
+        /* Hero Section com gradiente e foco */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .talk-section h3 {
-      color: #ffffff;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 0 10px rgba(247, 7, 7, 0.5);
-      transition: color 0.3s;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(247, 7, 7, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(247, 7, 7, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
 
-    .talk-section:hover h3 {
-      color: #25D366;
-    }
+        .hero-title {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
 
-    .talk-btn {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
-      padding: 1.2rem 2.5rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
-      text-transform: uppercase;
-      font-weight: bold;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
-    }
+        .hero-title::before,
+        .hero-title::after {
+            content: '♪';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            opacity: 0.8;
+        }
 
-    .talk-btn:hover {
-      background: #25D366;
-      box-shadow: 0 0 20px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
-      transform: translateY(-3px);
-    }
+        .hero-title::before {
+            left: -50px;
+        }
 
-    footer {
-      background: #220000;
-      padding: 2rem;
-      text-align: center;
-      border-top: 2px solid #F70707;
-      margin-top: 3rem;
-      position: relative;
-      z-index: 10;
-    }
+        .hero-title::after {
+            right: -50px;
+        }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 1.5rem;
-    }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #ccc;
+            line-height: 1.7;
+        }
 
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: #F70707;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      font-size: 1.5rem;
-      color: #0d0000;
-      text-decoration: none;
-    }
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
 
-    .social-link:hover {
-      background: #ffe5e5;
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 217, 217, 0.5);
-    }
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    @media (max-width: 768px) {
-      .header-title {
-        font-size: 1.5rem;
-      }
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
 
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .vinyl-container {
-        width: 250px;
-        height: 250px;
-      }
+        /* Seção Sobre */
+        .about-section {
+            padding: 100px 0;
+            background-color: var(--gray);
+            position: relative;
+        }
 
-      .confidential-file {
-        padding: 1.5rem;
-        margin: 2rem 0;
-        flex-direction: column;
-      }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+        }
 
-      .profile-image-container {
-        flex: 0 0 100%;
-        margin: 0 auto 1.5rem;
-        order: 1;
-      }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
 
-      .confidential-stamp {
-        left: -15px;
-        top: -15px;
-        font-size: 0.8rem;
-        padding: 0.4rem 0.9rem;
-      }
-      
-      .scratch-instruction {
-        font-size: 1.2rem;
-      }
-      
-      .cta-button span {
-        display: inline;
-      }
-    }
+        .about-text h2 {
+            margin-bottom: 30px;
+            color: var(--light);
+        }
 
-    @media (max-width: 480px) {
-      .confidential-file {
-        padding: 1rem;
-        margin: 1.5rem 0;
-      }
+        .about-text p {
+            margin-bottom: 20px;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
 
-      .profile-image {
-        width: 100%;
-      }
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
 
-      .confidential-stamp {
-        left: -10px;
-        top: -10px;
-        font-size: 0.7rem;
-        padding: 0.3rem 0.8rem;
-      }
-      
-      .vinyl-container {
-        width: 200px;
-        height: 200px;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
-      
-      .cta-button {
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
-      }
-      
-      .cta-button span {
-        display: none;
-      }
-      
-      .header-title {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+        .about-image:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(10, 10, 10, 0.9));
+            color: var(--light);
+        }
+
+        .image-overlay h3 {
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para lista de especialidades */
+        .expertise-list {
+            margin-top: 30px;
+        }
+
+        .expertise-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .expertise-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: var(--red);
+        }
+
+        /* Seção Serviços */
+        .services-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--red);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--gray);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(247, 7, 7, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .service-title {
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .service-description {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Seção Playlists */
+        .playlists-section {
+            padding: 100px 0;
+            background-color: var(--gray);
+        }
+
+        .playlists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .playlist-card {
+            background-color: var(--dark);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(247, 7, 7, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .playlist-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .playlist-content {
+            padding: 25px;
+        }
+
+        .playlist-title {
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .playlist-description {
+            color: #aaa;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .playlist-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .playlist-link i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .playlist-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Seção Contato */
+        .contact-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            max-width: 600px;
+            margin: 0 auto 50px;
+            color: #aaa;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .contact-option {
+            background-color: var(--gray);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            transition: var(--transition);
+        }
+
+        .contact-option:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .contact-option h3 {
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .contact-option p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(247, 7, 7, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 5px rgba(247, 7, 7, 0.5));
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            background-color: rgba(247, 7, 7, 0.05);
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        /* CORREÇÃO: Input de e-mail no footer - Coerente com o site anterior */
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+        
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+        
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-cta .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* CORREÇÃO: Ajuste do formulário no mobile */
+            .footer-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-form {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-grid,
+            .playlists-grid,
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-title::before,
+            .hero-title::after {
+                display: none;
+            }
+        }
+
+        /* Animações sutis (neurodesign: movimento sutil atrai atenção) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Efeitos de foco para acessibilidade */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body>
-  <div class="grid"></div>
-  <div class="crt-effect"></div>
-  <div class="scanlines"></div>
 
-  <!-- Animação inicial -->
-  <div class="intro-animation" id="intro-animation">
-    <div class="vinyl-container" id="scratch-disk">
-      <div class="vinyl">
-        <div class="vinyl-grooves"></div>
-        <div class="vinyl-label">
-          <img src="cejera-00.svg" class="vinyl-logo" alt="Cejera">
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-03.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link active" role="menuitem" aria-current="page">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." class="btn">CONTRATAR DJ</a>
+                </div>
+            </nav>
         </div>
-      </div>
-    </div>
-    <div class="scratch-instruction" id="scratch-instruction">ARRANHE O DISCO</div>
-  </div>
-
-  <!-- Conteúdo principal - inicialmente oculto -->
-  <div class="main-content" id="main-content">
-    <header class="header">
-      <a href="https://cejera.com/home">
-        <img src="cejera-03.svg" class="header-logo" alt="Cejera">
-      </a>
-      <h1 class="header-title">MÚSICA</h1>
-      <button class="cta-button">
-        <i class="fab fa-whatsapp"></i>
-        <span>CONTATO</span>
-      </button>
     </header>
 
-    <div class="profile-section">
-      <h2 class="section-title">SUA FESTA PRECISA DE ALGUÉM EXCÊNTRICO</h2>
-      
-      <div class="confidential-file">
-        <div class="confidential-stamp">• EXCÊNTRICO! •</div>
-        
-        <div class="profile-content">
-          <h3>CEJERA - O DJ</h3>
-          <p>Já ouviu falar em sinestesia? Não dá pra explicar... Só sentindo pra saber:</p>
-          <ul>
-            <li>Mixagem criativa entre gêneros</li>
-            <li>Transições (viradas) perfeitas</li>
-            <li>Sensibilidade para a energia da pista</li>
-            <li>Setlist personalizada para cada evento</li>
-            <li>Criação de sets sob demanda</li>
-          </ul>
-          <p>Especialista em funk, techno, house e fusões eletrônicas experimentais.</p>
-          <p>Minha abordagem única combina técnica apurada com sensibilidade musical, criando uma experiência imersiva para o público.</p>
-        </div>
-        
-        <div class="profile-image-container">
-          <img src="profile-pic.png" class="profile-image" alt="Alexandre Cejera">
-        </div>
-      </div>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero container fade-in-up">
+            <h1 class="hero-title">"SINESTESIA": Já ouviu falar?</h1>
+            <p class="slogan">Música que você ouve, vê e sente</p>
+            <p class="hero-subtitle">
+                <strong>DJ e produtor musical</strong> especializado em criar <strong>experiências únicas</strong> que transcendem o som. 
+                Cada set é uma jornada sensorial onde funk, techno, house e fusões experimentais se encontram.
+            </p>
+            <div class="hero-cta">
+                <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." class="btn">SOLICITAR ORÇAMENTO</a>
+                <a href="https://open.spotify.com/user/mr.xandoso" class="btn btn-outline">OUVIR SETS</a>
+            </div>
+        </section>
 
-      <div class="talk-section">
-        <h3>PRONTO PARA LEVAR SUA FESTA AO PRÓXIMO NÍVEL?</h3>
-        <button class="talk-btn" id="talk-btn">
-          <i class="fab fa-whatsapp"></i> FALE COMIGO
-        </button>
-      </div>
-    </div>
+        <!-- Sobre Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text fade-in-up">
+                        <h2>O DJ POR TRÁS DOS DECKS</h2>
+                        <p>Sou Cejera, DJ e produtor com uma abordagem única para a música. Minha filosofia é simples: <strong>a música deve ser sentida, não apenas ouvida</strong>.</p>
+                        <p>Com 2 anos de experiência em pistas de dança e estúdios, desenvolvi um estilo que mescla técnica apurada com intuição musical, criando sets que são verdadeiras jornadas emocionais.</p>
+                        <p>Minha especialidade está em ler a energia do ambiente e moldar o som ao redor dela, garantindo que cada evento tenha uma identidade sonora única e memorável.</p>
+                        
+                        <div class="expertise-list">
+                            <div class="expertise-item">
+                                <i class="fas fa-music expertise-icon"></i>
+                                <span>Mixagem criativa entre gêneros</span>
+                            </div>
+                            <div class="expertise-item">
+                                <i class="fas fa-sliders-h expertise-icon"></i>
+                                <span>Transições suaves e impactantes</span>
+                            </div>
+                            <div class="expertise-item">
+                                <i class="fas fa-bolt expertise-icon"></i>
+                                <span>Sensibilidade para a energia da pista</span>
+                            </div>
+                            <div class="expertise-item">
+                                <i class="fas fa-headphones expertise-icon"></i>
+                                <span>Setlist personalizada para cada evento</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image fade-in-up">
+                        <img src="fotocejera.png" alt="Cejera - DJ e Produtor Musical">
+                        <div class="image-overlay">
+                            <h3>CEJERA (sou eu)</h3>
+                            <p>DJ & Produtor | Especialista em Experiências Sonoras</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Serviços Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h2 class="section-title fade-in-up">SERVIÇOS MUSICAIS</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3 class="service-title">DJ PARA EVENTOS</h3>
+                        <p class="service-description">Sets personalizados para festas privadas, casamentos, lançamentos e eventos corporativos. Criamos a trilha sonora perfeita para sua ocasião especial.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <h3 class="service-title">SETS TEMÁTICOS</h3>
+                        <p class="service-description">Experiências musicais imersivas com temas específicos: anos 80/90, underground, brasileiro, eletrônico. Cada set é uma viagem.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in-up">
+                        <div class="service-icon">
+                            <i class="fas fa-compact-disc"></i>
+                        </div>
+                        <h3 class="service-title">PRODUÇÃO MUSICAL</h3>
+                        <p class="service-description">Criação de trilhas originais, edições exclusivas e remixes personalizados para marcas, projetos audiovisuais ou lançamentos próprios.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Playlists Section -->
+        <section id="playlists" class="playlists-section">
+            <div class="container">
+                <h2 class="section-title fade-in-up">EXPLORE MINHAS PLAYLISTS</h2>
+                <div class="playlists-grid">
+                    <div class="playlist-card fade-in-up">
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c15febd84412ee344445a7da6" alt="Playlist do protagonista" class="playlist-image">
+                        <div class="playlist-content">
+                            <h3 class="playlist-title">Cejera</h3>
+                            <p class="playlist-description">Minha playlist de protagonista. Indie rock, alternativo... parece trilha sonora de série ;)</p>
+                            <a href="https://open.spotify.com/playlist/06S7u1IvEiotSp8pk9aIsD" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-card fade-in-up">
+                        <img src="https://image-cdn-fa.spotifycdn.com/image/ab676d610000d906622ee396681c61e68e0d8a9d" alt="FAVORITAS" class="playlist-image">
+                        <div class="playlist-content">
+                            <h3 class="playlist-title">Minhas favoritas</h3>
+                            <p class="playlist-description">Playlist de músicas favoritas. Apenas as que eu mais gosto.</p>
+                            <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-card fade-in-up">
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c0f1cfafdb9081082de74bdc0" alt="Pra ouvir com sono" class="playlist-image">
+                        <div class="playlist-content">
+                            <h3 class="playlist-title">Playlist pra ouvir "com sono"</h3>
+                            <p class="playlist-description">Se é que você me entende ;)</p>
+                            <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="fade-in-up">PRONTO PARA TRANSFORMAR SEU EVENTO?</h2>
+                <p class="contact-subtitle fade-in-up">Entre em contato para discutirmos como posso criar uma experiência sonora única para sua ocasião especial.</p>
+                
+                <div class="contact-options">
+                    <div class="contact-option fade-in-up">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WHATSAPP</h3>
+                        <p>Respostas rápidas e diretas para orçamentos e consultas.</p>
+                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." target="_blank" class="btn">ENVIAR MENSAGEM</a>
+                    </div>
+                    
+                    <div class="contact-option fade-in-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>E-MAIL</h3>
+                        <p>Para propostas detalhadas e briefings mais elaborados.</p>
+                        <a href="mailto:contato@cejera.com" class="btn btn-outline">ENVIAR E-MAIL</a>
+                    </div>
+                    
+                    <div class="contact-option fade-in-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>AGENDAMENTO</h3>
+                        <p>Verifique disponibilidade para sua data e localização.</p>
+                        <a href="https://calendar.app.google/Mk4fu86fgTe5FU98A" class="btn">VER DISPONIBILIDADE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
-      <div class="footer-content">
-        <p>Todos os direitos reservados | © 2025 Cejera® | Feito com amor, excentricidade e autenticidade.</p>
-        <div class="social-links">
-          <a href="https://open.spotify.com/user/mr.xandoso?si=09faf4306ff54af8" target="_blank" class="social-link">
-            <i class="fab fa-spotify"></i>
-          </a>
-          <a href="https://instagram.com/cejeraa" target="_blank" class="social-link">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://linkedin.com/in/cejera" target="_blank" class="social-link">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </div>
-    </footer>
-  </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Criando experiências sonoras únicas desde 2024. Sinestesia, energia e autenticidade em cada set. Transforme seu evento com som que se sente.
+                    </div>
+                    <div class="social-links-grid">
+                        <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram social-icon"></i>
+                            <span class="social-name">Instagram</span>
+                            <span class="social-desc">@cejeraa</span>
+                        </a>
+                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                            <i class="fab fa-spotify social-icon"></i>
+                            <span class="social-name">Spotify</span>
+                            <span class="social-desc">Cejera</span>
+                        </a>
+                        <a href="https://soundcloud.com/cejera" class="social-link" aria-label="SoundCloud">
+                            <i class="fab fa-soundcloud social-icon"></i>
+                            <span class="social-name">SoundCloud</span>
+                            <span class="social-desc">/cejera</span>
+                        </a>
+                        <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in social-icon"></i>
+                            <span class="social-name">LinkedIn</span>
+                            <span class="social-desc">/in/cejera</span>
+                        </a>
+                    </div>
+                </div>
 
-  <script>
-    // Elementos DOM
-    const introAnimation = document.getElementById('intro-animation');
-    const mainContent = document.getElementById('main-content');
-    const scratchDisk = document.getElementById('scratch-disk');
-    const scratchInstruction = document.getElementById('scratch-instruction');
-    const vinyl = scratchDisk.querySelector('.vinyl');
-    
-    // Mostrar instrução após 5 segundos
-    setTimeout(() => {
-      scratchInstruction.classList.add('show');
-    }, 5000);
-    
-    // Variáveis para controle do arrasto
-    let isDragging = false;
-    let startX;
-    let rotation = 0;
-    let prevRotation = 0;
-    const scratchThreshold = 50; // Distância mínima para considerar como "arranhão"
-    
-    // Função para iniciar o arrasto
-    function startDrag(e) {
-      isDragging = true;
-      
-      // Obter coordenadas iniciais
-      if (e.type === 'mousedown') {
-        startX = e.clientX;
-      } else if (e.type === 'touchstart') {
-        startX = e.touches[0].clientX;
-      }
-      
-      // Salvar a rotação atual
-      prevRotation = rotation;
-      
-      // Mudar cursor para "arranhando"
-      scratchDisk.style.cursor = 'grabbing';
-    }
-    
-    // Função para arrastar
-    function drag(e) {
-      if (!isDragging) return;
-      
-      let currentX;
-      
-      if (e.type === 'mousemove') {
-        currentX = e.clientX;
-      } else if (e.type === 'touchmove') {
-        currentX = e.touches[0].clientX;
-      }
-      
-      // Calcular distância percorrida
-      const deltaX = currentX - startX;
-      
-      // Atualizar rotação do disco
-      rotation = prevRotation + deltaX * 0.5;
-      vinyl.style.transform = `rotate(${rotation}deg)`;
-      
-      // Verificar se atingiu o limiar para arranhar
-      if (Math.abs(deltaX) >= scratchThreshold) {
-        // Tocar som de arranhão
-        const scratchSound = new Audio('disc.ogg');
-        scratchSound.play();
-        
-        // Efeito visual
-        vinyl.style.filter = 'brightness(1.5)';
-        setTimeout(() => {
-          vinyl.style.filter = 'none';
-        }, 200);
-        
-        // Carregar a página após o arranhão
-        setTimeout(() => {
-          // Animação de transição
-          introAnimation.style.opacity = '0';
-          
-          // Após a animação, mostrar conteúdo principal
-          setTimeout(() => {
-            introAnimation.style.display = 'none';
-            mainContent.style.display = 'block';
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">NAVEGAÇÃO</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" 
+                               id="waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Cejera® — "SINESTESIA": Já ouviu falar? Porque a música deve ser sentida, não apenas ouvida.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
             
-            // Animação de entrada do conteúdo principal
-            setTimeout(() => {
-              mainContent.style.opacity = '1';
-            }, 100);
-          }, 1000);
-        }, 300);
-        
-        // Parar o arrasto após o arranhão
-        isDragging = false;
-      }
-    }
-    
-    // Função para finalizar o arrasto
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      scratchDisk.style.cursor = 'grab';
-    }
-    
-    // Adicionar event listeners para mouse
-    scratchDisk.addEventListener('mousedown', startDrag);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', endDrag);
-    
-    // Adicionar event listeners para touch
-    scratchDisk.addEventListener('touchstart', startDrag);
-    document.addEventListener('touchmove', drag);
-    document.addEventListener('touchend', endDrag);
-    
-    // Botão "Fale comigo"
-    document.getElementById('talk-btn').addEventListener('click', () => {
-      window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
-    });
-    
-    // Botão de contato no header
-    document.querySelector('.cta-button').addEventListener('click', () => {
-      window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ.';
-    });
-  </script>
+            // Trap focus no menu quando aberto
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+            
+            // Ativar animações de entrada quando elementos estão visíveis
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Formulário de lista de espera
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Validar formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
+
+        // Inicializar animações de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            // Disparar scroll event para ativar animações iniciais
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
 </body>
 </html>
