@@ -1,910 +1,1596 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cejera | Design Gráfico, Branding e Criação Visual Estratégica</title>
-  <meta name="description" content="Designer gráfico especializado em branding, UX/UI e marketing. Transformo ideias em identidades visuais únicas e estratégias de comunicação visual que conectam marcas ao seu público. Veja meu portfólio.">
-  
-  <meta name="keywords" content="Cejera, design gráfico, branding, identidade visual, UX/UI, marketing, direção criativa, embalagens, criação de marcas, designer gráfico em São Paulo, portfólio Behance, design estratégico">
-  
-  <meta name="author" content="Alexandre 'Cejera' Silva">
-  
-  <meta property="og:title" content="Cejera | Design Gráfico, Branding e Estratégia Visual">
-  <meta property="og:description" content="Portfólio de Cejera: design gráfico, branding e direção criativa para marcas autênticas e relevantes. Descubra projetos que unem estética e estratégia.">
-  <meta property="og:image" content="https://media.licdn.com/dms/image/v2/D4D03AQGVUAR2IrA-LQ/profile-displayphoto-crop_800_800/B4DZkZvaECHsAM-/0/1757073482735?e=1761177600&v=beta&t=2V-2HlqlWHvfHw4fcop4zlGIxNYaNedpUZPxUrDMRso"> <!-- Substitua por uma imagem real -->
-  <meta property="og:url" content="https://cejera.com/">
-  <meta property="og:type" content="website">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cejera | Design Gráfico, Branding e Estratégia Visual">
-  <meta name="twitter:description" content="Designer gráfico especializado em branding e direção criativa. Veja meu portfólio e descubra como transformar sua marca em algo impossível de ignorar.">
-  <meta name="twitter:image" content="https://media.licdn.com/dms/image/v2/D4D03AQGVUAR2IrA-LQ/profile-displayphoto-crop_800_800/B4DZkZvaECHsAM-/0/1757073482735?e=1761177600&v=beta&t=2V-2HlqlWHvfHw4fcop4zlGIxNYaNedpUZPxUrDMRso"> <!-- Substitua por uma imagem real -->
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Source Code Pro', monospace;
-    }
-
-    body {
-      background-color: #0d0000;
-      color: #ffffff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(34, 0, 0, 0.95);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #F70707;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-    }
-
-    .header-logo {
-      width: 120px;
-      filter: drop-shadow(0 0 5px #F70707);
-      transition: transform 0.3s ease;
-    }
-
-    .header-logo:hover {
-      transform: scale(1.05);
-    }
-
-    .header-title {
-      font-size: 2rem;
-      color: #ffffff;
-      text-shadow: 0 0 10px #F70707;
-      letter-spacing: 3px;
-      font-weight: 700;
-    }
-
-    .cta-button {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .cta-button:hover {
-      background: #25D366; /* Verde do WhatsApp no hover */
-      box-shadow: 0 0 15px #25D366, 0 6px 0 rgba(37, 211, 102, 0.8);
-      transform: translateY(-2px);
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .header {
-        padding: 0.8rem;
-      }
-      
-      .header-title {
-        display: none;
-      }
-      
-      .confidential-file {
-        padding: 1.5rem;
-        margin: 2rem 0;
-        flex-direction: column;
-      }
-
-      .profile-image-container {
-        flex: 0 0 100%;
-        margin: 0 auto 1.5rem;
-        order: 1;
-      }
-
-      .confidential-stamp {
-        left: -15px;
-        top: -15px;
-        font-size: 0.8rem;
-        padding: 0.4rem 0.9rem;
-      }
-
-      .portfolio-folder {
-        position: relative;
-        margin: 1.5rem auto 0;
-        text-align: center;
-        order: 3;
-      }
-
-      .folder-icon {
-        width: 100px;
-      }
-      
-      .banner-text {
-        font-size: 2rem;
-        letter-spacing: 3px;
-      }
-      
-      .behance-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .content-section h2, .portfolio-header h2 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-      }
-      
-      .cta-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.8rem;
-      }
-      
-      .banner-text {
-        font-size: 1.7rem;
-        letter-spacing: 2px;
-      }
-      
-      .content-section, .portfolio-section {
-        padding: 2rem 1rem;
-      }
-      
-      .portfolio-header h2 {
-        font-size: 1.8rem;
-      }
-      
-      .cta-button {
-        padding: 0.8rem 1.5rem; /* Texto sempre visível */
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .confidential-file {
-        padding: 1rem;
-        margin: 1.5rem 0;
-        text-align: center;
-      }
-
-      .profile-image {
-        width: 100%;
-      }
-
-      .confidential-stamp {
-        left: -10px;
-        top: -10px;
-        font-size: 0.7rem;
-        padding: 0.3rem 0.8rem;
-      }
-
-      ul {
-        text-align: left;
-        margin-left: 1rem !important;
-        padding-left: 1rem !important;
-      }
-
-      .folder-icon {
-        width: 80px;
-      }
-      
-      .banner-text {
-        font-size: 1.5rem;
-        letter-spacing: 1px;
-      }
-      
-      .behance-project {
-        height: 300px;
-      }
-      
-      /* Botões sempre vermelhos, apenas hover verde */
-      .cta-button {
-        background: #F70707;
-        box-shadow: 0 4px 0 rgba(199, 7, 7, 0.8);
-      }
-    }
-    .matrix-banner {
-      height: 70vh;
-      background: #000;
-      margin-top: 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .matrix-overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background: linear-gradient(rgba(13,0,0,0.9), rgba(13,0,0,0.9));
-      z-index: 10;
-    }
-
-    .banner-text {
-      font-size: 3rem;
-      color: #ffffff;
-      z-index: 1000;
-      text-align: center;
-      animation: flicker 1.5s infinite alternate;
-      font-weight: 700;
-      text-transform: uppercase;
-      max-width: 90%;
-      letter-spacing: 5px;
-    }
-
-    @keyframes flicker {
-      0% { opacity: 0.8; text-shadow: 0 0 10px #F70707; }
-      100% { opacity: 1; text-shadow: 0 0 20px #F70707; }
-    }
-
-    .content-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 7px;
-      font-size: 1.2rem;
-      position: relative;
-    }
-
-    .content-section h2 {
-      color: #F70707;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      letter-spacing: 3px;
-    }
-
-    .confidential-file {
-      text-align: left;
-      background: #0d0000;
-      border: 2px solid #F70707;
-      border-radius: 7px;
-      padding: 2rem;
-      margin: 3rem 0;
-      position: relative;
-      box-shadow: 0 0 20px rgba(247,7,7,0.2);
-      overflow: visible;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .confidential-file:hover {
-      box-shadow: 0 0 30px rgba(247,7,7,0.4);
-      transform: translateY(-3px);
-    }
-
-    .confidential-stamp {
-      position: absolute;
-      left: -20px;
-      top: -20px;
-      background: #F70707;
-      color: #0d0000;
-      padding: 0.5rem 1rem;
-      transform: rotate(-15deg);
-      font-size: 0.9rem;
-      z-index: 500;
-      border-radius: 3px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-    }
-
-    .profile-image-container {
-      flex: 0 0 250px;
-      margin-left: 2rem;
-      order: 2;
-    }
-
-    .profile-image {
-      width: 100%;
-      border: 3px solid #F70707;
-      border-radius: 7px;
-      box-shadow: 0 0 20px #F70707;
-      filter: grayscale(100%);
-      transition: all 0.5s ease;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
-
-    .profile-image:hover {
-      filter: none;
-      box-shadow: 0 0 30px #F70707;
-      transform: scale(1.03);
-    }
-
-    .profile-content {
-      flex: 1;
-      min-width: 300px;
-      order: 1;
-    }
-
-    .portfolio-folder {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-      z-index: 2;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .portfolio-folder:hover {
-      transform: translateY(-5px) scale(1.05);
-    }
-
-    .folder-icon {
-      width: 120px;
-      filter: drop-shadow(0 0 5px #F70707);
-      transition: all 0.3s ease;
-    }
-
-    /* Seção do Portfólio Behance */
-    .portfolio-section {
-      padding: 4rem 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      background: rgba(13, 0, 0, 0.7);
-      border-top: 2px solid #F70707;
-      border-bottom: 2px solid #F70707;
-      border-radius: 10px;
-    }
-
-    .portfolio-header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .portfolio-header h2 {
-      font-size: 2.5rem;
-      color: #F70707;
-      text-shadow: 0 0 10px rgba(247, 7, 7, 0.5);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
-      letter-spacing: 3px;
-    }
-
-    .portfolio-header h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: #F70707;
-      box-shadow: 0 0 10px rgba(247, 7, 7, 0.8);
-    }
-
-    .portfolio-header p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: #ddd;
-      letter-spacing: 1px;
-    }
-
-    .behance-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 30px;
-      margin-top: 2rem;
-    }
-
-    .behance-project {
-      background: rgba(34, 0, 0, 0.7);
-      border: 1px solid rgba(247, 7, 7, 0.3);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      height: 400px;
-    }
-
-    .behance-project:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(247, 7, 7, 0.4);
-      border-color: rgba(247, 7, 7, 0.6);
-    }
-
-    .behance-project iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .behance-link {
-      display: block;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .behance-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 1rem 2.5rem;
-      background: #F70707;
-      color: white;
-      border: none;
-      border-radius: 7px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      letter-spacing: 1px;
-    }
-
-    .behance-button:hover {
-      background: #0057ff;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 87, 255, 0.5);
-    }
-
-    /* Responsividade */
-    @media (max-width: 1200px) {
-      .behance-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      }
-    }
-
-    @media (max-width: 992px) {
-      .banner-text {
-        font-size: 2.5rem;
-      }
-      
-      .behance-grid {
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header {
-        padding: 0.8rem;
-      }
-      
-      .header-title {
-        display: none; /* Removido o título "DESIGN" */
-      }
-      
-      .confidential-file {
-        padding: 1.5rem;
-        margin: 2rem 0;
-        flex-direction: column;
-      }
-
-      .profile-image-container {
-        flex: 0 0 100%;
-        margin: 0 auto 1.5rem;
-        order: 1;
-      }
-
-      .confidential-stamp {
-        left: -15px;
-        top: -15px;
-        font-size: 0.8rem;
-        padding: 0.4rem 0.9rem;
-      }
-
-      .portfolio-folder {
-        position: relative;
-        margin: 1.5rem auto 0;
-        text-align: center;
-        order: 3;
-      }
-
-      .folder-icon {
-        width: 100px;
-      }
-      
-      .banner-text {
-        font-size: 2rem;
-        letter-spacing: 3px;
-      }
-      
-      .behance-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .content-section h2, .portfolio-header h2 {
-        font-size: 2rem;
-        letter-spacing: 2px;
-      }
-      
-
-    }
-
-    @media (max-width: 576px) {
-      .header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.8rem;
-      }
-      
-      .banner-text {
-        font-size: 1.7rem;
-        letter-spacing: 2px;
-      }
-      
-      .content-section, .portfolio-section {
-        padding: 2rem 1rem;
-      }
-      
-      .portfolio-header h2 {
-        font-size: 1.8rem;
-      }
-      
-
-      
-      .confidential-file h3 {
-        font-size: 1.3rem;
-        letter-spacing: 1px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .confidential-file {
-        padding: 1rem;
-        margin: 1.5rem 0;
-        text-align: center;
-      }
-
-      .profile-image {
-        width: 100%;
-      }
-
-      .confidential-stamp {
-        left: -10px;
-        top: -10px;
-        font-size: 0.7rem;
-        padding: 0.3rem 0.8rem;
-      }
-
-      ul {
-        text-align: left;
-        margin-left: 1rem !important;
-        padding-left: 1rem !important;
-      }
-
-      .folder-icon {
-        width: 80px;
-      }
-      
-      .banner-text {
-        font-size: 1.5rem;
-        letter-spacing: 1px;
-      }
-      
-      .behance-project {
-        height: 300px;
-      }
-      
-
-    }
-
-    footer {
-      background: #220000;
-      padding: 2rem;
-      text-align: center;
-      border-top: 2px solid #F70707;
-      position: relative;
-      z-index: 100;
-    }
-
-    .footer-content p {
-      margin: 0.5rem 0;
-      color: #aaa;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 1.5rem;
-    }
-
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: #F70707;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      font-size: 1.5rem;
-      color: #0d0000;
-    }
-
-    .social-link:hover {
-      background: #ffe5e5;
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(255, 217, 217, 0.5);
-    }
-
-    .social-icon {
-      color: #0d0000;
-    }
-
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.15) 0px,
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 1001;
-      animation: scanMove 3s linear infinite;
-    }
-
-    @keyframes scanMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(4px); }
-    }
-
-    .crt-effect {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(247,7,7,0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1001;
-      mix-blend-mode: screen;
-      filter: blur(0.6px);
-    }
-    
-    /* Animação de entrada para as seções */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    
-    .fade-in.appear {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJERA® — DESIGN | Branding, UX/UI & Estratégia Visual</title>
+    <meta name="description" content="Designer rebelde com foco em branding estratégico, UX/UI e identidade visual. Rompo regras para criar marcas autênticas e impossíveis de ignorar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca de ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Skip to content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            z-index: 999;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        /* Hero - ORIGINAL */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::before,
+        .hero-title::after {
+            content: '✱';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .hero-title::before {
+            left: -40px;
+        }
+
+        .hero-title::after {
+            right: -40px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #333;
+        }
+
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .email-capture {
+          max-width: 480px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 12px;
+        }
+
+        .email-microcopy {
+            font-size: 0.85rem;
+            color: #666;
+            padding-top: 10px;
+        }
+
+        /* Sobre Section - NOVA */
+        .about-section {
+            padding: 80px 0;
+            background: var(--black);
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(247, 7, 7, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(247, 7, 7, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-image-container {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            transform: rotate(-2deg);
+            transition: var(--transition);
+        }
+
+        .about-image-container:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(30%) contrast(110%);
+            transition: var(--transition);
+        }
+
+        .about-image-container:hover .about-image {
+            filter: grayscale(0%) contrast(120%);
+        }
+
+        .about-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--red);
+            color: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 3;
+            transform: rotate(5deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+        }
+
+        .about-text {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(247, 7, 7, 0.2);
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            background: rgba(247, 7, 7, 0.1);
+            border-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        .skill-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 12px;
+            color: var(--red);
+        }
+
+        .skill-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .skill-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Efeito de scanlines */
+        .banner-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px,
+                rgba(0, 0, 0, 0.15) 2px,
+                rgba(0, 0, 0, 0.15) 3px,
+                transparent 4px
+            );
+            background-size: 100% 6px;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 600px;
+            }
+        }
+
+        /* Banners Grid - PROJETOS */
+        .banners-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
+
+        .banners-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        /* Banner Cards */
+        .banner-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .banner-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .banner-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .banner-card:focus-within::after {
+            border-color: var(--red);
+        }
+
+        .banner-link {
+            display: block;
+            height: 100%;
+            position: relative;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        /* Degradê preto */
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+            color: var(--light);
+            z-index: 3;
+        }
+
+        .banner-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--black);
+            color: var(--light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .banner-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .banner-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .banner-cta {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .banner-cta::after {
+            content: '→';
+            transition: var(--transition);
+        }
+
+        .banner-link:hover .banner-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Social Proof - MANIFESTO */
+        .social-proof {
+            padding: 80px 0;
+            background-color: var(--black);
+            color: var(--light);
+            border-radius: var(--radius);
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-proof::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(247, 7, 7, 0.03) 2px,
+                    rgba(247, 7, 7, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+
+        .social-proof .section-title {
+            color: var(--light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px dashed var(--red);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            border-style: solid;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .review-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+            color: var(--red);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--red);
+            font-size: 0.9rem;
+        }
+
+        /* Footer - MODIFICADO */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .banners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-areas:
+                    "b1 b1"
+                    "b2 b3"
+                    "b4 b5"
+                    "b6 b6";
+            }
+
+            .banner--large-horizontal {
+                grid-area: b1;
+            }
+
+            .banner--large-vertical:nth-of-type(1) {
+                grid-area: b2;
+            }
+
+            .banner--square:nth-of-type(1) {
+                grid-area: b3;
+            }
+
+            .email-capture {
+                flex-direction: row;
+            }
+
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .banners-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas:
+                    "b1 b1 b2"
+                    "b1 b1 b3"
+                    "b4 b5 b6";
+            }
+
+            .nav-menu {
+                gap: 40px;
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* Footer social fullwidth no desktop */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-image-container {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .hero-title::before,
+            .hero-title::after {
+                display: none;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Footer social fullwidth no mobile */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Estilos específicos para desktop - Cards inline */
+        @media (min-width: 1024px) {
+            .footer-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .footer-logo-container {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+
+            .footer-links-container {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+
+            .footer-newsletter {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+
+            /* Ajuste para os social links ficarem bem distribuídos */
+            .social-links-grid {
+                gap: 10px;
+            }
+
+            .social-link {
+                padding: 10px;
+            }
+        }
+
+        /* REMOVA estas regras problemáticas */
+        /*
+        .footer-content .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 140px);
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            margin-top: 40px;
+            width: auto;
+        }
+
+        .footer-content .social-links-grid .social-link {
+            width: 140px;
+            height: 100px;
+            box-sizing: border-box;
+        }
+        */
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        /* Hand-drawn elements */
+        .hand-drawn {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
+        /* Custom bullets */
+        .custom-bullet {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
-  <div class="scanlines"></div>
-  <div class="crt-effect"></div>
+    <!-- Skip to content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
 
-  <header class="header">
-   <a href="https://cejera.com/home">
-    <img src="cejera-03.svg" class="header-logo" alt="Cejera">
-    </a> 
-    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Orçamento</span></button>
-  </header>
+    <!-- Header ORIGINAL -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
 
-  <div class="matrix-banner">
-    <canvas id="matrix-canvas"></canvas>
-    <div class="matrix-overlay">
-      <h2 class="banner-text">EXCENTRICIDADE E AUTENTICIDADE</h2>
-    </div>
-  </div>
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
 
-  <div class="content-section">
-    <h2>REVOLUÇÃO ESTRATÉGICA</h2>
-    
-    <p>Cada projeto tem contexto.</p>
-    <p>Visual forte, conceito sólido, execução estratégica.</p>
-    <p><strong>Revolução visual com propósito.</strong></p>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link active" role="menuitem" aria-current="page">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="#design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="#about" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="#contact" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://wa.me/5535999286246?text=Cejera%20preciso%20da%20sua%20ajuda!" class="btn">ME AJUDE!</a>
+                    <p class="cta-microcopy">Designer rebelde de plantão</p>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <div class="confidential-file">
-      <div class="confidential-stamp">• EXCÊNTRICO! •</div>
-      
-      <div class="profile-content">
-        <h3 style="color: #F70707; margin-bottom: 0.5rem; letter-spacing: 2px;">ALEXANDRE "CEJERA" SILVA</h3>
-        <p>> <strong>Áreas de Atuação:</strong></p>
-        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-          <li>Design Gráfico</li>
-          <li>Branding</li>
-          <li>UX/UI</li>
-          <li>Marketing</li>
-        </ul>
-        
-        <p>> <strong>Formação Tática:</strong></p>
-        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-          <li>Bacharelado em Design Gráfico</li>
-          <li>Especialização em Design Digital</li>
-          <li>Especialização em Marketing de Conteúdo</li>
-          <li>Certificação em Branding</li>
-          <li>Certificação em UX/UI</li>
-          <li>Certificação em Marketing de Influência</li>
-        </ul>
-        
-        <p>> <strong>Campanhas Notáveis:</strong></p>
-        <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-          <li>Reposicionamento de marca</li>
-          <li>Estratégias de reposicionamento de mercado</li>
-          <li>Sistemas visuais para influenciadores</li>
-          <li>Direção criativa para campanhas de sucesso</li>
-        </ul>
-      </div>
-      
-      <div class="profile-image-container">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGVUAR2IrA-LQ/profile-displayphoto-crop_800_800/B4DZkZvaECHsAM-/0/1757073482735?e=1761177600&v=beta&t=2V-2HlqlWHvfHw4fcop4zlGIxNYaNedpUZPxUrDMRso" 
-             class="profile-image" 
-             alt="Alexandre Cejera">
-      </div>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section ORIGINAL -->
+        <section class="hero container">
+            <h1 class="hero-title">Precisa de ajuda?</h1>
+            <p class="slogan">Design Excêntrico e Autêntico</p>
+            <p class="hero-subtitle">
+                <strong>Branding que desafia</strong>, <strong>UX/UI que funciona (de verdade)</strong> e <strong>identidade visual que gruda na memória</strong>. 
+                Porque seguir regras é chato e ser autêntico é meu superpoder. 
+                <br><br>
+                <em style="font-size: 0.9rem; color: #666;">(Sim, eu sei que design tem regras. Eu só prefiro quebrá-las de forma inteligente)</em>
+            </p>
+            <div class="email-capture">
+                <a href="https://wa.me/5535999286246?text=Cejera%20preciso%20da%20sua%20ajuda!" class="btn">ME AJUDA, CEJERA! <span style="font-size: 0.8em;">(por favorzinho)</span></a>
+            </div>
+            <p class="email-microcopy">Ironia à parte, realmente posso ajudar com seu projeto</p>
+        </section>
+
+        <!-- Sobre Section NOVA -->
+        <section id="about" class="about-section">
+            <div class="container about-container">
+                <div class="about-image-container">
+                    <div class="about-badge">• HERÓI & REBELDE •</div>
+                    <img src="fotocejera.png" alt="Alexandre 'Cejera' Silva" class="about-image">
+                </div>
+                <div class="about-content">
+                    <h2>Alexandre "Cejera" Silva</h2>
+                    <p class="about-text">
+                        Designer gráfico especializado em design digital, marketing de conteúdo, certificado em UX/UI, branding e influência digital. 
+                        Minha missão: transformar marcas (ou pessoas) comuns em protagonistas impossíveis de ignorar. 
+                        Combino a rebeldia do questionamento com a heroicidade da execução impecável.
+                    </p>
+                    <p class="about-text">
+                        Trabalho com neurodesign para criar experiências visuais que não apenas impressionam, 
+                        mas também geram ação. Cada projeto é uma batalha contra o mediocridade, 
+                        e eu nunca perco.
+                    </p>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-bullseye skill-icon"></i>
+                            <h4 class="skill-title">Branding Estratégico</h4>
+                            <p class="skill-desc">Identidades visuais com propósito e personalidade.</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-magic skill-icon"></i>
+                            <h4 class="skill-title">UX/UI Revolucionário</h4>
+                            <p class="skill-desc">Interfaces que encantam e convertem.</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-brain skill-icon"></i>
+                            <h4 class="skill-title">Neurodesign</h4>
+                            <p class="skill-desc">Design baseado em psicologia e comportamento.</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-rocket skill-icon"></i>
+                            <h4 class="skill-title">Estratégia Visual</h4>
+                            <p class="skill-desc">Sistemas que escalam e adaptam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Banners Grid - PROJETOS -->
+        <section id="design" class="banners-section container">
+            <h2 class="section-title">PROJETOS</h2>
+            <div class="banners-grid">
+                <!-- Banner 1 - Large Horizontal -->
+                <article class="banner-card banner--large-horizontal" data-target="branding">
+                    <a href="https://behance.net" class="banner-link" data-banner="1">
+                        <span class="banner-badge">— Branding</span>
+                        <img 
+                            src="749b2e198117633.Y3JvcCwxMTIyLDg3Nyw3MTksMjgw.png"
+                            alt="Branding - Salada de Frutas (2024)"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description"></p>
+                            <span class="banner-cta">Ver projeto</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 2 - Large Vertical -->
+                <article class="banner-card banner--large-vertical" data-target="uxui">
+                    <a href="https://www.behance.net/gallery/201501619/Cuida-Prototipo-de-Aplicativo" class="banner-link" data-banner="2">
+                        <span class="banner-badge">— UX/UI</span>
+                        <img 
+                            src="f5972f201501619.667acce564bc1.png"
+                            alt="Cuida - Protótipo de aplicativo"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description">UX research (UFLA)</p>
+                            <span class="banner-cta">Explorar protótipo</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 3 - Square -->
+                <article class="banner-card banner--square" data-target="packaging">
+                    <a href="https://www.behance.net/gallery/205133675/NexCredi-(Empresa-ficticia)" class="banner-link" data-banner="3">
+                        <span class="banner-badge">— Branding</span>
+                        <img 
+                            src="cec229205133675.66b60fc1adb84.png"
+                            alt="Nexcredi (Empresa fictícia)"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description"></p>
+                            <span class="banner-cta">Ver projeto</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 4 - Square -->
+                <article class="banner-card banner--square" data-target="motion">
+                    <a href="https://www.behance.net/gallery/170666063/Pixel-Critico-Identidade-Visual-(2023)" class="banner-link" data-banner="4">
+                        <span class="banner-badge">— ID Visual</span>
+                        <img 
+                            src="1db4b5170666063.Y3JvcCw4MDksNjMyLDY0NCwyNzg.webp"
+                            alt="Pixel Crítico - ID Visual"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description">Identidade visual para canal de transmissões ao vivo.</p>
+                            <span class="banner-cta">Ver projeto</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 5 - Square -->
+                <article class="banner-card banner--square" data-target="editorial">
+                    <a href="https://www.behance.net/gallery/170755791/DuckyMitch-Identidade-Visual-(2023)" class="banner-link" data-banner="5">
+                        <span class="banner-badge">— ID Visual</span>
+                        <img 
+                            src="f76cad170755791.Y3JvcCwxNDI4LDExMTcsMTIwNSw1MjM.webp"
+                            alt="Ducky Mitch - Identidade Visual"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description">Identidade visual para canal de transmissões ao vivo.</p>
+                            <span class="banner-cta">Ver projeto</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 6 - Square -->
+                <article class="banner-card banner--square" data-target="illustration">
+                    <a href="https://behance.net" class="banner-link" data-banner="6">
+                        <span class="banner-badge">— Social Media</span>
+                        <img 
+                            src="c97105222445265.Y3JvcCwxMDgwLDg0NCwwLDExNw.webp"
+                            alt="Social Media - Mec Inc."
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title"></h3>
+                            <p class="banner-description"></p>
+                            <span class="banner-cta">Ver projeto</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Social Proof - MANIFESTO -->
+        <section class="social-proof">
+            <div class="container">
+                <h2 class="section-title">COISAS QUE VOCÊ (NÃO) PRECISA SABER</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Design não é sobre seguir tendências. É sobre criar a próxima."</p>
+                        <p class="review-author">— Filosofia de Trabalho</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Recusei 3 projetos esta semana porque os briefings eram medíocres."</p>
+                        <p class="review-author">— Padrão de Qualidade</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 14C15.3137 14 18 11.3137 18 8C18 4.68629 15.3137 2 12 2C8.68629 2 6 4.68629 6 8C6 11.3137 8.68629 14 12 14Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 14V16C4 17.1046 4.89543 18 6 18H7M20 14V16C20 17.1046 19.1046 18 18 18H17" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 22H16" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 18V22" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Minha melhor habilidade? Transformar 'isso não vai funcionar' em 'como não pensamos nisso antes?'"</p>
+                        <p class="review-author">— Habilidade Secreta</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 12L11 14L15 10" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Estudo neurociência não para impressionar, mas para criar designs que viciam."</p>
+                        <p class="review-author">— Abordagem Científica</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Minha taxa de rejeição de ideias: 90%. Os 10% restantes mudam mercados."</p>
+                        <p class="review-author">— Processo Criativo</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2V6" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 2V6" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 10H21" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Clientes não me contratam pelo que sei fazer. Me contratam pelo que me recuso a fazer."</p>
+                        <p class="review-author">— Posicionamento</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer MODIFICADO -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Designer. 
+                        Transformo marcas comuns em protagonistas impossíveis de ignorar. 
+                        Transformo pessoas comuns em influenciadores de sucesso (e com personalidade).
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="#design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" 
+                               id="waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025 Cejera® — DESIGN REBELDE. Porque ser normal é muito chato e ser autêntico é revolucionário.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            // Trap focus no menu quando aberto
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Tracking de cliques nos banners
+        const bannerLinks = document.querySelectorAll('.banner-link');
+        bannerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const bannerNumber = link.getAttribute('data-banner');
+                const href = link.getAttribute('href');
+                const target = link.closest('.banner-card').getAttribute('data-target');
+                
+                console.log(`Projeto clicado: Projeto ${bannerNumber} -> ${href} (Categoria: ${target})`);
+            });
+        });
+
+        // Formulário de lista de espera
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Validar formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
 
 
-    </div>
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
 
-    <h2 style="margin: 3rem 0 2rem;">FAÇA DIFERENTE</h2>
-    <p>Trabalho com <strong>excentricidade, autenticidade e intenção</strong>.</p>
-    <p>Traduzo essência em linguagem visual.</p>
-    <p>Faça sua marca se tornar impossível de ignorar.</p>
-    
-    <h2 style="margin: 3rem 0 2rem;">NÃO FIQUE PARA TRÁS.</h2>  
-    <button class="cta-button"><i class="fab fa-whatsapp"></i><span> Solicite seu orçamento</span></button>
-  </div>
+        // Animação de entrada suave
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  <!-- Seção do Portfólio Behance -->
-  <section class="portfolio-section fade-in">
-    <div class="portfolio-header">
-      <h2>PORTFOLIO</h2>
-      <p>Projetos selecionados</p>
-    </div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-    <div class="behance-grid">
-      <!-- Projeto 1 -->
-      <div class="behance-project">
-        <iframe src="https://www.behance.net/embed/project/222445265?ilo0=1" height="100%" width="100%" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-      
-      <!-- Projeto 2 -->
-      <div class="behance-project">
-        <iframe src="https://www.behance.net/embed/project/198117633?ilo0=1" height="100%" width="100%" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-      
-      <!-- Projeto 3 -->
-      <div class="behance-project">
-        <iframe src="https://www.behance.net/embed/project/201501619?ilo0=1" height="100%" width="100%" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>
-      </div>
-    </div>
-
-    <div class="behance-link">
-      <a href="https://behance.net/AlexandreFSilva" target="_blank" class="behance-button">
-        <i class="fab fa-behance"></i>
-        VER PORTFOLIO COMPLETO
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-content">
-      <p>Todos os direitos reservados | © 2025 Cejera®</p>
-      <div class="social-links">
-        <a href="https://behance.net/AlexandreFSilva" target="_blank" class="social-link">
-          <i class="fab fa-behance social-icon"></i>
-        </a>
-        <a href="https://instagram.com/cejeragd" target="_blank" class="social-link">
-          <i class="fab fa-instagram social-icon"></i>
-        </a>
-        <a href="https://linkedin.com/in/cejera" target="_blank" class="social-link">
-          <i class="fab fa-linkedin-in social-icon"></i>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Matrix Animation
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = 'CEJERA010101';
-    const fontSize = 20;
-    const columns = canvas.width/fontSize;
-    const drops = [];
-
-    for(let x = 0; x < columns; x++) drops[x] = 1;
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.font = fontSize + 'px monospace';
-
-      for(let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillStyle = Math.random() > 0.1 ? '#8B0000' : '#F70707';
-        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-
-        if(drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-
-    setInterval(drawMatrix, 50);
-
-    // CTA Buttons
-    document.querySelectorAll('.cta-button').forEach(button => {
-      button.addEventListener('click', () => {
-        window.location.href = 'https://wa.me/5535999286246?text=Ol%C3%A1%2C%20Cejera%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.';
-      });
-    });
-    
-    // Animação de rolagem
-    const faders = document.querySelectorAll('.fade-in');
-    
-    const appearOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px"
-    };
-    
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          return;
-        } else {
-          entry.target.classList.add('appear');
-          appearOnScroll.unobserve(entry.target);
-        }
-      });
-    }, appearOptions);
-    
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-    
-    // Atualizar tamanho do canvas quando a janela for redimensionada
-    window.addEventListener('resize', function() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
+        // Observar elementos para animação
+        document.querySelectorAll('.banner-card, .review-card, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
-
