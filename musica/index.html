@@ -198,58 +198,56 @@
             height: 60px;
         }
 
-        /* Menu mobile */
+        /* Menu hamburger do primeiro código */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
             position: relative;
             z-index: 1001;
             padding: 0;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: var(--transition);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-toggle:hover {
+            background-color: rgba(189, 189, 189, 0.1);
         }
 
         .hamburger {
-            width: 100%;
-            height: 2px;
-            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
             position: relative;
-            transition: var(--transition);
         }
 
-        .hamburger::before,
-        .hamburger::after {
-            content: '';
-            position: absolute;
+        .hamburger-line {
             width: 100%;
-            height: 2px;
-            background-color: var(--light);
-            left: 0;
+            height: 3px;
+            background-color: var(--red);
+            border-radius: 3px;
             transition: var(--transition);
         }
 
-        .hamburger::before {
-            top: -8px;
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
         }
 
-        .hamburger::after {
-            bottom: -8px;
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+            opacity: 0;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger {
-            background-color: transparent;
-        }
-
-        .menu-toggle[aria-expanded="true"] .hamburger::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-
-        .menu-toggle[aria-expanded="true"] .hamburger::after {
-            bottom: 0;
-            transform: rotate(-45deg);
+        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
         }
 
         /* Navegação */
@@ -813,23 +811,26 @@
 
         @media (max-width: 768px) {
             .menu-toggle {
-                display: block;
+                display: flex;
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
+                width: 100%;
                 height: 100vh;
-                background-color: var(--dark);
+                background-color: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
                 flex-direction: column;
                 justify-content: center;
-                gap: 40px;
-                transition: var(--transition);
-                padding: 40px;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+                align-items: center;
+                gap: 30px;
+                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                padding: 80px 20px 40px;
                 z-index: 1000;
+                overflow-y: auto;
             }
 
             nav[data-visible="true"] {
@@ -839,7 +840,28 @@
             .nav-menu {
                 flex-direction: column;
                 align-items: center;
-                gap: 24px;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .nav-link {
+                font-size: 1rem;
+                padding: 8px 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .hero-cta {
@@ -929,7 +951,11 @@
             </div>
 
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <span class="hamburger"></span>
+                <div class="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -1055,7 +1081,7 @@
                         <img src="https://image-cdn-fa.spotifycdn.com/image/ab676d610000d906622ee396681c61e68e0d8a9d" alt="FAVORITAS" class="playlist-image">
                         <div class="playlist-content">
                             <h3 class="playlist-title">Minhas favoritas</h3>
-                            <p class="playlist-description">Playlist de músicas favoritas. Apenas as que eu mais gosto.</p>
+                            <p class="playlist-description">Playlist de músicas favoritas. Ajuste as que eu mais gosto.</p>
                             <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1183,28 +1209,54 @@
     </footer>
 
     <script>
-        // Menu toggle para mobile
+        // Menu hamburger do primeiro código
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
 
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
             
-            // Trap focus no menu quando aberto
             if (!isExpanded) {
+                body.style.overflow = 'hidden';
                 navLinks[0].focus();
+            } else {
+                body.style.overflow = '';
             }
         });
 
-        // Fechar menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
             });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (nav.getAttribute('data-visible') === 'true' && 
+                !nav.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+                menuToggle.focus();
+            }
         });
 
         // Header que diminui ao scrollar
@@ -1260,17 +1312,6 @@
             // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
-        });
-
-        // Foco no primeiro elemento interativo quando o modal/menu abre
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (nav.getAttribute('data-visible') === 'true') {
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    nav.setAttribute('data-visible', 'false');
-                    menuToggle.focus();
-                }
-            }
         });
 
         // Inicializar animações de entrada
