@@ -8,11 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Biblioteca de ícones Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
     <style>
-        /* CSS Variables - Design System */
         :root {
             --red: #F70707;
             --light: #F7F7F7;
@@ -23,7 +21,6 @@
             --transition: all 0.3s ease;
         }
 
-        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
@@ -91,7 +88,6 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* Skip to content */
         .skip-link {
             position: absolute;
             top: -40px;
@@ -107,7 +103,6 @@
             top: 20px;
         }
 
-        /* Header */
         header {
             position: sticky;
             top: 0;
@@ -145,42 +140,47 @@
             height: 60px;
         }
 
-        /* Hamburger menu */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             position: relative;
-            z-index: 101;
+            z-index: 1001;
+            padding: 5px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background-color: rgba(247, 7, 7, 0.1);
+        }
+
+        .hamburger,
+        .hamburger::before,
+        .hamburger::after {
+            background-color: var(--black);
+            width: 30px;
+            height: 3px;
+            position: absolute;
+            left: 5px;
+            transition: var(--transition);
         }
 
         .hamburger {
-            width: 100%;
-            height: 3px;
-            background-color: var(--black);
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .hamburger::before,
-        .hamburger::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 3px;
-            background-color: var(--black);
-            left: 0;
-            transition: var(--transition);
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .hamburger::before {
+            content: '';
             top: -8px;
         }
 
         .hamburger::after {
+            content: '';
             bottom: -8px;
         }
 
@@ -191,14 +191,15 @@
         .menu-toggle[aria-expanded="true"] .hamburger::before {
             top: 0;
             transform: rotate(45deg);
+            background-color: var(--red);
         }
 
         .menu-toggle[aria-expanded="true"] .hamburger::after {
             bottom: 0;
             transform: rotate(-45deg);
+            background-color: var(--red);
         }
 
-        /* Navigation */
         nav {
             display: flex;
             align-items: center;
@@ -232,7 +233,6 @@
             width: 100%;
         }
 
-        /* Link ativo - página atual */
         .nav-link.active {
             color: var(--red);
         }
@@ -253,7 +253,6 @@
             max-width: 200px;
         }
 
-        /* Hero - ORIGINAL */
         .hero {
             padding: 80px 0;
             text-align: center;
@@ -322,7 +321,6 @@
             padding-top: 10px;
         }
 
-        /* Sobre Section - NOVA */
         .about-section {
             padding: 80px 0;
             background: var(--black);
@@ -457,7 +455,6 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Efeito de scanlines */
         .banner-card {
             position: relative;
             overflow: hidden;
@@ -495,7 +492,6 @@
             }
         }
 
-        /* Banners Grid - PROJETOS */
         .banners-section {
             padding: 60px 0;
         }
@@ -526,7 +522,6 @@
             margin-bottom: 60px;
         }
 
-        /* Banner Cards */
         .banner-card {
             position: relative;
             border-radius: var(--radius);
@@ -574,7 +569,6 @@
             background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
         }
 
-        /* Degradê preto */
         .banner-content {
             position: absolute;
             bottom: 0;
@@ -628,7 +622,6 @@
             transform: translateX(4px);
         }
 
-        /* Social Proof - MANIFESTO */
         .social-proof {
             padding: 80px 0;
             background-color: var(--black);
@@ -702,7 +695,6 @@
             font-size: 0.9rem;
         }
 
-        /* Footer - MODIFICADO */
         footer {
             background-color: var(--black);
             color: var(--light);
@@ -843,7 +835,6 @@
             opacity: 0.7;
         }
 
-        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
         .footer-social-fullwidth {
             width: 100%;
             margin: 60px 0;
@@ -868,7 +859,6 @@
             justify-items: center;
         }
 
-        /* Responsive */
         @media (min-width: 768px) {
             .banners-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -903,7 +893,6 @@
                 flex-direction: row;
             }
 
-            /* Footer social fullwidth no tablet */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -926,7 +915,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            /* Footer social fullwidth no desktop */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(8, 1fr);
                 gap: 12px;
@@ -963,15 +951,36 @@
                 height: 100vh;
                 background-color: var(--light);
                 flex-direction: column;
-                justify-content: center;
+                justify-content: flex-start;
                 gap: 40px;
-                transition: var(--transition);
-                padding: 40px;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease-in-out;
+                padding: 100px 40px 40px;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            nav::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
             }
 
             nav[data-visible="true"] {
                 right: 0;
+            }
+
+            nav[data-visible="true"]::before {
+                opacity: 1;
+                pointer-events: all;
             }
 
             .nav-menu {
@@ -1002,14 +1011,12 @@
                 grid-template-columns: 1fr;
             }
 
-            /* Footer social fullwidth no mobile */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
             }
         }
 
-        /* Estilos específicos para desktop - Cards inline */
         @media (min-width: 1024px) {
             .footer-content {
                 display: flex;
@@ -1032,7 +1039,6 @@
                 max-width: 35%;
             }
 
-            /* Ajuste para os social links ficarem bem distribuídos */
             .social-links-grid {
                 gap: 10px;
             }
@@ -1042,27 +1048,6 @@
             }
         }
 
-        /* REMOVA estas regras problemáticas */
-        /*
-        .footer-content .social-links-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 140px);
-            gap: 12px;
-            justify-content: center;
-            align-items: center;
-            justify-items: center;
-            margin-top: 40px;
-            width: auto;
-        }
-
-        .footer-content .social-links-grid .social-link {
-            width: 140px;
-            height: 100px;
-            box-sizing: border-box;
-        }
-        */
-
-        /* Focus styles */
         *:focus {
             outline: 2px solid var(--red);
             outline-offset: 2px;
@@ -1077,14 +1062,12 @@
             outline-offset: 2px;
         }
 
-        /* Hand-drawn elements */
         .hand-drawn {
             stroke-linecap: round;
             stroke-linejoin: round;
             stroke-width: 2;
         }
 
-        /* Custom bullets */
         .custom-bullet {
             display: inline-block;
             width: 8px;
@@ -1096,10 +1079,8 @@
     </style>
 </head>
 <body>
-    <!-- Skip to content link for keyboard navigation -->
     <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
 
-    <!-- Header ORIGINAL -->
     <header id="main-header">
         <div class="container header-content">
             <div class="logo-container">
@@ -1129,9 +1110,7 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main id="main-content">
-        <!-- Hero Section ORIGINAL -->
         <section class="hero container">
             <h1 class="hero-title">Precisa de ajuda?</h1>
             <p class="slogan">Design Excêntrico e Autêntico</p>
@@ -1147,7 +1126,6 @@
             <p class="email-microcopy">Ironia à parte, realmente posso ajudar com seu projeto</p>
         </section>
 
-        <!-- Sobre Section NOVA -->
         <section id="about" class="about-section">
             <div class="container about-container">
                 <div class="about-image-container">
@@ -1192,11 +1170,9 @@
             </div>
         </section>
 
-        <!-- Banners Grid - PROJETOS -->
         <section id="design" class="banners-section container">
             <h2 class="section-title">PROJETOS</h2>
             <div class="banners-grid">
-                <!-- Banner 1 - Large Horizontal -->
                 <article class="banner-card banner--large-horizontal" data-target="branding">
                     <a href="https://www.behance.net/gallery/198117633/Salada-de-Frutas-(2024)" class="banner-link" data-banner="1">
                         <span class="banner-badge">— Branding</span>
@@ -1214,7 +1190,6 @@
                     </a>
                 </article>
 
-                <!-- Banner 2 - Large Vertical -->
                 <article class="banner-card banner--large-vertical" data-target="uxui">
                     <a href="https://www.behance.net/gallery/201501619/Cuida-Prototipo-de-Aplicativo" class="banner-link" data-banner="2">
                         <span class="banner-badge">— UX/UI</span>
@@ -1232,7 +1207,6 @@
                     </a>
                 </article>
 
-                <!-- Banner 3 - Square -->
                 <article class="banner-card banner--square" data-target="packaging">
                     <a href="https://www.behance.net/gallery/205133675/NexCredi-(Empresa-ficticia)" class="banner-link" data-banner="3">
                         <span class="banner-badge">— Branding</span>
@@ -1250,7 +1224,6 @@
                     </a>
                 </article>
 
-                <!-- Banner 4 - Square -->
                 <article class="banner-card banner--square" data-target="motion">
                     <a href="https://www.behance.net/gallery/170666063/Pixel-Critico-Identidade-Visual-(2023)" class="banner-link" data-banner="4">
                         <span class="banner-badge">— ID Visual</span>
@@ -1268,7 +1241,6 @@
                     </a>
                 </article>
 
-                <!-- Banner 5 - Square -->
                 <article class="banner-card banner--square" data-target="editorial">
                     <a href="https://www.behance.net/gallery/170755791/DuckyMitch-Identidade-Visual-(2023)" class="banner-link" data-banner="5">
                         <span class="banner-badge">— ID Visual</span>
@@ -1286,7 +1258,6 @@
                     </a>
                 </article>
 
-                <!-- Banner 6 - Square -->
                 <article class="banner-card banner--square" data-target="illustration">
                     <a href="https://behance.net" class="banner-link" data-banner="6">
                         <span class="banner-badge">— Social Media</span>
@@ -1306,7 +1277,6 @@
             </div>
         </section>
 
-        <!-- Social Proof - MANIFESTO -->
         <section class="social-proof">
             <div class="container">
                 <h2 class="section-title">COISAS QUE VOCÊ (NÃO) PRECISA SABER</h2>
@@ -1375,7 +1345,6 @@
         </section>
     </main>
 
-    <!-- Footer MODIFICADO -->
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
@@ -1422,7 +1391,6 @@
             </div>
         </div>
 
-        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
         <div class="footer-social-fullwidth">
             <div class="container">
                 <div class="social-links-grid">
@@ -1478,31 +1446,55 @@
     </footer>
 
     <script>
-        // Menu toggle para mobile
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
 
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
             
-            // Trap focus no menu quando aberto
             if (!isExpanded) {
+                body.style.overflow = 'hidden';
                 navLinks[0].focus();
+            } else {
+                body.style.overflow = '';
             }
         });
 
-        // Fechar menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
             });
         });
 
-        // Header que diminui ao scrollar
+        document.addEventListener('click', (e) => {
+            if (nav.getAttribute('data-visible') === 'true' && 
+                !nav.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+                menuToggle.focus();
+            }
+        });
+
         window.addEventListener('scroll', function() {
             const header = document.getElementById('main-header');
             if (window.scrollY > 50) {
@@ -1512,7 +1504,6 @@
             }
         });
 
-        // Tracking de cliques nos banners
         const bannerLinks = document.querySelectorAll('.banner-link');
         bannerLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -1524,7 +1515,6 @@
             });
         });
 
-        // Formulário de lista de espera
         document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1537,7 +1527,6 @@
                 return;
             }
             
-            // Validar formato de e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um e-mail válido!');
@@ -1545,31 +1534,15 @@
                 return;
             }
             
-            // Criar mensagem personalizada com o e-mail
             const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
             
-            // Abrir WhatsApp
             window.open(whatsappUrl, '_blank');
             
-            // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
 
-
-        // Foco no primeiro elemento interativo quando o modal/menu abre
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (nav.getAttribute('data-visible') === 'true') {
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    nav.setAttribute('data-visible', 'false');
-                    menuToggle.focus();
-                }
-            }
-        });
-
-        // Animação de entrada suave
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1584,7 +1557,6 @@
             });
         }, observerOptions);
 
-        // Observar elementos para animação
         document.querySelectorAll('.banner-card, .review-card, .skill-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
@@ -1593,6 +1565,4 @@
         });
     </script>
 </body>
-
 </html>
-
