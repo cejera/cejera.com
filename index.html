@@ -1,792 +1,1270 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.1">
-  <title>Cejera - PR0J3T05</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Correção da barra de rolagem */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJERA® — EXCENTRICIDADE E AUTENTICIDADE | Moda, Design, Música</title>
+    <meta name="description" content="Marca rebelde com design inteligente. Curadoria de moda autêntica, design estratégico e música underground. Excentricidade e autenticidade.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca de ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      cursor: default;
-      font-family: 'Source Code Pro', monospace;
-    }
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: linear-gradient(135deg, #0a0000 0%, #1a0000 100%);
-      color: #F70707;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      perspective: 1000px;
-      padding-right: 0; /* Remover padding extra que causa oscilação */
-    }
-    a {
-      color: #F70707;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        linear-gradient(#220000 1px, transparent 1px),
-        linear-gradient(90deg, #220000 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.2;
-      z-index: 0;
-      pointer-events: none;
-    }
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .hologram {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.2;
-      z-index: 1;
-      animation: float 15s infinite ease-in-out;
-      filter: blur(2px);
-      border-radius: 50%;
-      box-shadow: inset 0 0 50px rgba(255, 100, 100, 0.1);
-    }
+        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
 
-    .hologram-1 {
-      top: 20%;
-      left: 10%;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(247, 7, 7, 0.5) 0%, rgba(247, 7, 7, 0) 70%);
-      animation-delay: 0s;
-      transform: translateZ(50px);
-    }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
 
-    .hologram-2 {
-      top: 65%;
-      left: 85%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(247, 7, 7, 0.3) 0%, rgba(247, 7, 7, 0) 70%);
-      animation-delay: -5s;
-      transform: translateZ(30px);
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .hologram-3 {
-      top: 35%;
-      left: 75%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(247, 7, 7, 0.4) 0%, rgba(247, 7, 7, 0) 70%);
-      animation-delay: -10s;
-      transform: translateZ(70px);
-    }
+        ul {
+            list-style: none;
+        }
 
-    .hologram-4 {
-      top: 80%;
-      left: 25%;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(247, 7, 7, 0.3) 0%, rgba(247, 7, 7, 0) 70%);
-      animation-delay: -15s;
-      transform: translateZ(40px);
-    }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    @keyframes float {
-      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-      25% { transform: translate3d(15px, -10px, 20px) rotate(3deg); }
-      50% { transform: translate3d(-10px, 8px, -15px) rotate(-3deg); }
-      75% { transform: translate3d(8px, 15px, 25px) rotate(2deg); }
-    }
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
 
-    @keyframes floatFolder {
-      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-      50% { transform: translate3d(0, -8px, 15px) rotate(1deg); }
-    }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
 
-    @keyframes hologramGlow {
-      0%, 100% { filter: drop-shadow(0 0 5px rgba(247, 7, 7, 0.5)) brightness(1); }
-      50% { filter: drop-shadow(0 0 15px rgba(247, 7, 7, 0.8)) brightness(1.3); }
-    }
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
 
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      25% { opacity: 0.9; }
-      50% { opacity: 0.95; }
-      75% { opacity: 0.92; }
-    }
+        header.header-scroll {
+            padding: 10px 0;
+        }
 
-    header {
-      text-align: center;
-      padding: 3rem;
-      border-bottom: 2px solid rgba(247, 7, 7, 0.5);
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 2;
-      animation: flicker 4s infinite;
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .logo {
-      width: 200px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform-style: preserve-3d;
-      filter: drop-shadow(0 0 10px rgba(247, 7, 7, 0.7));
-    }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .logo:hover {
-      transform: translateZ(20px) rotateY(10deg);
-      filter: drop-shadow(0 0 15px rgba(247, 7, 7, 0.9));
-    }
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
 
-    .tagline {
-      font-size: 0.5rem;
-      letter-spacing: 1px;
-      color: #ffffff;
-      margin-top: 1rem;
-      animation: flicker 4s infinite;
-      text-shadow: 0 0 10px rgba(247, 7, 7, 0.7);
-    }
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5rem;
-      justify-content: center;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
 
-    .folder {
-      text-align: center;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      color: #F70707 !important;
-      text-decoration: none;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: floatFolder 8s infinite ease-in-out;
-    }
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
 
-    .folder:nth-child(1) { animation-delay: 0s; }
-    .folder:nth-child(2) { animation-delay: 1s; }
-    .folder:nth-child(3) { animation-delay: 2s; }
-    .folder:nth-child(4) { animation-delay: 3s; }
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
 
-    .folder:hover {
-      transform: translateY(-10px) translateZ(30px);
-      cursor: pointer;
-      animation-play-state: paused;
-    }
+        .hamburger::before {
+            top: -8px;
+        }
 
-    .folder-icon {
-      width: 120px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: hologramGlow 3s infinite;
-      filter: drop-shadow(0 0 10px rgba(247, 7, 7, 0.7));
-    }
+        .hamburger::after {
+            bottom: -8px;
+        }
 
-    .folder:hover .folder-icon {
-      transform: scale(1.1) rotateY(15deg);
-      filter: drop-shadow(0 0 20px rgba(247, 7, 7, 0.9));
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
 
-    .folder-name {
-      font-size: 1.4rem;
-      margin-top: 1.5rem;
-      color: #ffffff;
-      transition: all 0.3s;
-      text-shadow: 0 0 8px rgba(247, 7, 7, 0.7);
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
 
-    .folder:hover .folder-name {
-      letter-spacing: 2px;
-      color: #ffaaaa;
-    }
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
 
-    /* Painel lateral oculto com controle */
-    .panel-toggle {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 80px;
-      background: rgba(34, 0, 0, 0.9);
-      border: 2px solid #F70707;
-      border-right: none;
-      border-radius: 10px 0 0 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.4s ease;
-      box-shadow: -2px 0 10px rgba(247, 7, 7, 0.5);
-    }
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
 
-    .panel-toggle:hover {
-      background: rgba(247, 7, 7, 0.7);
-    }
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
 
-    .panel-toggle i {
-      color: #ffffff;
-      font-size: 1.5rem;
-      transition: transform 0.3s;
-    }
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
 
-    .side-panel {
-      position: fixed;
-      right: -320px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 300px;
-      background: rgba(34, 0, 0, 0.95);
-      border: 2px solid #F70707;
-      border-right: none;
-      padding: 1.5rem;
-      box-shadow: -5px 0 30px rgba(247, 7, 7, 0.3);
-      z-index: 9;
-      overflow-y: auto;
-      border-radius: 10px 0 0 10px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(5px);
-      transform-style: preserve-3d;
-      max-height: 90vh;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
 
-    .side-panel.active {
-      right: 0;
-    }
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
 
-    .side-panel::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, rgba(247, 7, 7, 0.1) 0%, transparent 50%, rgba(247, 7, 7, 0.1) 100%);
-      pointer-events: none;
-      z-index: -1;
-      border-radius: 10px 0 0 10px;
-    }
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
 
-    .code-buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
-      transform-style: preserve-3d;
-    }
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-    .code-btn {
-      background: rgba(13, 0, 0, 0.9);
-      border: 2px solid #F70707;
-      color: #ffffff;
-      width: 60px;
-      height: 60px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border-radius: 8px;
-      transform-style: preserve-3d;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      animation: flicker 2s infinite;
-    }
+        .header-cta {
+            text-align: center;
+        }
 
-    .code-btn:hover {
-      background: rgba(247, 7, 7, 0.7);
-      border: 2px solid #ffffff;
-      transform: translateY(-5px) translateZ(15px);
-      box-shadow: 0 10px 25px rgba(247, 7, 7, 0.6);
-    }
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
 
-    .code-btn:active {
-      transform: translateY(0) translateZ(5px);
-    }
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
 
-    #enter-btn {
-      width: 100%;
-      height: 60px;
-      margin-top: 1.5rem;
-      font-family: 'Source Code Pro', monospace;
-      background: rgba(247, 7, 7, 0.3);
-      border: 2px solid #F70707;
-      color: #ffffff;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
 
-    #enter-btn:hover {
-      background: rgba(247, 7, 7, 0.8);
-    }
+        .hero-title::before,
+        .hero-title::after {
+            content: '✱';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
 
-    #code-input {
-      width: 100%;
-      background: rgba(13, 0, 0, 0.8);
-      border: 2px solid #F70707;
-      color: #ffffff;
-      padding: 1rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      box-shadow: 0 0 15px rgba(247, 7, 7, 0.3);
-      transform-style: preserve-3d;
-      transform: translateZ(10px);
-      transition: all 0.3s;
-      animation: flicker 3s infinite;
-    }
+        .hero-title::before {
+            left: -40px;
+        }
 
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #ffffff;
-      position: relative;
-      z-index: 2;
-      margin-top: 3rem;
-      animation: flicker 6s infinite;
-      text-shadow: 0 0 8px rgba(247, 7, 7, 0.7);
-    }
+        .hero-title::after {
+            right: -40px;
+        }
 
-    .confidential {
-      cursor: not-allowed !important;
-      opacity: 0.5;
-    }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #333;
+        }
 
-    .scanlines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.15) 0px,
-        rgba(0, 0, 0, 0.15) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-      pointer-events: none;
-      z-index: 1001;
-      animation: scanMove 3s linear infinite;
-    }
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
 
-    @keyframes scanMove {
-      0%   { transform: translateY(0); }
-      100% { transform: translateY(4px); }
-    }
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
 
-    .crt-effect {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: radial-gradient(ellipse at center, rgba(247, 7, 7, 0.05) 0%, rgba(0,0,0,0.2) 100%);
-      z-index: 1001;
-      mix-blend-mode: screen;
-      filter: blur(0.8px);
-    }
+        .email-capture {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-    /* Efeito Glitch */
-    .glitch {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0;
-    }
+        .email-microcopy {
+            font-size: 0.85rem;
+            color: #666;
+            padding-top: 10px;
+        }
 
-    .glitch-effect {
-      animation: glitch 0.5s infinite;
-    }
+        /* Efeito de scanlines nas fotos - MAIS FORTE */
+        .banner-card {
+            position: relative;
+            overflow: hidden;
+        }
 
-    .strong-glitch {
-      animation: strongGlitch 1s infinite;
-    }
+        .banner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.20) 2px,
+                transparent 2px,
+                transparent 3px,
+                rgba(0, 0, 0, 0.20) 3px,
+                rgba(0, 0, 0, 0.20) 4px,
+                transparent 5px
+            );
+            background-size: 100% 6px;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: scanline 10s linear infinite;
+        }
 
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-3px, 3px); }
-      40% { transform: translate(-3px, -3px); }
-      60% { transform: translate(3px, 3px); }
-      80% { transform: translate(3px, -3px); }
-      100% { transform: translate(0); }
-    }
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 600px;
+            }
+        }
 
-    @keyframes strongGlitch {
-      0% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-      10% { transform: translate(-10px, 10px); clip-path: polygon(0 20%, 100% 40%, 100% 60%, 0 80%); }
-      20% { transform: translate(10px, -10px); clip-path: polygon(30% 0, 70% 0, 70% 100%, 30% 100%); }
-      30% { transform: translate(-10px, 0); clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); }
-      40% { transform: translate(0, -10px); clip-path: polygon(10% 0, 90% 0, 90% 100%, 10% 100%); }
-      50% { transform: translate(10px, 10px); clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
-      60% { transform: translate(-10px, -10px); clip-path: polygon(20% 0, 80% 0, 80% 100%, 20% 100%); }
-      70% { transform: translate(0, 10px); clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%); }
-      80% { transform: translate(10px, 0); clip-path: polygon(40% 0, 60% 0, 60% 100%, 40% 100%); }
-      90% { transform: translate(-10px, 10px); clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); }
-      100% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-    }
+        /* Banners Grid */
+        .banners-section {
+            padding: 60px 0;
+        }
 
-    .glitch-line {
-      position: absolute;
-      height: 1px;
-      width: 100%;
-      background: rgba(247, 7, 7, 0.7);
-      opacity: 0;
-      animation: flickerLine 0.1s infinite;
-    }
-    
-    @keyframes flickerLine {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
 
-    /* Responsividade */
-    @media (max-width: 1200px) {
-      .projects {
-        gap: 3rem;
-        padding: 2rem 1rem;
-      }
-      .folder-icon {
-        width: 100px;
-      }
-      .folder-name {
-        font-size: 1.2rem;
-      }
-    }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
 
-    @media (max-width: 992px) {
-      header {
-        padding: 2rem;
-        margin-bottom: 2rem;
-      }
-      .logo {
-        width: 150px;
-      }
-      .tagline {
-        font-size: 1.2rem;
-      }
-      .side-panel {
-        width: 250px;
-        padding: 1.5rem;
-        right: -270px;
-      }
-      .side-panel.active {
-        right: 0;
-      }
-      .code-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
-      }
-      #enter-btn {
-        height: 50px;
-      }
-    }
+        .banners-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
 
-    @media (max-width: 768px) {
-      body {
-        overflow-x: hidden;
-      }
-      .projects {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        max-width: 500px;
-        padding: 2rem 15px;
-      }
-      .folder {
-        margin: 0 auto;
-        max-width: 200px;
-      }
-      .side-panel {
-        top: 0;
-        transform: none;
-        height: 100%;
-        border-radius: 0;
-        border-right: 2px solid #F70707;
-        max-height: 100vh;
-      }
-      .panel-toggle {
-        top: 20px;
-        transform: none;
-      }
-      footer {
-        margin-top: 2rem;
-        padding: 1rem;
-      }
-      
-      .hologram {
-        display: none;
-      }
-    }
+        /* Banner Cards */
+        .banner-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            min-height: 300px;
+        }
 
-    @media (max-width: 480px) {
-      header {
-        padding: 1.5rem;
-      }
-      .logo {
-        width: 120px;
-      }
-      .tagline {
-        font-size: 1rem;
-        margin-top: 0.5rem;
-      }
-      .folder-icon {
-        width: 80px;
-      }
-      .folder-name {
-        font-size: 1rem;
-      }
-      .code-buttons {
-        gap: 0.5rem;
-      }
-      .code-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-      }
-      #enter-btn {
-        height: 40px;
-        font-size: 1rem;
-      }
-      #code-input {
-        padding: 0.8rem;
-        font-size: 1rem;
-      }
-      footer {
-        font-size: 0.7rem;
-      }
-    }
-  </style>
+        .banner-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .banner-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .banner-card:focus-within::after {
+            border-color: var(--red);
+        }
+
+        .banner-link {
+            display: block;
+            height: 100%;
+            position: relative;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        /* Degradê preto mais forte */
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+            color: var(--light);
+            z-index: 3;
+        }
+
+        .banner-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--black);
+            color: var(--light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .banner-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .banner-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .banner-cta {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .banner-cta::after {
+            content: '→';
+            transition: var(--transition);
+        }
+
+        .banner-link:hover .banner-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* Social Proof - Falas Excêntricas */
+        .social-proof {
+            padding: 80px 0;
+            background-color: var(--black);
+            color: var(--light);
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .social-proof .section-title {
+            color: var(--light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px dashed var(--red);
+            position: relative;
+        }
+
+        .review-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+            color: var(--red);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--red);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .banners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-areas:
+                    "b1 b1"
+                    "b2 b3"
+                    "b4 b5"
+                    "b6 b6";
+            }
+
+            .banner--large-horizontal {
+                grid-area: b1;
+            }
+
+            .banner--large-vertical:nth-of-type(1) {
+                grid-area: b2;
+            }
+
+            .banner--square:nth-of-type(1) {
+                grid-area: b3;
+            }
+
+            .email-capture {
+                flex-direction: row;
+            }
+
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .banners-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas:
+                    "b1 b1 b2"
+                    "b1 b1 b3"
+                    "b4 b5 b6";
+            }
+
+            .nav-menu {
+                gap: 40px;
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* Footer social fullwidth no desktop */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            /* Footer social fullwidth no mobile */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        /* Hand-drawn elements */
+        .hand-drawn {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
+        /* Custom bullets */
+        .custom-bullet {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
-  <div class="grid"></div>
-  
-  <!-- Hologramas flutuantes -->
-  <div class="hologram hologram-1"></div>
-  <div class="hologram hologram-2"></div>
-  <div class="hologram hologram-3"></div>
-  <div class="hologram hologram-4"></div>
-  
-  <!-- Efeito Glitch -->
-  <div class="glitch" id="glitch-effect"></div>
-  
-  <div class="crt-effect"></div>
-  <div class="scanlines"></div>
 
-  <header>
-    <img src="cejera-03.svg" class="logo" alt="Cejera">
-    <div class="tagline"></div>
-  </header>
 
-  <div class="projects">
-    <a href="https://cejera.com/design" class="folder">
-      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
-      <div class="folder-name">D351GN</div>
-    </a>
-    <a href="https://cejera.com/moda" class="folder">
-      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
-      <div class="folder-name">M0D4</div>
-    </a>
-    <a href="https://cejera.com/musica" class="folder">
-      <img src="pasta-00.svg" class="folder-icon" alt="Pasta">
-      <div class="folder-name">MUZ1K4</div>
-    </a>
-    <a href="https://cejera.com/cr1p70gr4f14" class="folder">
-    <div id="confidential-folder" class="folder confidential" style="display: none;">
-      <img src="pasta-00.svg" class="folder-icon" alt="Pasta Bloqueada">
-      <div class="folder-name">C0NF1D3NC14L</div>
-    </div>
-    </a>
-  </div>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
 
-  <!-- Painel lateral com controle -->
-  <div class="panel-toggle" id="panel-toggle">
-    <i class="fas fa-chevron-left"></i>
-  </div>
-  
-  <div class="side-panel" id="side-panel">
-    <input type="text" id="code-input" readonly>
-    <div class="code-buttons">
-      <button class="code-btn">ᛋ</button>
-      <button class="code-btn">∇</button>
-      <button class="code-btn">⟑</button>
-      <button class="code-btn">Ⱚ</button>
-      <button class="code-btn">ⷞ</button>
-      <button class="code-btn">ⲭ</button>
-      <button class="code-btn">ⴔ</button>
-      <button class="code-btn">⫝</button>
-      <button class="code-btn">⦡</button>
-    </div>
-    <button class="code-btn" id="enter-btn" onclick="checkCode()">3N7R4R</button>
-  </div>
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
 
-  <footer>
-    Todos os direitos reservados | © 2025 <a href=https://cejera.com/links> Cejera</a> | Feito com amor, excentricidade e autenticidade.
-  </footer>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link active" role="menuitem" aria-current="page">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-  <script>
-    const correctCode = ['ᛋ', '⟑', 'ⲭ', '⫝'];
-    let inputCode = [];
-    let panelOpen = false;
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero container">
+            <h1 class="hero-title">Olá, mundo!</h1>
+            <p class="slogan">Excentricidade e Autenticidade</p>
+            <p class="hero-subtitle">
+                <strong>Moda autêntica</strong>, <strong>design estrategicamente bonito</strong> e <strong>música daora</strong>. 
+                Porque ser normal é muito chato e ser autêntico é meu superpoder.
+            </p>
+            <div class="email-capture">
+                <button type="button" id="clubinho-btn" class="btn">As vagas para o clubinho esgotaram. Quer saber pq?</button>
+            </div>
+            <p class="email-microcopy">Clubinho exclusivo do Cejera - entre na lista de espera!</p>
+        </section>
 
-    // Controle do painel lateral
-    const panelToggle = document.getElementById('panel-toggle');
-    const sidePanel = document.getElementById('side-panel');
-    const toggleIcon = panelToggle.querySelector('i');
-    
-    panelToggle.addEventListener('click', () => {
-      panelOpen = !panelOpen;
-      sidePanel.classList.toggle('active', panelOpen);
-      toggleIcon.classList.toggle('fa-chevron-left', !panelOpen);
-      toggleIcon.classList.toggle('fa-chevron-right', panelOpen);
-      
-      // Forçar redesenho para evitar flickering
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => {
-        document.body.style.overflow = '';
-      }, 10);
-    });
+        <!-- Banners Grid -->
+        <section id="banners" class="banners-section container">
+            <h2 class="section-title">EM DESTAQUE</h2>
+            <div class="banners-grid">
+                <!-- Banner 1 - Large Horizontal -->
+                <article class="banner-card banner--large-horizontal" data-target="moda">
+                    <a href="https://cejera.com/moda" class="banner-link" data-banner="1">
+                        <span class="banner-badge">— Moda</span>
+                        <img 
+                            src="banner1.png"
+                            alt="Moda autêntica e excêntrica (além de exclusiva)"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">A loja está no ar!</h3>
+                            <p class="banner-description">Últimas peças disponíveis.</p>
+                            <span class="banner-cta">Ver coleção</span>
+                        </div>
+                    </a>
+                </article>
 
-    // Efeito Glitch
-    function triggerGlitch(strength = 'normal') {
-      const glitch = document.getElementById('glitch-effect');
-      glitch.className = 'glitch';
-      
-      if(strength === 'strong') {
-        glitch.classList.add('strong-glitch');
-      } else {
-        glitch.classList.add('glitch-effect');
-      }
-      
-      glitch.style.opacity = '1';
-      
-      setTimeout(() => {
-        glitch.classList.remove('glitch-effect', 'strong-glitch');
-        glitch.style.opacity = '0';
-      }, strength === 'strong' ? 1000 : 500);
-      
-      // Adicionar linhas de glitch
-      if(strength === 'strong') {
-        for(let i = 0; i < 20; i++) {
-          createGlitchLine();
-        }
-      } else {
-        for(let i = 0; i < 5; i++) {
-          createGlitchLine();
-        }
-      }
-    }
-    
-    function createGlitchLine() {
-      const glitch = document.getElementById('glitch-effect');
-      const line = document.createElement('div');
-      line.classList.add('glitch-line');
-      
-      // Posição aleatória
-      const top = Math.random() * 100;
-      const height = Math.random() * 3 + 1;
-      const duration = Math.random() * 0.5 + 0.3;
-      
-      line.style.top = `${top}%`;
-      line.style.height = `${height}px`;
-      line.style.animation = `flickerLine ${duration}s`;
-      
-      glitch.appendChild(line);
-      
-      // Remover após animação
-      setTimeout(() => {
-        line.remove();
-      }, duration * 1000);
-    }
+                <!-- Banner 2 - Large Vertical -->
+                <article class="banner-card banner--large-vertical" data-target="design">
+                    <a href="https://cejera.com/design" class="banner-link" data-banner="2">
+                        <span class="banner-badge">— Design</span>
+                        <img 
+                            src="banner2.png"
+                            alt="Design para protagonistas (empresas ou pessoas)"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Já pensou em... sei lá...</h3>
+                            <p class="banner-description">Contratar um profissional de design?</p>
+                            <span class="banner-cta">Explorar projetos</span>
+                        </div>
+                    </a>
+                </article>
 
-    // Interação com botões de código
-    document.querySelectorAll('.code-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        if(e.target.textContent !== '3N7R4R') {
-          inputCode.push(e.target.textContent);
-          document.getElementById('code-input').value = '*'.repeat(inputCode.length);
-          
-          // Efeito de clique
-          e.target.classList.add('clicked');
-          setTimeout(() => e.target.classList.remove('clicked'), 300);
-        }
-      });
-    });
+                <!-- Banner 3 - Square -->
+                <article class="banner-card banner--square" data-target="musica">
+                    <a href="https://cejera.com/musica" class="banner-link" data-banner="3">
+                        <span class="banner-badge">— Música</span>
+                        <img 
+                            src="banner3.png"
+                            alt="Solta o som, DJ!... Dj?... Ah, eu sou o DJ!"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">"Sinestesia". Já ouviu falar?</h3>
+                            <p class="banner-description">Sua festa não vai ser mais uma festa comum. Me agradeça depois.</p>
+                            <span class="banner-cta">"Duvido!" (Conferir com meus próprios ouvidos)</span>
+                        </div>
+                    </a>
+                </article>
 
-    function checkCode() {
-      // Trigger glitch normal
-      triggerGlitch();
-      
-      setTimeout(() => {
-        if(inputCode.join('') === correctCode.join('')) {
-          document.getElementById('confidential-folder').style.display = 'block';
-          document.getElementById('code-input').value = '4C3S50 C0NC3D1D0';
-          
-          // Trigger glitch forte
-          triggerGlitch('strong');
-          
-          // Efeito especial ao desbloquear
-          const folders = document.querySelectorAll('.folder');
-          folders.forEach(folder => {
-            folder.style.animation = 'hologramGlow 1.5s 3';
-          });
-        } else {
-          document.getElementById('code-input').value = 'S3NH4 1NC0RR374';
-          inputCode = [];
-          
-          // Efeito de erro
-          const input = document.getElementById('code-input');
-          input.style.animation = 'shake 0.5s';
-          setTimeout(() => {
-            input.style.animation = '';
-            document.getElementById('code-input').value = '';
-          }, 2000);
-        }
-      }, 300);
-    }
+                <!-- Banner 4 - Square -->
+                <article class="banner-card banner--square" data-target="design">
+                    <a href="https://www.linkedin.com/posts/cejera_menos-%C3%A9-mais-desde-que-do-jeito-certo-share-7350968892703309825-GEJB?utm_source=home-cejera" class="banner-link" data-banner="4">
+                        <span class="banner-badge">— Design</span>
+                        <img 
+                            src="https://media.licdn.com/dms/image/v2/D4D22AQFsCiltS2naEA/feedshare-shrink_800/B4DZgPjQKXHwAg-/0/1752607557768?e=1766620800&v=beta&t=Dg4edalJ45j0h6A8dWHOpmDu4KL37zPkxauXDUgYk8Y"
+                            alt="Post em destaque - Menos é Mais | LinkedIn"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Post em destaque</h3>
+                            <p class="banner-description">Menos é mais. | LinkedIn</p>
+                            <span class="banner-cta">Ver mais (ou menos já que menos é mais)</span>
+                        </div>
+                    </a>
+                </article>
 
-    // Animação de shake
-    const style = document.createElement('style');
-    style.textContent = `    
-      @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-        20%, 40%, 60%, 80% { transform: translateX(5px); }
-      }
-      
-      @keyframes flicker {
-        0%, 100% { opacity: 1; }
-        25% { opacity: 0.7; }
-        50% { opacity: 0.9; }
-        75% { opacity: 0.8; }
-      }
-    `;
-    document.head.appendChild(style);
-    
-    // Prevenir redimensionamento indesejado
-    window.addEventListener('resize', () => {
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => {
-        document.body.style.overflow = '';
-      }, 100);
-    });
-  </script>
+                <!-- Banner 5 - Square -->
+                <article class="banner-card banner--square" data-target="design">
+                    <a href="https://www.linkedin.com/posts/cejera_cassandra-filha-de-pr%C3%ADamo-e-h%C3%A9cuba-recebeu-share-7372321443684122624-yXe_?utm_source=home-cejera" class="banner-link" data-banner="5">
+                        <span class="banner-badge">— Design</span>
+                        <img 
+                            src="https://media.licdn.com/dms/image/v2/D4D22AQEeDZfRSgeNEw/feedshare-shrink_800/B4DZk._RWmHwAg-/0/1757698401900?e=1766620800&v=beta&t=Yr5ubJ2NoTQ5cLenAr7kStizsNeq7c66dqiro_24W9g"
+                            alt="Cassandra - Mitologia grega"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Quem é Cassandra?</h3>
+                            <p class="banner-description">Garanto que a história dela é legal.</p>
+                            <span class="banner-cta">Clica aqui pra ver</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Banner 6 - Square -->
+                <article class="banner-card banner--square" data-target="musica">
+                    <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" class="banner-link" data-banner="6">
+                        <span class="banner-badge">— Música</span>
+                        <img 
+                            src="banner6.png"
+                            alt="Playlist para ouvir com sono"
+                            class="banner-image"
+                            loading="lazy"
+                            decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Playlist pra ouvir "com sono"</h3>
+                            <p class="banner-description">Essa eu fiz especialmente pra vocês ;)</p>
+                            <span class="banner-cta">Ouvir</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Social Proof - Falas Excêntricas -->
+        <section class="social-proof">
+            <div class="container">
+                <h2 class="section-title">SESSÃO DE COISAS DESINTERESSANTES SOBRE MIM</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"O melhor (e mais bem conceituado) especialista de branding do meu bairro."</p>
+                        <p class="review-author">— Nomeado por mim mesmo</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Tentei ser famoso na internet aos 17 mas descobri aos 25 que isso é só pra quem é bom de verdade (sou inseguro)."</p>
+                        <p class="review-author">— Auto-análise sincera</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 14C15.3137 14 18 11.3137 18 8C18 4.68629 15.3137 2 12 2C8.68629 2 6 4.68629 6 8C6 11.3137 8.68629 14 12 14Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 14V16C4 17.1046 4.89543 18 6 18H7M20 14V16C20 17.1046 19.1046 18 18 18H17" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 22H16" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 18V22" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Minha mãe diz que eu sou talentoso. Ela também diz que meu irmão é bonito, então a credibilidade é questionável."</p>
+                        <p class="review-author">— Avaliação Materna Independente</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 12L11 14L15 10" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Meu terapeuta disse que eu tenho 'potencial criativo exacerbado'. Acho que ele quis dizer que sou dramático."</p>
+                        <p class="review-author">— Diagnóstico Profissional</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Comecei 47 projetos esse ano e terminei 2. Mas os 2 são incríveis, então conta como vitória."</p>
+                        <p class="review-author">— Estatísticas Pessoais</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" 
+                                  stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2V6" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 2V6" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3 10H21" stroke="currentColor" class="hand-drawn" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="review-text">"Minha capacidade de procrastinar é tão avançada que deveria dar workshops sobre o assunto."</p>
+                        <p class="review-author">— Habilidade em Desenvolvimento</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" 
+                               id="waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            // Trap focus no menu quando aberto
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Tracking de cliques nos banners (simulação analytics)
+        const bannerLinks = document.querySelectorAll('.banner-link');
+        bannerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const bannerNumber = link.getAttribute('data-banner');
+                const href = link.getAttribute('href');
+                const target = link.closest('.banner-card').getAttribute('data-target');
+                
+                console.log(`Banner clicado: Banner ${bannerNumber} -> ${href} (Seção: ${target})`);
+            });
+        });
+
+        // Botão do clubinho no hero
+        document.getElementById('clubinho-btn').addEventListener('click', function() {
+            const message = encodeURIComponent("Cejera, pq as vagas do clubinho esgotaram?");
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Formulário de lista de espera
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Validar formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
