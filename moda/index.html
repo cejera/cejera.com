@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJERA® — LOJA | Moda Autêntica e Excêntrica</title>
+    <meta name="description" content="Loja oficial CEJERA®. Moda autêntica, peças limitadas e edições especiais. Excentricidade e autenticidade em cada peça.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Biblioteca de ícones Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .collection-title {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-disabled {
+            background: #8B0000;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: var(--shadow);
+        }
+
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        .email-capture {
+            margin-bottom: 12px;
+        }
+
+        /* Hero Loja */
+        .hero-loja {
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-loja::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::before,
+        .hero-title::after {
+            content: '•';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .hero-title::before {
+            left: -40px;
+        }
+
+        .hero-title::after {
+            right: -40px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #333;
+        }
+
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        /* Coleções */
+        .colecoes-section {
+            padding: 20px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
+
+        .collection-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .collection-title {
+            font-size: 3.5rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .collection-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .collection-status {
+            display: inline-block;
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .collection-status--available {
+            background: var(--red);
+        }
+
+        .collection-status--soon {
+            background: #8B0000;
+        }
+
+        /* Produtos Grid */
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Produto Card */
+        .produto-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .produto-card.esgotado {
+            opacity: 0.8;
+        }
+
+        .produto-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--black);
+            color: var(--light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .produto-badge--esgotado {
+            background: #8B0000;
+        }
+
+        .produto-badge--lancamento {
+            background: var(--red);
+        }
+
+        /* Carrossel Container */
+        .carrossel-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .carrossel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carrossel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .produto-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Botões do carrossel */
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .carrossel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carrossel-btn--prev {
+            left: 10px;
+        }
+
+        .carrossel-btn--next {
+            right: 10px;
+        }
+
+        /* Indicadores do carrossel */
+        .carrossel-indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .indicador {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicador.active {
+            background: var(--red);
+        }
+
+        /* Efeito de scanlines */
+        .carrossel-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.3) 2px,
+                transparent 2px,
+                transparent 3px,
+                rgba(0, 0, 0, 0.3) 3px,
+                rgba(0, 0, 0, 0.3) 4px,
+                transparent 5px
+            );
+            background-size: 100% 6px;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: scanline 10s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 600px;
+            }
+        }
+
+        .produto-info {
+            padding: 24px;
+        }
+
+        .produto-nome {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .produto-descricao {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .produto-preco {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preco-antigo {
+            font-size: 0.9rem;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .preco-atual {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .desconto {
+            background: var(--red);
+            color: var(--light);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .produto-btn {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .produto-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Status Banner */
+        .status-banner {
+            background: var(--black);
+            color: var(--light);
+            padding: 60px 20px;
+            margin: 60px auto;
+            border-radius: var(--radius);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            max-width: 1280px;
+            box-shadow: var(--shadow);
+        }
+
+        .status-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .status-banner p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .highlight {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .produtos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .produtos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .nav-menu {
+                gap: 40px;
+            }
+
+            .footer-content .social-links-grid {
+                display: grid;
+                grid-template-columns: repeat(8, 140px);
+                gap: 12px;
+                justify-content: center; /* centraliza a grade dentro do container */
+                align-items: center;
+                justify-items: center;
+                margin-top: 40px; /* aumentar 40px de margem no topo */
+                width: auto;
+            }
+
+            /* Cada elemento da grade com tamanho fixo */
+            .footer-content .social-links-grid .social-link {
+                width: 140px;
+                height: 100px;
+                box-sizing: border-box;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .collection-title {
+                font-size: 2.5rem;
+            }
+
+            .carrossel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Estilos específicos para desktop - Cards inline */
+        @media (min-width: 1024px) {
+            .footer-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .footer-logo-container {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+
+            .footer-links-container {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+
+            .footer-newsletter {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+
+            /* Ajuste para os social links ficarem bem distribuídos */
+            .social-links-grid {
+                gap: 10px;
+            }
+
+            .social-link {
+                padding: 10px;
+            }
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="https://cejera.com/loja" class="nav-link active" role="menuitem" aria-current="page">Loja</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section Loja -->
+        <section class="hero-loja container">
+            <h1 class="hero-title">LOJA</h1>
+            <p class="slogan">Vista sua excentricidade</p>
+            <p class="hero-subtitle">
+                <strong>Moda autêntica</strong>, <strong>peças limitadas</strong> e <strong>edições especiais</strong>. 
+                Porque ser normal é muito chato e se vestir com autenticidade é nosso superpoder.
+            </p>
+            <div class="email-capture">
+                <button type="button" id="pedido-btn" class="btn">Fazer pedido geral</button>
+            </div>
+            <p class="email-microcopy">Entre em contato via WhatsApp para pedidos e dúvidas</p>
+        </section>
+
+        <!-- Status Banner -->
+        <div class="status-banner container">
+            <h2>ATENÇÃO: COLETÂNEA BAZIKA LANÇADA!</h2>
+            <p>A coleção <span class="highlight">Bazika</span> já está(va) disponível! Tivemos uma demanda um pouco alta, então a <span class="highlight">calça</span> e o <span class="highlight">corta-vento</span> já estão esgotados. Aproveite a camiseta enquanto temos no estoque!</p>
+            <p style="margin-top: 20px;">A coleção <span class="highlight">AKA</span> será lançada em <span class="highlight">2026</span>. Aguardem!</p>
+        </div>
+
+        <!-- Coleção ROT -->
+        <section class="colecoes-section container" id="rot">
+            <div class="collection-header">
+                <h2 class="collection-title">ROT</h2>
+                <p class="collection-subtitle">"Oi, eu sou o Rot! x_x" - Disse Rot. Rot não aparenta ser muito amigável, mas ele é bem legal.</p>
+                <span class="collection-status collection-status--available">JÁ DISPONÍVEL! PEÇA AGORA!</span>
+            </div>
+            
+            <div class="produtos-grid">
+                <!-- Moletom Preto Rot -->
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-rot-preto">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="moletom-rot-preto.png" alt="Moletom Preto Rot (sem capuz)" class="produto-imagem">
+                            </div>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— ROT</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Moletom Preto Rot (sem capuz)</h3>
+                        <p class="produto-descricao">Moletom de alta qualidade, corte moderno e design exclusivo da coleção ROT.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$199,80</span>
+                            <span class="preco-atual">R$99,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Preto Rot (sem capuz)." class="btn produto-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Moletom Branco Rot -->
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-rot-branco">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="moletom-rot-branco.png" alt="Moletom Branco Rot Cejera (com capuz)" class="produto-imagem">
+                            </div>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— ROT</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Moletom Branco Rot Cejera (com capuz)</h3>
+                        <p class="produto-descricao">Moletom com capuz, design exclusivo ROT. Conforto e estilo em uma peça única.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$199,80</span>
+                            <span class="preco-atual">R$99,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Branco Rot Cejera (com capuz)." class="btn produto-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Coleção Bazika -->
+        <section class="colecoes-section container" id="bazika">
+            <div class="collection-header">
+                <h2 class="collection-title">BAZIKA</h2>
+                <p class="collection-subtitle">O básico que funciona (para causar impacto)</p>
+                <span class="collection-status collection-status--available">LANÇAMENTO: JÁ DISPONÍVEL!</span>
+            </div>
+            
+            <div class="produtos-grid">
+                <!-- Camiseta Bazika -->
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-camiseta-bazika">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="Camiseta+Preta.jpg" alt="Camiseta Bazika - Preta" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Camiseta+Vermelha.jpg" alt="Camiseta Bazika - Vermelha" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Camiseta+Branca.jpg" alt="Camiseta Bazika - Branca" class="produto-imagem">
+                            </div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— BAZIKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Camiseta Bazika</h3>
+                        <p class="produto-descricao">Disponível em preto, vermelho e branco. Algodão premium, corte regular.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$155,40</span>
+                            <span class="preco-atual">R$77,70</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika." class="btn produto-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Calça Bazika (ESGOTADO) -->
+                <article class="produto-card esgotado">
+                    <div class="carrossel-container" id="carrossel-calca-bazika">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="calca-bazika.jpg" alt="Calça Bazika" class="produto-imagem" style="filter: saturate(30%); -webkit-filter: saturate(30%);">
+                            </div>
+                        </div>
+                        <span class="produto-badge produto-badge--esgotado">ESGOTADO</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Calça Bazika</h3>
+                        <p class="produto-descricao">Calça básica de alta qualidade, corte moderno e confortável.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$175,40</span>
+                            <span class="preco-atual">R$87,70</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <button class="btn produto-btn btn-disabled" disabled>
+                            <i class="fas fa-times"></i> ESGOTADO
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Corta-vento Bazika (ESGOTADO) -->
+                <article class="produto-card esgotado">
+                    <div class="carrossel-container" id="carrossel-corta-vento-bazika">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="Corta-vento+Preto.jpg" alt="Corta-vento Bazika - Preto" class="produto-imagem" style="filter: saturate(30%); -webkit-filter: saturate(30%);">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Corta-vento+Vermelho.jpg" alt="Corta-vento Bazika - Vermelho" class="produto-imagem" style="filter: saturate(30%); -webkit-filter: saturate(30%);">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Corta-vento+Branco.jpg" alt="Corta-vento Bazika - Branco" class="produto-imagem" style="filter: saturate(30%); -webkit-filter: saturate(30%);">
+                            </div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                        </div>
+                        <span class="produto-badge produto-badge--esgotado">ESGOTADO</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Corta-vento Bazika</h3>
+                        <p class="produto-descricao">Disponível em preto, vermelho e branco. Leve, resistente e estiloso.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$215,40</span>
+                            <span class="preco-atual">R$107,70</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <button class="btn produto-btn btn-disabled" disabled>
+                            <i class="fas fa-times"></i> ESGOTADO
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Coleção AKA -->
+        <section class="colecoes-section container" id="aka">
+            <div class="collection-header">
+                <h2 class="collection-title">AKA</h2>
+                <p class="collection-subtitle">Feita pra quem também é conhecido como.</p>
+                <span class="collection-status collection-status--soon">LANÇAMENTO: 2026</span>
+            </div>
+            
+            <div class="produtos-grid">
+                <!-- Camiseta AKA -->
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-camiseta-aka">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="Camiseta-aka+Preta.jpg" alt="Camiseta AKA - Preto" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Camiseta-aka+Branca.jpg" alt="Camiseta AKA - Branca" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Camiseta-aka+Vermelha.jpg" alt="Camiseta AKA - Vermelha" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Camiseta-aka+Cinza.jpg" alt="Camiseta AKA - Cinza" class="produto-imagem">
+                            </div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                            <span class="indicador" data-slide="3"></span>
+                        </div>
+                        <span class="produto-badge">— AKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Camiseta AKA</h3>
+                        <p class="produto-descricao">Disponível em preto, branco, vermelho e cinza. Design minimalista e atemporal.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$??,??</span>
+                            <span class="preco-atual">R$??,??</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <button class="btn produto-btn btn-disabled" disabled>
+                            <i class="far fa-clock"></i> LANÇAMENTO 2026
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Short AKA -->
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-short-aka">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="Short+Preto.jpg" alt="Short AKA - Preto" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Short+Branco.jpg" alt="Short AKA - Branco" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Short+Vermelho.jpg" alt="Short AKA - Vermelho" class="produto-imagem">
+                            </div>
+                            <div class="carrossel-slide">
+                                <img src="Short+Cinza.jpg" alt="Short AKA - Cinza" class="produto-imagem">
+                            </div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                            <span class="indicador" data-slide="3"></span>
+                        </div>
+                        <span class="produto-badge">— AKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Short AKA</h3>
+                        <p class="produto-descricao">Disponível em preto, branco, vermelho e cinza. Conforto e estilo para o verão.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$??,??</span>
+                            <span class="preco-atual">R$??,??</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <button class="btn produto-btn btn-disabled" disabled>
+                            <i class="far fa-clock"></i> LANÇAMENTO 2026
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Coleção C1B3R -->
+        <section class="colecoes-section container" id="c1b3r">
+            <div class="collection-header">
+                <h2 class="collection-title">C1B3R</h2>
+                <p class="collection-subtitle">Edição única. Pura <em>excentricidade</em>.</p>
+                <span class="collection-status">EDIÇÃO ÚNICA</span>
+            </div>
+            
+            <div class="produtos-grid" style="justify-content: center;">
+                <article class="produto-card" style="max-width: 400px;">
+                    <div class="carrossel-container">
+                        <div style="width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center; color: var(--red); font-family: 'Source Code Pro', monospace; font-size: 1.5rem;">
+                            C1B3R 010101
+                        </div>
+                        <span class="produto-badge">— C1B3R</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">NÃO ENCONTRADO</h3>
+                        <p class="produto-descricao">Produto misterioso. Edição única e extremamente limitada.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$1.555,54</span>
+                            <span class="preco-atual">R$777,77</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera. Gostaria de saber mais sobre o produto misterioso de sua loja." class="btn produto-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Informações de Frete -->
+        <div class="status-banner container">
+            <h2>INFORMAÇÕES IMPORTANTES</h2>
+            <p><span class="highlight">*Frete não está incluso no valor</span>; o frete é calculado no momento do pedido com base em sua localização.</p>
+            <p style="margin-top: 15px;">Todos os pedidos são feitos sob demanda via WhatsApp. Entre em contato para mais informações!</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                    <div class="social-links-grid">
+                        <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram social-icon"></i>
+                            <span class="social-name">Instagram</span>
+                            <span class="social-desc">@cejeraa</span>
+                        </a>
+                        <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                            <i class="fab fa-twitter social-icon"></i>
+                            <span class="social-name">Twitter/X</span>
+                            <span class="social-desc">@cejeraaa</span>
+                        </a>
+                        <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in social-icon"></i>
+                            <span class="social-name">LinkedIn</span>
+                            <span class="social-desc">/in/cejera</span>
+                        </a>
+                        <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram social-icon"></i>
+                            <span class="social-name">Telegram</span>
+                            <span class="social-desc">@cejera</span>
+                        </a>
+                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                            <i class="fab fa-spotify social-icon"></i>
+                            <span class="social-name">Spotify</span>
+                            <span class="social-desc">Cejera</span>
+                        </a>
+                        <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                            <i class="fab fa-twitch social-icon"></i>
+                            <span class="social-name">Twitch</span>
+                            <span class="social-desc">cejera</span>
+                        </a>
+                        <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                            <i class="fas fa-gamepad social-icon"></i>
+                            <span class="social-name">Kick</span>
+                            <span class="social-desc">cejera</span>
+                        </a>
+                        <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                            <i class="fas fa-plus social-icon"></i>
+                            <span class="social-name">7+</span>
+                            <span class="social-desc">links</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/loja">Loja</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" 
+                               id="waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Cejera® — LOJA | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é nosso superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            // Trap focus no menu quando aberto
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Botão de pedido geral
+        document.getElementById('pedido-btn').addEventListener('click', function() {
+            const message = encodeURIComponent("Olá, Cejera! Gostaria de fazer um pedido na sua loja.");
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Formulário de lista de espera
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Validar formato de e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
+            
+            // Abrir WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
+
+        // Tracking de cliques nos produtos
+        const produtoBtns = document.querySelectorAll('.produto-btn:not(.btn-disabled)');
+        produtoBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const produtoCard = btn.closest('.produto-card');
+                const produtoNome = produtoCard.querySelector('.produto-nome').textContent;
+                
+                console.log(`Produto clicado: ${produtoNome} -> WhatsApp`);
+            });
+        });
+
+        // Sistema de carrossel
+        document.querySelectorAll('.carrossel-container').forEach((carrossel, index) => {
+            const slides = carrossel.querySelector('.carrossel-slides');
+            const slideCount = slides.children.length;
+            
+            // Se só tiver um slide, não precisa do carrossel
+            if (slideCount <= 1) return;
+            
+            const prevBtn = carrossel.querySelector('.carrossel-btn--prev');
+            const nextBtn = carrossel.querySelector('.carrossel-btn--next');
+            const indicadores = carrossel.querySelectorAll('.indicador');
+            
+            let currentSlide = 0;
+            
+            function updateCarrossel() {
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Atualizar indicadores
+                indicadores.forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Event listeners para botões
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                    updateCarrossel();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateCarrossel();
+                });
+            }
+            
+            // Event listeners para indicadores
+            indicadores.forEach((indicador, i) => {
+                indicador.addEventListener('click', () => {
+                    currentSlide = i;
+                    updateCarrossel();
+                });
+            });
+            
+            // Auto-rotacionar a cada 4 segundos
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateCarrossel();
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
