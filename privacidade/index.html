@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLÍTICA DE PRIVACIDADE — CEJERA® | Excentricidade e Autenticidade</title>
+    <meta name="description" content="Política de Privacidade da Cejera®. Saiba como tratamos seus dados com transparência e respeito.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Hamburger menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* Link ativo - página atual */
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        /* Seção de Política de Privacidade */
+        .privacidade-hero {
+            padding: 100px 0 80px;
+            flex: 1;
+        }
+
+        .privacidade-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .privacidade-title::before,
+        .privacidade-title::after {
+            content: '✱';
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .privacidade-title::before {
+            left: -40px;
+        }
+
+        .privacidade-title::after {
+            right: -40px;
+        }
+
+        .privacidade-subtitle {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .politica-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid var(--red);
+        }
+
+        .politica-data {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 20px;
+        }
+
+        .politica-data span {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .politica-intro {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .politica-section {
+            margin-bottom: 40px;
+        }
+
+        .politica-section-title {
+            font-size: 1.5rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--red);
+            font-family: 'Mynerve', cursive;
+        }
+
+        .politica-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .politica-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .politica-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .politica-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        .politica-important {
+            background: rgba(247, 7, 7, 0.05);
+            border-left: 4px solid var(--red);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: var(--radius);
+        }
+
+        .politica-important p {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .politica-highlight {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .politica-contact {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .politica-contact p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-form {
+                flex-direction: row;
+            }
+
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-menu {
+                gap: 40px;
+            }
+
+            /* Footer social fullwidth no desktop */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .header-cta {
+                margin-top: 20px;
+            }
+
+            .logo-img {
+                height: 80px;
+            }
+
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .privacidade-title::before {
+                left: -20px;
+            }
+
+            .privacidade-title::after {
+                right: -20px;
+            }
+
+            .politica-container {
+                padding: 30px 20px;
+            }
+
+            /* Footer social fullwidth no mobile */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        /* Focus styles */
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="https://cejera.com/home">
+                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                </a>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Política de Privacidade -->
+        <section class="privacidade-hero container">
+            <h1 class="privacidade-title">Política de Privacidade</h1>
+            <p class="privacidade-subtitle">Transparência e Respeito</p>
+            
+            <div class="politica-container">
+                <div class="politica-data">
+                    Última atualização: <span>01 de Janeiro de 2025</span>
+                </div>
+                
+                <div class="politica-intro">
+                    Esta Política de Privacidade descreve como a <span class="politica-highlight">Cejera®</span> 
+                    coleta, usa, processa e protege as informações dos usuários do nosso site. 
+                    Estamos comprometidos com a proteção da sua privacidade e transparência.
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">1. Coleta de Dados</h2>
+                    <p class="politica-text">
+                        <span class="politica-highlight">Importante:</span> Não coletamos dados pessoais automaticamente através do nosso site. 
+                        Não utilizamos cookies de rastreamento, analytics de terceiros, ou qualquer forma de coleta automática de dados pessoais.
+                    </p>
+                    
+                    <div class="politica-important">
+                        <p>Os campos de preenchimento em nosso site (como campos de e-mail ou mensagem) são utilizados apenas para:</p>
+                        <ul class="politica-list">
+                            <li>Facilitar o contato direto através de plataformas de mensagem</li>
+                            <li>Gerar links pré-preenchidos para WhatsApp, Telegram ou e-mail</li>
+                            <li>Otimizar sua experiência ao entrar em contato conosco</li>
+                        </ul>
+                        <p>Todas as informações inseridas nos campos do site exigem a aprovação prévia do envio pelo usuário, 
+                        através da confirmação explícita em plataformas de mensagem externas.</p>
+                    </div>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">2. Como Usamos as Informações</h2>
+                    <p class="politica-text">
+                        Quando você utiliza nossos campos de contato, as informações são processadas da seguinte forma:
+                    </p>
+                    <ul class="politica-list">
+                        <li><span class="politica-highlight">Geração de Links:</span> As informações são utilizadas para criar links pré-preenchidos para plataformas de mensagem</li>
+                        <li><span class="politica-highlight">Contato Direto:</span> Os links direcionam você diretamente para nossas redes de contato</li>
+                        <li><span class="politica-highlight">Aprovação do Usuário:</span> Você sempre precisará confirmar o envio na plataforma escolhida</li>
+                    </ul>
+                    <p class="politica-text">
+                        Não armazenamos, processamos ou compartilhamos as informações inseridas nos campos do nosso site. 
+                        Todo o processamento ocorre localmente no seu dispositivo.
+                    </p>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">3. Plataformas de Terceiros</h2>
+                    <p class="politica-text">
+                        Nosso site direciona para as seguintes plataformas de mensagem:
+                    </p>
+                    <ul class="politica-list">
+                        <li><span class="politica-highlight">WhatsApp:</span> +55 (35) 99928-6246</li>
+                        <li><span class="politica-highlight">Telegram:</span> @cejera</li>
+                        <li><span class="politica-highlight">E-mail:</span> contato@cejera.com</li>
+                    </ul>
+                    <p class="politica-text">
+                        Ao utilizar esses serviços, você estará sujeito às políticas de privacidade das respectivas plataformas:
+                    </p>
+                    <ul class="politica-list">
+                        <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" style="color: var(--red);">Política de Privacidade do WhatsApp</a></li>
+                        <li><a href="https://telegram.org/privacy" target="_blank" style="color: var(--red);">Política de Privacidade do Telegram</a></li>
+                        <li><a href="https://policies.google.com/privacy" target="_blank" style="color: var(--red);">Política de Privacidade do Google (Gmail)</a></li>
+                    </ul>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">4. Seus Direitos</h2>
+                    <p class="politica-text">
+                        Como não coletamos dados pessoais, não há dados armazenados para gerenciar. No entanto, você tem sempre o direito de:
+                    </p>
+                    <ul class="politica-list">
+                        <li>Não preencher os campos do site</li>
+                        <li>Cancelar o envio de mensagens nas plataformas externas</li>
+                        <li>Excluir conversas diretamente nas plataformas de mensagem</li>
+                        <li>Entrar em contato conosco para esclarecimentos adicionais</li>
+                    </ul>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">5. Segurança</h2>
+                    <p class="politica-text">
+                        Embora não coletemos dados, implementamos medidas de segurança para proteger nosso site:
+                    </p>
+                    <ul class="politica-list">
+                        <li>HTTPS/SSL para conexão segura</li>
+                        <li>Processamento local de informações (client-side)</li>
+                        <li>Não utilização de bancos de dados para dados de usuários</li>
+                        <li>Transparência total sobre nosso funcionamento</li>
+                    </ul>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">6. Alterações nesta Política</h2>
+                    <p class="politica-text">
+                        Podemos atualizar esta Política de Privacidade ocasionalmente. A versão mais recente estará sempre disponível nesta página. 
+                        Alterações significativas serão destacadas na data de atualização no topo da política.
+                    </p>
+                </div>
+                
+                <div class="politica-section">
+                    <h2 class="politica-section-title">7. Menores de Idade</h2>
+                    <p class="politica-text">
+                        Nosso site não é direcionado a menores de 18 anos. Não coletamos intencionalmente informações de menores. 
+                        Se você é menor de idade, não use nosso site ou serviços sem a permissão de um responsável.
+                    </p>
+                </div>
+                
+                <div class="politica-contact">
+                    <h2 class="politica-section-title">Contato</h2>
+                    <p>Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco:</p>
+                    <p style="margin-bottom: 30px;">
+                        <span class="politica-highlight">E-mail:</span> contato@cejera.com<br>
+                        <span class="politica-highlight">WhatsApp:</span> +55 (35) 99928-6246<br>
+                        <span class="politica-highlight">Telegram:</span> @cejera
+                    </p>
+                    <p style="font-size: 0.9rem; color: #666;">
+                        Esta política é válida para o site https://cejera.com e todos os seus subdomínios.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home">Início</a></li>
+                        <li><a href="https://cejera.com/moda">Moda</a></li>
+                        <li><a href="https://cejera.com/design">Design</a></li>
+                        <li><a href="https://cejera.com/musica">Música</a></li>
+                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
+                        <li><a href="https://cejera.com/contato">Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="footer-waitlist-form">
+                        <input type="email" 
+                               id="footer-waitlist-email"
+                               class="footer-input" 
+                               placeholder="seu@email.com"
+                               aria-label="Insira seu e-mail para a lista de espera"
+                               required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
+                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu toggle para mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            
+            if (!isExpanded) {
+                navLinks[0].focus();
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+            });
+        });
+
+        // Header que diminui ao scrollar
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
+        // Formulário de lista de espera no footer
+        document.getElementById('footer-waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('footer-waitlist-email');
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                alert('Por favor, insira seu e-mail!');
+                emailInput.focus();
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                emailInput.focus();
+                return;
+            }
+            
+            const encodedMessage = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            emailInput.value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
