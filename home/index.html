@@ -129,59 +129,60 @@
             height: 60px;
         }
 
-        /* Hamburger menu - DO PRIMEIRO CÓDIGO */
+        /* Hamburger menu */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
-            width: 48px;
-            height: 48px;
+            width: 32px;
+            height: 32px;
             position: relative;
-            z-index: 1001;
-            padding: 0;
-            border-radius: 50%;
-            background-color: transparent;
-            transition: var(--transition);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .menu-toggle:hover {
-            background-color: rgba(189, 189, 189, 0.1);
+            z-index: 101;
         }
 
         .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            position: relative;
-        }
-
-        .hamburger-line {
             width: 100%;
             height: 3px;
-            background-color: var(--red);
-            border-radius: 3px;
+            background-color: var(--black);
+            position: relative;
             transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--black);
+            left: 0;
+            transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-            opacity: 0;
+        .hamburger::before {
+            top: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .hamburger::after {
+            bottom: -8px;
         }
 
-        /* Navigation - DO PRIMEIRO CÓDIGO */
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             align-items: center;
@@ -754,28 +755,24 @@
             }
         }
 
-        /* Responsive Menu - DO PRIMEIRO CÓDIGO */
         @media (max-width: 767px) {
             .menu-toggle {
-                display: flex;
+                display: block;
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 100%;
+                width: 80%;
                 height: 100vh;
-                background-color: rgba(247, 247, 247, 0.98);
-                backdrop-filter: blur(10px);
+                background-color: var(--light);
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                padding: 80px 20px 40px;
-                z-index: 1000;
-                overflow-y: auto;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             }
 
             nav[data-visible="true"] {
@@ -785,33 +782,11 @@
             .nav-menu {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
-                width: 100%;
-            }
-
-            .nav-link {
-                font-size: 1rem;
-                padding: 8px 0;
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-link:last-child {
-                border-bottom: none;
+                gap: 24px;
             }
 
             .header-cta {
                 margin-top: 20px;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-microcopy {
-                text-align: center;
-                margin-top: 8px;
             }
 
             .logo-img {
@@ -821,11 +796,6 @@
             .footer-logo-img {
                 width: 120px;
                 height: 120px;
-            }
-            
-            .hero-title::before,
-            .hero-title::after {
-                display: none;
             }
 
             /* Footer social fullwidth no mobile */
@@ -871,7 +841,7 @@
 <body>
 
 
-    <!-- Header COM MENU HAMBURGER DO PRIMEIRO CÓDIGO -->
+    <!-- Header -->
     <header id="main-header">
         <div class="container header-content">
             <div class="logo-container">
@@ -881,11 +851,7 @@
             </div>
 
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <div class="hamburger">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </div>
+                <span class="hamburger"></span>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -981,18 +947,18 @@
 
                 <!-- Banner 4 - Square -->
                 <article class="banner-card banner--square" data-target="design">
-                    <a href="https://www.linkedin.com/posts/cejera_menos-%C3%A9-mais-desde-que-do-jeito-certo-share-7350968892703309825-GEJB?utm_source=home-cejera" class="banner-link" data-banner="4">
+                    <a href="https://www.linkedin.com/posts/cejera_nem-tudo-que-a-ia-faz-foi-voc%C3%AA-que-fez-activity-7417699329462685696-r19s" class="banner-link" data-banner="4">
                         <span class="banner-badge">— Design</span>
                         <img 
-                            src="https://media.licdn.com/dms/image/v2/D4D22AQFsCiltS2naEA/feedshare-shrink_800/B4DZgPjQKXHwAg-/0/1752607557768?e=1766620800&v=beta&t=Dg4edalJ45j0h6A8dWHOpmDu4KL37zPkxauXDUgYk8Y"
-                            alt="Post em destaque - Menos é Mais | LinkedIn"
+                            src="1768517333434.jpg"
+                            alt="Post em destaque - EU QUE FIZ | LinkedIn"
                             class="banner-image"
                             loading="lazy"
                             decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Post em destaque</h3>
-                            <p class="banner-description">Menos é mais. | LinkedIn</p>
-                            <span class="banner-cta">Ver mais (ou menos já que menos é mais)</span>
+                            <p class="banner-description">"EU QUE FIZ" (ou será que foi a IA?) | LinkedIn</p>
+                            <span class="banner-cta">Ver mais</span>
                         </div>
                     </a>
                 </article>
@@ -1002,7 +968,7 @@
                     <a href="https://www.linkedin.com/posts/cejera_cassandra-filha-de-pr%C3%ADamo-e-h%C3%A9cuba-recebeu-share-7372321443684122624-yXe_?utm_source=home-cejera" class="banner-link" data-banner="5">
                         <span class="banner-badge">— Design</span>
                         <img 
-                            src="https://media.licdn.com/dms/image/v2/D4D22AQEeDZfRSgeNEw/feedshare-shrink_800/B4DZk._RWmHwAg-/0/1757698401900?e=1766620800&v=beta&t=Yr5ubJ2NoTQ5cLenAr7kStizsNeq7c66dqiro_24W9g"
+                            src="1757698401963.jpg"
                             alt="Cassandra - Mitologia grega"
                             class="banner-image"
                             loading="lazy"
@@ -1203,54 +1169,28 @@
     </footer>
 
     <script>
-        // Menu toggle do primeiro código
+        // Menu toggle para mobile
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
-        const body = document.body;
 
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
+        menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
             
+            // Trap focus no menu quando aberto
             if (!isExpanded) {
-                body.style.overflow = 'hidden';
                 navLinks[0].focus();
-            } else {
-                body.style.overflow = '';
             }
         });
 
+        // Fechar menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
             });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (nav.getAttribute('data-visible') === 'true' && 
-                !nav.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                
-                menuToggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-                menuToggle.focus();
-            }
         });
 
         // Header que diminui ao scrollar
@@ -1315,28 +1255,18 @@
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
 
-        // Observer para animações (opcional - do primeiro código)
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
                 }
-            });
-        }, observerOptions);
-
-        // Aplicar animação aos elementos (opcional)
-        document.querySelectorAll('.banner-card, .review-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
+            }
         });
     </script>
 </body>
+
 </html>
+
