@@ -68,14 +68,14 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px; /* Aumentado para mobile não colar na borda (igual primeiro código) */
         }
 
         .btn {
             display: inline-block;
             background: var(--red);
             color: var(--light);
-            padding: 12px 28px;
+            padding: 10px 24px; /* igual primeiro código */
             border-radius: var(--radius);
             font-weight: 500;
             border: none;
@@ -83,6 +83,8 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase;
         }
 
         .btn:hover {
@@ -128,56 +130,67 @@
             height: 60px;
         }
 
-        /* Menu Hamburger do primeiro código */
+        /* Menu Hamburger - mesma estrutura do primeiro código */
         .menu-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(255,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.03);
+            border-radius: 8px;
             cursor: pointer;
             width: 48px;
             height: 48px;
             position: relative;
             z-index: 1001;
-            padding: 0;
-            border-radius: 50%;
-            background-color: transparent;
+            padding: 12px;
             transition: var(--transition);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .menu-toggle:hover {
-            background-color: rgba(189, 189, 189, 0.1);
+            background: rgba(0,0,0,0.1);
         }
 
         .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            position: relative;
-        }
-
-        .hamburger-line {
             width: 100%;
             height: 3px;
-            background-color: var(--red);
             border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
             transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger::before {
+            top: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-            opacity: 0;
+        .hamburger::after {
+            bottom: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
         }
 
         /* Navigation */
@@ -194,7 +207,6 @@
 
         .nav-link {
             position: relative;
-            align-items: center;
             padding: 4px 0;
             font-weight: 500;
             font-size: 0.95rem;
@@ -246,6 +258,8 @@
             margin-bottom: 10px;
             position: relative;
             display: inline-block;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         .sobre-title::before,
@@ -255,6 +269,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            padding-left: 20px;
+            padding-right: 20px;
             font-size: 1.5rem;
         }
 
@@ -270,6 +286,8 @@
             font-family: 'Mynerve', cursive;
             font-size: 1.8rem;
             color: var(--red);
+            padding-left: 20px;
+            padding-right: 20px;
             margin-bottom: 40px;
             text-transform: uppercase;
         }
@@ -279,6 +297,8 @@
             grid-template-columns: 1fr;
             gap: 50px;
             align-items: start;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         @media (min-width: 992px) {
@@ -499,17 +519,22 @@
             margin-top: 20px;
         }
 
+        /* CORREÇÃO: Cards de redes sociais com altura fixa e conteúdo centralizado (igual primeiro código) */
         .social-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 12px;
+            justify-content: center;
+            padding: 8px;
             border: 2px solid var(--red);
             border-radius: var(--radius);
             transition: var(--transition);
             text-align: center;
-            min-height: 100px;
-            justify-content: center;
+            height: 140px; /* altura fixa */
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+            box-sizing: border-box;
         }
 
         .social-link:hover {
@@ -531,12 +556,14 @@
         .social-name {
             font-size: 0.8rem;
             font-weight: 600;
+            line-height: 1.2;
         }
 
         .social-desc {
             font-size: 0.7rem;
             opacity: 0.7;
             margin-top: 2px;
+            line-height: 1.2;
         }
 
         .footer-heading {
@@ -659,23 +686,22 @@
 
         @media (max-width: 767px) {
             .menu-toggle {
-                display: flex;
+                display: block;
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 100%;
+                width: 80%;
                 height: 100vh;
-                background-color: rgba(247, 247, 247, 0.98);
-                backdrop-filter: blur(10px);
+                background-color: var(--light);
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                padding: 100px 24px 40px; /* Aumentado padding lateral */
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
                 overflow-y: auto;
             }
@@ -687,13 +713,13 @@
             .nav-menu {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
+                gap: 24px;
                 width: 100%;
             }
 
             .nav-link {
                 font-size: 1rem;
-                padding: 10px 0; /* Aumentado padding */
+                padding: 8px 0;
                 width: 100%;
                 text-align: center;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -730,35 +756,14 @@
                 display: none;
             }
 
-            /* Ajustes de espaçamento para texto não grudar nas bordas */
-            .container {
-                padding: 0 24px; /* Aumentado de 20px para 24px */
-            }
-
-            .sobre-text {
-                padding: 0 4px; /* Pequeno espaçamento interno */
-            }
-
-            .historia-content {
-                padding: 20px 16px; /* Reduzido padding mas mantido espaçamento */
-            }
-
-            .sobre-hero {
-                padding: 80px 0 60px; /* Ajustado padding vertical */
-            }
-
-            .historia-section {
-                padding: 40px 0 60px; /* Ajustado padding vertical */
-            }
-
-            .footer-content {
-                gap: 40px; /* Reduzido gap no mobile */
-            }
-
-            /* Footer social fullwidth no mobile */
+            /* Footer social fullwidth no mobile - cards com altura uniforme */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .social-link {
+                height: 120px; /* altura fixa no mobile (igual primeiro código) */
             }
 
             /* Ajuste timeline no mobile */
@@ -803,12 +808,9 @@
                 </a>
             </div>
 
+            <!-- Menu toggle com estrutura do primeiro código -->
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <div class="hamburger">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </div>
+                <span class="hamburger"></span>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -1039,13 +1041,13 @@
 
         <div class="container">
             <div class="copyright">
-                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // JavaScript do menu hamburger do primeiro código
+        // Menu toggle para mobile (igual primeiro código)
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -1067,6 +1069,7 @@
             }
         });
 
+        // Fechar menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
@@ -1075,6 +1078,7 @@
             });
         });
 
+        // Fechar menu ao clicar fora
         document.addEventListener('click', (e) => {
             if (nav.getAttribute('data-visible') === 'true' && 
                 !nav.contains(e.target) && 
@@ -1086,6 +1090,7 @@
             }
         });
 
+        // Tecla ESC para fechar menu
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
                 menuToggle.setAttribute('aria-expanded', 'false');
@@ -1128,7 +1133,6 @@
                 return;
             }
             
-            // Validar formato de e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um e-mail válido!');
@@ -1136,14 +1140,11 @@
                 return;
             }
             
-            // Criar mensagem personalizada com o e-mail
             const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
             
-            // Abrir WhatsApp
             window.open(whatsappUrl, '_blank');
             
-            // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
