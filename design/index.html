@@ -104,7 +104,6 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
-    
     <!-- Robots & SEO Meta -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -116,8 +115,6 @@
     <meta name="theme-color" content="#F70707">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
-    
     
     <style>
         :root {
@@ -175,14 +172,14 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px; /* Aumentado para mobile não colar na borda */
         }
 
         .btn {
             display: inline-block;
             background: var(--red);
             color: var(--light);
-            padding: 12px 28px;
+            padding: 10px 24px; /* reduzido para não ficar enorme */
             border-radius: var(--radius);
             font-weight: 500;
             border: none;
@@ -190,6 +187,8 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase; /* padronizado */
         }
 
         .btn:hover {
@@ -234,18 +233,18 @@
             height: 60px;
         }
 
+        /* Hamburger menu - estilo do modelo (três linhas que viram X) */
         .menu-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(247, 7, 7, 0.03);
+            border: 2px solid rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
             cursor: pointer;
             width: 48px;
             height: 48px;
             position: relative;
             z-index: 1001;
-            padding: 0;
-            border-radius: 50%;
-            background-color: transparent;
+            padding: 12px;
             transition: var(--transition);
             flex-direction: column;
             justify-content: center;
@@ -253,36 +252,51 @@
         }
 
         .menu-toggle:hover {
-            background-color: rgba(189, 189, 189, 0.1);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            position: relative;
-        }
-
-        .hamburger-line {
             width: 100%;
             height: 3px;
-            background-color: var(--red);
             border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
             transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger::before {
+            top: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-            opacity: 0;
+        .hamburger::after {
+            bottom: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
         }
 
         nav {
@@ -298,7 +312,6 @@
 
         .nav-link {
             position: relative;
-            align-items: center;
             padding: 4px 0;
             font-weight: 500;
             font-size: 0.95rem;
@@ -391,15 +404,15 @@
         }
 
         .email-capture {
-          max-width: 480px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 0 12px;
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 12px;
         }
 
         .email-microcopy {
@@ -815,6 +828,7 @@
             max-width: 300px;
         }
 
+        /* A classe social-links-grid será usada apenas dentro da seção fullwidth */
         .social-links-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -822,17 +836,22 @@
             margin-top: 20px;
         }
 
+        /* CORREÇÃO: Cards de redes sociais com altura fixa e conteúdo centralizado */
         .social-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 12px;
+            justify-content: center;
+            padding: 8px;
             border: 2px solid var(--red);
             border-radius: var(--radius);
             transition: var(--transition);
             text-align: center;
-            min-height: 100px;
-            justify-content: center;
+            height: 140px; /* altura fixa */
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+            box-sizing: border-box;
         }
 
         .social-link:hover {
@@ -854,12 +873,14 @@
         .social-name {
             font-size: 0.8rem;
             font-weight: 600;
+            line-height: 1.2;
         }
 
         .social-desc {
             font-size: 0.7rem;
             opacity: 0.7;
             margin-top: 2px;
+            line-height: 1.2;
         }
 
         .footer-heading {
@@ -922,6 +943,7 @@
             opacity: 0.7;
         }
 
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira (igual ao modelo) */
         .footer-social-fullwidth {
             width: 100%;
             margin: 60px 0;
@@ -946,6 +968,7 @@
             justify-items: center;
         }
 
+        /* Responsive */
         @media (min-width: 768px) {
             .banners-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -972,14 +995,11 @@
                 flex-direction: row;
             }
 
-            .social-links-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .footer-form {
                 flex-direction: row;
             }
 
+            /* Footer social fullwidth no tablet */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -1002,6 +1022,7 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
+            /* Footer social fullwidth no desktop - 8 colunas com largura máxima */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(8, 1fr);
                 gap: 12px;
@@ -1102,9 +1123,14 @@
                 grid-template-columns: 1fr;
             }
 
+            /* Footer social fullwidth no mobile - cards com altura uniforme e 2 colunas */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .social-link {
+                height: 120px; /* altura fixa no mobile */
             }
         }
 
@@ -1128,14 +1154,6 @@
             .footer-newsletter {
                 flex: 0 0 35%;
                 max-width: 35%;
-            }
-
-            .social-links-grid {
-                gap: 10px;
-            }
-
-            .social-link {
-                padding: 10px;
             }
         }
 
@@ -1180,11 +1198,7 @@
             </div>
 
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <div class="hamburger">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </div>
+                <span class="hamburger"></span>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -1449,6 +1463,7 @@
                         Transformo marcas comuns em protagonistas impossíveis de ignorar. 
                         Transformo pessoas comuns em influenciadores de sucesso (e com personalidade).
                     </div>
+                    <!-- Cards de redes sociais removidos daqui - serão colocados na seção abaixo -->
                 </div>
 
                 <div class="footer-links-container">
@@ -1485,6 +1500,7 @@
             </div>
         </div>
 
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página (igual ao modelo) -->
         <div class="footer-social-fullwidth">
             <div class="container">
                 <div class="social-links-grid">
@@ -1534,7 +1550,7 @@
 
         <div class="container">
             <div class="copyright">
-                <p>© 2025 Cejera® — DESIGN REBELDE. Porque ser normal é muito chato e ser autêntico é revolucionário.</p>
+                <p>© 2026 Cejera® — DESIGN REBELDE. Porque ser normal é muito chato e ser autêntico é revolucionário.</p>
             </div>
         </div>
     </footer>
@@ -1555,7 +1571,7 @@
             
             if (!isExpanded) {
                 body.style.overflow = 'hidden';
-                navLinks[0].focus();
+                navLinks[0]?.focus();
             } else {
                 body.style.overflow = '';
             }
@@ -1603,13 +1619,13 @@
             link.addEventListener('click', (e) => {
                 const bannerNumber = link.getAttribute('data-banner');
                 const href = link.getAttribute('href');
-                const target = link.closest('.banner-card').getAttribute('data-target');
+                const target = link.closest('.banner-card')?.getAttribute('data-target');
                 
                 console.log(`Projeto clicado: Projeto ${bannerNumber} -> ${href} (Categoria: ${target})`);
             });
         });
 
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+        document.getElementById('waitlist-form')?.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const emailInput = document.getElementById('waitlist-email');
@@ -1637,6 +1653,7 @@
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
 
+        // Intersection Observer para animações de entrada
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1660,5 +1677,3 @@
     </script>
 </body>
 </html>
-
-
