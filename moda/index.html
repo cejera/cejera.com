@@ -682,6 +682,7 @@
             max-width: 300px;
         }
 
+        /* A classe social-links-grid será usada apenas dentro da seção fullwidth */
         .social-links-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -689,7 +690,7 @@
             margin-top: 20px;
         }
 
-        /* Cards de redes sociais com altura fixa (estilo do modelo) */
+        /* Cards de redes sociais com altura fixa e conteúdo centralizado */
         .social-link {
             display: flex;
             flex-direction: column;
@@ -796,6 +797,31 @@
             opacity: 0.7;
         }
 
+        /* NOVA SEÇÃO: Social Cards Centralizada em Página Inteira (igual ao modelo) */
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
         /* Responsive */
         @media (min-width: 768px) {
             .produtos-grid {
@@ -806,8 +832,9 @@
                 flex-direction: row;
             }
 
-            .social-links-grid {
-                grid-template-columns: repeat(2, 1fr);
+            /* Footer social fullwidth no tablet */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -820,7 +847,7 @@
                 gap: 40px;
             }
 
-            /* Ajuste fino dos cards sociais em desktop (opcional) */
+            /* Ajuste fino dos cards sociais em desktop */
             .footer-content {
                 display: flex;
                 flex-wrap: wrap;
@@ -842,9 +869,15 @@
                 max-width: 35%;
             }
 
-            .social-links-grid {
-                gap: 10px;
-                grid-template-columns: repeat(4, 1fr);
+            /* Footer social fullwidth no desktop - 8 colunas com largura máxima */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
             }
         }
 
@@ -892,9 +925,14 @@
                 height: 120px;
             }
 
-            /* Cards sociais em mobile com altura fixa menor */
+            /* Footer social fullwidth no mobile - cards com altura uniforme e 2 colunas */
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
             .social-link {
-                height: 120px;
+                height: 120px; /* altura fixa no mobile */
             }
 
             .hero-title::before,
@@ -1311,49 +1349,7 @@
                         Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
                         Ouça, veja, vista. Seja protagonista!
                     </div>
-                    <!-- Cards de redes sociais dentro da primeira coluna, agora com altura fixa -->
-                    <div class="social-links-grid">
-                        <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram social-icon"></i>
-                            <span class="social-name">Instagram</span>
-                            <span class="social-desc">@cejeraa</span>
-                        </a>
-                        <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
-                            <i class="fab fa-twitter social-icon"></i>
-                            <span class="social-name">Twitter/X</span>
-                            <span class="social-desc">@cejeraaa</span>
-                        </a>
-                        <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in social-icon"></i>
-                            <span class="social-name">LinkedIn</span>
-                            <span class="social-desc">/in/cejera</span>
-                        </a>
-                        <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
-                            <i class="fab fa-telegram social-icon"></i>
-                            <span class="social-name">Telegram</span>
-                            <span class="social-desc">@cejera</span>
-                        </a>
-                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
-                            <i class="fab fa-spotify social-icon"></i>
-                            <span class="social-name">Spotify</span>
-                            <span class="social-desc">Cejera</span>
-                        </a>
-                        <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
-                            <i class="fab fa-twitch social-icon"></i>
-                            <span class="social-name">Twitch</span>
-                            <span class="social-desc">cejera</span>
-                        </a>
-                        <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
-                            <i class="fas fa-gamepad social-icon"></i>
-                            <span class="social-name">Kick</span>
-                            <span class="social-desc">cejera</span>
-                        </a>
-                        <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
-                            <i class="fas fa-plus social-icon"></i>
-                            <span class="social-name">7+</span>
-                            <span class="social-desc">links</span>
-                        </a>
-                    </div>
+                    <!-- Cards de redes sociais removidos daqui - serão colocados na seção abaixo -->
                 </div>
 
                 <div class="footer-links-container">
@@ -1388,7 +1384,57 @@
                     </p>
                 </div>
             </div>
+        </div>
 
+        <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página (igual ao modelo) -->
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">Instagram</span>
+                        <span class="social-desc">@cejeraa</span>
+                    </a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">Twitter/X</span>
+                        <span class="social-desc">@cejeraaa</span>
+                    </a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-name">LinkedIn</span>
+                        <span class="social-desc">/in/cejera</span>
+                    </a>
+                    <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
+                        <i class="fab fa-telegram social-icon"></i>
+                        <span class="social-name">Telegram</span>
+                        <span class="social-desc">@cejera</span>
+                    </a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
+                        <i class="fab fa-spotify social-icon"></i>
+                        <span class="social-name">Spotify</span>
+                        <span class="social-desc">Cejera</span>
+                    </a>
+                    <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
+                        <i class="fab fa-twitch social-icon"></i>
+                        <span class="social-name">Twitch</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
+                        <i class="fas fa-gamepad social-icon"></i>
+                        <span class="social-name">Kick</span>
+                        <span class="social-desc">cejera</span>
+                    </a>
+                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
+                        <i class="fas fa-plus social-icon"></i>
+                        <span class="social-name">7+</span>
+                        <span class="social-desc">links</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="copyright">
                 <p>© 2026 Cejera® — LOJA | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é nosso superpoder.</p>
             </div>
