@@ -7,7 +7,7 @@
     <meta name="description" content="Marca rebelde com design inteligente. Curadoria de moda autêntica, design estratégico e música underground. Excentricidade e autenticidade.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Biblioteca de ícones Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
@@ -69,14 +69,14 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px; /* Aumentado para mobile não colar na borda */
         }
 
         .btn {
             display: inline-block;
             background: var(--red);
             color: var(--light);
-            padding: 12px 28px;
+            padding: 10px 24px; /* reduzido para não ficar enorme */
             border-radius: var(--radius);
             font-weight: 500;
             border: none;
@@ -84,6 +84,8 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase; /* para o botão clubinho */
         }
 
         .btn:hover {
@@ -129,24 +131,33 @@
             height: 60px;
         }
 
-        /* Hamburger menu */
+        /* Hamburger menu*/
         .menu-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(255,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.03);
+            border-radius: 8px;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
             position: relative;
             z-index: 101;
+            padding: 12px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(0,0,0,0.1);
         }
 
         .hamburger {
             width: 100%;
             height: 3px;
-            background-color: var(--black);
+            border-radius: 3px;
+            background-color: var(--red);
             position: relative;
             transition: var(--transition);
+            display: block;
         }
 
         .hamburger::before,
@@ -155,7 +166,8 @@
             position: absolute;
             width: 100%;
             height: 3px;
-            background-color: var(--black);
+            border-radius: 3px;
+            background-color: var(--red);
             left: 0;
             transition: var(--transition);
         }
@@ -243,29 +255,31 @@
             text-align: center;
         }
 
+        /* CORREÇÃO: Fonte do título e animação de cursor */
         .hero-title {
+            font-family: 'Source Code Pro', monospace;
             font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 20px;
             position: relative;
             display: inline-block;
+            font-weight: 600;
+            padding-right: 0.5rem;
         }
 
-        .hero-title::before,
+        /* Cursor piscante (traço baixo) */
         .hero-title::after {
-            content: '✱';
+            content: "_";
+            display: inline-block;
+            width: 0.5rem;
+            margin-left: 0.2rem;
+            animation: blink 1s step-end infinite;
+            font-weight: 400;
             color: var(--red);
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
         }
 
-        .hero-title::before {
-            left: -40px;
-        }
-
-        .hero-title::after {
-            right: -40px;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .hero-subtitle {
@@ -291,9 +305,9 @@
         .email-capture {
             max-width: 480px;
             margin: 0 auto;
-            display: flex;
             flex-direction: column;
             gap: 16px;
+            align-items: center; /* centraliza o botão */
         }
 
         .email-microcopy {
@@ -560,17 +574,22 @@
             margin-top: 20px;
         }
 
+        /* CORREÇÃO: Cards de redes sociais com altura fixa e conteúdo centralizado */
         .social-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 12px;
+            justify-content: center;
+            padding: 8px;
             border: 2px solid var(--red);
             border-radius: var(--radius);
             transition: var(--transition);
             text-align: center;
-            min-height: 100px;
-            justify-content: center;
+            height: 140px; /* altura fixa */
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+            box-sizing: border-box;
         }
 
         .social-link:hover {
@@ -592,12 +611,14 @@
         .social-name {
             font-size: 0.8rem;
             font-weight: 600;
+            line-height: 1.2;
         }
 
         .social-desc {
             font-size: 0.7rem;
             opacity: 0.7;
             margin-top: 2px;
+            line-height: 1.2;
         }
 
         .footer-heading {
@@ -798,10 +819,14 @@
                 height: 120px;
             }
 
-            /* Footer social fullwidth no mobile */
+            /* Footer social fullwidth no mobile - cards com altura uniforme */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .social-link {
+                height: 120px; /* altura fixa no mobile */
             }
         }
 
@@ -882,9 +907,10 @@
                 Porque ser normal é muito chato e ser autêntico é meu superpoder.
             </p>
             <div class="email-capture">
-                <button type="button" id="clubinho-btn" class="btn">As vagas para o clubinho esgotaram. Quer saber pq?</button>
+                <!-- Botão do clubinho com texto reduzido e centralizado -->
+                <button type="button" id="clubinho-btn" class="btn">ENTRAR NO CLUBINHO</button>
             </div>
-            <p class="email-microcopy">Clubinho exclusivo do Cejera - entre na lista de espera!</p>
+            <p class="email-microcopy">Vagas esgotadas • Lista de espera</p>
         </section>
 
         <!-- Banners Grid -->
@@ -1163,7 +1189,7 @@
 
         <div class="container">
             <div class="copyright">
-                <p>© 2025 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
             </div>
         </div>
     </footer>
@@ -1217,7 +1243,7 @@
 
         // Botão do clubinho no hero
         document.getElementById('clubinho-btn').addEventListener('click', function() {
-            const message = encodeURIComponent("Cejera, pq as vagas do clubinho esgotaram?");
+            const message = encodeURIComponent("Cejera, quero entrar no clubinho!");
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
             window.open(whatsappUrl, '_blank');
         });
@@ -1269,4 +1295,3 @@
 </body>
 
 </html>
-
