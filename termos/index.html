@@ -7,7 +7,8 @@
     <meta name="description" content="Termos de Uso da Cejera®. Conheça as regras e condições para uso do nosso site e serviços.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Biblioteca de ícones Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="cejera-00.svg" type="image/svg+xml">
     <style>
@@ -71,14 +72,14 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px; /* Aumentado para mobile não colar na borda */
         }
 
         .btn {
             display: inline-block;
             background: var(--red);
             color: var(--light);
-            padding: 12px 28px;
+            padding: 10px 24px; /* reduzido para não ficar enorme */
             border-radius: var(--radius);
             font-weight: 500;
             border: none;
@@ -86,6 +87,8 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase; /* para o botão clubinho */
         }
 
         .btn:hover {
@@ -93,7 +96,7 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* Header */
+        /* Header (idêntico ao primeiro código) */
         header {
             position: sticky;
             top: 0;
@@ -131,56 +134,67 @@
             height: 60px;
         }
 
-        /* Hamburger menu - DO PRIMEIRO CÓDIGO */
+        /* Hamburger menu (igual ao primeiro código) */
         .menu-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(255,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.03);
+            border-radius: 8px;
             cursor: pointer;
             width: 48px;
             height: 48px;
             position: relative;
-            z-index: 1001;
-            padding: 0;
-            border-radius: 50%;
-            background-color: transparent;
+            z-index: 101;
+            padding: 12px;
             transition: var(--transition);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .menu-toggle:hover {
-            background-color: rgba(189, 189, 189, 0.1);
+            background: rgba(0,0,0,0.1);
         }
 
         .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            position: relative;
-        }
-
-        .hamburger-line {
             width: 100%;
             height: 3px;
-            background-color: var(--red);
             border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
             transition: var(--transition);
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger::before {
+            top: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
-            opacity: 0;
+        .hamburger::after {
+            bottom: -8px;
         }
 
-        .menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
         }
 
         /* Navigation */
@@ -197,10 +211,8 @@
 
         .nav-link {
             position: relative;
-            align-items: center;
             padding: 4px 0;
             font-weight: 500;
-            font-size: 0.95rem;
         }
 
         .nav-link::after {
@@ -239,7 +251,7 @@
             max-width: 200px;
         }
 
-        /* Seção de Termos de Uso */
+        /* Seção de Termos de Uso (mantida) */
         .termos-hero {
             padding: 100px 0 80px;
             flex: 1;
@@ -390,7 +402,7 @@
             font-size: 1.1rem;
         }
 
-        /* Footer */
+        /* Footer (idêntico ao primeiro código) */
         footer {
             background-color: var(--black);
             color: var(--light);
@@ -431,17 +443,22 @@
             margin-top: 20px;
         }
 
+        /* CORREÇÃO: Cards de redes sociais com altura fixa e conteúdo centralizado */
         .social-link {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 12px;
+            justify-content: center;
+            padding: 8px;
             border: 2px solid var(--red);
             border-radius: var(--radius);
             transition: var(--transition);
             text-align: center;
-            min-height: 100px;
-            justify-content: center;
+            height: 140px; /* altura fixa */
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+            box-sizing: border-box;
         }
 
         .social-link:hover {
@@ -463,12 +480,14 @@
         .social-name {
             font-size: 0.8rem;
             font-weight: 600;
+            line-height: 1.2;
         }
 
         .social-desc {
             font-size: 0.7rem;
             opacity: 0.7;
             margin-top: 2px;
+            line-height: 1.2;
         }
 
         .footer-heading {
@@ -558,6 +577,11 @@
 
         /* Responsive */
         @media (min-width: 768px) {
+            .termos-title::before,
+            .termos-title::after {
+                display: block;
+            }
+
             .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -591,25 +615,22 @@
 
         @media (max-width: 767px) {
             .menu-toggle {
-                display: flex;
+                display: block;
             }
 
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 100%;
+                width: 80%;
                 height: 100vh;
-                background-color: rgba(247, 247, 247, 0.98);
-                backdrop-filter: blur(10px);
+                background-color: var(--light);
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                gap: 30px;
-                transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                padding: 80px 20px 40px;
-                z-index: 1000;
-                overflow-y: auto;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             }
 
             nav[data-visible="true"] {
@@ -619,33 +640,11 @@
             .nav-menu {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
-                width: 100%;
-            }
-
-            .nav-link {
-                font-size: 1rem;
-                padding: 8px 0;
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-link:last-child {
-                border-bottom: none;
+                gap: 24px;
             }
 
             .header-cta {
                 margin-top: 20px;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-microcopy {
-                text-align: center;
-                margin-top: 8px;
             }
 
             .logo-img {
@@ -666,10 +665,14 @@
                 padding: 30px 20px;
             }
 
-            /* Footer social fullwidth no mobile */
+            /* Footer social fullwidth no mobile - cards com altura uniforme */
             .footer-social-fullwidth .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 12px;
+            }
+
+            .social-link {
+                height: 120px; /* altura fixa no mobile */
             }
         }
 
@@ -687,10 +690,18 @@
             outline: 2px solid var(--red);
             outline-offset: 2px;
         }
+
+        /* Hand-drawn elements (mantido por compatibilidade) */
+        .hand-drawn {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- Header (idêntico ao primeiro código) -->
     <header id="main-header">
         <div class="container header-content">
             <div class="logo-container">
@@ -699,13 +710,8 @@
                 </a>
             </div>
 
-            <!-- MENU HAMBURGER DO PRIMEIRO CÓDIGO -->
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
-                <div class="hamburger">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </div>
+                <span class="hamburger"></span>
             </button>
 
             <nav id="primary-navigation" data-visible="false">
@@ -725,9 +731,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content (termos de uso) -->
     <main id="main-content">
-        <!-- Termos de Uso -->
         <section class="termos-hero container">
             <h1 class="termos-title">Termos de Uso</h1>
             <p class="termos-subtitle">Excentricidade e Autenticidade</p>
@@ -906,7 +911,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (idêntico ao primeiro código) -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -930,13 +935,12 @@
                         <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-newsletter">
                     <h3 class="footer-heading">Clubinho Divertido</h3>
                     <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
-                    <form class="footer-form" id="footer-waitlist-form">
+                    <form class="footer-form" id="waitlist-form">
                         <input type="email" 
-                               id="footer-waitlist-email"
+                               id="waitlist-email"
                                class="footer-input" 
                                placeholder="seu@email.com"
                                aria-label="Insira seu e-mail para a lista de espera"
@@ -950,8 +954,6 @@
                     </p>
                 </div>
             </div>
-        </div>
-
         <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
         <div class="footer-social-fullwidth">
             <div class="container">
@@ -1008,54 +1010,28 @@
     </footer>
 
     <script>
-        // Menu hamburger do primeiro código
+        // Menu toggle para mobile (mesmo do primeiro código)
         const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
-        const body = document.body;
 
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
+        menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
             
+            // Trap focus no menu quando aberto
             if (!isExpanded) {
-                body.style.overflow = 'hidden';
                 navLinks[0].focus();
-            } else {
-                body.style.overflow = '';
             }
         });
 
+        // Fechar menu ao clicar em um link
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.setAttribute('aria-expanded', 'false');
                 nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
             });
-        });
-
-        document.addEventListener('click', (e) => {
-            if (nav.getAttribute('data-visible') === 'true' && 
-                !nav.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                
-                menuToggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-                menuToggle.focus();
-            }
         });
 
         // Header que diminui ao scrollar
@@ -1068,11 +1044,11 @@
             }
         });
 
-        // Formulário de lista de espera no footer
-        document.getElementById('footer-waitlist-form').addEventListener('submit', function(e) {
+        // Formulário de lista de espera (mesmo do primeiro código)
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const emailInput = document.getElementById('footer-waitlist-email');
+            const emailInput = document.getElementById('waitlist-email');
             const email = emailInput.value.trim();
             
             if (!email) {
@@ -1081,6 +1057,7 @@
                 return;
             }
             
+            // Validar formato de e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um e-mail válido!');
@@ -1088,15 +1065,28 @@
                 return;
             }
             
-            const encodedMessage = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
-            const whatsappUrl = `https://wa.me/5535999286246?text=${encodedMessage}`;
+            // Criar mensagem personalizada com o e-mail
+            const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
+            const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
             
+            // Abrir WhatsApp
             window.open(whatsappUrl, '_blank');
+            
+            // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
+        });
+
+        // Foco no primeiro elemento interativo quando o modal/menu abre
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (nav.getAttribute('data-visible') === 'true') {
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    menuToggle.focus();
+                }
+            }
         });
     </script>
 </body>
 </html>
-
-
