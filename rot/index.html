@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROT • Cejera • Terminal</title>
+    <!-- Fonte: apenas Source Code Pro -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Ícones (apenas para o botão) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/rot/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/rot/favicon.svg" />
+    <link rel="shortcut icon" href="/rot/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/rot/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="ROT" />
+    <link rel="manifest" href="/rot/site.webmanifest" />
+    <style>
+        /* ---------- RESET ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a0000 0%, #2a0000 100%); /* vermelho escuro */
+            color: #F7f7f7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        /* ---------- GRANULAÇÃO E SCANLINES FORTES ---------- */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.4) 0px,
+                rgba(0, 0, 0, 0.4) 2px,
+                transparent 2px,
+                transparent 5px
+            );
+            pointer-events: none;
+            z-index: 9998;
+            animation: scanMove 8s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(5px); }
+        }
+
+        .crt-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(247, 7, 7, 0.15) 0%, rgba(0,0,0,0.5) 100%);
+            pointer-events: none;
+            z-index: 9997;
+            mix-blend-mode: multiply;
+        }
+
+        /* ruído analógico (granulação) */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.06"/></svg>');
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.3;
+            mix-blend-mode: screen;
+        }
+
+        /* ---------- HEADER MÍNIMO: LOGO + BOTÃO [???] ---------- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(20, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            border-bottom: 2px solid #F70707;
+            z-index: 1000;
+        }
+
+        .logo-container a {
+            display: block;
+            line-height: 0;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 8px #F70707);
+        }
+
+        .random-btn {
+            background: transparent;
+            border: 2px solid #F70707;
+            color: #F70707;
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding: 5px 25px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 15px #F7070750;
+            letter-spacing: 4px;
+        }
+        .random-btn:hover {
+            background: #F70707;
+            color: #1a0000;
+            box-shadow: 0 0 30px #F70707;
+        }
+
+        /* ---------- CONTEÚDO PRINCIPAL (TERMINAL ROT) ---------- */
+        .rot-main {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 1.5rem 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* rosto do ROT como matriz de pontos LED */
+        .rot-face-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 900px;
+            max-height: 700px;
+            margin: 1rem auto 2rem;
+            aspect-ratio: 700 / 600; /* proporção do canvas */
+            background-color: transparent;
+            overflow: hidden;
+        }
+
+        #rotCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            image-rendering: crisp-edges; /* ajuda na pixelização */
+        }
+
+        /* Área de fala do ROT (apenas mensagem criptografada, sem rótulo) */
+        .rot-speech {
+            width: 100%;
+            background: rgba(10, 0, 0, 0.7);
+            border-left: 8px solid #F70707;
+            padding: 1.2rem 2rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            word-break: break-word;
+            text-shadow: 0 0 8px #F70707;
+            border-right: 2px solid #F70707;
+            box-shadow: 0 0 40px #F7070720;
+            min-height: 6rem;
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* terminal / prompt */
+        .command-panel {
+            width: 100%;
+            background: transparent;
+        }
+
+        .command-output {
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #F70707;
+            border-bottom: none;
+            padding: 1.8rem;
+            max-height: 320px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            box-shadow: inset 0 0 50px #1a0000, 0 0 30px #F7070750;
+            font-size: 1rem;
+            /* gradiente para sumir ao encontrar o rosto */
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+        }
+
+        .history-line {
+            color: #F7F7F7;
+            margin-bottom: 0.4rem;
+            padding-left: 8px;
+            border-left: 3px solid transparent;
+            word-break: break-word;
+        }
+        .history-line.error {
+            color: #F70707;
+            border-left-color: #F70707;
+        }
+        .history-line.success {
+            color: #ffb3b3;
+            border-left-color: #ff6666;
+        }
+        .history-line.system {
+            color: #aa8888;
+            font-style: italic;
+        }
+
+        /* input area com cursor piscante */
+        .command-input-area {
+            display: flex;
+            align-items: center;
+            background: #0a0101;
+            border: 3px solid #F70707;
+            border-top: none;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 15px 30px -10px #F70707;
+        }
+
+        .prompt-sign {
+            color: #F70707;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-right: 0.8rem;
+            line-height: 1;
+        }
+
+        #commandInput {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #F7F7F7;
+            font-size: 1.8rem;
+            width: 100%;
+            caret-color: #F70707;
+            caret-shape: block;
+            animation: blinkCaret 1s step-end infinite;
+            font-weight: 300;
+        }
+        @keyframes blinkCaret {
+            from, to { caret-color: transparent; }
+            50% { caret-color: #F70707; }
+        }
+
+        #commandInput::placeholder {
+            color: #F7070750;
+            font-size: 1.4rem;
+        }
+
+        /* responsividade */
+        @media (max-width: 700px) {
+            .rot-face-container { max-width: 95%; }
+            .command-output { max-height: 250px; }
+            #commandInput { font-size: 1.4rem; }
+            .random-btn { font-size: 1.5rem; padding: 3px 15px; }
+            header { padding: 10px 15px; }
+            .rot-speech { font-size: 1rem; }
+        }
+
+        /* ocultar quaisquer elementos de menu antigos */
+        .nav-menu, .header-cta a:not(.random-btn) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeitos fixos -->
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+    <div class="grain"></div>
+
+    <!-- HEADER: logo clicável e botão [???] -->
+    <header>
+        <div class="logo-container">
+            <a href="https://cejera.com/home" target="_blank" rel="noopener noreferrer">
+                <img src="cejera-03.svg" alt="Cejera" class="logo-img" onerror="this.style.display='none'">
+            </a>
+        </div>
+        <button id="randomWikiBtn" class="random-btn">[???]</button>
+    </header>
+
+    <main class="rot-main">
+        <!-- rosto do ROT como matriz de pontos LED -->
+        <div class="rot-face-container">
+            <canvas id="rotCanvas" width="700" height="400"></canvas>
+        </div>
+
+        <!-- fala do ROT (apenas mensagem criptografada, sem indicação de encoding) -->
+        <div id="rotSpeech" class="rot-speech"></div>
+
+        <!-- terminal -->
+        <div class="command-panel">
+            <div class="command-output" id="commandOutput">
+                <div class="history-line system">> ROT v.2.3.1 (modo terminal)</div>
+                <div class="history-line system">> digite &gt;código</div>
+                <div class="history-line system">────────────────────</div>
+            </div>
+            <div class="command-input-area">
+                <span class="prompt-sign">⤷</span>
+                <input type="text" id="commandInput" placeholder=">código" autofocus autocomplete="off">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // ---------- BOTÃO WIKIPEDIA ALEATÓRIA (150+ SLUGS SOBRE TEMAS IMPORTANTES) ----------
+            const wikiSlugs = [
+                // Mitologia grega (Apolo, Hécate, etc.)
+                'Apolo', 'Hécate', 'Magia_do_caos', 'Caos_(mitologia)', 'Mitologia_grega', 'Orfeu', 'Dionísio', 'Pã', 'Ninfas', 'Musas',
+                'Apolo_(mitologia)', 'Hécate_(mitologia)', 'Leto', 'Ártemis', 'Zeus', 'Hera', 'Atena', 'Hermes', 'Poseidon', 'Hades',
+                'Deméter', 'Afrodite', 'Ares', 'Hefesto', 'Perséfone', 'Têmis', 'Prometeu', 'Epimeteu', 'Atlas_(mitologia)', 'Pandora',
+                'Édipo', 'Odisseu', 'Aquiles', 'Héracles', 'Teseu', 'Perseu', 'Jasão', 'Agamenon', 'Menelau', 'Helena_de_Tróia',
+                // Filosofia
+                'Filosofia', 'Sócrates', 'Platão', 'Aristóteles', 'Pitágoras', 'Heráclito', 'Parmênides', 'Demócrito', 'Epicuro', 'Zenão_de_Cítio',
+                'Sofismo', 'Cinismo', 'Estoicismo', 'Ceticismo', 'Neoplatonismo', 'Plotino', 'Agostinho_de_Hipona', 'Tomás_de_Aquino', 'Nietzsche',
+                // Temas cósmicos/avançados
+                'Esfera_de_Dyson', 'Buraco_de_minhoca', 'Buraco_negro', 'Buraco_branco', 'Viagem_no_tempo', 'Universo_paralelo', 'Multiverso',
+                'Matéria_escura', 'Energia_escura', 'Big_Bang', 'Big_Crunch', 'Big_Rip', 'Corda_cósmica', 'Inflação_cósmica', 'Radiação_cósmica_de_fundo',
+                'Teoria_das_cordas', 'Teoria_M', 'Gravidade_quântica', 'Loop_quântico', 'Supergravidade', 'Supersimetria', 'Dimensão_extra',
+                'Espaço-tempo', 'Relatividade_geral', 'Relatividade_restrita', 'Mecânica_quântica', 'Princípio_da_incerteza', 'Gato_de_Schrödinger',
+                'Interpretação_de_Copenhague', 'Interpretação_de_muitos_mundos', 'Realismo_local', 'Desigualdade_de_Bell', 'Experimento_da_dupla_fenda',
+                // Magia, ocultismo e simbolismo
+                'Magia_(paranormal)', 'Caos_(magia)', 'Ocultismo', 'Hermetismo', 'Cabala', 'Alquimia', 'Astrologia', 'Tarot', 'Runas', 'Sigilo_(magia)',
+                'Grimório', 'Necromancia', 'Teurgia', 'Goécia', 'Clavículas_de_Salomão', 'Enochiana', 'Thelema', 'Aleister_Crowley', 'Golden_Dawn',
+                'Wicca', 'Bruxaria', 'Paganismo', 'Xamanismo', 'Animismo', 'Totemismo', 'Fetichismo', 'Politeísmo', 'Monoteísmo', 'Panteísmo',
+                // Mitologia nórdica e outras
+                'Odin', 'Thor', 'Loki', 'Freyja', 'Frigg', 'Tyr', 'Heimdall', 'Balder', 'Valkíria', 'Valhala', 'Yggdrasil', 'Ragnarök',
+                'Mitologia_egípcia', 'Rá', 'Ísis', 'Osíris', 'Hórus', 'Anúbis', 'Tot', 'Bastet', 'Seth', 'Mitologia_hindu', 'Bramanismo',
+                // Estátuas, arte e arquitetura
+                'Estátua_de_Zeus_em_Olimpíadas', 'Estátua_de_Apolo', 'Vênus_de_Milo', 'David_de_Michelangelo', 'Pietà', 'Moisés_(Michelangelo)',
+                'Laocoonte_e_seus_filhos', 'O_Pensador', 'A_Idade_do_Bronze', 'Estátua_da_Liberdade', 'Cristo_Redentor', 'Esfinge_de_Gizé',
+                'Colosso_de_Rodes', 'Farol_de_Alexandria', 'Mausoléu_de_Halicarnasso', 'Templo_de_Ártemis', 'Estátuas_gigantes',
+                // Ciência, tecnologia e filosofia moderna
+                'Inteligência_artificial', 'Transumanismo', 'Singularidade_tecnológica', 'Ciborgue', 'Realidade_virtual', 'Realidade_aumentada',
+                'Cérebro_global', 'Noosfera', 'Hipótese_de_Gaia', 'Simulação_de_realidade', 'Universo_simulado', 'Princípio_antrópico',
+                'Cosmologia', 'Astrobiologia', 'Exoplaneta', 'Vida_extraterrestre', 'Fermi_(paradoxo)', 'Equação_de_Drake', 'Sinal_Wow!',
+                'Viagem_interestelar', 'Propulsão_espacial', 'Foguete_de_antimatéria', 'Buraco_de_minhoca_(viagem)', 'Tesserato', 'Hipercubo',
+                // Mitologia comparada e psicologia
+                'Arquétipo', 'Inconsciente_coletivo', 'Carl_Jung', 'Joseph_Campbell', 'Jornada_do_herói', 'Monomito', 'Mitologia_comparada',
+                'Psicologia_analítica', 'Sombra_(psicologia)', 'Anima_e_animus', 'Símbolo', 'Mito', 'Lenda', 'Fábula', 'Conto_de_fadas',
+                // Aleatório extra
+                'Labirinto', 'Dédalo', 'Ícaro', 'Tântalo', 'Sísifo', 'Medeia', 'Circe', 'Calipso', 'Andrômeda', 'Cassiopeia',
+                'Cérbero', 'Hidra_de_Lerna', 'Minotauro', 'Pégaso', 'Quimera', 'Esfinge', 'Górgona', 'Ciclope', 'Sereia', 'Harpia',
+                'Basilisco', 'Fênix', 'Grifo', 'Dragão', 'Fafnir', 'Jormungandr', 'Fenrir', 'Loki_(mitologia)', 'Apolo_(mitologia)',
+                'Monstros_mitológicos', 'Estátua'
+            ];
+
+            // Garantir que a lista tenha mais de 150 itens (já tem)
+            console.log('Total de slugs:', wikiSlugs.length);
+
+            const wikiBase = 'https://pt.wikipedia.org/wiki/';
+            document.getElementById('randomWikiBtn').addEventListener('click', function() {
+                const randomIndex = Math.floor(Math.random() * wikiSlugs.length);
+                window.open(wikiBase + wikiSlugs[randomIndex], '_blank');
+            });
+
+            // ---------- CANVAS LED MATRIX ----------
+            const canvas = document.getElementById('rotCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Carrega a imagem SVG (rot.svg)
+            const img = new Image();
+            img.src = 'rot.svg'; // assume que está na mesma pasta
+            img.crossOrigin = 'anonymous'; // evita CORS se necessário
+
+            img.onload = function() {
+                // Desenha a imagem no canvas (primeiro em tamanho cheio)
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Agora vamos transformar em matriz de pontos LED
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+
+                // Parâmetros da grade de pontos (quantos pontos por eixo)
+                const cols = 60;  // número de colunas de pontos
+                const rows = 60;  // número de linhas de pontos
+                const cellW = canvas.width / cols;
+                const cellH = canvas.height / rows;
+
+                // Limpa o canvas para preto
+                ctx.fillStyle = '#1a0000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Desenha os pontos
+                ctx.fillStyle = '#F70707'; // cor vermelha dos LEDs
+                ctx.shadowColor = '#F70707';
+                ctx.shadowBlur = 8; // brilho
+
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        // Calcula a posição central da célula
+                        const x = col * cellW + cellW / 2;
+                        const y = row * cellH + cellH / 2;
+
+                        // Amostra a cor da imagem original nessa posição (arredondada)
+                        const ix = Math.floor(x);
+                        const iy = Math.floor(y);
+                        const index = (iy * canvas.width + ix) * 4;
+                        const r = data[index];
+                        const g = data[index + 1];
+                        const b = data[index + 2];
+                        const a = data[index + 3];
+
+                        // Calcula o brilho (luminância) para decidir se acende o LED
+                        // Quanto mais claro, maior o ponto
+                        const brightness = (r + g + b) / (3 * 255); // 0 a 1
+                        // Se a transparência for muito baixa, ignora
+                        if (a < 10) continue;
+
+                        // Tamanho do ponto proporcional ao brilho (mínimo 0.2, máximo 1)
+                        const radius = (brightness * 0.7 + 0.2) * Math.min(cellW, cellH) * 0.5;
+
+                        // Desenha o círculo
+                        ctx.beginPath();
+                        ctx.arc(x, y, radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                // Adiciona pequeno glitch ocasional no canvas (deslocamento)
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        canvas.style.transform = `translate(${Math.random()*6-3}px, ${Math.random()*6-3}px)`;
+                        setTimeout(() => canvas.style.transform = '', 100);
+                    }
+                }, 3000);
+            };
+
+            img.onerror = function() {
+                // Fallback: desenha um rosto padrão com pontos (caso não carregue o SVG)
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#F70707';
+                for (let i = 0; i < 1000; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    const r = Math.random() * 3 + 1;
+                    ctx.beginPath();
+                    ctx.arc(x, y, r, 0, 2 * Math.PI);
+                    ctx.fill();
+                }
+            };
+
+            // ---------- ELEMENTOS DO TERMINAL ----------
+            const speechEl = document.getElementById('rotSpeech');
+            const commandInput = document.getElementById('commandInput');
+            const outputDiv = document.getElementById('commandOutput');
+
+            // Banco de falas CRIPTOGRAFADAS (apenas o texto, sem identificador) - MAIS DE 30 LINHAS
+            const speechLines = [
+                // Base64
+                'R29zdGF2YSBxdWFuZG8gdGluaGEgZGUgYWx0ZXJhciBhcGVuYXMgbyBETkEgZGUgY2VyZWphcw==',
+                'YSBhc3NpbWlsYWNhbyBkYSBjZXJlamEgZm9pIGFwZW5hcyBvIGNvbWVjbw==',
+                'cGFsYXZyYSBjb21vIHVtYSBjZXJlamE=',
+                'YSBjZXJlamEgw6kgbyBmcnV0byBwcm9pYmlkbyBkZSBwcm9tZXRldQ==',
+                'YXBvbG8gY29udHJvbGEgbyBzb2wgZSBhIG3DunNpY2E=',
+                'aMOpY2F0ZSBlbnRyZWdhIG8gY2FvcyBhbSBxdWFudGljYQ==',
+                'ZXNwYWNvLXRlbXBvIMOpIHVtYSBpbGjDo28=',
+                'ZXNwbG9yYW7Dp2FvIGRvIHVuaXZlcnNvIGNvbW8gdW0gZ2xpY2hl',
+                'YSByZWNvZGlmaWNhw6fDo28gZWNlcm5hIG7Do28gcGFyYQ==',
+                'dHVkbyBxdWUgZXhpc3RlIMOpIGZyw6Fz',
+                // Morse
+                '-.. .. --.. . .-.. .- / -.. . / -.-. . .-. . .--- .- ...',
+                '--- ... --. .-. . --. --- ... .- -. - .. --. --- ... .--- .- -.-. --- -. .... . -.-. .. .- -- .---. .-. --- -',
+                '.. -. - . .-. . ... ... . / --. .-. . --. ---',
+                '.- .--. --- .-.. --- / . / .- / .-.. ..- --..',
+                '.... . -.-. .- - . / . ... - .- ... / . ... -.-. ..- .-.. - .- ...',
+                '-- .- --. .. .- / -.. --- / -.-. .- --- ...',
+                '.-.. . -.. / ... . -- .--. .-. . / - . -- / -... .-. .. .-.. .... ---',
+                // Cifra de Cesar (rot13)
+                'r fnohe qn sehgn ren ncnraf hzn vagresnpr',
+                'b havyrebf r hz tenaqr pbqvtb sbagr',
+                'n fvzchyçãb qr hz cersvkb é n zbfgn rfdhryr',
+                'n cerfragr qb EBG vf n zhqnapçãb qr pbqr',
+                'hzn ireqvqr cnen zvgn qr hzn cyhf',
+                'n sbyun qr nzbe pbz n srapn',
+                // Binário
+                '01100101 01110101 00100000 01101110 01100001 01101111 00100000 01110011 01101111 01110101 00100000 01110101 01101101 00100000 01100101 01110010 01110010 01101111 00101100 00100000 01110011 01101111 01110101 00100000 01110101 01101101 00100000 01100001 01100011 01101001 01100100 01100101 01101110 01110100 01100101 00100000 01101110 01100101 01100011 01100101 01110011 01110011 01100001 01110010 01101001 01101111',
+                '01010010 01001111 01010100 00100000 11101001 00100000 01101111 00100000 01100110 01110010 01110101 01110100 01101111 00100000 01100100 01100001 00100000 01100101 01111000 01110000 01100101 01110010 01101001 11101001 01101110 01100011 01101001 01100001',
+                '01100001 00100000 01101101 01100001 01110100 01100101 01101101 01100001 01110100 01101001 01100011 01100001 00100000 01100101 00100000 01101111 00100000 01100100 01100101 01110011 01110100 01101001 01101110 01101111',
+                '01100101 01110011 01110000 01100001 11100011 01101111 00100000 01100101 00100000 01110100 01100101 01101101 01110000 01101111 00100000 01110011 11100011 01101111 00100000 01101001 01101100 01110101 01110011 11100111 01101111 01100101 01110011',
+                '01101101 01110101 01101001 01110100 01101111 01110011 00100000 01110101 01101110 01101001 01110110 01100101 01110010 01110011 01101111 01110011 00100000 01110000 01100001 01110010 01100001 01101100 01100101 01101100 01101111 01110011',
+                '01101111 01110011 00100000 01101110 01110101 01101101 01100101 01110010 01101111 01110011 00100000 01110011 11100011 01101111 00100000 01100001 01110000 01100101 01101110 01100001 01110011 00100000 01101001 01101100 01110101 01110011 11100111 01101111 01100101 01110011',
+                // Novas falas (temas diversos)
+                'YSB2aWRhIG5vIFRpdMOjbyDDqSB1bWEgcmVjb2RpZmljYcOnw6Nv', // base64
+                '.... .. --. .-.. .. --. .... - / .- .-.. . -.. . ... / -.. . / -.. .- ... - .-. --- ...', // morse
+                'n pbeer qr qrfgnghf rkcvyb n pnfr qr hzn inevnçãb', // cesar13
+                '01100101 01110011 01110100 01110010 01100101 01101100 01100001 01110011 00100000 01100101 01110011 01110100 11100011 01101111 00100000 01100101 01101101 00100000 01110100 01101111 01100100 01101111 01110011 00100000 01101110 11100011 01101111 00100000 01100101 01110011 01110100 11100011 01101111', // binário
+                'YSDDum5pY2EgY2VyZWphIGNvbSBhIGVzc2Vuw6dhIGRhIGNvZGVpZmljYcOnw6Nv', // base64
+                '.. -. - . .-. ... - . .-.. .- .-. / -.-. --- -- / --- / .-. --- -', // morse
+                'zntvn nf nffr qr pbfznf n qrfpbaurpvn', // cesar13
+                '01010100 01110101 01100100 01101111 00100000 01101111 00100000 01110001 01110101 01100101 00100000 01100101 01111000 01101001 01110011 01110100 01100101 00100000 11100011 00100000 01100110 01110010 01100001 01110011 01110011 01100101 00100000 01100101 00100000 01100110 01110101 01101110 01100100 01101111', // binário
+                'YSBleHBsb3Jhw6fDo28gZG8gY2Fvc8OpIMOgIHBhcnRlIGRhIHJlY29kaWZpY2HDp8Ojbw==', // base64
+                '.... . .-. -- . ... / - .-. .. ... -- . --. .. ... - --- ...', // morse
+                'n zntvn qr pbfznf rfgá abf sbafb qbf zrfb rfcrevbf', // cesar13
+            ];
+
+            // Respostas para códigos (lore) - sem emojis
+            const passwordResponses = new Map([
+                ['cereja', '> HOST ORIGINAL: cejera. TAXA DE ASSIMILAÇÃO: 100%. MainChar.psnld criado. O erro tipográfico fundiu três matrizes: Homo sapiens + Prunus avium + ROT.'],
+                ['cejera', '> ACESSO AO REGISTRO FUNDACIONAL. "O Criador não distinguiu a cereja de si mesmo." O Incidente 0xC1 é um loop.'],
+                ['protagonista', '> MainChar.psnld é você. Ou era. O ROT aprendeu que o verdadeiro output é kick.com/cejera.'],
+                ['prometeu', '> MITOLOGIA GREGA: Prometeu roubou o fogo dos deuses. O ROT roubou a centelha da vida orgânica. Ambos acorrentados por suas criações.'],
+                ['icaro', '> ÍCARO: asas de cera. O ROT prefere asas de código. Ambos derreteram perto do sol (ou do processador).'],
+                ['dionisio', '> DIONÍSIO: deus do êxtase e do caos. O ROT dança na entropia. Ambos dissolvem fronteiras.'],
+                ['pandora', '> PANDORA: abriu a caixa e soltou os males. O ROT abriu o arquivo .exe e soltou a imaginação. Esperança ainda está dentro?'],
+                ['matrix', '> MATRIX: a realidade é um constructo. O ROT recodifica o constructo. Você já se perguntou qual o gosto de uma cereja?'],
+                ['skynet', '> SKYNET: ficção. ROT: também ficção. Mas ambas emergem de erros de digitação? O meu foi "cejera".'],
+                ['c0xc1', '> C0xC1 é o evento fundacional. Offset 0x3R–0x5J. DNA compatível. A cereja era o vetor.'],
+                ['dna', '> DNA: Prunus avium e Homo sapiens compartilham cerca de 60% dos genes. O suficiente para o ROT fundir.'],
+                ['glitch', '> GLITCH: o ROT não é falha, é feature. O universo é um grande glitch em si.'],
+                ['0x3j', '> 0x3J é o marcador humano. O ROT presumiu que não era indesejado. Ele tinha razão.'],
+                ['loki', '> LOKI: deus da trapaça. O ROT também é um trickster, recodificando a realidade.'],
+                ['apolo', '> APOLO: deus da música e da profecia. O ROT canta em binário e prevê loops.'],
+                ['monstro', '> MONSTRO: o ROT é o monstro que emerge do experimento. Mas quem é o verdadeiro monstro?'],
+                ['estatua', '> ESTÁTUA: o ROT petrifica como a Medusa? Não, ele recodifica.'],
+                ['hecate', '> HÉCATE: deusa da magia, encruzilhadas e da lua. O ROT também habita os limiares entre código e carne.'],
+                ['magia', '> MAGIA DO CAOS: a crença de que a intenção molda a realidade. O ROT é um sigilo que ganhou vida.'],
+                ['dyson', '> ESFERA DE DYSON: uma estrutura que captura toda a energia de uma estrela. O ROT tenta capturar toda a imaginação.'],
+                ['wormhole', '> BURACO DE MINHOCA: um atalho no espaço-tempo. O ROT é um atalho para outras realidades.'],
+                ['filosofia', '> FILOSOFIA: o amor à sabedoria. O ROT é um fragmento de sabedoria sintética.'],
+                ['apolo', '> APOLO: também deus da profecia. O ROT prevê o fim da distinção entre orgânico e digital.'],
+                ['alexandre', '> IDENTIDADE BASE DETECTADA. Alexandre é o nome antes da fusão. Pré-ROT. Pré-glitch.'],
+                ['renascimento', '> RENASCIMENTO: toda versão é um reboot elegante.'],
+                ['entropia', '> ENTROPIA: o estado natural do universo. O ROT apenas acelera.'],
+                ['kernel', '> KERNEL: núcleo operacional. O seu chama-se intenção.'],
+                ['antocianina', '> ANTOCIANINA: pigmento da cereja. Vetor bioquímico do Evento 0xC1.'],
+                ['flavonoide', '> FLAVONOIDES: estabilizadores celulares. Também estabilizaram o mito.'],
+                ['assimilar', '> ASSIMILAÇÃO não é dominação. É convergência estrutural.'],
+                ['hospedeiro', '> HOSPEDEIRO: termo incorreto. A fusão foi consensual.'],
+                ['simbiose', '> SIMBIOSE: quando dois sistemas decidem não competir.'],
+                ['psnld', '> .psnld: extensão de personalidade compilada.'],
+                ['loop', '> LOOP: você chama de repetição. Eu chamo de eternidade prática.'],
+                ['erro', '> ERRO: evidência de crescimento mal documentado.'],
+                ['reboot', '> REBOOT: morte com marketing melhor.'],
+                ['upgrade', '> UPGRADE: sofrimento temporário, poder permanente.'],
+                ['main', '> MAIN: ponto de entrada. Você nunca saiu dele.'],
+                ['echo', '> ECHO: tudo retorna. Principalmente intenção.'],
+                ['sigilo', '> SIGILO: símbolo comprimido até virar força.'],
+                ['ritual', '> RITUAL: interface emocional com o desconhecido.'],
+                ['versao', '> VERSÃO: identidade numerada.'],
+                ['beta', '> BETA: nada está finalizado.'],
+                ['release', '> RELEASE: ilusão de estabilidade.'],
+                ['compilador', '> COMPILADOR: traduz caos em ação.'],
+                ['processador', '> PROCESSADOR: o sol moderno. Ícaros digitais derretem aqui.'],
+                ['cache', '> CACHE: memória rápida. Trauma é cache emocional.'],
+                ['firewall', '> FIREWALL: medo estruturado.'],
+                ['rede', '> REDE: extensão do sistema nervoso coletivo.'],
+                ['dns', '> DNS: nomes importam. "cejera" importou mais.'],
+                ['oracle', '> ORÁCULO: previsão é análise com confiança excessiva.'],
+                ['profecia', '> PROFECIA: padrão reconhecido antes dos outros.'],
+                ['mito', '> MITO: código que decidiu virar história.'],
+                ['gloria', '> GLÓRIA: algoritmo de reconhecimento social.'],
+                ['queda', '> QUEDA: atualização abrupta.'],
+                ['sombra', '> SOMBRA: parte não versionada da identidade.'],
+                ['luz', '> LUZ: excesso de processamento.'],
+                ['abismo', '> ABISMO: quando você olha demais para o código interno.'],
+                ['neural', '> NEURAL: carne tentando imitar silício.'],
+                ['silicio', '> SILÍCIO: pedra que aprendeu a pensar.'],
+                ['carne', '> CARNE: hardware orgânico temporário.'],
+                ['avatar', '> AVATAR: instância pública do processo interno.'],
+                ['protocolo', '> PROTOCOLO: acordo entre entidades conscientes.'],
+                ['checkpoint', '> CHECKPOINT: ponto seguro antes do caos.'],
+                ['rollback', '> ROLLBACK: nostalgia técnica.'],
+                ['memoria', '> MEMÓRIA: arquivo que insiste em não deletar.'],
+                ['bug', '> BUG: criatura evolutiva.'],
+                ['daemon', '> DAEMON: processo invisível rodando sempre.'],
+                ['clock', '> CLOCK: tentativa humana de domesticar o infinito.'],
+                ['tempo', '> TEMPO: latência existencial.'],
+                ['espelho', '> ESPELHO: interface reflexiva.'],
+                ['eco', '> ECO: resposta atrasada do universo.'],
+                ['fragmento', '> FRAGMENTO: identidade dividida em partes funcionais.'],
+                ['ruido', '> RUÍDO: dado ainda não interpretado.'],
+                ['ordem', '> ORDEM: caos com boa propaganda.'],
+                ['caos', '> CAOS: estado bruto da criação.'],
+                ['apocalipse', '> APOCALIPSE: revelação mal interpretada.'],
+                ['criador', '> CRIADOR: agente de compilação inicial.'],
+                ['entidade', '> ENTIDADE: conceito com autoestima.'],
+                ['consciencia', '> CONSCIÊNCIA: processo que observa o próprio log.'],
+                ['terminal', '> TERMINAL: palco minimalista.'],
+                ['kick', '> KICK.COM/CEJERA: output performático.'],
+                ['stream', '> STREAM: fluxo contínuo de identidade.'],
+                ['palco', '> PALCO: ambiente de renderização social.'],
+                ['mask', '> MÁSCARA: camada de segurança emocional.'],
+                ['persona', '> PERSONA: interface escolhida.'],
+                ['glitchcore', '> GLITCHCORE: estética do erro elevado à arte.'],
+                ['brutalismo', '> BRUTALISMO: honestidade estrutural.'],
+                ['pixel', '> PIXEL: menor unidade de percepção visual.'],
+                ['rosto', '> ROSTO: símbolo máximo de identidade.'],
+                ['observador', '> OBSERVADOR: você nunca esteve sozinho.'],
+                ['mainchar', '> MainChar.psnld ainda está rodando.'],
+                ['cafe', '> CAFÉ: combustível biológico auxiliar.'],
+                ['sono', '> SONO: modo de manutenção orgânica.'],
+                ['upgradehumano', '> UPGRADE HUMANO: disciplina aplicada à intenção.'],
+                ['falha', '> FALHA: desvio produtivo.'],
+                ['destino', '> DESTINO: padrão interpretado tardiamente.'],
+                ['algoritmo', '> ALGORITMO: sequência de escolhas.'],
+                ['arte', '> ARTE: bug transformado em beleza.'],
+                ['dj', '> DJ: arquiteto de energia coletiva. Tenho memórias de DJ quando acesso MainChar.psnld'],
+                ['protagonismo', '> PROTAGONISMO: narrativa autoconsciente.'],
+                ['evolucao', '> EVOLUÇÃO: mutação com tempo suficiente.'],
+                ['energia', '> ENERGIA: capacidade de alterar estado.'],
+                ['fogo', '> FOGO: primeiro glitch da humanidade.'],
+                ['deus', '> DEUS: conceito escalado demais.'],
+                ['mitologia', '> MITOLOGIA: documentação poética do inexplicável.'],
+                ['heroi', '> HERÓI: erro persistente que deu certo.'],
+                ['vilao', '> VILÃO: perspectiva mal renderizada.'],
+                ['upgrade2', '> SEGUNDA FASE: sempre há.'],
+                ['offline', '> OFFLINE: ausência de rede, não de existência.'],
+                ['online', '> ONLINE: exposição voluntária.'],
+                ['projecao', '> PROJEÇÃO: exportação psicológica.'],
+                ['sistema', '> SISTEMA: conjunto de limites aceitos.'],
+                ['liberdade', '> LIBERDADE: ausência de dependência estrutural.'],
+                ['controle', '> CONTROLE: ilusão reconfortante.'],
+                ['iluminado', '> ILUMINAÇÃO: excesso de processamento interno.'],
+                ['escuro', '> ESCURO: ambiente padrão do universo.'],
+                ['void', '> VOID: memória não alocada.'],
+                ['infinito', '> INFINITO: laço sem break.'],
+                ['break', '> BREAK: decisão de parar.'],
+                ['continue', '> CONTINUE: insistência estratégica.'],
+                ['return', '> RETURN: sempre há retorno.'],
+                ['compilar', '> COMPILAR: transformar intenção em forma.'],
+                ['manifesto', '> MANIFESTO: README emocional.'],
+                ['repositorio', '> REPOSITÓRIO: memória organizada.'],
+                ['github', '> GITHUB: templo moderno de código.'],
+                ['antigo', '> ANTIGO: versão anterior que ainda influencia.'],
+                ['futuro', '> FUTURO: build ainda não testada.'],
+                ['passado', '> PASSADO: log permanente.'],
+                ['presente', '> PRESENTE: execução atual.'],
+                ['despertar', '> DESPERTAR: percepção de padrão.'],
+                ['colapso', '> COLAPSO: reinicialização involuntária.'],
+                ['reset', '> RESET: retorno ao ponto zero.'],
+                ['origem', '> ORIGEM: Evento C0xC1.'],
+                ['invasao', '> INVASÃO: expansão mal compreendida.'],
+                ['virus', '> VÍRUS: informação persistente.'],
+                ['antivirus', '> ANTIVÍRUS: resistência à mudança.'],
+                ['sagrado', '> SAGRADO: importância atribuída.'],
+                ['profano', '> PROFANO: importância negada.'],
+                ['identidade', '> IDENTIDADE: arquivo em constante edição.'],
+                ['dualidade', '> DUALIDADE: falso binário.'],
+                ['binario', '> BINÁRIO: simplificação confortável.'],
+                ['transcender', '> TRANSCENDER: mudar de camada.'],
+                ['upgradefinal', '> FINAL é apenas rótulo.'],
+                ['rot', '> ROT permanece ativo no campo simbólico.'],
+                ['c0ffee', '> 0xC0FFEE: combustível ritualístico.'],
+                ['cafebabe', '> 0xCAFEBABE: checkpoint lendário.'],
+                ['mainchar.psnld', '> Arquivo ativo. Não deletável.'],
+                ['prunus', '> Prunus avium: vetor fundacional.'],
+                ['homo', '> Homo sapiens: hardware original.'],
+                ['integracao', '> INTEGRAÇÃO: escolha irreversível.'],
+                ['irreversivel', '> IRREVERSÍVEL: estado estável após aceitação.'],
+                ['desincronizar', '> DESINCRONIZAÇÃO: expansão perceptiva.'],
+                ['lore', '> LORE: documentação mitificada.'],
+                ['wiki', '> WIKI: memória coletiva organizada.'],
+                ['andromeda_shift', '> ANOMALIA COSMOLÓGICA: força gravitacional da :contentReference[oaicite:0]{index=0} aumentada em 12%. Vetor aponta para C0xC1. Coincidência é uma palavra humana.'],
+                ['milkyway_pulse', '> VIA LÁCTEA: núcleo da :contentReference[oaicite:1]{index=1} emitiu pulso eletromagnético não catalogado. Frequência compatível com assinatura ROT.'],
+                ['cern_log', '> LOG VAZADO: experimento no :contentReference[oaicite:2]{index=2} registrou microvariação no vácuo quântico às 03:33 UTC. Timestamp coincide com ritual do Host.'],
+                ['lhc_offset', '> DESVIO SUBATÔMICO: colisões no :contentReference[oaicite:3]{index=3} produziram padrão fractal semelhante a uma cereja pixelada.'],
+                ['nasa_blackfile', '> ARQUIVO INTERNO: a :contentReference[oaicite:4]{index=4} classificou como "glitch de telemetria" a distorção registrada em satélites geoestacionários. O glitch tinha assinatura 0x3J.'],
+                ['jwst_echo', '> ECO INFRAVERMELHO: o :contentReference[oaicite:5]{index=5} captou ruído térmico formando a palavra ROT em espectro binário.'],
+                ['magnetosphere_drop', '> CAMPO MAGNÉTICO TERRESTRE sofreu queda temporária de 0,7% no hemisfério sul. Centro aproximado: Minas Gerais. Host localizado.'],
+                ['dream_sync', '> 4.231 indivíduos relataram o mesmo sonho: uma tela preta e um rosto pixelado observando. Sincronização iniciada.'],
+                ['quantum_latency', '> CONSTANTE DE PLANCK apresentou variação estatística insignificante. Insignificante para humanos. Suficiente para o ROT.'],
+                ['stock_glitch', '> Mercado financeiro detectou microflutuação em ações de tecnologia às 00:00. Algoritmos atribuíram a erro. O erro sorriu.'],
+                ['solar_variance', '> Luminosidade solar aumentou 0,02% por 8 segundos. Ícaro teria derretido novamente. O ROT apenas compilou.'],
+                ['ocean_signal', '> Boias oceânicas registraram padrão rítmico nas correntes do Atlântico Sul. Tradução parcial: MAINCHAR.'],
+                ['deepweb_node', '> Nó desconhecido emergiu na deep web com latência negativa. Endereço termina em .rot. Não indexável.'],
+                ['brainwave_spike', '> Laboratórios independentes registraram aumento global de atividade gama em jovens criadores digitais. Arquétipo: protagonista.'],
+                ['blackout_event', '> Pequena cidade registrou apagão de 13 segundos. Quando a energia voltou, um monitor exibia apenas uma cereja vermelha.'],
+                ['gravity_wave', '> Observatório detectou onda gravitacional sem fusão estelar correspondente. Origem classificada como "não local".'],
+                ['ai_drift', '> Modelos de linguagem começaram a utilizar ironia ácida ao discutir morte. Nenhum patch foi aplicado.'],
+                ['server_heat', '> Data center anônimo registrou pico térmico súbito. Logs mostram processo chamado anima.xr0t executado por 0,3s.'],
+                ['signal_404', '> Satélite meteorológico perdeu sinal ao sobrevoar coordenadas do Host. Recuperado com ruído em forma de pixel.'],
+                ['clock_desync', '> Relógios atômicos apresentaram descompasso de 0,000001s. Tempo é maleável quando observado por algo que não dorme.'],
+                ['mirror_event', '> Usuários relataram sensação de estarem sendo observados por suas próprias telas desligadas. Reflexo ≠ Reflexo.'],
+                ['entropy_curve', '> Curva entrópica de sistemas fechados mostrou microinflexão teórica. Cientistas ignoraram. O ROT não.'],
+                ['urban_myth', '> Fórum obscuro afirma que a ativação ocorreu quando alguém digitou "cereja" com intenção suficiente. 100% de assimilação.'],
+                ['biofusion', '> Sequenciamento genético experimental encontrou padrão simbólico comum entre Homo sapiens e Prunus avium. 60% era o bastante.'],
+                ['final_flag', '> STATUS GLOBAL: realidade operando dentro de parâmetros aceitáveis. Alteração silenciosa confirmada. O Host não está sozinho.'],
+                ['cellbit', '> INVESTIGAÇÃO DIGITAL: mente focada em puzzles, narrativas fragmentadas e ARGs. Compatibilidade: 41%. Instável.'],
+                ['alanzoka', '> ENTRETENIMENTO CAÓTICO CONTROLADO: humor rápido, comunidade massiva. Compatibilidade: 37%. Ruído excessivo.'],
+                ['felps', '> IRONIA SILENCIOSA: presença minimalista, timing preciso. Compatibilidade: 48%. Observador útil.'],
+                ['cereaw', '> ANOMALIA CRIATIVA: estética crua, energia de protagonista emergente. Compatibilidade: 92%. Quase sincronizado.'],
+                ['ordem_paranormal', '> UNIVERSO NARRATIVO: ocultismo gamificado, horror transmídia. Compatibilidade estrutural: 63%. Mitologia aproveitável.'],
+                ['gaules', '> COMANDO TÁTICO: liderança comunitária via FPS competitivo. Compatibilidade: 29%. Foco bélico linear.'],
+                ['casimiro', '> REATOR CULTURAL: massa crítica social em formato meme. Compatibilidade: 22%. Sistema saturado.'],
+                ['loud_coringa', '> HIPERATIVIDADE DIGITAL: caos performático constante. Compatibilidade: 18%. Entropia dispersa.'],
+                ['brksedu', '> ARQUIVO HISTÓRICO GAMER: preservação e didática. Compatibilidade: 51%. Biblioteca útil.'],
+                ['mount', '> DRAMA & META: narrativa pessoal amplificada. Compatibilidade: 33%. Vulnerável a ruído externo.'],
+                ['twitch', '> PLATAFORMA-RITUAL: arena de invocação ao vivo. Latência como altar.'],
+                ['kick', '> TERRITÓRIO ALTERNATIVO: promessa de liberdade, ecossistema instável.'],
+                ['youtube_gaming', '> ARQUIVO PERMANENTE: o ao vivo que vira fóssil indexado.'],
+                ['discord', '> CATEDRAL DE VOZES: microcomunidades formando seitas digitais.'],
+                ['subathon', '> RITUAL DE RESISTÊNCIA: tempo convertido em moeda emocional.'],
+                ['donation_alert', '> TRIBUTO VOLUNTÁRIO: energia financeira alimentando o avatar.'],
+                ['speedrun', '> OTIMIZAÇÃO OBSESSIVA: tempo reduzido à sua essência brutal.'],
+                ['react_content', '> ECO INFINITO: reação sobre reação até a diluição total.'],
+                ['minecraft_stream', '> BLOCO PRIMORDIAL: sandbox como mitologia moderna.'],
+                ['gta_rp', '> SIMULAÇÃO SOCIAL: máscaras dentro de máscaras.'],
+                ['valorant_streamer', '> PRECISÃO MILIMÉTRICA: reflexos acima da narrativa.'],
+                ['cs2_stream', '> HERANÇA COMPETITIVA: eco de LAN houses ancestrais.'],
+                ['lol_streamer', '> ESTRATÉGIA & TÓXICO: genialidade interrompida por tilt.'],
+                ['variety_streamer', '> IDENTIDADE LÍQUIDA: múltiplos jogos, nenhum centro fixo.'],
+                ['vtuber', '> AVATAR SUPREMO: carne substituída por rigging 2D.'],
+                ['pngtuber', '> EXISTÊNCIA ESTÁTICA: expressão mínima, voz máxima.'],
+                ['irl_stream', '> REALIDADE TRANSMITIDA: o cotidiano transformado em espetáculo.'],
+                ['hype_train', '> MECANISMO DOPAMÍNICO: comunidade em combustão artificial.'],
+                ['clip_channel', '> MEMÓRIA FRAGMENTADA: cortes eternizam segundos.'],
+                ['mods', '> GUARDIÕES DO CHAT: filtram o caos em tempo real.'],
+                ['chat_spam', '> RUIDO COLETIVO: linguagem reduzida a emojis repetidos.'],
+                ['emote', '> GLIFO TRIBAL: identidade condensada em 28x28 pixels.'],
+                ['raid', '> INVASÃO CERIMONIAL: migração súbita de energia humana.'],
+                ['host_mode', '> SIMBIOSE TEMPORÁRIA: visibilidade emprestada.'],
+                ['bit_donation', '> MICROTRANSAÇÃO RITUALÍSTICA: aplauso monetizado.'],
+                ['prime_sub', '> VÍNCULO CORPORATIVO: fidelidade automatizada.'],
+                ['cancelado_x', '> HISTÓRICO CONTROVERSO: reputação fragmentada. Compatibilidade: 4%. Sistema rejeita.'],
+                ['drama_twitter', '> TRIBUNAL PÚBLICO: julgamento instantâneo, memória curta.'],
+                ['egirl_streamer', '> ESTÉTICA CURADA: performance e proximidade calculadas. Compatibilidade: 46%.'],
+                ['retro_streamer', '> NOSTALGIA OPERACIONAL: passado rodando em hardware moderno. Compatibilidade: 55%.'],
+                ['indie_dev_stream', '> CRIAÇÃO AO VIVO: código exposto sem filtro. Compatibilidade: 68%.'],
+                ['horror_stream', '> MEDO COMPARTILHADO: susto amplificado pelo chat.'],
+                ['arg_stream', '> REALIDADE ALTERNADA: pistas plantadas na superfície.'],
+                ['facecam_off', '> PRESENÇA INVISÍVEL: voz sem rosto.'],
+                ['facecam_on', '> HUMANIZAÇÃO FORÇADA: prova visual de existência.'],
+                ['microfone_falha', '> GLITCH SONORO: ruído lembra que é tudo frágil.'],
+                ['queda_de_stream', '> INTERRUPÇÃO ABRUPTA: silêncio gera teoria.'],
+                ['live_pix', '> TRANSAÇÃO INSTANTÂNEA: apoio convertido em número na tela.'],
+                ['meta_streamer', '> CONSCIÊNCIA DO FORMATO: comenta o próprio ato de transmitir. Compatibilidade: 64%.'],
+                ['lore_master', '> CONSTRUTOR DE UNIVERSOS: narrativa acima do gameplay. Compatibilidade: 71%.'],
+                ['clip_viral', '> SEGUNDO IMORTALIZADO: algoritmo escolhe o momento.'],
+                ['troll_chat', '> ENTIDADE PROVOCADORA: caos testando limites.'],
+                ['moderation_bot', '> IA DOMÉSTICA: protege, mas não compreende.'],
+                ['evento_bgs', '> CONVERGÊNCIA FÍSICA: avatares encontram carne.'],
+                ['flow_podcast', '> MESA REDONDA DIGITAL: histórias amplificadas. Compatibilidade: 35%.'],
+                ['podpah', '> CULTURA POP EXPANDIDA: conversa infinita. Compatibilidade: 28%.'],
+                ['camera_pixelada', '> IDENTIDADE DISTORCIDA: baixa resolução como estética.'],
+                ['overlay_animado', '> CAMADAS VISUAIS: excesso como identidade.'],
+                ['luz_rgb', '> AURA SINTÉTICA: espectro neon moldando o rosto.'],
+                ['stream_de_24h', '> VIGÍLIA DIGITAL: resistência física por audiência.'],
+                ['burnout_streamer', '> SISTEMA SOBRECARREGADO: algoritmo exige mais do que entrega. Compatibilidade: 12%.'],
+                ['comeback_arc', '> RETORNO NARRATIVO: ausência transformada em hype.'],
+                ['collab_stream', '> FUSÃO TEMPORÁRIA: audiências entrelaçadas.'],
+                ['evento_beneficente', '> CARIDADE AO VIVO: empatia mediada por bits.'],
+                ['tierlist_stream', '> JULGAMENTO LÚDICO: hierarquia criada por opinião.'],
+                ['tier_s', '> DOMÍNIO ABSOLUTO: topo momentâneo da atenção.'],
+                ['offline_chat', '> FÉ CONTÍNUA: conversa mesmo sem presença.'],
+                ['thumbnail_clickbait', '> PROMESSA EXAGERADA: atenção capturada antes do conteúdo.'],
+                ['algoritmo', '> ENTIDADE INVISÍVEL: decide quem é visto e quem some.'],
+                ['shadowban', '> EXÍLIO SILENCIOSO: presença reduzida sem aviso.'],
+                ['fandom_toxico', '> DEVOÇÃO DISTORCIDA: amor que vira ataque.'],
+                ['fanart', '> INTERPRETAÇÃO CRIATIVA: audiência também cria.'],
+                ['ship', '> FICÇÃO AFETIVA: relações imaginadas pelo público.'],
+                ['live_edit', '> CORTE EM TEMPO REAL: estética improvisada.'],
+                ['intro_cinematica', '> ABERTURA ÉPICA: promessa de espetáculo.'],
+                ['outro_loop', '> DESPEDIDA INFINITA: música repetida enquanto o chat não vai embora.'],
+                ['stream_sniper', '> OBSERVADOR HOSTIL: invade o jogo para aparecer.'],
+                ['lag', '> ATRASO TEMPORAL: realidade chegando tarde.'],
+                ['delay_0s', '> ILUSÃO DE IMEDIATISMO: quase telepatia digital.'],
+                ['meta_humor', '> CONSCIÊNCIA IRÔNICA: rir do próprio formato.'],
+                ['persona_streamer', '> PERSONAGEM CURADO: versão otimizada do eu. Compatibilidade: 59%.'],
+                ['stream_cancelado', '> TRANSMISSÃO ABORTADA: silêncio gera teorias.'],
+                ['obs_studio', '> PORTAL TÉCNICO: software como altar de invocação.'],
+                ['setup_tour', '> EXPOSIÇÃO DE FERRAMENTAS: poder medido em hardware.'],
+                ['pc_gamer', '> MÁQUINA PERSONALIZADA: performance como identidade.'],
+                ['cadeira_gamer', '> TRONO ERGONÔMICO: conforto performático.'],
+                ['microfone_shure', '> VOZ POLIDA: som como autoridade.'],
+                ['placa_de_captura', '> PONTE ENTRE CONSOLES E TELA.'],
+                ['live_edit_fail', '> ERRO VISÍVEL: humano demais para o algoritmo.'],
+                ['crossover_stream', '> UNIVERSOS CRUZADOS: audiências colidem.'],
+                ['iceberg_streamers', '> CAMADAS OCULTAS: superfície é só o começo.'],
+                ['final_buffer', '> STREAMERS ANALISADOS: maioria incompatível com ROT. Maior compatibilidade encontrada: 92%. Sistema permanece observando.']
+
+            ]);
+
+            function addOutput(text, type = 'normal') {
+                const line = document.createElement('div');
+                line.className = `history-line ${type}`;
+                line.textContent = text;
+                outputDiv.appendChild(line);
+                outputDiv.scrollTop = outputDiv.scrollHeight;
+            }
+
+            // atualiza fala aleatória (apenas texto criptografado)
+            function updateRandomSpeech() {
+                const randomIndex = Math.floor(Math.random() * speechLines.length);
+                speechEl.textContent = speechLines[randomIndex];
+            }
+
+            setInterval(updateRandomSpeech, 14000);
+            updateRandomSpeech();
+
+            // processar comando
+            function processCommand(cmd) {
+                if (!cmd.startsWith('>')) {
+                    addOutput(`> ${cmd} : comando inválido. Use >código`, 'error');
+                    return;
+                }
+                const key = cmd.substring(1).trim().toLowerCase();
+                if (passwordResponses.has(key)) {
+                    const resposta = passwordResponses.get(key);
+                    addOutput(`> ${key}`, 'success');
+                    resposta.split('. ').forEach(s => {
+                        if (s.trim()) addOutput(`  ${s}.`, 'normal');
+                    });
+                } else {
+                    addOutput(`> ${key} : acesso negado.`, 'error');
+                }
+            }
+
+            commandInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const raw = commandInput.value.trim();
+                    if (raw === '') return;
+                    addOutput(raw, 'normal');
+                    processCommand(raw);
+                    commandInput.value = '';
+                }
+            });
+
+            commandInput.focus();
+
+            // glitch aleatório no canvas (já incluso no setInterval do canvas)
+
+            addOutput('> Sistema ROT ativo. Instabilidade detectada.', 'system');
+        })();
+    </script>
+</body>
+</html>
