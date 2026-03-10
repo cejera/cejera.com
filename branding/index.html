@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cejera® — Design que Converte | Branding, UX/UI & Estratégia</title>
+    <meta name="description" content="+280 empresas atendidas, 10 anos de experiência. Design estratégico que aumenta o valor percebido e gera conversão real. Especialista em branding, UX/UI e marketing de conteúdo.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== RESET E VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --gray: #333333;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, sans-serif;
+            background-color: var(--light);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo-text, .hero-slogan {
+            font-family: 'Mynerve', cursive;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .btn {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--light);
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--red);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--red);
+            border: 2px solid var(--red);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            background-color: transparent;
+            color: var(--red);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--red);
+            color: var(--light);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--red);
+        }
+
+        .strikethrough {
+            text-decoration: line-through;
+            text-decoration-color: var(--red);
+            text-decoration-thickness: 3px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 16px 0;
+            border-bottom: 2px dashed var(--red);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 70px;
+            transition: var(--transition);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        /* ----- MENU HAMBURGUER (AJUSTADO) ----- */
+        .menu-toggle {
+            display: none;
+            background: rgba(247, 7, 7, 0.05);
+            border: 2px solid rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            z-index: 1001;
+            padding: 12px;
+            transition: var(--transition);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* ===== NAVEGAÇÃO MOBILE ===== */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--light);
+                padding: 100px 30px;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            nav[data-visible="true"] {
+                right: 0;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 8px 0;
+                width: 100%;
+                display: block;
+            }
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-highlight {
+            color: var(--red);
+            display: block;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            font-size: 0.5em;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+
+        .hero-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 50px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number-value {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .number-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* ===== SOBRE ===== */
+        .about {
+            padding: 100px 0;
+            background-color: var(--black);
+            color: var(--light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(247, 7, 7, 0.2);
+            transform: rotate(-2deg);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: rotate(0) scale(1.02);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--red);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .credenciais {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .credencial-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--red);
+        }
+
+        .credencial-item i {
+            font-size: 1.8rem;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .credencial-item h4 {
+            margin-bottom: 8px;
+        }
+
+        .credencial-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* ===== PROVA SOCIAL ===== */
+        .social-proof {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--red);
+        }
+
+        .testimonial-card.with-image {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--red);
+        }
+
+        .testimonial-content {
+            padding: 30px;
+        }
+
+        .testimonial-icon {
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-tag {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ===== CARROSSEL DE LOGOS ===== */
+        .logo-carousel {
+            padding: 60px 0;
+            background: var(--black);
+            color: var(--light);
+            overflow: hidden;
+        }
+
+        .logo-carousel h3 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-content img {
+            height: 100px;
+            width: auto;
+            margin: 0 52px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== LINK PARA BEHANCE ===== */
+        .portfolio-link {
+            text-align: center;
+            padding: 40px 0 80px;
+        }
+
+        .portfolio-link .btn {
+            font-size: 1.2rem;
+            padding: 18px 48px;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--red) 0%, #d40000 100%);
+            color: var(--light);
+        }
+
+        .cta-final h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-final p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .cta-final .btn {
+            background: var(--light);
+            color: var(--red);
+            border: 2px solid var(--light);
+            font-size: 1.2rem;
+            padding: 18px 48px;
+        }
+
+        .cta-final .btn:hover {
+            background: transparent;
+            color: var(--light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 5px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--light);
+            transition: var(--transition);
+            border: 1px solid transparent;
+            height: 110px;
+            text-align: center;
+        }
+
+        .social-card:hover {
+            background: var(--red);
+            border-color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        .social-card i {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        .social-card span {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-numbers {
+                gap: 30px;
+            }
+
+            .number-value {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-content">
+        <a href="/"><img src="cejera-02.svg" alt="Cejera" class="logo-img"></a>
+
+        <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+            <span class="hamburger"></span>
+        </button>
+
+        <nav id="nav" data-visible="false">
+            <ul class="nav-menu">
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#depoimentos" class="nav-link">Resultados</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>
+                Design que <span style="color: var(--red);">converte</span><br>
+                <span class="hero-highlight">+280 empresas já confiaram</span>
+            </h1>
+            <p class="hero-subtitle">
+                Branding estratégico, UX/UI e identidade visual que aumentam o valor percebido e geram resultados reais.
+            </p>
+
+            <div class="hero-numbers">
+                <div class="number-item">
+                    <div class="number-value">10+</div>
+                    <div class="number-label">anos de experiência</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">280+</div>
+                    <div class="number-label">empresas atendidas</div>
+                </div>
+                <div class="number-item">
+                    <div class="number-value">7</div>
+                    <div class="number-label">certificações</div>
+                </div>
+            </div>
+
+            <a href="https://wa.me/5535999286246?text=Quero%20vender%20melhor!" class="btn">
+                quero vender <span class="strikethrough">mais</span> melhor!
+            </a>
+        </div>
+    </section>
+
+    <!-- SOBRE MIM -->
+    <section id="sobre" class="about">
+        <div class="container about-grid">
+            <div class="about-image">
+                <div class="about-badge">• Especialista em Branding •</div>
+                <img src="fotocejera.png" alt="Alexandre Cejera">
+            </div>
+            <div class="about-text">
+                <h2>Alexandre <strong>'Cejera'</strong> Silva</h2>
+                <p>
+                    Designer gráfico com mais de <strong>10 anos de carreira</strong>, especialista em transformar marcas em protagonistas. 
+                    Minha abordagem combina <strong>design, branding estratégico e UX/UI</strong> para criar experiências que não apenas impressionam, mas convertem.
+                </p>
+                <p>
+                    Graduado em Design Gráfico, com especialização em Marketing de Conteúdo e Design Digital, além de certificações em Branding, Marketing de Influência e UX/UI. 
+                </p>
+
+                <div class="credenciais">
+                    <div class="credencial-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Formação</h4>
+                        <p>Design Gráfico • Marketing de Conteúdo • Design Digital</p>
+                    </div>
+                    <div class="credencial-item">
+                        <i class="fas fa-certificate"></i>
+                        <h4>Certificações</h4>
+                        <p>Branding • Marketing de Influência • UX/UI</p>
+                    </div>
+                    <div class="credencial-item">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Portfólio</h4>
+                        <p>+280 projetos entregues</p>
+                    </div>
+                    <div class="credencial-item">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Especialidades</h4>
+                        <p>Branding • UX/UI • Identidade Visual • Conversão</p>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5535999286246?text=Vamos%20trabalhar%20juntos?" class="btn btn-outline">VAMOS TRABALHAR JUNTOS?</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section id="depoimentos" class="social-proof container">
+        <h2 class="section-title">Depoimentos • 2026</h2>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card with-image">
+                <img src="antonina.png" alt="Adriana Antônia Ferreira" class="testimonial-image">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-right testimonial-icon"></i>
+                    <p class="testimonial-text">
+                        "O trabalho do Cejera aumentou o valor percebido da nossa marca em pelo menos 220%. A identidade visual criada por ele nos posicionou como referência no mercado."
+                    </p>
+                    <div class="testimonial-author">Adriana Ferreira</div>
+                    <div class="testimonial-role">CEO Antonina Ferreira</div>
+                    <span class="testimonial-tag">Moda • aumento de 220%</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card with-image">
+                <img src="amanda.png" alt="Amanda Souza" class="testimonial-image">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-right testimonial-icon"></i>
+                    <p class="testimonial-text">
+                        "Além de um design impecável, o Cejera entendeu profundamente a essência da psicologia. Minha marca agora transmite a confiança e acolhimento que eu sempre quis."
+                    </p>
+                    <div class="testimonial-author">Amanda Souza</div>
+                    <div class="testimonial-role">Psicóloga</div>
+                    <span class="testimonial-tag">Psicologia • autoridade</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <i class="fas fa-hashtag testimonial-icon"></i>
+                <p class="testimonial-text">
+                    "Nossas redes sociais nunca tiveram tanta identidade. O engajamento cresceu mais de 300% depois que reformulamos a identidade visual com o Cejera. Estou falando apenas de um cliente. Ele nos ajudou com mais de 40 clientes e todos eles ficaram extremamente gratos. Estamos realmente impressionados. Foi um trabalho de mais de um ano que com certeza nos ajudou muito."
+                </p>
+                <div class="testimonial-author">Camila R.</div>
+                <div class="testimonial-role">Social Media • Agência de Publicidade</div>
+                <span class="testimonial-tag">Social Media</span>
+            </div>
+
+            <div class="testimonial-card">
+                <i class="fas fa-mobile-alt testimonial-icon"></i>
+                <p class="testimonial-text">
+                    "A experiência do usuário do nosso aplicativo ficou muito intuitiva. Nossas avaliações na loja subiram de 3.8 para 4.7 estrelas."
+                </p>
+                <div class="testimonial-author">Diego Mendes</div>
+                <div class="testimonial-role">UX/UI • Fintech</div>
+                <span class="testimonial-tag">UX/UI</span>
+            </div>
+
+            <div class="testimonial-card">
+                <i class="fas fa-chart-line testimonial-icon"></i>
+                <p class="testimonial-text">
+                    "A consultoria de branding do Cejera redefiniu nosso posicionamento. Hoje somos vistos como exemplo no setor."
+                </p>
+                <div class="testimonial-author">Renata L.</div>
+                <div class="testimonial-role">Consultoria em Branding • Advocacia</div>
+                <span class="testimonial-tag">Branding estratégico</span>
+            </div>
+
+            <div class="testimonial-card">
+                <i class="fas fa-user testimonial-icon"></i>
+                <p class="testimonial-text">
+                    "Contratar o Cejera foi a melhor decisão para minha marca pessoal. Meu posicionamento nunca esteve tão claro. Os seguidores percebem."
+                </p>
+                <div class="testimonial-author">Anônimo</div>
+                <div class="testimonial-role">Posicionamento • Influenciador digital</div>
+                <span class="testimonial-tag">Posicionamento</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARROSSEL DE LOGOS -->
+    <section class="logo-carousel">
+        <div class="container">
+            <h3>Algumas das marcas que passaram recemente por aqui</h3>
+        </div>
+        <div class="marquee">
+            <div class="marquee-content">
+                <img src="logos-clientes.png" alt="Logos de clientes">
+                <img src="logos-clientes.png" alt="Logos de clientes">
+            </div>
+        </div>
+    </section>
+
+    <!-- LINK PARA PORTFOLIO NO BEHANCE -->
+    <section id="portfolio" class="portfolio-link container">
+        <h2>Quer me conhecer <br><strong>ainda mais?</strong><br> ↓</h2>
+        <a href="https://linkedin.com/in/cejera" target="_blank" class="btn btn-outline">CONFIRA MEU PERFIL NO <strong>LINKEDIN!</strong></a>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Vamos construir algo <br><strong>autêntico</strong> juntos?</h2>
+            <p>Atendo um número limitado de projetos selecionados todo mês.</p>
+            <a href="https://wa.me/5535999286246?text=Quero%20ser%20um%20case%20de%20sucesso%20com%20o%20Cejera!" class="btn">QUERO SER UM CASE DE <strong>SUCESSO</strong></a>
+        </div>
+    </section>
+</main>
+
+<footer id="contato">
+    <div class="container footer-grid">
+        <div class="footer-logo">
+            <img src="cejera-00.svg" alt="Cejera">
+            <p>Design e Branding por quem entende do assunto <strong>(de verdade)</strong>. Transformo marcas e pessoas em protagonistas desde 2016.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Navegação</h4>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="https://behance.net/alexandrefsilva" target="_blank">Portfólio</a></li>
+                <li><a href="https://cejera.com/contato">Contato</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Redes e contato</h4>
+            <div class="social-grid">
+                <a href="https://instagram.com/cejeragd" class="social-card"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+                <a href="https://linkedin.com/in/cejera" class="social-card"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                <a href="https://behance.net/alexandrefsilva" class="social-card"><i class="fab fa-behance"></i><span>Behance</span></a>
+                <a href="https://wa.me/5535999286246" class="social-card"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+                <a href="https://t.me/cejera" class="social-card"><i class="fab fa-telegram"></i><span>Telegram</span></a>
+                <a href="#" class="social-card"><i class="fas fa-plus"></i><span>+ links</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container copyright">
+        <p>© 2026 Cejera® — Excentricidade e Autenticidade. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        // Elementos do menu
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
+
+        if (!toggle || !nav) return;
+
+        // Abrir/fechar ao clicar no botão
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const expanded = toggle.getAttribute('aria-expanded') === 'true' ? false : true;
+            
+            toggle.setAttribute('aria-expanded', expanded);
+            nav.setAttribute('data-visible', expanded);
+            
+            // Travar scroll do body quando menu aberto
+            body.style.overflow = expanded ? 'hidden' : '';
+        });
+
+        // Fechar ao clicar em qualquer link do menu
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            });
+        });
+
+        // Fechar ao clicar fora do menu (apenas se estiver aberto)
+        document.addEventListener('click', (e) => {
+            if (nav.getAttribute('data-visible') === 'true' && 
+                !nav.contains(e.target) && 
+                !toggle.contains(e.target)) {
+                
+                toggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            }
+        });
+
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
+                toggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+                toggle.focus(); // retorna foco ao botão
+            }
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
