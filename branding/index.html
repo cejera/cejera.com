@@ -113,6 +113,92 @@
             text-decoration-thickness: 3px;
         }
 
+        /* ===== TOP BAR VERMELHA (OFERTA RELÂMPAGO) ===== */
+        .top-bar {
+            background-color: var(--red);
+            color: white;
+            padding: 10px 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 200;
+        }
+
+        .top-bar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .top-bar-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .top-bar-countdown {
+            display: flex;
+            gap: 6px;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .digit {
+            background-color: var(--black);
+            color: white;
+            padding: 8px 0;
+            min-width: 1.2em;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 3px 0 #333, inset 0 2px 5px rgba(255,255,255,0.2);
+            font-size: 1.8rem;
+            display: inline-block;
+            border: 1px solid #444;
+        }
+
+        .top-bar-btn {
+            background-color: var(--black);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 0 #300;
+        }
+
+        .top-bar-btn:hover {
+            background-color: #222;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #300;
+            border-color: white;
+        }
+
+        /* Responsivo da top bar */
+        @media (max-width: 768px) {
+            .top-bar-content {
+                justify-content: center;
+                text-align: center;
+            }
+            .top-bar-countdown {
+                font-size: 1.8rem;
+            }
+            .digit {
+                font-size: 1.5rem;
+                min-width: 1em;
+            }
+        }
+
         /* ===== HEADER ===== */
         header {
             position: sticky;
@@ -170,7 +256,7 @@
             color: var(--red);
         }
 
-        /* ----- MENU HAMBURGUER (AJUSTADO) ----- */
+        /* ----- MENU HAMBURGUER ----- */
         .menu-toggle {
             display: none;
             background: rgba(247, 7, 7, 0.05);
@@ -714,6 +800,17 @@
 </head>
 <body>
 
+<!-- TOP BAR VERMELHA - OFERTA RELÂMPAGO -->
+<div class="top-bar">
+    <div class="container top-bar-content">
+        <span class="top-bar-text">Você ganhou um diagnóstico de marca grátis!</span>
+        <div class="top-bar-countdown" id="countdown">
+            <!-- Os dígitos serão inseridos via JavaScript -->
+        </div>
+        <a href="https://wa.me/5535999286246?text=Cejera%2C%20quero%20minha%20an%C3%A1lise%20e%20diagn%C3%B3stico%20de%20marca%20gratuitos" class="top-bar-btn">clique para resgatar</a>
+    </div>
+</div>
+
 <header>
     <div class="container header-content">
         <a href="/"><img src="cejera-02.svg" alt="Cejera" class="logo-img"></a>
@@ -726,8 +823,8 @@
             <ul class="nav-menu">
                 <li><a href="#sobre" class="nav-link">Sobre</a></li>
                 <li><a href="#depoimentos" class="nav-link">Resultados</a></li>
-                <li><a href="#portfolio" class="nav-link">Me conheça</a></li>
-                <li><a href="#contato" class="nav-link">Contato</a></li>
+                <li><a href="https://behance.net/AlexandreFSilva" class="nav-link">Portfólio</a></li>
+                <li><a href="https://cejera.com/contato" class="nav-link">Contato</a></li>
             </ul>
         </nav>
     </div>
@@ -950,56 +1047,51 @@
 
 <script>
     (function() {
-        // Elementos do menu
+        // ===== MENU MOBILE (código existente) =====
         const toggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('.nav-link');
         const body = document.body;
 
-        if (!toggle || !nav) return;
-
-        // Abrir/fechar ao clicar no botão
-        toggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const expanded = toggle.getAttribute('aria-expanded') === 'true' ? false : true;
-            
-            toggle.setAttribute('aria-expanded', expanded);
-            nav.setAttribute('data-visible', expanded);
-            
-            // Travar scroll do body quando menu aberto
-            body.style.overflow = expanded ? 'hidden' : '';
-        });
-
-        // Fechar ao clicar em qualquer link do menu
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                toggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-            });
-        });
-
-        // Fechar ao clicar fora do menu (apenas se estiver aberto)
-        document.addEventListener('click', (e) => {
-            if (nav.getAttribute('data-visible') === 'true' && 
-                !nav.contains(e.target) && 
-                !toggle.contains(e.target)) {
+        if (toggle && nav) {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const expanded = toggle.getAttribute('aria-expanded') === 'true' ? false : true;
                 
-                toggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-            }
-        });
+                toggle.setAttribute('aria-expanded', expanded);
+                nav.setAttribute('data-visible', expanded);
+                
+                body.style.overflow = expanded ? 'hidden' : '';
+            });
 
-        // Fechar com tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
-                toggle.setAttribute('aria-expanded', 'false');
-                nav.setAttribute('data-visible', 'false');
-                body.style.overflow = '';
-                toggle.focus(); // retorna foco ao botão
-            }
-        });
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    body.style.overflow = '';
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (nav.getAttribute('data-visible') === 'true' && 
+                    !nav.contains(e.target) && 
+                    !toggle.contains(e.target)) {
+                    
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    body.style.overflow = '';
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
+                    toggle.setAttribute('aria-expanded', 'false');
+                    nav.setAttribute('data-visible', 'false');
+                    body.style.overflow = '';
+                    toggle.focus();
+                }
+            });
+        }
 
         // Smooth scroll para links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1011,11 +1103,55 @@
                 }
             });
         });
+
+        // ===== CONTADOR REGRESSIVO DE 10 MINUTOS =====
+        (function initCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            if (!countdownEl) return;
+
+            // Tempo inicial: 10 minutos (600 segundos)
+            let remainingSeconds = 600;
+            let intervalId = null;
+
+            // Função para formatar e atualizar os dígitos
+            function updateDisplay(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                // Formato MM:SS com dois dígitos cada
+                const timeString = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                // Limpa o container e cria os spans para cada caractere
+                countdownEl.innerHTML = '';
+                for (let char of timeString) {
+                    const span = document.createElement('span');
+                    span.className = 'digit';
+                    span.textContent = char;
+                    countdownEl.appendChild(span);
+                }
+            }
+
+            // Atualiza imediatamente
+            updateDisplay(remainingSeconds);
+
+            // Inicia o intervalo
+            intervalId = setInterval(() => {
+                if (remainingSeconds > 0) {
+                    remainingSeconds--;
+                    updateDisplay(remainingSeconds);
+                } else {
+                    // Quando chegar a zero, para o intervalo (opcional: pode reiniciar ou parar)
+                    clearInterval(intervalId);
+                    // Opcional: exibir uma mensagem ou algo do tipo
+                }
+            }, 1000);
+
+            // Limpeza do intervalo caso o elemento seja removido (não necessário aqui, mas boa prática)
+            window.addEventListener('beforeunload', function() {
+                if (intervalId) clearInterval(intervalId);
+            });
+        })();
     })();
 </script>
 
 </body>
-
 </html>
-
-
