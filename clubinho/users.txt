@@ -2,3 +2,5 @@
 "alexandre@cejera.com"|"7777777"
 "pieroni@cejera.com"|"46543451"
 "gpleonel@cejera.com"|"1865431"
+"gabriel@cejera.com"|"4565675"
+"heitor@cejera.com"|"1546867"
