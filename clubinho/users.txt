@@ -5,3 +5,5 @@
 "gabriel@cejera.com"|"4565675"
 "heitor@cejera.com"|"1546867"
 "eduardo@cejera.com"|"2079421"
+"karine@cejera.com"|"1321618"
+"amanda@cejera.com"|"1523142"
