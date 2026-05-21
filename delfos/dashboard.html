@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PAINEL EDITOR · CLUBINHO CEJERA®</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Cejera®" />
+    <style>
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 14px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 28px rgba(247, 7, 7, 0.15);
+            --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background: var(--light);
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, .logo, .footer-heading, .clubinho-subtitle, .logo-font {
+            font-family: 'Mynerve', cursive;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; display: block; }
+
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--red);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+        .btn-sm { padding: 6px 14px; font-size: 0.7rem; background: #2c2c2c; }
+        .btn-sm:hover { background: var(--red); }
+        .btn-outline { background: transparent; border: 2px solid var(--red); color: var(--red); box-shadow: none; }
+        .btn-outline:hover { background: var(--red); color: #fff; }
+        .btn-danger { background: #c0392b; }
+        .btn-danger:hover { background: #e74c3c; }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 14px 0;
+            border-bottom: 2px dashed var(--red);
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 50px; }
+        .menu-toggle { display: none; background: rgba(0,0,0,0.03); border: 2px solid rgba(0,0,0,0.05); border-radius: 12px; cursor: pointer; width: 48px; height: 48px; position: relative; z-index: 101; padding: 12px; transition: var(--transition); }
+        .menu-toggle:hover { background: rgba(0,0,0,0.1); }
+        .hamburger { width: 100%; height: 3px; background-color: var(--red); position: relative; transition: var(--transition); display: block; border-radius: 4px; }
+        .hamburger::before, .hamburger::after { content: ''; position: absolute; width: 100%; height: 3px; background-color: var(--red); left: 0; transition: var(--transition); border-radius: 4px; }
+        .hamburger::before { top: -8px; }
+        .hamburger::after { bottom: -8px; }
+        .menu-toggle[aria-expanded="true"] .hamburger { background-color: transparent; }
+        .menu-toggle[aria-expanded="true"] .hamburger::before { top: 0; transform: rotate(45deg); }
+        .menu-toggle[aria-expanded="true"] .hamburger::after { bottom: 0; transform: rotate(-45deg); }
+        nav { display: flex; align-items: center; gap: 40px; }
+        .nav-menu { display: flex; gap: 32px; list-style: none; }
+        .nav-link { position: relative; font-weight: 500; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: var(--red); transition: var(--transition); }
+        .nav-link:hover::after, .nav-link:focus::after { width: 100%; }
+        .header-cta .btn { padding: 8px 20px; font-size: 0.85rem; }
+
+        footer {
+            background: var(--black);
+            color: var(--light);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 50px; margin-bottom: 50px; }
+        .footer-logo-img { width: 120px; margin-bottom: 16px; }
+        .footer-about { font-size: 0.85rem; opacity: 0.8; max-width: 280px; }
+        .footer-heading { font-size: 1.4rem; margin-bottom: 20px; color: var(--light); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { opacity: 0.8; transition: var(--transition); }
+        .footer-links a:hover { opacity: 1; color: var(--red); }
+        .social-links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+        .social-link { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; border: 2px solid var(--red); border-radius: 16px; transition: var(--transition); text-align: center; background-color: transparent; color: var(--light); }
+        .social-link:hover { background-color: var(--red); transform: translateY(-3px); border-color: transparent; }
+        .social-icon { font-size: 24px; margin-bottom: 6px; }
+        .social-name { font-size: 0.75rem; font-weight: 600; }
+        .social-desc { font-size: 0.65rem; opacity: 0.7; }
+        .footer-social-fullwidth { width: 100%; margin: 40px 0; padding: 30px 0; border-top: 1px dashed #333; border-bottom: 1px dashed #333; }
+        .copyright { text-align: center; font-size: 0.75rem; opacity: 0.6; padding-top: 30px; border-top: 1px solid #333; margin-top: 20px; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: var(--light); flex-direction: column; justify-content: center; gap: 30px; transition: right 0.3s ease; padding: 40px; box-shadow: -5px 0 30px rgba(0,0,0,0.1); }
+            nav[data-visible="true"] { right: 0; }
+            .nav-menu { flex-direction: column; align-items: center; gap: 24px; }
+        }
+        @media (min-width: 1024px) {
+            .footer-social-fullwidth .social-links-grid { grid-template-columns: repeat(8, 1fr); }
+        }
+
+        .clubinho-hero { padding: 60px 0 50px; flex: 1; }
+        .clubinho-title { font-size: clamp(2.5rem, 6vw, 4rem); text-align: center; position: relative; display: inline-block; width: 100%; }
+        .clubinho-subtitle { font-size: 1.6rem; color: var(--red); text-align: center; margin-bottom: 30px; }
+        .login-container, .dashboard-container {
+            background: white;
+            border-radius: var(--radius);
+            border: 2px solid var(--red);
+            padding: 35px 28px;
+            position: relative;
+            box-shadow: var(--shadow);
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+        .login-container { max-width: 480px; }
+        .login-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: var(--light);
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .form-group { margin-bottom: 18px; text-align: left; }
+        .form-group label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.85rem; }
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 14px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            background: rgba(247,247,247,0.5);
+        }
+        .form-input:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(247,7,7,0.08); }
+        .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid #eee; padding-bottom: 12px; }
+        .tab-btn {
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            background: transparent;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tab-btn.active { border-color: var(--red); background: rgba(247,7,7,0.05); color: var(--red); }
+        .tab-panel { display: none; animation: fade 0.25s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: #fff; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; border: 1px solid #e0e0e0; transition: var(--transition); box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+        .card:hover { border-color: #ccc; box-shadow: var(--shadow); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .badge { display: inline-block; padding: 4px 14px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-red { background: #ffeaea; color: var(--red); }
+        .badge-green { background: #e6f9e6; color: #2d6a4f; }
+        .badge-blue { background: #e6f0ff; color: #1e6091; }
+        .badge-purple { background: #f5e6ff; color: #6a1b9a; }
+        .badge-gold { background: #fff8e1; color: #b8860b; }
+        .badge-mythic { background: #ffe6ec; color: #ff3366; animation: pulseMythic 1.5s infinite; }
+        @keyframes pulseMythic { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,51,102,0.3); } 50% { box-shadow: 0 0 0 8px rgba(255,51,102,0); } }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+        .drag-zone { min-height: 60px; border: 2px dashed #ccc; border-radius: var(--radius); padding: 12px; transition: var(--transition); background: #fafafa; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+        .drag-zone.over { border-color: var(--red); background: rgba(247,7,7,0.03); box-shadow: inset 0 0 0 2px rgba(247,7,7,0.1); }
+        .draggable-item { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ddd; border-radius: 20px; padding: 6px 14px; cursor: grab; transition: var(--transition); font-size: 0.8rem; user-select: none; }
+        .draggable-item:active { cursor: grabbing; opacity: 0.8; }
+        .draggable-item.dragging { opacity: 0.4; transform: scale(0.95); }
+        .rarity-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+        .dot-cinza { background: #888; }
+        .dot-verde { background: #2d6a4f; }
+        .dot-azul { background: #1e6091; }
+        .dot-roxo { background: #9b59b6; }
+        .dot-dourado { background: #f9d423; animation: glowGold 1s infinite alternate; }
+        .dot-vermelho { background: #ff3366; animation: glowRed 0.5s infinite alternate; }
+        @keyframes glowGold { from { box-shadow: 0 0 4px #f9d423; } to { box-shadow: 0 0 12px #ffaa00; } }
+        @keyframes glowRed { from { box-shadow: 0 0 4px #ff3366; } to { box-shadow: 0 0 14px #ff6699; } }
+        .toast { position: fixed; bottom: 30px; right: 30px; background: #1a1a1a; color: #fff; padding: 12px 24px; border-radius: 40px; z-index: 999; font-size: 0.8rem; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: none; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .confirm-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 500; display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.2s; }
+        .confirm-overlay.active { visibility: visible; opacity: 1; }
+        .confirm-box { background: #fff; border-radius: var(--radius); padding: 30px; text-align: center; max-width: 420px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .inline-edit { border: none; background: transparent; font-family: inherit; font-size: inherit; padding: 2px 6px; border-bottom: 1px dashed transparent; transition: var(--transition); width: auto; min-width: 40px; }
+        .inline-edit:hover, .inline-edit:focus { border-bottom-color: var(--red); outline: none; background: rgba(247,7,7,0.04); border-radius: 4px; }
+        .user-avatar-thumb { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--red); }
+        .loading-spinner { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(0,0,0,0.1); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .user-summary { background: #fff; border-radius: var(--radius); padding: 20px; margin-bottom: 20px; border: 1px solid #eee; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+        .user-summary img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--red); }
+        .cerejas-summary { font-size: 2rem; font-weight: 800; color: var(--red); }
+        .catalog-zone { background: #fff9f0; border: 2px dashed var(--red); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="cejera-02.svg" class="logo-img" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=CEJERA®'">
+                <span style="font-size:0.75rem; margin-left:8px; opacity:0.7;">PAINEL EDITOR</span>
+            </div>
+            <button class="menu-toggle" aria-label="Menu" aria-expanded="false" id="menuToggle"><span class="hamburger"></span></button>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu">
+                    <li><a href="https://cejera.com/home" class="nav-link">Início</a></li>
+                    <li><a href="https://cejera.com/moda" class="nav-link">Moda</a></li>
+                    <li><a href="https://cejera.com/design" class="nav-link">Design</a></li>
+                    <li><a href="https://cejera.com/musica" class="nav-link">Música</a></li>
+                    <li><a href="https://cejera.com/sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="https://cejera.com/contato" class="nav-link">Contato</a></li>
+                </ul>
+                <div class="header-cta"><a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="clubinho-hero container">
+            <h1 class="clubinho-title">Painel Editor</h1>
+            <p class="clubinho-subtitle">Gerenciamento dinâmico do Clubinho</p>
+
+            <div id="loginArea" class="login-container">
+                <div class="login-badge"><i class="fas fa-shield-alt"></i> ACESSO RESTRITO <i class="fas fa-shield-alt"></i></div>
+                <p style="opacity:0.7;margin:20px 0;">Autentique‑se com sua conta Google editora da planilha.</p>
+                <button class="btn" id="googleAuthBtn" style="width:100%;justify-content:center;font-size:1rem;padding:14px;">
+                    <i class="fab fa-google"></i> ENTRAR COM GOOGLE
+                </button>
+                <p style="font-size:0.65rem;opacity:0.5;margin-top:14px;">
+                    Seu e‑mail deve estar autorizado no Console Cloud.
+                </p>
+            </div>
+
+            <div id="dashboardArea" style="display:none;" class="dashboard-container">
+                <div class="tabs" id="tabsContainer">
+                    <button class="tab-btn active" data-tab="missoes"><i class="fas fa-flag-checkered"></i> Missões</button>
+                    <button class="tab-btn" data-tab="usuarios"><i class="fas fa-users"></i> Usuários</button>
+                    <button class="tab-btn" data-tab="inventario"><i class="fas fa-backpack"></i> Inventário</button>
+                    <button class="tab-btn" data-tab="gabarito"><i class="fas fa-database"></i> Gabarito Itens</button>
+                </div>
+
+                <!-- PAINEL MISSÕES -->
+                <div class="tab-panel active" id="panel-missoes">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                        <h3><i class="fas fa-flag-checkered"></i> Gerenciar Missões</h3>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                            <select id="missionUserSelect" class="form-input" style="width:auto;min-width:200px;">
+                                <option value="">Carregando usuários...</option>
+                            </select>
+                            <button class="btn btn-sm" id="loadMissionsBtn"><i class="fas fa-sync-alt"></i> Carregar</button>
+                            <button class="btn btn-sm" id="addMissionBtn"><i class="fas fa-plus"></i> Nova Missão</button>
+                        </div>
+                    </div>
+                    <div id="userSummaryContainer"></div>
+                    <div id="missionsList"></div>
+                </div>
+
+                <!-- PAINEL USUÁRIOS -->
+                <div class="tab-panel" id="panel-usuarios">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                        <h3><i class="fas fa-users"></i> Gerenciar Usuários</h3>
+                        <button class="btn btn-sm" id="addUserBtn"><i class="fas fa-plus"></i> Novo Usuário</button>
+                    </div>
+                    <div id="usersList"></div>
+                </div>
+
+                <!-- PAINEL INVENTÁRIO -->
+                <div class="tab-panel" id="panel-inventario">
+                    <h3 style="margin-bottom:4px;"><i class="fas fa-backpack"></i> Catálogo de Itens (arraste para distribuir)</h3>
+                    <p style="opacity:0.7;margin-bottom:16px;font-size:0.8rem;">Arraste um item do catálogo para o usuário desejado — ele será copiado.</p>
+                    <div class="catalog-zone" id="catalogZone" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                        <strong style="width:100%;margin-bottom:4px;"><i class="fas fa-archive"></i> Itens Disponíveis:</strong>
+                        <div id="catalogItems" style="display:flex;flex-wrap:wrap;gap:8px;">Carregando catálogo...</div>
+                    </div>
+                    <h3 style="margin-top:20px;margin-bottom:16px;"><i class="fas fa-users"></i> Inventário por Usuário</h3>
+                    <div class="grid-2" id="inventoryDragZones"></div>
+                </div>
+
+                <!-- PAINEL GABARITO -->
+                <div class="tab-panel" id="panel-gabarito">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+                        <h3><i class="fas fa-database"></i> Editar Itens do Gabarito</h3>
+                        <button class="btn btn-sm" id="reloadGabBtn"><i class="fas fa-sync-alt"></i> Recarregar</button>
+                    </div>
+                    <div id="gabaritoList"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-box">
+            <h3 id="confirmTitle">Confirmar</h3>
+            <p id="confirmMsg">Tem certeza?</p>
+            <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;">
+                <button class="btn btn-sm" id="confirmYes">Sim</button>
+                <button class="btn btn-sm btn-outline" id="confirmNo">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="toast" id="toastMsg"></div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <img src="cejera-00.svg" class="footer-logo-img" onerror="this.src='https://placehold.co/120x120?text=CEJERA'">
+                    <div class="footer-about">Moda, design e música com coerência e atitude. Protagonista desde 2015.</div>
+                </div>
+                <div>
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://cejera.com/home"><i class="fas fa-home"></i> Início</a></li>
+                        <li><a href="https://cejera.com/moda"><i class="fas fa-tshirt"></i> Moda</a></li>
+                        <li><a href="https://cejera.com/design"><i class="fas fa-paint-brush"></i> Design</a></li>
+                        <li><a href="https://cejera.com/musica"><i class="fas fa-music"></i> Música</a></li>
+                        <li><a href="https://cejera.com/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                        <li><a href="https://cejera.com/contato"><i class="fas fa-envelope"></i> Contato</a></li>
+                        <li><a href="https://cejera.com/clubinho"><i class="fas fa-crown"></i> Clubinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading"><i class="fas fa-gift"></i> Clubinho Divertido</h3>
+                    <p>Este é o painel editor. Volte ao site para mais diversão.</p>
+                </div>
+            </div>
+            <div class="footer-social-fullwidth">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link"><i class="fab fa-instagram social-icon"></i><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link"><i class="fab fa-twitter social-icon"></i><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link"><i class="fab fa-linkedin-in social-icon"></i><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                    <a href="https://t.me/cejera" class="social-link"><i class="fab fa-telegram social-icon"></i><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><i class="fab fa-spotify social-icon"></i><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                    <a href="https://twitch.tv/cejera" class="social-link"><i class="fab fa-twitch social-icon"></i><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                    <a href="https://kick.com/cejera" class="social-link"><i class="fas fa-gamepad social-icon"></i><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                    <a href="https://cejera.com/links" class="social-link"><i class="fas fa-plus social-icon"></i><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        (function() {
+            const SPREADSHEET_ID = "15fOZw2zzmfYz-XHLL46hTqpwKuGm4mgdsmabkeKU-zc";
+            const CLIENT_ID = "405991412107-no4i0m86ovs0lslpa2i26k79r4rrjo65.apps.googleusercontent.com";
+            const SCOPES = "https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/userinfo.email";
+
+            let accessToken = null;
+            let currentUserEmail = null;
+            let allSheetUsers = [];
+            let globalItemsCatalog = new Map();
+            let currentMissionsData = [];
+            let currentUserForMissions = null;
+
+            // ====== UTILITÁRIOS ======
+            function showToast(msg, duration=3000) {
+                const t = document.getElementById('toastMsg');
+                t.textContent = msg; t.style.display = 'block';
+                setTimeout(() => t.style.display = 'none', duration);
+            }
+            function escapeHtml(str) { return String(str).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+            function parseNumber(v) { let n = typeof v === 'number' ? v : parseFloat(String(v).replace(/[^0-9.-]/g, '')); return isNaN(n) ? 0 : n; }
+            function parseMoneyToNumber(v) { if (v === undefined || v === null) return 0; let n = typeof v === 'number' ? v : parseFloat(String(v).replace(/R\$\s*/g, '').replace(/\./g, '').replace(/,/g, '.')); return isNaN(n) ? 0 : n; }
+            function getRarityClass(r) {
+                r = (r || 'basico').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                if (r.includes('cinza')) return {cls:'badge', dot:'dot-cinza', label:'Cinza'};
+                if (r.includes('verde')) return {cls:'badge badge-green', dot:'dot-verde', label:'Verde'};
+                if (r.includes('azul')) return {cls:'badge badge-blue', dot:'dot-azul', label:'Azul'};
+                if (r.includes('roxo')) return {cls:'badge badge-purple', dot:'dot-roxo', label:'Roxo'};
+                if (r.includes('dourado')||r.includes('lendario')) return {cls:'badge badge-gold', dot:'dot-dourado', label:'Dourado'};
+                if (r.includes('vermelho')||r.includes('mitico')) return {cls:'badge badge-mythic', dot:'dot-vermelho', label:'Vermelho'};
+                return {cls:'badge', dot:'dot-cinza', label:'Básico'};
+            }
+            function confirmAction(title, msg) {
+                return new Promise(resolve => {
+                    document.getElementById('confirmTitle').textContent = title;
+                    document.getElementById('confirmMsg').textContent = msg;
+                    const overlay = document.getElementById('confirmOverlay');
+                    overlay.classList.add('active');
+                    const yes = document.getElementById('confirmYes');
+                    const no = document.getElementById('confirmNo');
+                    const handler = (result) => {
+                        overlay.classList.remove('active');
+                        yes.removeEventListener('click', yesHandler);
+                        no.removeEventListener('click', noHandler);
+                        resolve(result);
+                    };
+                    const yesHandler = () => handler(true);
+                    const noHandler = () => handler(false);
+                    yes.addEventListener('click', yesHandler);
+                    no.addEventListener('click', noHandler);
+                });
+            }
+
+            // ====== CHAMADAS À API ======
+            async function fetchSheet(range) {
+                if (!accessToken) throw new Error('Sem token de acesso');
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}?access_token=${encodeURIComponent(accessToken)}`;
+                console.log('📡 fetchSheet:', range);
+                const res = await fetch(url, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+                if (!res.ok) {
+                    const errBody = await res.text();
+                    console.error('fetchSheet error', res.status, errBody);
+                    throw new Error(`Erro ${res.status} ao ler ${range}`);
+                }
+                const data = await res.json();
+                return data.values || [];
+            }
+            async function writeSheet(range, values) {
+                if (!accessToken) throw new Error('Não autenticado');
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}?valueInputOption=USER_ENTERED&access_token=${encodeURIComponent(accessToken)}`;
+                console.log('✏️ writeSheet:', range);
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ range, values }),
+                });
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.error?.message || 'Erro ao escrever');
+                }
+                return res.json();
+            }
+            async function batchUpdate(requests) {
+                if (!accessToken) throw new Error('Não autenticado');
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}:batchUpdate?access_token=${encodeURIComponent(accessToken)}`;
+                console.log('🔧 batchUpdate:', requests.length, 'requests');
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ requests }),
+                });
+                if (!res.ok) {
+                    const err = await res.json();
+                    throw new Error(err.error?.message || 'Erro no batchUpdate');
+                }
+                return res.json();
+            }
+
+            // ====== CARREGAMENTO DE DADOS ======
+            async function loadGlobalItemsCatalog() {
+                try {
+                    const rows = await fetchSheet("GABARITO!A30:G59");
+                    globalItemsCatalog.clear();
+                    if (rows) {
+                        for (let row of rows) {
+                            const codigo = row[0]?.toString().trim();
+                            if (!codigo) continue;
+                            globalItemsCatalog.set(codigo, {
+                                nome: row[1]?.trim() || "Item",
+                                raridade: row[2]?.trim() || "Básico",
+                                multiplicaEm: row[3]?.trim() || "",
+                                bonus: row[4]?.trim() || "",
+                                tipo: row[5]?.trim() || "",
+                                descricao: row[6]?.trim() || "Sem descrição",
+                            });
+                        }
+                    }
+                    console.log('✅ Catálogo:', globalItemsCatalog.size, 'itens');
+                } catch (e) {
+                    console.error('❌ Catálogo:', e);
+                    showToast('Erro ao carregar gabarito: ' + e.message);
+                }
+            }
+            async function loadAllSheetUsers() {
+                if (!accessToken) return;
+                try {
+                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}?fields=sheets.properties.title&access_token=${encodeURIComponent(accessToken)}`;
+                    const res = await fetch(url, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+                    if (!res.ok) throw new Error('Erro ao buscar abas');
+                    const data = await res.json();
+                    const excluded = ['GABARITO', 'Config', 'Log', 'Template'];
+                    allSheetUsers = (data.sheets || [])
+                        .map(s => s.properties.title)
+                        .filter(t => !excluded.includes(t) && t.includes('@'));
+                    console.log('✅ Usuários:', allSheetUsers);
+                    populateUserSelects();
+                } catch (e) {
+                    console.error('❌ Usuários:', e);
+                }
+            }
+            function populateUserSelects() {
+                const sel = document.getElementById('missionUserSelect');
+                if (sel) {
+                    sel.innerHTML = '<option value="">Selecione um usuário...</option>' +
+                        allSheetUsers.map(u => `<option value="${u}">${u}</option>`).join('');
+                }
+            }
+            async function loadUserMissions(email) {
+                try {
+                    const rows = await fetchSheet(`'${email}'!A9:J38`);
+                    currentMissionsData = [];
+                    currentUserForMissions = email;
+                    if (!rows) return;
+                    // Pular a linha de título (linha 9)
+                    for (let i = 1; i < rows.length; i++) {
+                        const row = rows[i];
+                        if (!row || !row[0]) continue;
+                        currentMissionsData.push({
+                            rowIndex: i + 9, // linha real na planilha (base 1)
+                            numero: row[0]?.trim() || '',
+                            acao: row[1]?.trim() || '',
+                            grupo: row[2]?.trim() || '',
+                            base: parseMoneyToNumber(row[3]),
+                            vezesConcluida: parseNumber(row[4]),
+                            totalFixo: parseMoneyToNumber(row[5]),
+                            bonusItens: parseMoneyToNumber(row[6]),
+                            bonusExtra: parseMoneyToNumber(row[7]),
+                            totalLinha: parseMoneyToNumber(row[8]),
+                            meta: parseNumber(row[9]) || 1,
+                        });
+                    }
+                    renderUserSummary(email);
+                    renderMissionsList();
+                } catch (e) {
+                    console.error('❌ Missões:', e);
+                    showToast('Erro ao carregar missões: ' + e.message);
+                }
+            }
+            async function loadUserInventory(email) {
+                const rows = await fetchSheet(`'${email}'!K10:M38`);
+                const items = [];
+                if (!rows) return items;
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    const codigo = row[0]?.toString().trim();
+                    if (codigo) {
+                        items.push({
+                            rowIndex: i + 10,
+                            codigo,
+                            nome: row[1]?.trim() || '',
+                            raridade: row[2]?.trim() || 'Básico',
+                            userEmail: email,
+                        });
+                    }
+                }
+                return items;
+            }
+
+            // ====== VISÃO GERAL DO USUÁRIO ======
+            async function renderUserSummary(email) {
+                const container = document.getElementById('userSummaryContainer');
+                try {
+                    const data = await fetchSheet(`'${email}'!A1:C6`);
+                    const nome = (data && data[1] && data[1][1]) ? data[1][1].trim() : email.split('@')[0];
+                    const foto = (data && data[1] && data[1][2]) ? data[1][2].trim() : `https://ui-avatars.com/api/?background=F70707&color=fff&name=${nome.charAt(0)}`;
+                    const coletadasReais = (data && data[2] && data[2][1]) ? parseMoneyToNumber(data[2][1]) : 0;
+                    const mutantesReais = (data && data[3] && data[3][1]) ? parseMoneyToNumber(data[3][1]) : 0;
+                    const bonusReais = (data && data[4] && data[4][1]) ? parseMoneyToNumber(data[4][1]) : 0;
+                    const totalReais = (data && data[5] && data[5][1]) ? parseMoneyToNumber(data[5][1]) : (coletadasReais + mutantesReais + bonusReais);
+                    const totalCherries = Math.floor(totalReais * 100);
+
+                    container.innerHTML = `
+                    <div class="user-summary">
+                        <img src="${foto}" onerror="this.src='https://ui-avatars.com/api/?background=F70707&color=fff&name=${nome.charAt(0)}'">
+                        <div>
+                            <strong style="font-size:1.2rem;"><i class="fas fa-user-astronaut"></i> ${escapeHtml(nome)}</strong>
+                            <div style="font-size:0.8rem;opacity:0.7;">${escapeHtml(email)}</div>
+                        </div>
+                        <div style="margin-left:auto;text-align:right;">
+                            <div class="cerejas-summary">🍒 ${totalCherries.toLocaleString()}</div>
+                            <div style="font-size:0.8rem;">
+                                <span style="color:#F70707;">🧲 ${Math.floor(coletadasReais*100)}</span> ·
+                                <span style="color:#2d6a4f;">🧬 ${Math.floor(mutantesReais*100)}</span> ·
+                                <span style="color:#b8860b;">✨ ${Math.floor(bonusReais*100)}</span>
+                            </div>
+                            <div style="font-size:0.8rem;opacity:0.7;"><i class="fas fa-coins"></i> R$ ${totalReais.toFixed(2)}</div>
+                        </div>
+                    </div>`;
+                } catch (e) {
+                    container.innerHTML = '';
+                }
+            }
+
+            // ====== RENDERIZAÇÃO DAS MISSÕES (editor simplificado) ======
+            function renderMissionsList() {
+                const container = document.getElementById('missionsList');
+                if (!currentMissionsData.length) {
+                    container.innerHTML = '<div class="card"><i class="fas fa-info-circle"></i> Nenhuma missão encontrada.</div>';
+                    return;
+                }
+                container.innerHTML = currentMissionsData.map((m, idx) => `
+                <div class="card" data-idx="${idx}">
+                    <div class="card-header">
+                        <strong>#${m.numero || '?'} — ${escapeHtml(m.acao || 'Sem nome')}</strong>
+                        <div>
+                            <span style="opacity:0.7;font-size:0.75rem;">Meta: ${m.meta}x | Cerejas: ${Math.floor(m.totalLinha*100)}</span>
+                            <button class="btn btn-sm btn-outline edit-mission-btn" data-idx="${idx}"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger delete-mission-btn" data-idx="${idx}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>`).join('');
+
+                container.querySelectorAll('.edit-mission-btn').forEach(btn => {
+                    btn.addEventListener('click', () => openMissionEditor(parseInt(btn.dataset.idx)));
+                });
+                container.querySelectorAll('.delete-mission-btn').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const idx = parseInt(btn.dataset.idx);
+                        const m = currentMissionsData[idx];
+                        const ok = await confirmAction('Deletar Missão', `Remover missão "${m.acao}" do usuário ${currentUserForMissions}?`);
+                        if (ok) await deleteMission(idx);
+                    });
+                });
+            }
+
+            function openMissionEditor(idx) {
+                const m = idx >= 0 ? currentMissionsData[idx] : {
+                    rowIndex: null, numero: '', acao: '', grupo: '', base: 0, vezesConcluida: 0,
+                    totalFixo: 0, bonusItens: 0, bonusExtra: 0, totalLinha: 0, meta: 1,
+                };
+                const isNew = idx < 0;
+                const html = `
+                <div class="card" style="border:2px solid var(--red);">
+                    <h4>${isNew ? 'Nova Missão' : 'Editar Missão'} — ${currentUserForMissions}</h4>
+                    <div class="grid-2" style="margin-top:12px;">
+                        <div class="form-group"><label>Número</label><input class="form-input" id="edNum" value="${escapeHtml(m.numero)}"></div>
+                        <div class="form-group"><label>Ação</label><input class="form-input" id="edAcao" value="${escapeHtml(m.acao)}"></div>
+                        <div class="form-group"><label>Grupo</label><input class="form-input" id="edGrupo" value="${escapeHtml(m.grupo)}"></div>
+                        <div class="form-group"><label>Meta</label><input class="form-input" id="edMeta" type="number" value="${m.meta}"></div>
+                        <div class="form-group"><label>Base R$</label><input class="form-input" id="edBase" type="number" step="0.01" value="${(m.base||0).toFixed(2)}"></div>
+                        <div class="form-group"><label>Vezes Concluída</label><input class="form-input" id="edVezes" type="number" value="${m.vezesConcluida}"></div>
+                        <div class="form-group"><label>Bônus Extra R$</label><input class="form-input" id="edBonusExtra" type="number" step="0.01" value="${(m.bonusExtra||0).toFixed(2)}"></div>
+                        <div class="form-group"><i class="fas fa-calculator"></i> <small>Os demais campos são calculados automaticamente.</small></div>
+                    </div>
+                    <div style="margin-top:16px;display:flex;gap:8px;">
+                        <button class="btn btn-sm" id="saveMissionBtn"><i class="fas fa-save"></i> Salvar</button>
+                        <button class="btn btn-sm btn-outline" id="cancelMissionEdit">Cancelar</button>
+                    </div>
+                </div>`;
+                const listContainer = document.getElementById('missionsList');
+                listContainer.insertAdjacentHTML('afterbegin', html);
+                const editorCard = listContainer.querySelector('.card');
+
+                document.getElementById('cancelMissionEdit').addEventListener('click', () => {
+                    editorCard.remove();
+                    renderMissionsList();
+                });
+                document.getElementById('saveMissionBtn').addEventListener('click', async () => {
+                    const data = {
+                        numero: document.getElementById('edNum').value.trim(),
+                        acao: document.getElementById('edAcao').value.trim(),
+                        grupo: document.getElementById('edGrupo').value.trim(),
+                        meta: parseNumber(document.getElementById('edMeta').value),
+                        base: parseFloat(document.getElementById('edBase').value) || 0,
+                        vezesConcluida: parseNumber(document.getElementById('edVezes').value),
+                        bonusExtra: parseFloat(document.getElementById('edBonusExtra').value) || 0,
+                    };
+                    if (!data.acao) { showToast('⚠️ O campo "Ação" é obrigatório.'); return; }
+                    try {
+                        await saveMission(idx, data);
+                        editorCard.remove();
+                        await loadUserMissions(currentUserForMissions);
+                        showToast('✅ Missão salva!');
+                    } catch (e) { showToast('❌ Erro: ' + e.message); }
+                });
+            }
+
+            async function saveMission(idx, data) {
+                if (!currentUserForMissions) throw new Error('Nenhum usuário selecionado');
+                const rowNumber = idx >= 0 ? currentMissionsData[idx].rowIndex : await getNextMissionRow(currentUserForMissions);
+                const range = `'${currentUserForMissions}'!A${rowNumber}:J${rowNumber}`;
+                // Apenas os campos editáveis: A(numero), B(acao), C(grupo), D(base), E(vezesConcluida), H(bonusExtra), J(meta)
+                // Preservamos as fórmulas existentes nas colunas F, G, I se for edição, mas como a planilha recalcula, podemos enviar apenas os necessários.
+                // No entanto, a API sobrescreve toda a linha. Vamos ler os valores atuais para não perder fórmulas.
+                const currentRow = await fetchSheet(range);
+                const old = (currentRow && currentRow[0]) ? currentRow[0] : ['', '', '', '0', '0', '0', '0', '0', '0', '1'];
+                const values = [[
+                    data.numero,
+                    data.acao,
+                    data.grupo,
+                    data.base.toFixed(2).replace('.', ','),
+                    data.vezesConcluida,
+                    old[5] || '0',   // totalFixo (fórmula)
+                    old[6] || '0',   // bonusItens (fórmula)
+                    data.bonusExtra.toFixed(2).replace('.', ','),
+                    old[8] || '0',   // totalLinha (fórmula)
+                    data.meta,
+                ]];
+                await writeSheet(range, values);
+            }
+
+            async function getNextMissionRow(email) {
+                const rows = await fetchSheet(`'${email}'!A9:A38`);
+                if (!rows) return 10;
+                for (let i = 1; i < rows.length; i++) {
+                    const rowNum = 9 + i;
+                    if (!rows[i] || !rows[i][0] || rows[i][0].toString().trim() === '') return rowNum;
+                }
+                return 38;
+            }
+
+            async function deleteMission(idx) {
+                if (!currentUserForMissions) return;
+                const rowNumber = currentMissionsData[idx].rowIndex;
+                await writeSheet(`'${currentUserForMissions}'!A${rowNumber}:J${rowNumber}`, [['', '', '', '', '', '', '', '', '', '']]);
+                await loadUserMissions(currentUserForMissions);
+                showToast('🗑️ Missão removida.');
+            }
+
+            // ====== USUÁRIOS ======
+            async function renderUsersList() {
+                const container = document.getElementById('usersList');
+                container.innerHTML = '<div class="loading-spinner"></div> Carregando...';
+                await loadAllSheetUsers();
+                if (!allSheetUsers.length) {
+                    container.innerHTML = '<div class="card">Nenhum usuário encontrado.</div>';
+                    return;
+                }
+                let html = '';
+                for (const email of allSheetUsers) {
+                    const data = await fetchSheet(`'${email}'!A1:C2`);
+                    const nome = (data && data[1] && data[1][1]) ? data[1][1].trim() : email.split('@')[0];
+                    const foto = (data && data[1] && data[1][2]) ? data[1][2].trim() : `https://ui-avatars.com/api/?background=F70707&color=fff&name=${nome.charAt(0)}`;
+                    html += `
+                    <div class="card" data-email="${escapeHtml(email)}">
+                        <div class="card-header">
+                            <div style="display:flex;align-items:center;gap:12px;">
+                                <img src="${foto}" class="user-avatar-thumb" onerror="this.src='https://ui-avatars.com/api/?background=F70707&color=fff&name=${nome.charAt(0)}'">
+                                <div>
+                                    <strong>${escapeHtml(nome)}</strong>
+                                    <div style="font-size:0.7rem;opacity:0.7;">${escapeHtml(email)}</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:6px;">
+                                <button class="btn btn-sm edit-photo-btn" data-email="${escapeHtml(email)}" data-nome="${escapeHtml(nome)}"><i class="fas fa-camera"></i> Foto</button>
+                                <button class="btn btn-sm btn-danger delete-user-btn" data-email="${escapeHtml(email)}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+                container.innerHTML = html;
+
+                container.querySelectorAll('.edit-photo-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const email = btn.dataset.email;
+                        const nome = btn.dataset.nome;
+                        const novaUrl = prompt(`Nova URL da foto para ${nome} (${email}):\n(deixe em branco para foto automática)`, '');
+                        if (novaUrl !== null) updateUserPhoto(email, novaUrl.trim());
+                    });
+                });
+                container.querySelectorAll('.delete-user-btn').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const email = btn.dataset.email;
+                        const ok = await confirmAction('Remover Usuário', `Isso irá DELETAR a aba "${email}" da planilha.\nEsta ação não pode ser desfeita!`);
+                        if (ok) await deleteUserSheet(email);
+                    });
+                });
+            }
+
+            async function updateUserPhoto(email, url) {
+                try {
+                    await writeSheet(`'${email}'!C2:C2`, [[url || '']]);
+                    showToast('📷 Foto atualizada!');
+                    await renderUsersList();
+                } catch (e) { showToast('❌ Erro: ' + e.message); }
+            }
+
+            async function deleteUserSheet(email) {
+                try {
+                    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}?fields=sheets.properties&access_token=${encodeURIComponent(accessToken)}`;
+                    const res = await fetch(url, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+                    const data = await res.json();
+                    const sheet = data.sheets.find(s => s.properties.title === email);
+                    if (!sheet) throw new Error('Aba não encontrada');
+                    await batchUpdate([{ deleteSheet: { sheetId: sheet.properties.sheetId } }]);
+                    showToast('🗑️ Usuário removido.');
+                    await renderUsersList();
+                } catch (e) { showToast('❌ Erro: ' + e.message); }
+            }
+
+            async function createNewUser() {
+                const email = prompt('E-mail do novo usuário (será o nome da aba):');
+                if (!email || !email.includes('@')) { showToast('⚠️ E-mail inválido.'); return; }
+                if (allSheetUsers.includes(email)) { showToast('⚠️ Usuário já existe.'); return; }
+                const nome = prompt('Nome do usuário:') || email.split('@')[0];
+                // Gerar senha aleatória de 7 dígitos
+                const senha = Math.random().toString(36).substring(2, 9);
+                const userEntry = `"${email}"|"${senha}"`;
+                try {
+                    const res = await batchUpdate([{
+                        addSheet: { properties: { title: email, gridProperties: { rowCount: 40, columnCount: 13 } } }
+                    }]);
+                    const values = [['', '', ''], ['', nome, ''], ['', '0', ''], ['', '0', ''], ['', '0', ''], ['', '0', '']];
+                    await writeSheet(`'${email}'!A1:C6`, values);
+                    // Exibir senha para copiar
+                    alert(`✅ Usuário criado!\n\n⚠️ Adicione a linha abaixo ao arquivo users.txt para que o login funcione:\n\n${userEntry}\n\n(Este texto já está selecionado. Copie com Ctrl+C)`);
+                    // Tentativa de copiar automaticamente (somente se o navegador permitir)
+                    try {
+                        await navigator.clipboard.writeText(userEntry);
+                        showToast('📋 Linha users.txt copiada!');
+                    } catch (e) {}
+                    await renderUsersList();
+                } catch (e) { showToast('❌ Erro: ' + e.message); }
+            }
+
+            // ====== INVENTÁRIO (com catálogo infinito) ======
+            function renderCatalog() {
+                const container = document.getElementById('catalogItems');
+                if (!globalItemsCatalog.size) {
+                    container.innerHTML = '<span style="opacity:0.5;">Catálogo vazio.</span>';
+                    return;
+                }
+                let html = '';
+                for (const [codigo, item] of globalItemsCatalog) {
+                    const rc = getRarityClass(item.raridade);
+                    html += `<span class="draggable-item" draggable="true" data-source="catalog" data-codigo="${codigo}" data-raridade="${item.raridade}" data-nome="${escapeHtml(item.nome)}">
+                        <span class="rarity-dot ${rc.dot}"></span> ${escapeHtml(item.nome)} (${rc.label})
+                    </span>`;
+                }
+                container.innerHTML = html;
+                setupDragAndDrop();
+            }
+
+            async function renderInventoryPanel() {
+                const container = document.getElementById('inventoryDragZones');
+                container.innerHTML = '<div class="loading-spinner"></div> Carregando...';
+                await loadAllSheetUsers();
+                if (!allSheetUsers.length) {
+                    container.innerHTML = '<div class="card" style="grid-column:span 2;">Nenhum usuário.</div>';
+                    return;
+                }
+                if (globalItemsCatalog.size === 0) await loadGlobalItemsCatalog();
+                renderCatalog();
+                let html = '';
+                for (const email of allSheetUsers) {
+                    const nome = email.split('@')[0];
+                    html += `<div class="drag-zone" data-user="${escapeHtml(email)}"><strong>${escapeHtml(nome)}</strong><div class="items-container" data-user="${escapeHtml(email)}">Carregando...</div></div>`;
+                }
+                container.innerHTML = html;
+                for (const email of allSheetUsers) {
+                    const items = await loadUserInventory(email);
+                    const itemsContainer = document.querySelector(`.items-container[data-user="${email}"]`);
+                    if (!itemsContainer) continue;
+                    if (!items.length) {
+                        itemsContainer.innerHTML = '<span style="opacity:0.5;">Nenhum item</span>';
+                        continue;
+                    }
+                    itemsContainer.innerHTML = items.map((item, idx) => {
+                        const rc = getRarityClass(item.raridade);
+                        const cat = globalItemsCatalog.get(item.codigo);
+                        const nome = cat ? cat.nome : (item.nome || item.codigo);
+                        return `<span class="draggable-item" draggable="true" data-user="${escapeHtml(email)}" data-idx="${idx}" data-codigo="${item.codigo}" data-raridade="${item.raridade}" data-row="${item.rowIndex}"><span class="rarity-dot ${rc.dot}"></span> ${escapeHtml(nome)} (${rc.label})</span>`;
+                    }).join('');
+                }
+                setupDragAndDrop();
+            }
+
+            function setupDragAndDrop() {
+                const draggables = document.querySelectorAll('.draggable-item');
+                const zones = document.querySelectorAll('.drag-zone');
+                draggables.forEach(item => {
+                    item.addEventListener('dragstart', (e) => {
+                        const data = {
+                            codigo: item.dataset.codigo,
+                            raridade: item.dataset.raridade,
+                            nome: item.dataset.nome || '',
+                        };
+                        if (item.dataset.source === 'catalog') {
+                            data.source = 'catalog';
+                        } else {
+                            data.user = item.dataset.user;
+                            data.idx = item.dataset.idx;
+                            data.row = item.dataset.row;
+                        }
+                        e.dataTransfer.setData('text/plain', JSON.stringify(data));
+                        item.classList.add('dragging');
+                    });
+                    item.addEventListener('dragend', () => {
+                        item.classList.remove('dragging');
+                        zones.forEach(z => z.classList.remove('over'));
+                    });
+                    item.addEventListener('click', async (e) => {
+                        if (item.classList.contains('dragging')) return;
+                        e.stopPropagation();
+                        if (!item.dataset.source) await changeItemRarity(item);
+                    });
+                });
+                zones.forEach(zone => {
+                    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('over'); });
+                    zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+                    zone.addEventListener('drop', async (e) => {
+                        e.preventDefault();
+                        zone.classList.remove('over');
+                        const rawData = e.dataTransfer.getData('text/plain');
+                        if (!rawData) return;
+                        const dragData = JSON.parse(rawData);
+                        const targetUser = zone.dataset.user;
+                        if (dragData.source === 'catalog') {
+                            // Copiar item do catálogo para o usuário
+                            await copyCatalogItemToUser(dragData, targetUser);
+                        } else {
+                            if (dragData.user === targetUser) return;
+                            await moveItemBetweenUsers(dragData, targetUser);
+                        }
+                    });
+                });
+            }
+
+            async function copyCatalogItemToUser(dragData, targetUser) {
+                try {
+                    const destItems = await loadUserInventory(targetUser);
+                    if (destItems.length >= 35) throw new Error('Inventário do destinatário cheio (máx 35 itens).');
+                    let destRow = 10;
+                    const existingRows = new Set(destItems.map(i => i.rowIndex));
+                    while (existingRows.has(destRow) && destRow <= 38) destRow++;
+                    if (destRow > 38) throw new Error('Inventário do destinatário cheio.');
+                    await writeSheet(`'${targetUser}'!K${destRow}:M${destRow}`, [[dragData.codigo, dragData.nome || dragData.codigo, dragData.raridade]]);
+                    showToast(`📦 Item ${dragData.codigo} copiado para ${targetUser}!`);
+                    await renderInventoryPanel();
+                } catch (e) {
+                    showToast('❌ Erro ao copiar: ' + e.message);
+                }
+            }
+
+            async function moveItemBetweenUsers(dragData, targetUser) {
+                try {
+                    await writeSheet(`'${dragData.user}'!K${dragData.row}:M${dragData.row}`, [['', '', '']]);
+                    const destItems = await loadUserInventory(targetUser);
+                    let destRow = 10;
+                    const existingRows = new Set(destItems.map(i => i.rowIndex));
+                    while (existingRows.has(destRow) && destRow <= 38) destRow++;
+                    if (destRow > 38) throw new Error('Inventário do destinatário cheio.');
+                    await writeSheet(`'${targetUser}'!K${destRow}:M${destRow}`, [[dragData.codigo, dragData.codigo, dragData.raridade]]);
+                    showToast(`📦 Item #${dragData.codigo} movido para ${targetUser}!`);
+                    await renderInventoryPanel();
+                } catch (e) {
+                    showToast('❌ Erro ao mover: ' + e.message);
+                    await renderInventoryPanel();
+                }
+            }
+
+            async function changeItemRarity(itemElement) {
+                const rarities = ['Cinza', 'Verde', 'Azul', 'Roxo', 'Dourado', 'Vermelho'];
+                const currentRarity = itemElement.dataset.raridade;
+                const currentIdx = rarities.findIndex(r => r.toLowerCase() === (currentRarity || 'cinza').toLowerCase());
+                const newRarity = rarities[(currentIdx + 1) % rarities.length];
+                const user = itemElement.dataset.user;
+                const row = parseInt(itemElement.dataset.row);
+                const codigo = itemElement.dataset.codigo;
+                const ok = await confirmAction('Alterar Raridade', `Mudar raridade do item #${codigo} de "${currentRarity}" para "${newRarity}"?`);
+                if (!ok) return;
+                try {
+                    await writeSheet(`'${user}'!M${row}:M${row}`, [[newRarity]]);
+                    showToast(`✨ Raridade alterada para ${newRarity}!`);
+                    await renderInventoryPanel();
+                } catch (e) { showToast('❌ Erro: ' + e.message); }
+            }
+
+            // ====== GABARITO ======
+            async function renderGabarito() {
+                const container = document.getElementById('gabaritoList');
+                container.innerHTML = '<div class="loading-spinner"></div> Carregando...';
+                await loadGlobalItemsCatalog();
+                if (!globalItemsCatalog.size) {
+                    container.innerHTML = '<div class="card">Nenhum item no gabarito.</div>';
+                    return;
+                }
+                let html = '';
+                let rowNum = 30;
+                for (const [codigo, item] of globalItemsCatalog) {
+                    const rc = getRarityClass(item.raridade);
+                    html += `
+                    <div class="card" data-codigo="${codigo}" data-row="${rowNum}">
+                        <div class="card-header">
+                            <strong>#${codigo} — <span class="inline-edit gab-nome">${escapeHtml(item.nome)}</span></strong>
+                            <span class="${rc.cls}">${item.raridade}</span>
+                        </div>
+                        <div style="font-size:0.8rem;">
+                            Raridade: <select class="form-input gab-raridade" style="width:auto;display:inline-block;">
+                                <option value="Cinza" ${item.raridade=='Cinza'?'selected':''}>Cinza</option>
+                                <option value="Verde" ${item.raridade=='Verde'?'selected':''}>Verde</option>
+                                <option value="Azul" ${item.raridade=='Azul'?'selected':''}>Azul</option>
+                                <option value="Roxo" ${item.raridade=='Roxo'?'selected':''}>Roxo</option>
+                                <option value="Dourado" ${item.raridade=='Dourado'?'selected':''}>Dourado</option>
+                                <option value="Vermelho" ${item.raridade=='Vermelho'?'selected':''}>Vermelho</option>
+                            </select> | Tipo: <span class="inline-edit gab-tipo">${escapeHtml(item.tipo)}</span> | Multiplica: <span class="inline-edit gab-multiplica">${escapeHtml(item.multiplicaEm)}</span> | Bônus: <span class="inline-edit gab-bonus">${escapeHtml(item.bonus)}</span>
+                        </div>
+                        <div style="margin-top:6px;">
+                            Descrição: <textarea class="form-input gab-descricao">${escapeHtml(item.descricao)}</textarea>
+                        </div>
+                        <button class="btn btn-sm gab-save-btn" data-codigo="${codigo}" data-row="${rowNum}">Salvar</button>
+                    </div>`;
+                    rowNum++;
+                }
+                container.innerHTML = html;
+                document.querySelectorAll('.gab-save-btn').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const card = btn.closest('.card');
+                        const codigo = btn.dataset.codigo;
+                        const row = parseInt(btn.dataset.row);
+                        const nome = card.querySelector('.gab-nome').textContent.trim();
+                        const raridade = card.querySelector('.gab-raridade').value;
+                        const tipo = card.querySelector('.gab-tipo').textContent.trim();
+                        const multiplicaEm = card.querySelector('.gab-multiplica').textContent.trim();
+                        const bonus = card.querySelector('.gab-bonus').textContent.trim();
+                        const descricao = card.querySelector('.gab-descricao').value.trim();
+                        try {
+                            await writeSheet(`GABARITO!A${row}:G${row}`, [[codigo, nome, raridade, multiplicaEm, bonus, tipo, descricao]]);
+                            showToast('✅ Item do gabarito atualizado!');
+                        } catch (e) { showToast('❌ Erro: ' + e.message); }
+                    });
+                });
+                document.querySelectorAll('.inline-edit').forEach(span => span.setAttribute('contenteditable', 'true'));
+            }
+
+            // ====== AUTENTICAÇÃO ======
+            async function fetchUserEmail(token) {
+                try {
+                    const res = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${encodeURIComponent(token)}`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        return data.email || null;
+                    }
+                } catch (e) { console.warn('⚠️ userinfo:', e.message); }
+                return null;
+            }
+
+            function setupTabs() {
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                        btn.classList.add('active');
+                        const target = document.getElementById('panel-' + btn.dataset.tab);
+                        if (target) target.classList.add('active');
+                        if (btn.dataset.tab === 'usuarios') renderUsersList();
+                        if (btn.dataset.tab === 'inventario') renderInventoryPanel();
+                        if (btn.dataset.tab === 'gabarito') renderGabarito();
+                    });
+                });
+            }
+
+            function onAuthenticated() {
+                try {
+                    document.getElementById('loginArea').style.display = 'none';
+                    document.getElementById('dashboardArea').style.display = 'block';
+                    const headerEmail = document.getElementById('headerEmail');
+                    if (headerEmail) headerEmail.textContent = currentUserEmail;
+                    const logoutBtn = document.getElementById('logoutBtn');
+                    if (logoutBtn) {
+                        logoutBtn.style.display = 'inline-flex';
+                        logoutBtn.addEventListener('click', () => {
+                            accessToken = null;
+                            currentUserEmail = null;
+                            location.reload();
+                        });
+                    }
+                    setupTabs();
+                    loadAllSheetUsers().catch(e => console.warn(e));
+                    loadGlobalItemsCatalog().catch(e => console.warn(e));
+                    showToast('🔓 Autenticado como ' + currentUserEmail);
+                } catch (e) {
+                    console.error('❌ Transição:', e);
+                    showToast('Erro: ' + e.message);
+                    document.getElementById('dashboardArea').style.display = 'block';
+                }
+            }
+
+            function startAuth() {
+                const authBtn = document.getElementById('googleAuthBtn');
+                authBtn.addEventListener('click', () => {
+                    const client = google.accounts.oauth2.initTokenClient({
+                        client_id: CLIENT_ID,
+                        scope: SCOPES,
+                        callback: async (tokenResponse) => {
+                            if (tokenResponse.error) {
+                                showToast('❌ ' + tokenResponse.error_description);
+                                return;
+                            }
+                            accessToken = tokenResponse.access_token;
+                            let email = null;
+                            if (tokenResponse.id_token) {
+                                const payload = JSON.parse(atob(tokenResponse.id_token.split('.')[1]));
+                                email = payload.email;
+                            }
+                            if (!email) email = await fetchUserEmail(accessToken);
+                            currentUserEmail = email || 'editor@cejera.com';
+                            onAuthenticated();
+                        },
+                        error_callback: (error) => {
+                            showToast('❌ ' + error.message);
+                        }
+                    });
+                    client.requestAccessToken();
+                });
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const initWhenReady = () => {
+                    if (typeof google !== 'undefined' && google.accounts && google.accounts.oauth2) {
+                        startAuth();
+                    } else {
+                        setTimeout(initWhenReady, 100);
+                    }
+                };
+                initWhenReady();
+
+                document.getElementById('loadMissionsBtn')?.addEventListener('click', async () => {
+                    const sel = document.getElementById('missionUserSelect');
+                    if (!sel.value) { showToast('⚠️ Selecione um usuário.'); return; }
+                    await loadUserMissions(sel.value);
+                    showToast('📋 Missões carregadas.');
+                });
+                document.getElementById('addMissionBtn')?.addEventListener('click', () => {
+                    if (!currentUserForMissions) { showToast('⚠️ Carregue um usuário primeiro.'); return; }
+                    openMissionEditor(-1);
+                });
+                document.getElementById('addUserBtn')?.addEventListener('click', createNewUser);
+                document.getElementById('reloadGabBtn')?.addEventListener('click', renderGabarito);
+                document.getElementById('confirmOverlay')?.addEventListener('click', (e) => {
+                    if (e.target === e.currentTarget) document.getElementById('confirmOverlay').classList.remove('active');
+                });
+
+                const menuToggle = document.getElementById('menuToggle');
+                const nav = document.getElementById('primary-navigation');
+                if (menuToggle && nav) {
+                    menuToggle.addEventListener('click', () => {
+                        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                        menuToggle.setAttribute('aria-expanded', !expanded);
+                        nav.setAttribute('data-visible', !expanded);
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
