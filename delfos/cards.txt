@@ -1,0 +1,165 @@
+#001|"Ἕπου θεῷ"|Comum|Segue o deus – Confie na orientação divina e na providência.
+#002|"Νόμῳ πείθου"|Comum|Obedece à lei – Respeite as normas da sociedade.
+#003|"Θεοὺς σέβου"|Incomum|Honra os deuses – Reconheça o sagrado e o transcendente.
+#004|"Γονεῖς αἰδοῦ"|Comum|Respeita teus pais – Valorize a família e suas raízes.
+#005|"Ἡττῶ ὑπὸ δικαίου"|Incomum|Submete-te à justiça – Aceite o que é reto e imparcial.
+#006|"Γνῶθι μαθών"|Lendário|Conhece através do aprendizado – A sabedoria vem da experiência e do estudo.
+#007|"Ἀκούσας νόει"|Raro|Ouve e compreende – Escute ativamente antes de julgar.
+#008|"Σαυτὸν ἴσθι"|Comum|Sê tu mesmo – Autenticidade é o alicerce do caráter.
+#009|"Γαμεῖν μέλλε"|Comum|Pensa antes de casar – O casamento exige reflexão séria.
+#010|"Καιρὸν γνῶθι"|Mítico|Conhece o momento certo – O timing é a chave para toda ação.
+#011|"Φρόνει θνητά"|Comum|Pensa como mortal – Tenha humildade diante da finitude.
+#012|"Ξένος ὢν ἴσθι"|Comum|Age como estrangeiro quando fores estrangeiro – Adapte-se com respeito.
+#013|"Ἑστίαν τίμα"|Comum|Honra o lar – O centro da vida é o fogão doméstico.
+#014|"Ἄρχε σεαυτοῦ"|Lendário|Governa a si mesmo – O maior domínio é sobre os próprios impulsos.
+#015|"Φίλοις βοήθει"|Comum|Ajuda teus amigos – A amizade se prova na necessidade.
+#016|"Θυμοῦ κράτει"|Raro|Controla a ira – A raiva domada é força; solta, é ruína.
+#017|"Φρόνησιν ἄσκει"|Comum|Pratica prudência – A cautela evita muitos males.
+#018|"Πρόνοιαν τίμα"|Incomum|Honra a previsão – Planejar é antever os fios do destino.
+#019|"Ὅρκῳ μὴ χρῶ"|Comum|Não abuses de juramentos – A palavra empenhada é sagrada.
+#020|"Φιλίαν ἀγάπα"|Comum|Ama a amizade – O afeto verdadeiro é um tesouro.
+#021|"Παιδείας ἀντέχου"|Comum|Valoriza a disciplina – A educação forja o espírito.
+#022|"Δόξαν δίωκε"|Incomum|Busca honra – A boa reputação é herança que não se compra.
+#023|"Σοφίαν ζήλου"|Mítico|Busca sabedoria – O amor ao conhecimento é o caminho mais alto.
+#024|"Καλὸν εὖ λέγε"|Comum|Fala bem do bem – Louve o que é nobre e belo.
+#025|"Ψέγε μηδένα"|Comum|Não critique ninguém – A censura fácil revela pequenez.
+#026|"Ἐπαίνει ἀρετήν"|Comum|Louva a virtude – Exalte a excelência moral.
+#027|"Πρᾶττε δίκαια"|Raro|Pratica a justiça – A ação correta é a base da paz social.
+#028|"Φίλοις εὐνόει"|Comum|Sê bondoso com amigos – Benevolência fortalece laços.
+#029|"Ἐχθροὺς ἀμύνου"|Comum|Protege-te dos inimigos – Cautela contra a malícia alheia.
+#030|"Εὐγένειαν ἄσκει"|Incomum|Pratica nobreza – A verdadeira nobreza vem do caráter, não do sangue.
+#031|"Κακίας ἀπέχου"|Comum|Afasta-te do mal – Evite o vício e a corrupção.
+#032|"Κοινὸς γίνου"|Raro|Sê imparcial – A equidade é marca dos justos.
+#033|"Ἴδια φύλαττε"|Comum|Protege o que é teu – Cuide do seu patrimônio com zelo.
+#034|"Ἀλλοτρίων ἀπέχου"|Comum|Não deseje o dos outros – A inveja corrói a alma.
+#035|"Ἄκουε πάντα"|Comum|Escuta tudo – Aprenda com todas as vozes, mas filtre com razão.
+#036|"Εὔφημος ἴσθι"|Incomum|Mantém silêncio sagrado – Há momentos em que o silêncio é mais eloquente.
+#037|"Φίλῳ χαρίζου"|Comum|Favorece os amigos – Pequenas graças mantêm grandes amizades.
+#038|"Μηδὲν ἄγαν"|Lendário|Nada em excesso – A moderação é a maior das virtudes.
+#039|"Χρόνου φείδου"|Comum|Poupa teu tempo – O tempo é a matéria da vida; não a desperdice.
+#040|"Ὅρα τὸ μέλλον"|Mítico|Olha para o futuro – Visão além do presente guia o herói.
+#041|"Ὕβριν μίσει"|Comum|Odeia arrogância – A soberba precede a queda.
+#042|"Ἱκέτας αἰδοῦ"|Comum|Respeita suplicantes – A misericórdia com quem pede abrigo é divina.
+#043|"Πᾶσιν ἁρμόζου"|Comum|Adapta-te a todos – Flexibilidade social é arte da convivência.
+#044|"Υἱοὺς παίδευε"|Comum|Educa teus filhos – A herança maior é o ensinamento.
+#045|"Ἔχων χαρίζου"|Comum|Compartilha o que tens – Generosidade não empobrece, engrandece.
+#046|"Δόλον φοβοῦ"|Incomum|Tema o engano – O trapaceiro é mais perigoso que o inimigo armado.
+#047|"Εὐλόγει πάντας"|Comum|Fala bem de todos – A língua afiada fere mais que a espada.
+#048|"Φιλόσοφος γίνου"|Raro|Torna-te amante da sabedoria – Filosofar é aprender a morrer e a viver.
+#049|"Ὅσια κρῖνε"|Comum|Julga o que é sagrado – Respeite os mistérios e rituais.
+#050|"Γνοὺς πρᾶττε"|Incomum|Age conscientemente – Toda ação deve ser iluminada pelo conhecimento.
+#051|"Φόνου ἀπέχου"|Comum|Afasta-te do assassinato – A vida alheia é inviolável.
+#052|"Εὔχου δυνατά"|Comum|Pede apenas o possível – Deseje com os pés no chão.
+#053|"Σοφοῖς χρῶ"|Mítico|Consulta os sábios – A experiência alheia é atalho para o acerto.
+#054|"Ἦθος δοκίμαζε"|Comum|Testa o caráter – Conheça a índole antes de confiar.
+#055|"Λαβὼν ἀπόδος"|Comum|Retribui o que recebeste – A gratidão é dívida sagrada.
+#056|"Ὑφόρω μηδένα"|Comum|Não desprezes ninguém – A humildade vê valor em cada pessoa.
+#057|"Τέχνῃ χρῶ"|Comum|Usa tua habilidade – Talento sem aplicação é estéril.
+#058|"Ὃ μέλλεις, δός"|Mítico|Faz o que pretendes fazer – Aja sem procrastinação, pois o tempo urge.
+#059|"Εὐεργεσίας τίμα"|Comum|Honra boas ações – Reconheça quem faz o bem.
+#060|"Φθόνει μηδενί"|Comum|Não inveje ninguém – A inveja é veneno para o próprio peito.
+#061|"Φυλακῇ πρόσεχε"|Incomum|Mantém vigilância – O descuido é porta para o infortúnio.
+#062|"Ἐλπίδα αἴνει"|Raro|Louva a esperança – A esperança é o sonho do acordado.
+#063|"Διαβολὴν μίσει"|Comum|Odeia calúnia – A maledicência destrói reputações.
+#064|"Δικαίως κτῶ"|Raro|Adquire justamente – Não há posse que valha a injustiça.
+#065|"Ἀγαθοὺς τίμα"|Comum|Honra os bons – Cercar-se de virtude eleva a alma.
+#066|"Κριτὴν γνῶθι"|Comum|Conhece o juiz – Saiba quem te julga e quais as regras.
+#067|"Γάμους φύλαττε"|Comum|Protege o casamento – A aliança conjugal é solo sagrado.
+#068|"Τύχην νόμιζε"|Incomum|Reconhece a fortuna – O acaso existe; não o negue, mas não se apoie nele.
+#069|"Ἐγγύην φεῦγε"|Comum|Evita garantias – Avalizar outrem é arriscar a própria paz.
+#070|"Ἁπλῶς διάλεγου"|Comum|Fala com simplicidade – A verdade não precisa de enfeites.
+#071|"Ὁμοίοις χρῶ"|Comum|Relaciona-te com semelhantes – Cada um com seu igual, mas sem se fechar.
+#072|"Δαπάνην φεύγε"|Comum|Evita desperdícios – A frugalidade enche os celeiros.
+#073|"Κτώμενος ἥδου"|Comum|Alegra-te honestamente – Gozo sem culpa é o justo deleite.
+#074|"Αἰσχύνην σέβου"|Incomum|Respeita a vergonha – O senso de vergonha protege a honra.
+#075|"Χάριν ἐκτέλει"|Comum|Retribui favores – A roda da gratidão deve girar.
+#076|"Εὐτυχίαν εὔχου"|Comum|Deseja boa fortuna – Almeje a prosperidade, mas trabalhe por ela.
+#077|"Τύχην στέργε"|Comum|Aceita a sorte – O que vem, vem; resiliência é virtude.
+#078|"Ἄκουε πάντα"|Comum|Escuta todos – Até do insensato se pode aprender.
+#079|"Μηδὲν εἰκῇ"|Raro|Nada faças sem propósito – Ação sem meta é sopro no vento.
+#080|"Φίλοις χάριζε"|Comum|Agrada teus amigos – Pequenas alegrias fortalecem laços.
+#081|"Μηδὲν βίαιον"|Comum|Nada pela violência – A força bruta raramente constrói.
+#082|"Εὐγνώμων γίνου"|Incomum|Sê grato – A gratidão é a memória do coração.
+#083|"Ὁμόνοιαν δίωκε"|Raro|Busca harmonia – A concórdia entre os homens é dom raro.
+#084|"Ἀπόκρινου καιρῷ"|Comum|Responde no momento certo – A palavra na hora certa vale ouro.
+#085|"Πόνει μετρίως"|Comum|Trabalha moderadamente – Nem ócio nem exaustão: o justo meio.
+#086|"Πράττε ἀμετανοήτως"|Incomum|Age sem arrependimento – Decida com clareza e não olhe para trás.
+#087|"Λόγον τίμα"|Comum|Honra a palavra – A promessa cumprida edifica a confiança.
+#088|"Ὕβριν φεῦγε"|Comum|Foge da arrogância – A humildade é escudo contra a queda.
+#089|"Εὐσεβῶς ζῆ"|Comum|Vive piedosamente – A reverência ao divino ordena a vida.
+#090|"Ψυχὴν κόσμει"|Mítico|Ornamenta a alma – A beleza interior não desvanece.
+#091|"Σώματος ἐπιμέλου"|Comum|Cuida do corpo – O templo da alma merece zelo.
+#092|"Δρόμον τέλει"|Raro|Completa a corrida – Perseverança até o fim é selo do herói.
+#093|"Πᾶσι φιλικός"|Comum|Sê amigável com todos – Cordialidade abre portas, mas discrição as guarda.
+#094|"Ἀρετὴν μίμου"|Comum|Imita a virtude – Exemplos bons são mestres silenciosos.
+#095|"Κακίαν μίσει"|Comum|Odeia o vício – A repulsa ao mal começa por não o praticar.
+#096|"Ἐργάζου κτητά"|Incomum|Trabalha pelo que mereces – O suor honesto é a moeda do mérito.
+#097|"Ἐπιθυμίαν κράτει"|Raro|Controla desejos – O apetite domado é liberdade.
+#098|"Μηδὲν μάτην"|Comum|Nada em vão – Todo gesto deve ter sentido.
+#099|"Μανθάνων μὴ κάμνε"|Raro|Nunca canses de aprender – O saber não ocupa lugar, mas enche a vida.
+#100|"Ζωὴν κόσμει"|Lendário|Embeleza tua vida – Faça da existência uma obra de arte.
+#101|"Θεοῖς πίστευε"|Comum|Confia nos deuses – A fé dá asas ao espírito.
+#102|"Παισὶν εὐχρῶ"|Comum|Sê gentil com crianças – A semente do futuro se rega com ternura.
+#103|"Ἀδίκως μηδέν"|Comum|Nada injustamente – A régua da justiça deve medir todos os atos.
+#104|"Ἡδονὴν κράτει"|Raro|Controla o prazer – O prazer sem freio vira tormento.
+#105|"Λύπην φεῦγε"|Comum|Evita a tristeza excessiva – A melancolia prolongada é inimiga da ação.
+#106|"Γλῶτταν ἴσχε"|Raro|Controla a língua – Palavras soltas são flechas sem arco.
+#107|"Μὴ πολυλόγει"|Comum|Não fales demais – A verborragia esvazia o sentido.
+#108|"Δίκαιος γίνου"|Comum|Sê justo – A justiça é a coluna da convivência.
+#109|"Ἀπάτην μίσει"|Comum|Odeia fraude – O engano corrói a confiança.
+#110|"Θεοὺς φοβοῦ"|Mítico|Tema os deuses – O temor reverente é princípio da sabedoria.
+#111|"Ἀρετὴν τίμα"|Comum|Honra a virtude – Dê valor à excelência moral onde a encontrar.
+#112|"Καλοκἀγαθίαν ἄσκει"|Incomum|Pratica nobreza moral – A beleza e a bondade devem andar juntas.
+#113|"Σωφροσύνην φύλαττε"|Raro|Guarda a temperança – A sobriedade de espírito é escudo.
+#114|"Μέτρον ἄριστον"|Mítico|A medida é o melhor – O justo meio é superior a qualquer extremo.
+#115|"Κακῶς μὴ λέγε"|Comum|Não fales mal – A difamação mancha mais a quem a profere.
+#116|"Ἀληθείᾳ χρῶ"|Comum|Usa a verdade – A mentira tem pernas curtas.
+#117|"Δικαιοσύνην τίμα"|Mítico|Honra a justiça – A deusa Diké olha por quem age reto.
+#118|"Εὐεργέτει"|Comum|Faz o bem – O bem feito nunca é perdido.
+#119|"Ἀπληστίαν φεῦγε"|Comum|Foge da ganância – O desejo insaciável é abismo sem fundo.
+#120|"Βίον κόσμει"|Incomum|Dignifica tua vida – Dê propósito e beleza ao seu viver.
+#121|"Μανθάνειν μὴ λήγε"|Lendário|Nunca pare de aprender – O aprendizado é o rio que nunca seca.
+#122|"Θεοὺς παρακάλει"|Comum|Invoca os deuses – A prece sincera alinha coração e cosmos.
+#123|"Ἀδικίαν μίσει"|Comum|Odeia injustiça – A indiferença ante o erro é cumplicidade.
+#124|"Οὓς τρέφεις ἀγάπα"|Comum|Ama aqueles que crias – O amor que educa é eterno.
+#125|"Ἀπόντι μὴ μάχου"|Incomum|Não lutes com ausentes – Brigar com fantasmas é perder o presente.
+#126|"Πρεσβύτερον αἰδοῦ"|Comum|Respeita os mais velhos – A experiência dos anciãos é biblioteca viva.
+#127|"Νεώτερον δίδασκε"|Comum|Ensina os mais jovens – Transmitir saber é plantar colheitas futuras.
+#128|"Πλούτῳ ἀπίστει"|Raro|Não confie na riqueza – O ouro é deus instável.
+#129|"Σεαυτὸν αἰδοῦ"|Comum|Respeita a ti mesmo – A autoestima sólida não depende de aplausos.
+#130|"Μὴ ἄρχε ὑβρίζειν"|Comum|Não comeces arrogâncias – Toda tirania começa com um passo soberbo.
+#131|"Προγόνους στεφάνου"|Comum|Honra teus ancestrais – A memória dos que vieram antes é a raiz.
+#132|"Θνῆσκε ὑπὲρ πατρίδος"|Mítico|Morre por tua pátria – O sacrifício pela terra-mãe é altar de fogo.
+#133|"Τῷ βίῳ μὴ ἄχθου"|Comum|Não te revoltes com a vida – Aceitar o fardo é o primeiro passo para erguê-lo.
+#134|"Ἐπὶ νεκρῷ μὴ γέλα"|Comum|Não zombes dos mortos – O respeito aos que partiram é medida de humanidade.
+#135|"Ἀτυχοῦντι συνάχθου"|Incomum|Compartilha o peso do desafortunado – A compaixão alivia dores alheias e próprias.
+#136|"Χαρίζου ἀβλαβῶς"|Comum|Agrada sem causar dano – Gentileza que não fere é arte rara.
+#137|"Μὴ ἐπὶ παντὶ λυποῦ"|Comum|Não sofras por tudo – A dor selecionada é sabedoria.
+#138|"Ἐξ εὐγενῶν γέννα"|Raro|Gera a partir dos nobres – A descendência boa vem de boas origens (morais).
+#139|"Ἐπαγγέλλου μηδενί"|Comum|Não prometas a ninguém – A promessa é dívida; só a faça se certa.
+#140|"Φθιμένους μὴ ἀδίκει"|Comum|Não ofendas os mortos – A memória merece justiça, não ultraje.
+#141|"Εὖ πάσχε ὡς θνητός"|Comum|Vive bem como mortal – Desfrute o transitório com sabedoria.
+#142|"Τύχῃ μὴ πίστευε"|Incomum|Não confie na sorte – O acaso é cego; o mérito, vidente.
+#143|"Παῖς ὢν κόσμιος ἴσθι"|Comum|Quando criança, comporta-te bem – A disciplina na infância forja o adulto.
+#144|"Ἡβῶν ἐγκρατής"|Comum|Quando jovem, sê disciplinado – A energia juvenil precisa de freio e direção.
+#145|"Μέσος δίκαιος"|Comum|Na meia-idade, sê justo – A maturidade exige equidade plena.
+#146|"Πρεσβύτης εὔλογος"|Comum|Na velhice, sê sábio – A idade traz razão; use-a para guiar.
+#147|"Τελευτῶν ἄλυπος"|Lendário|Ao morrer, esteja sem arrependimentos – A morte serena é coroa de uma vida íntegra.
+#148|"Ἀρετὴν πείθου"|CAÓTICO|Obedece à virtude – Submeta-se à excelência moral, pois ela é a verdadeira mestra.
+#149|"Ἄλυπος βίου"|CAÓTICO|Vive sem tristeza – A felicidade possível é escolha diária contra o caos.
+#150|"Ἀδίκους φεῦγε"|CAÓTICO|Evita os injustos – Os ímpios corrompem; afaste-se ou pereça.
+#151|"Δίκαια μαρτύρει"|CAÓTICO|Testemunha o que é justo – Sua voz em defesa do reto pode salvar almas.
+#152|"Ἡδονὴν μέτρει"|CAÓTICO|Mede o prazer – O gozo sem medida é abismo sem fundo.
+#153|"Ἀρετὴν αἴνει"|CAÓTICO|Louva a virtude – Mesmo em meio ao caos, celebre o que é nobre.
+#154|"Συγγενεῖς παίδευε"|CAÓTICO|Instrui tua família – O conhecimento deve começar no lar, senão a casa desaba.
+#155|"Χρόνῳ πίστευε"|CAÓTICO|Confia no tempo – O tempo desfaz nós que a força não desata.
+#156|"Χάριν δέχου"|CAÓTICO|Recebe com gratidão – Até o vilão pode dar algo bom; agradeça, mas desconfie.
+#157|"Θεῖον αἰδοῦ"|CAÓTICO|Reverencia o divino – O sagrado está até nos glitches do universo.
+#158|"Ἰσχὺν μὴ καύχα"|CAÓTICO|Não te gabes da força – A verdadeira força é silenciosa; a fanfarronice é fraqueza.
+#159|"Ὁμοίοις συνδέου"|CAÓTICO|Une-te aos semelhantes – Pares afinados resistem melhor à tempestade.
+#160|"Αἰσχύνου ψεύδεσθαι"|CAÓTICO|Envergonha-te da mentira – A mentira distorce a realidade; a vergonha é o primeiro antídoto.
+#161|"Πιστεύων τόλμα"|CAÓTICO|Se crês, ousa – Fé sem ação é fantasma; ouse transformar crença em ato.
+#162|"Συνθήκας φύλαττε"|CAÓTICO|Mantém teus acordos – Mesmo o caos respeita um contrato honrado.
+#163|"Γένος τίμα"|CAÓTICO|Honra tua linhagem – Não por sangue, mas por valores herdados e lapidados.
+#164|"Ἁπλότητα τίμα"|CAÓTICO|Valoriza simplicidade – A complexidade corrompe; o simples resiste aos glitches.
+#165|"Βίον μὴ ἀπόλλυε"|CAÓTICO|Não desperdice tua vida – O tempo é o único recurso que o caos não pode restaurar.
