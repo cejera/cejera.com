@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEJERA® — LOJA | Coleção Astro já disponível!</title>
-    <meta name="description" content="Loja oficial CEJERA®. Lançamento da coleção ASTRO: camisetas oversized com estampas exclusivas. Moda autêntica e excêntrica.">
+    <title>CEJERA® — LOJA | Coleção Brasil já disponível!</title>
+    <meta name="description" content="Loja oficial CEJERA®. Lançamento da coleção ASTRO e BRASIL: camisetas oversized com estampas exclusivas. Moda autêntica e excêntrica.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
     <meta name="apple-mobile-web-app-title" content="Cejera® - Moda" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
-        /* CSS Variables - Design System */
         :root {
             --red: #F70707;
             --light: #F7F7F7;
@@ -25,6 +24,8 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
             --transition: all 0.3s ease;
+            --green: #00a651;
+            --blue: #0072bc;
         }
 
         * {
@@ -526,38 +527,6 @@
 
         .indicador.active {
             background: var(--red);
-        }
-
-        .carrossel-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.3) 2px,
-                transparent 2px,
-                transparent 3px,
-                rgba(0, 0, 0, 0.3) 3px,
-                rgba(0, 0, 0, 0.3) 4px,
-                transparent 5px
-            );
-            background-size: 100% 6px;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.3;
-            animation: scanline 10s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 0 600px;
-            }
         }
 
         .produto-info {
@@ -1077,27 +1046,80 @@
             outline-offset: 2px;
         }
 
+        /* ========== COLEÇÃO ASTRO (ESGOTADA) ========== */
         .astro-section {
             position: relative;
             background: radial-gradient(circle at 30% 20%, #0a0a2a, #010105);
             overflow: hidden;
             padding: 60px 0 80px;
             margin: 40px 0 60px;
-            border-top: 3px solid var(--red);
-            border-bottom: 3px solid var(--red);
-            box-shadow: 0 0 30px rgba(247, 7, 7, 0.2);
+            border-top: 3px solid #8B0000;
+            border-bottom: 3px solid #8B0000;
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+            opacity: 0.85;
         }
-        .astro-canvas {
+        .astro-content {
+            position: relative;
+            z-index: 5;
+        }
+        .astro-section .collection-title {
+            color: #ffdddd;
+            text-shadow: 0 0 8px #8B0000;
+        }
+        .astro-section .collection-subtitle {
+            color: #aaa;
+        }
+        .astro-section .produto-card {
+            background: rgba(20, 20, 45, 0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(139, 0, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+            opacity: 0.9;
+        }
+        .astro-section .produto-nome {
+            color: #cc5555;
+        }
+        .astro-section .produto-descricao {
+            color: #999;
+        }
+        .astro-section .preco-atual {
+            color: #8B0000;
+        }
+
+        /* Carimbo ESGOTADA */
+        .carimbo-esgotado {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ff0000;
+            border: 5px solid #ff0000;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            opacity: 0.75;
+            z-index: 10;
             pointer-events: none;
+            font-family: 'Source Code Pro', monospace;
+            letter-spacing: 4px;
+            white-space: nowrap;
         }
-        .astro-scanlines {
+
+        /* ========== COLEÇÃO BRASIL ========== */
+        .brasil-section {
+            position: relative;
+            background: linear-gradient(135deg, #0a2a1a 0%, #0a1a2a 100%);
+            overflow: hidden;
+            padding: 60px 0 80px;
+            margin: 40px 0 60px;
+            border-top: 3px solid var(--green);
+            border-bottom: 3px solid var(--blue);
+            box-shadow: 0 0 30px rgba(0, 166, 81, 0.2);
+        }
+        /* Scanlines animadas */
+        .brasil-scanlines {
             position: absolute;
             top: 0;
             left: 0;
@@ -1113,45 +1135,85 @@
             pointer-events: none;
             z-index: 2;
             opacity: 0.5;
+            animation: scanlines 8s linear infinite;
         }
-        .astro-content {
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 600px; }
+        }
+        /* Glitch overlay */
+        .brasil-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0, 255, 100, 0.03) 0%, transparent 50%, rgba(0, 100, 255, 0.03) 100%);
+            pointer-events: none;
+            z-index: 3;
+            animation: glitch-bg 0.3s infinite;
+        }
+        @keyframes glitch-bg {
+            0% { transform: translate(0); opacity: 0.8; }
+            20% { transform: translate(-3px, 2px); opacity: 0.6; }
+            40% { transform: translate(3px, -2px); opacity: 0.7; }
+            60% { transform: translate(-1px, -1px); opacity: 0.5; }
+            80% { transform: translate(2px, 1px); opacity: 0.6; }
+            100% { transform: translate(0); opacity: 0.8; }
+        }
+        .brasil-content {
             position: relative;
             z-index: 5;
         }
-        .astro-section .collection-title {
-            color: #ffdddd;
-            text-shadow: 0 0 8px #ff0000;
+        .brasil-section .collection-title {
+            color: #fff;
+            text-shadow: 0 0 10px var(--green), 0 0 20px var(--blue);
         }
-        .astro-section .collection-subtitle {
-            color: #f0f0f0;
+        .brasil-section .collection-subtitle {
+            color: #ccc;
         }
-        .astro-section .produto-card {
-            background: rgba(20, 20, 45, 0.92);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(247, 7, 7, 0.5);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-        }
-        .astro-section .produto-nome {
-            color: #ff3333;
-        }
-        .astro-section .produto-descricao {
-            color: #ddd;
-        }
-        .astro-section .preco-atual {
-            color: var(--red);
-        }
-        .astro-glow {
+        .brasil-section .produto-card {
+            background: rgba(10, 30, 20, 0.9);
+            border: 1px solid var(--green);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
             transition: all 0.3s;
         }
-        .astro-glow:hover {
-            box-shadow: 0 0 18px rgba(247,7,7,0.9);
-            transform: translateY(-12px);
+        .brasil-section .produto-card:nth-child(2) {
+            border-color: var(--blue);
+        }
+        .brasil-section .produto-card:hover {
+            box-shadow: 0 0 20px rgba(0, 166, 81, 0.5);
+            transform: translateY(-10px);
+        }
+        .brasil-section .produto-nome {
+            color: #fff;
+        }
+        .brasil-section .produto-descricao {
+            color: #ccc;
+        }
+        .brasil-section .produto-descricao strong {
+            color: var(--green);
+        }
+        .brasil-section .preco-atual {
+            color: #fff;
+        }
+        /* Botão com degradê verde → azul */
+        .btn-brasil {
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-brasil:hover {
+            background: linear-gradient(90deg, var(--blue), var(--green));
+            box-shadow: 0 0 20px rgba(0, 166, 81, 0.6);
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
-
-    <!-- Banner removido conforme solicitado -->
 
     <header id="main-header">
         <div class="container header-content">
@@ -1194,93 +1256,151 @@
             <p class="email-microcopy"> • Pedidos via WhatsApp •</p>
         </section>
 
-        <!-- CARD PRETO DE ATENÇÃO: Inauguração do Estúdio Cejera 1 + Lançamento da Coleção Astro -->
         <div class="status-banner container">
             <h2>• INAUGURAÇÃO DO ESTÚDIO CEJERA #01 •</h2>
-            <p>Visite nosso estúdio e garanta condições exclusivas no lançamento da Coleção Astro e outras novidades!</p>
+            <p>Visite nosso estúdio e garanta condições exclusivas no lançamento de coleções e outras novidades!</p>
             <a href="https://share.google/uRd0XBwDGFTyI9iEJ" target="_blank" class="btn-estudio">📍Onde estamos</a>
             <p style="margin-top: 20px;">A coleção <span class="highlight">AKA</span> já está em <span class="highlight">PRÉ-VENDA</span> com lançamento previsto para <span class="highlight">JULHO</span>. Reserve a sua!</p>
         </div>
 
-        <!-- ========== COLEÇÃO ASTRO ========== -->
+
+        <!-- ========== COLEÇÃO BRASIL ========== -->
+        <section class="brasil-section" id="brasil">
+            <div class="brasil-scanlines"></div>
+            <div class="brasil-glitch"></div>
+            <div class="container brasil-content">
+                <div class="collection-header">
+                    <h2 class="collection-title">BRASIL</h2>
+                    <p class="collection-subtitle">Coleção que veste a alma verde amarela e azul. Camisetas oversized com três variações de estampa.</p>
+                    <span class="collection-status" style="background: linear-gradient(90deg, var(--green), var(--blue));">• DISPONÍVEL •</span>
+                </div>
+                <div class="produtos-grid" style="max-width: 900px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                    <!-- Card Verde -->
+                    <article class="produto-card">
+                        <div class="carrossel-container" style="background: #0a2a1a; height: 380px;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="brasil2.jpg" alt="Camiseta Brasil Verde" class="produto-imagem"></div>
+                            </div>
+                            <span class="produto-badge" style="background: var(--green);">BRASIL</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">BRASIL — Verde</h3>
+                            <p class="produto-descricao">
+                                Camiseta oversized <strong>verde</strong>. Escolha entre 3 estampas:<br>
+                                <strong>• Grande no peito</strong><br>
+                                <strong>• Grande nas costas</strong><br>
+                                <strong>• Pequena (peito esquerdo)</strong>
+                            </p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Verde. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card Azul -->
+                    <article class="produto-card">
+                        <div class="carrossel-container" style="background: #0a1a2a; height: 380px;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="brasil3.jpg" alt="Camiseta Brasil Azul" class="produto-imagem"></div>
+                            </div>
+                            <span class="produto-badge" style="background: var(--blue);">BRASIL</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">BRASIL — Azul</h3>
+                            <p class="produto-descricao" >
+                                Camiseta oversized <strong style="color: var(--blue);">azul</strong>. Escolha entre 3 estampas:<br>
+                                <strong style="color: var(--blue);">• Grande no peito</strong><br>
+                                <strong style="color: var(--blue);">• Grande nas costas</strong><br>
+                                <strong style="color: var(--blue);">• Pequena (peito esquerdo)</strong>
+                            </p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Azul. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <p style="color:#00a651; font-size:0.9rem;"><i class="fas fa-tshirt"></i> Escolha sua estampa no atendimento via WhatsApp <i class="fas fa-tshirt"></i></p>
+                </div>
+            </div>
+        </section>
+        <!-- ========== COLEÇÃO ASTRO (ESGOTADA) ========== -->
         <section class="astro-section" id="astro">
-            <canvas id="astroCanvas" class="astro-canvas"></canvas>
-            <div class="astro-scanlines"></div>
             <div class="container astro-content">
                 <div class="collection-header">
                     <h2 class="collection-title">✦ ASTRO ✦</h2>
                     <p class="collection-subtitle">Camisetas oversized com estampas cósmicas nas costas. Edição (extremamente) limitada.</p>
-                    <span class="collection-status" style="background:#F70707;">• LANÇAMENTO OFICIAL •</span>
+                    <span class="collection-status" style="background:#8B0000;">• ESGOTADA •</span>
                 </div>
                 <div class="produtos-grid">
-                    <!-- Camiseta 1: Arcano VII -->
-                    <article class="produto-card astro-glow">
+                    <!-- Card 1 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
                                 <div class="carrossel-slide"><img src="astro1.png" alt="Carta de tarot Arcano VII - A Cereja" class="produto-imagem"></div>
                             </div>
-                            <span class="produto-badge">✦ ASTRO ✦</span>
+                            <span class="produto-badge" style="background:#8B0000;">✦ ASTRO ✦</span>
                         </div>
+                        <div class="carimbo-esgotado">ESGOTADA</div>
                         <div class="produto-info">
                             <h3 class="produto-nome">Arcano VII - A Cereja</h3>
-                            <p class="produto-descricao">Camiseta oversized. Nas costas, uma carta de tarot exclusiva com o Arcano VII “A Cereja”. Estampa detalhada e mística.</p>
+                            <p class="produto-descricao">Camiseta oversized. Nas costas, uma carta de tarot exclusiva com o Arcano VII “A Cereja”.</p>
                             <div class="produto-preco">
                                 <span class="preco-antigo">R$153,69</span>
                                 <span class="preco-atual">R$99,90</span>
-                                <span class="desconto">35%</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta ASTRO - ARCANO VII (A Cereja)" class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Garantir via WhatsApp
-                            </a>
                         </div>
                     </article>
 
-                    <!-- Camiseta 2: Constelação -->
-                    <article class="produto-card astro-glow">
+                    <!-- Card 2 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
                                 <div class="carrossel-slide"><img src="astro2.png" alt="Constelação de Cereja" class="produto-imagem"></div>
                             </div>
-                            <span class="produto-badge">✦ ASTRO ✦</span>
+                            <span class="produto-badge" style="background:#8B0000;">✦ ASTRO ✦</span>
                         </div>
+                        <div class="carimbo-esgotado">ESGOTADA</div>
                         <div class="produto-info">
                             <h3 class="produto-nome">Constelação de Cereja</h3>
-                            <p class="produto-descricao">Mapa estelar que forma uma cereja brilhante. Estampa nas costas com pontos e linhas celestiais. Oversized e astronômico.</p>
+                            <p class="produto-descricao">Mapa estelar que forma uma cereja brilhante. Oversized e astronômico.</p>
                             <div class="produto-preco">
                                 <span class="preco-antigo">R$153,69</span>
                                 <span class="preco-atual">R$99,90</span>
-                                <span class="desconto">35%</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta ASTRO - CONSTELAÇÃO" class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Garantir via WhatsApp
-                            </a>
                         </div>
                     </article>
 
-                    <!-- Camiseta 3: Supergigante Vermelha -->
-                    <article class="produto-card astro-glow">
+                    <!-- Card 3 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
                                 <div class="carrossel-slide"><img src="astro3.png" alt="Supergigante Vermelha - Cereja Estrela" class="produto-imagem"></div>
                             </div>
-                            <span class="produto-badge">✦ ASTRO ✦</span>
+                            <span class="produto-badge" style="background:#8B0000;">✦ ASTRO ✦</span>
                         </div>
+                        <div class="carimbo-esgotado">ESGOTADA</div>
                         <div class="produto-info">
                             <h3 class="produto-nome">Supergigante Vermelha</h3>
-                            <p class="produto-descricao">Cereja gigante como uma estrela prestes a explodir. Estampa dramática e impactante nas costas. Para os que nasceram sob fogo cósmico.</p>
+                            <p class="produto-descricao">Cereja gigante como uma estrela prestes a explodir. Estampa dramática nas costas.</p>
                             <div class="produto-preco">
                                 <span class="preco-antigo">R$153,69</span>
                                 <span class="preco-atual">R$99,90</span>
-                                <span class="desconto">35%</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta ASTRO - SUPERGIGANTE VERMELHA" class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Garantir via WhatsApp
-                            </a>
                         </div>
                     </article>
                 </div>
-                <div style="text-align: center; margin-top: -30px;">
-                    <p style="color:#f70707; font-size:0.9rem;"><i class="fas fa-star-of-life"></i> Edição limitada – estampas nas costas | Tecido premium oversized <i class="fas fa-star-of-life"></i></p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://wa.me/5535999286246?text=Cejera, me avise quanto tiver mais camisetas da coleção Astro" class="btn" style="background: #8B0000; font-size: 1.1rem; padding: 14px 32px;">
+                        <i class="fas fa-bell"></i> Me avise quando voltar
+                    </a>
+                    <p style="color:#aaa; font-size:0.85rem; margin-top: 10px;">Deixe seu interesse e te avisaremos assim que reabrir.</p>
                 </div>
             </div>
         </section>
@@ -1344,7 +1464,7 @@
             </div>
         </section>
 
-        <!-- Coleção Bazika (mantida como estava, apenas com preços e imagens atualizados) -->
+        <!-- Coleção Bazika -->
         <section class="colecoes-section container" id="bazika">
             <div class="collection-header">
                 <h2 class="collection-title">BAZIKA</h2>
@@ -1353,7 +1473,6 @@
             </div>
             
             <div class="produtos-grid">
-                <!-- Camiseta Bazika -->
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-camiseta-bazika">
                         <div class="carrossel-slides">
@@ -1384,7 +1503,6 @@
                     </div>
                 </article>
 
-                <!-- Calça Bazika Cargo -->
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-calca-cargo">
                         <div class="carrossel-slides">
@@ -1415,7 +1533,6 @@
                     </div>
                 </article>
 
-                <!-- Corta-vento Bazika -->
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-corta-vento-bazika">
                         <div class="carrossel-slides">
@@ -1683,131 +1800,6 @@
             indicadores.forEach((ind, i) => ind.addEventListener('click', () => { currentSlide = i; updateCarrossel(); }));
             setInterval(() => { currentSlide = (currentSlide + 1) % slideCount; updateCarrossel(); }, 4000);
         });
-
-        // Canvas Astro
-        const astroCanvas = document.getElementById('astroCanvas');
-        if (astroCanvas) {
-            let ctx = astroCanvas.getContext('2d');
-            let stars = [];
-            let shootingStars = [];
-            let width, height;
-            let astroSection = document.querySelector('.astro-section');
-
-            function resizeCanvas() {
-                if (!astroSection) return;
-                const rect = astroSection.getBoundingClientRect();
-                width = rect.width;
-                height = rect.height;
-                astroCanvas.width = width;
-                astroCanvas.height = height;
-                astroCanvas.style.width = `${width}px`;
-                astroCanvas.style.height = `${height}px`;
-                initStars();
-            }
-
-            function initStars() {
-                stars = [];
-                const starCount = Math.floor((width * height) / 2800);
-                for (let i = 0; i < starCount; i++) {
-                    stars.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        radius: Math.random() * 2 + 1,
-                        alpha: Math.random() * 0.7 + 0.3,
-                        speedX: (Math.random() - 0.5) * 0.12,
-                        speedY: (Math.random() - 0.5) * 0.08,
-                        twinkle: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-
-            function createShootingStar() {
-                if (Math.random() < 0.006) {
-                    shootingStars.push({
-                        x: Math.random() * width,
-                        y: 0,
-                        speedX: (Math.random() * 4 + 2) * (Math.random() > 0.5 ? 1 : -1),
-                        speedY: Math.random() * 5 + 3,
-                        life: 1,
-                        alpha: 1
-                    });
-                }
-            }
-
-            function updateStarsParallax() {
-                const scrollOffset = window.scrollY * 0.0015;
-                for (let s of stars) {
-                    s.x += s.speedX + scrollOffset * 0.2;
-                    s.y += s.speedY + scrollOffset * 0.1;
-                    if (s.x > width) s.x = 0;
-                    if (s.x < 0) s.x = width;
-                    if (s.y > height) s.y = 0;
-                    if (s.y < 0) s.y = height;
-                    s.twinkle += 0.02;
-                }
-            }
-
-            function updateShootingStars() {
-                for (let i = 0; i < shootingStars.length; i++) {
-                    let ss = shootingStars[i];
-                    ss.x += ss.speedX;
-                    ss.y += ss.speedY;
-                    ss.life -= 0.02;
-                    ss.alpha = ss.life;
-                    if (ss.x > width + 100 || ss.x < -100 || ss.y > height + 200 || ss.life <= 0) {
-                        shootingStars.splice(i, 1);
-                        i--;
-                    }
-                }
-            }
-
-            function drawStars() {
-                for (let s of stars) {
-                    ctx.beginPath();
-                    let flicker = 0.5 + 0.5 * Math.sin(s.twinkle);
-                    let alphaVal = Math.min(1, s.alpha * flicker);
-                    ctx.fillStyle = `rgba(255, 235, 190, ${alphaVal * 0.9})`;
-                    ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            function drawShootingStars() {
-                for (let ss of shootingStars) {
-                    ctx.beginPath();
-                    ctx.moveTo(ss.x, ss.y);
-                    ctx.lineTo(ss.x - ss.speedX * 2.5, ss.y - ss.speedY * 1.8);
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = `rgba(255, 180, 80, ${ss.alpha * 0.9})`;
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.arc(ss.x, ss.y, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 220, 120, ${ss.alpha})`;
-                    ctx.fill();
-                }
-            }
-
-            let animationId;
-            function animate() {
-                if (!ctx || width === 0) return;
-                ctx.clearRect(0, 0, width, height);
-                ctx.fillStyle = 'rgba(0,0,0,0.2)';
-                ctx.fillRect(0, 0, width, height);
-                updateStarsParallax();
-                createShootingStar();
-                updateShootingStars();
-                drawStars();
-                drawShootingStars();
-                animationId = requestAnimationFrame(animate);
-            }
-
-            const resizeObserver = new ResizeObserver(() => resizeCanvas());
-            if (astroSection) resizeObserver.observe(astroSection);
-            resizeCanvas();
-            window.addEventListener('resize', () => resizeCanvas());
-            animate();
-            window.addEventListener('beforeunload', () => cancelAnimationFrame(animationId));
-        }
     </script>
 </body>
 </html>
