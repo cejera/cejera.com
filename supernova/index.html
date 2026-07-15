@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>SUPERNOVA · 3D</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;900&display=swap" rel="stylesheet" />
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0b0b0b;
+            font-family: 'Source Code Pro', monospace;
+            color: #ffffff;
+            user-select: none;
+        }
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+        }
+        #logo-link {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: block;
+            width: 48px;
+            height: 48px;
+            transition: transform 0.2s;
+            pointer-events: auto;
+        }
+        #logo-link:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+        #logo-link img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+            transition: filter 0.8s ease;
+        }
+        #logo-link.light-logo img {
+            filter: invert(1) drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+        }
+        #bottom-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 38vh;
+            min-height: 220px;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.65) 40%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 2.2vh;
+            padding-left: 2vw;
+            padding-right: 2vw;
+            transition: background 0.8s ease;
+        }
+        #bottom-overlay.light-overlay {
+            background: linear-gradient(0deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 40%, transparent 100%) !important;
+        }
+        #bottom-overlay.light-overlay .tl-label,
+        #bottom-overlay.light-overlay #sub-info {
+            color: #222 !important;
+        }
+        #bottom-overlay.light-overlay .tl-dot {
+            border-color: #555 !important;
+        }
+        #bottom-overlay.light-overlay .tl-item.active .tl-dot {
+            border-color: #000 !important;
+            background: #000 !important;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.7) !important;
+        }
+        #bottom-overlay.light-overlay #main-title {
+            color: #000;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        #bottom-overlay.light-overlay #main-title:hover {
+            text-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+        }
+        .clickable {
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        #timeline {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.4vw;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 1.8vh;
+            pointer-events: auto;
+            flex-wrap: nowrap;
+            padding: 0 1vw;
+        }
+        .tl-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            flex: 0 1 auto;
+            min-width: 0;
+            padding: 0 0.2vw;
+            position: relative;
+            opacity: 0.6;
+        }
+        .tl-item.disabled {
+            pointer-events: none;
+            cursor: default;
+            opacity: 0.4;
+        }
+        .tl-item.active {
+            opacity: 1;
+        }
+        .tl-item:hover:not(.disabled) {
+            opacity: 1;
+        }
+        .tl-dot {
+            width: 1.6vw;
+            height: 1.6vw;
+            min-width: 16px;
+            min-height: 16px;
+            max-width: 28px;
+            max-height: 28px;
+            border-radius: 50%;
+            border: 2px solid #888;
+            background: transparent;
+            transition: all 0.3s ease;
+            margin-bottom: 0.4vh;
+        }
+        .tl-item.active .tl-dot {
+            border-color: #f70707;
+            background: #f70707;
+            box-shadow: 0 0 14px rgba(247, 7, 7, 0.7);
+        }
+        .tl-item.active.phase-0 .tl-dot {
+            border-color: #ff4500;
+            background: #ff4500;
+            box-shadow: 0 0 14px rgba(255, 69, 0, 0.7);
+        }
+        .tl-item.active.phase-1 .tl-dot {
+            border-color: #f70707;
+            background: #f70707;
+            box-shadow: 0 0 14px rgba(247, 7, 7, 0.7);
+        }
+        .tl-item.active.phase-2 .tl-dot {
+            border-color: #00FFFF;
+            background: #00FFFF;
+            box-shadow: 0 0 14px rgba(0, 255, 255, 0.7);
+        }
+        .tl-item.active.phase-3 .tl-dot {
+            border-color: #00FFCC;
+            background: #00FFCC;
+            box-shadow: 0 0 14px rgba(0, 255, 204, 0.7);
+        }
+        .tl-item.active.phase-4 .tl-dot {
+            border-color: #9B30FF;
+            background: #9B30FF;
+            box-shadow: 0 0 14px rgba(155, 48, 255, 0.7);
+        }
+        .tl-item.active.phase-5 .tl-dot {
+            border-color: #000;
+            background: #000;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
+            border-color: #444;
+        }
+        .tl-item.active.phase-6 .tl-dot {
+            border-color: #00008B;
+            background: #00008B;
+            box-shadow: 0 0 14px rgba(0, 0, 139, 0.7);
+        }
+        .tl-item.active.phase-7 .tl-dot {
+            border-color: #000;
+            background: #000;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
+            border-color: #444;
+        }
+        .tl-label {
+            font-size: clamp(0.5rem, 0.8vw, 0.85rem);
+            font-weight: 400;
+            text-align: center;
+            color: #ccc;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+            transition: color 0.3s;
+            line-height: 1.2;
+        }
+        .tl-item.active .tl-label {
+            color: #fff;
+        }
+        .tl-connector {
+            flex: 0 0 2vw;
+            min-width: 8px;
+            max-width: 30px;
+            height: 2px;
+            background: #444;
+            margin-top: calc(0.8vw - 1px);
+            align-self: flex-start;
+            pointer-events: none;
+            transition: background 0.3s;
+        }
+        .tl-connector.active {
+            background: #f70707;
+        }
+        .tl-connector.active.phase-0 {
+            background: #ff4500;
+        }
+        .tl-connector.active.phase-1 {
+            background: #f70707;
+        }
+        .tl-connector.active.phase-2 {
+            background: #00FFFF;
+        }
+        .tl-connector.active.phase-3 {
+            background: #00FFCC;
+        }
+        .tl-connector.active.phase-4 {
+            background: #9B30FF;
+        }
+        .tl-connector.active.phase-5 {
+            background: #000;
+        }
+        .tl-connector.active.phase-6 {
+            background: #00008B;
+        }
+        .tl-connector.active.phase-7 {
+            background: #000;
+        }
+        #footer-text {
+            text-align: center;
+            pointer-events: none;
+            line-height: 1.3;
+            padding-bottom: 0.4vh;
+        }
+        #main-title {
+            font-weight: 900;
+            font-size: clamp(1.2rem, 3.2vw, 3.6rem);
+            letter-spacing: 0.06em;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(247, 7, 7, 0.3);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: text-shadow 0.3s, color 0.3s;
+        }
+        #main-title:hover {
+            text-shadow: 0 0 40px rgba(247, 7, 7, 0.7);
+        }
+        #sub-info {
+            font-weight: 400;
+            font-size: clamp(0.55rem, 1.1vw, 1.1rem);
+            color: #aaa;
+            letter-spacing: 0.04em;
+            margin-top: 0.2vh;
+            min-height: 1.6em;
+            transition: color 0.3s;
+        }
+        @media (max-width: 720px) {
+            #bottom-overlay {
+                height: 34vh;
+                min-height: 180px;
+                padding-bottom: 1.8vh;
+            }
+            #timeline {
+                gap: 0.2vw;
+                margin-bottom: 1.2vh;
+            }
+            .tl-dot {
+                min-width: 12px;
+                min-height: 12px;
+                border-width: 1.5px;
+            }
+            .tl-label {
+                font-size: clamp(0.4rem, 1.2vw, 0.65rem);
+            }
+            .tl-connector {
+                min-width: 4px;
+                flex: 0 0 1.5vw;
+            }
+            #main-title {
+                font-size: clamp(1rem, 5vw, 2rem);
+            }
+            #sub-info {
+                font-size: clamp(0.4rem, 1.4vw, 0.75rem);
+            }
+            #logo-link {
+                width: 36px;
+                height: 36px;
+                top: 12px;
+            }
+        }
+        @media (max-width: 450px) {
+            #bottom-overlay {
+                height: 30vh;
+                min-height: 150px;
+                padding-bottom: 1.2vh;
+            }
+            .tl-dot {
+                min-width: 10px;
+                min-height: 10px;
+            }
+            .tl-label {
+                font-size: clamp(0.3rem, 1.6vw, 0.5rem);
+            }
+            .tl-connector {
+                min-width: 3px;
+                flex: 0 0 1.2vw;
+            }
+            #main-title {
+                font-size: clamp(0.8rem, 6vw, 1.4rem);
+            }
+            #sub-info {
+                font-size: clamp(0.3rem, 1.8vw, 0.55rem);
+            }
+            #logo-link {
+                width: 28px;
+                height: 28px;
+                top: 8px;
+            }
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <a id="logo-link" href="https://cejera.com/home" target="_blank" title="Cejera">
+        <img src="./cejera-00.svg" alt="Cejera" />
+    </a>
+
+    <div id="canvas-container"></div>
+
+    <div id="bottom-overlay">
+        <div id="timeline">
+            <div class="tl-item" data-phase="0" id="tl-0"><div class="tl-dot"></div><span class="tl-label">VERMELHA</span></div>
+            <div class="tl-connector" id="conn-0"></div>
+            <div class="tl-item" data-phase="1" id="tl-1"><div class="tl-dot"></div><span class="tl-label">SUPERNOVA</span></div>
+            <div class="tl-connector" id="conn-1"></div>
+            <div class="tl-item" data-phase="2" id="tl-2"><div class="tl-dot"></div><span class="tl-label">NÊUTRON</span></div>
+            <div class="tl-connector" id="conn-2"></div>
+            <div class="tl-item disabled" data-phase="3" id="tl-3"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <div class="tl-connector" id="conn-3"></div>
+            <div class="tl-item disabled" data-phase="4" id="tl-4"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <div class="tl-connector" id="conn-4"></div>
+            <div class="tl-item disabled" data-phase="5" id="tl-5"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <div class="tl-connector" id="conn-5"></div>
+            <div class="tl-item disabled" data-phase="6" id="tl-6"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <div class="tl-connector" id="conn-6"></div>
+            <div class="tl-item disabled" data-phase="7" id="tl-7"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+        </div>
+        <div id="footer-text">
+            <div id="main-title" class="clickable">[SUPERNOVA.FILE]</div>
+            <div id="sub-info">11•07•2026 | -20.907482, -46.994238 | IMPACTO REGISTRADO</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const container = document.getElementById('canvas-container');
+        const timelineItems = document.querySelectorAll('.tl-item');
+        const connectors = document.querySelectorAll('.tl-connector');
+        const mainTitle = document.getElementById('main-title');
+        const subInfo = document.getElementById('sub-info');
+        const bottomOverlay = document.getElementById('bottom-overlay');
+        const logoLink = document.getElementById('logo-link');
+
+        const phaseConfig = [
+            {
+                label: 'VERMELHA', color: new THREE.Color(0xff4500), bgColor: new THREE.Color(0x0b0b0b),
+                scale: 0.3, expansion: 0.1, coreScale: 1.8, coreColor: new THREE.Color(0xff4500),
+                isSingularity: false, hasBeams: false, dualCenter: false, centerDistance: 0,
+                beamColor: new THREE.Color(0xff4500), densityFactor: 1.0
+            },
+            {
+                label: 'SUPERNOVA', color: new THREE.Color(0xf70707), bgColor: new THREE.Color(0x0b0b0b),
+                scale: 1.0, expansion: 0.9, coreScale: 4.0, coreColor: new THREE.Color(0xf70707),
+                isSingularity: false, hasBeams: false, dualCenter: false, centerDistance: 0,
+                beamColor: new THREE.Color(0xf70707), densityFactor: 1.0
+            },
+            {
+                label: 'NÊUTRON', color: new THREE.Color(0x00FFFF), bgColor: new THREE.Color(0x0b0b0b),
+                scale: 0.18, expansion: 0.0, coreScale: 0.3, coreColor: new THREE.Color(0x00FFFF),
+                isSingularity: false, hasBeams: false, dualCenter: false, centerDistance: 0,
+                beamColor: new THREE.Color(0x00FFFF), densityFactor: 1.0
+            },
+            {
+                label: 'PULSAR', color: new THREE.Color(0x00FFCC), bgColor: new THREE.Color(0x0b0b0b),
+                scale: 0.5, expansion: 0.1, coreScale: 1.0, coreColor: new THREE.Color(0x00FFCC),
+                isSingularity: false, hasBeams: true, dualCenter: false, centerDistance: 0,
+                beamColor: new THREE.Color(0x00FFCC), densityFactor: 1.0
+            },
+            {
+                label: 'QUILONOVA', color: new THREE.Color(0x9B30FF), bgColor: new THREE.Color(0x0b0b0b),
+                scale: 0.7, expansion: 0.4, coreScale: 2.0, coreColor: new THREE.Color(0x9B30FF),
+                isSingularity: false, hasBeams: false, dualCenter: true, centerDistance: 2.5,
+                beamColor: new THREE.Color(0x9B30FF), densityFactor: 2.5
+            },
+            {
+                label: 'SINGULARIDADE', color: new THREE.Color(0x000000), bgColor: new THREE.Color(0xffffff),
+                scale: 0.2, expansion: 0.0, coreScale: 0.3, coreColor: new THREE.Color(0x000000),
+                isSingularity: true, hasBeams: false, dualCenter: true, centerDistance: 0.35,
+                beamColor: new THREE.Color(0x000000), densityFactor: 1.0
+            },
+            {
+                label: 'QUASAR', color: new THREE.Color(0x00008B), bgColor: new THREE.Color(0xffffff),
+                scale: 0.7, expansion: 0.3, coreScale: 1.5, coreColor: new THREE.Color(0x00008B),
+                isSingularity: true, hasBeams: true, dualCenter: false, centerDistance: 0,
+                beamColor: new THREE.Color(0x00008B), densityFactor: 1.0
+            },
+            {
+                label: 'COALESCÊNCIA', color: new THREE.Color(0x202000), bgColor: new THREE.Color(0xffffff),
+                scale: 0.4, expansion: 0.1, coreScale: 0.6, coreColor: new THREE.Color(0x202000),
+                isSingularity: true, hasBeams: false, dualCenter: true, centerDistance: 1.8,
+                beamColor: new THREE.Color(0x000000), densityFactor: 1.0
+            }
+        ];
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0b0b0b);
+        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 500);
+        camera.position.set(4, 3, 18);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.8;
+        controls.enableZoom = true;
+        controls.enablePan = false;
+        controls.target.set(0, 0, 0);
+        controls.maxDistance = 40;
+        controls.minDistance = 3;
+        controls.update();
+
+        function createGlowTexture() {
+            const size = 64;
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            const grad = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+            grad.addColorStop(0, 'rgba(255,255,255,1)');
+            grad.addColorStop(0.2, 'rgba(255,255,255,0.9)');
+            grad.addColorStop(0.6, 'rgba(255,255,255,0.5)');
+            grad.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, size, size);
+            return new THREE.CanvasTexture(canvas);
+        }
+        const glowTexture = createGlowTexture();
+
+        const NUM_PARTICLES = 12000;
+        const MAX_RADIUS = 16;
+        const dirs = [],
+            baseRadii = [],
+            speeds = [],
+            pertAngle = [],
+            pertAxis = [];
+        const beamZ = new Float32Array(NUM_PARTICLES);
+        const beamTheta = new Float32Array(NUM_PARTICLES);
+        const beamR = new Float32Array(NUM_PARTICLES);
+        const BEAM_LENGTH = 14.0;
+        const BEAM_ANGLE = 0.22;
+
+        const positions = new Float32Array(NUM_PARTICLES * 3);
+        const colors = new Float32Array(NUM_PARTICLES * 3);
+        const sizes = new Float32Array(NUM_PARTICLES).fill(1.0);
+
+        const coreIndices = [];
+        for (let i = 0; i < NUM_PARTICLES; i++) {
+            const th = Math.random() * Math.PI * 2;
+            const ph = Math.acos(2 * Math.random() - 1);
+            dirs.push(new THREE.Vector3(Math.sin(ph) * Math.cos(th), Math.sin(ph) * Math.sin(th), Math.cos(ph)));
+            const r = Math.pow(Math.random(), 0.6) * MAX_RADIUS;
+            baseRadii.push(r);
+            speeds.push(0.4 + Math.random() * 1.8);
+            pertAngle.push(Math.random() * Math.PI * 2);
+            pertAxis.push(new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize());
+
+            beamZ[i] = Math.random();
+            beamTheta[i] = Math.random() * Math.PI * 2;
+            beamR[i] = Math.sqrt(Math.random());
+        }
+        const sortedIndices = Array.from({ length: NUM_PARTICLES }, (_, i) => i)
+            .sort((a, b) => baseRadii[a] - baseRadii[b]);
+        const coreCount = Math.floor(NUM_PARTICLES * 0.10);
+        for (let i = 0; i < coreCount; i++) {
+            coreIndices.push(sortedIndices[i]);
+        }
+        const coreSet = new Set(coreIndices);
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+        const PARTICLE_SIZE = 0.35;
+        const material = new THREE.PointsMaterial({
+            size: PARTICLE_SIZE,
+            map: glowTexture,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            opacity: 0.96,
+            vertexColors: true,
+            sizeAttenuation: true,
+        });
+        const particleSystem = new THREE.Points(geometry, material);
+        scene.add(particleSystem);
+
+        function createCoreMaterial() {
+            return new THREE.SpriteMaterial({
+                map: glowTexture,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                transparent: true,
+                opacity: 0.9,
+            });
+        }
+        const coreMain = new THREE.Sprite(createCoreMaterial());
+        coreMain.scale.set(3.2, 3.2, 1);
+        scene.add(coreMain);
+        const coreLeft = new THREE.Sprite(createCoreMaterial());
+        coreLeft.visible = false;
+        scene.add(coreLeft);
+        const coreRight = new THREE.Sprite(createCoreMaterial());
+        coreRight.visible = false;
+        scene.add(coreRight);
+
+        const bgGeo = new THREE.BufferGeometry();
+        const bgCount = 2000;
+        const bgPosArr = new Float32Array(bgCount * 3);
+        for (let i = 0; i < bgCount; i++) {
+            const r = 60 + Math.random() * 200;
+            const th = Math.random() * Math.PI * 2;
+            const ph = Math.acos(2 * Math.random() - 1);
+            bgPosArr[i * 3] = Math.sin(ph) * Math.cos(th) * r;
+            bgPosArr[i * 3 + 1] = Math.sin(ph) * Math.sin(th) * r;
+            bgPosArr[i * 3 + 2] = Math.cos(ph) * r;
+        }
+        bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPosArr, 3));
+        const bgMat = new THREE.PointsMaterial({
+            color: 0x888888,
+            size: 0.25,
+            transparent: true,
+            opacity: 0.6,
+            sizeAttenuation: true
+        });
+        scene.add(new THREE.Points(bgGeo, bgMat));
+
+        let currentPhase = 1,
+            fromPhase = 1,
+            toPhase = 1,
+            phaseTransition = 1,
+            animTime = 0;
+        let dualCenterProgress = 0,
+            beamMix = 0;
+
+        function updateTimelineUI(idx) {
+            timelineItems.forEach(item => {
+                const p = parseInt(item.dataset.phase);
+                item.classList.remove('active', 'phase-0', 'phase-1', 'phase-2', 'phase-3', 'phase-4', 'phase-5',
+                    'phase-6', 'phase-7');
+                if (p === idx) { item.classList.add('active');
+                    item.classList.add(`phase-${p}`); }
+            });
+            connectors.forEach((conn, i) => {
+                conn.classList.remove('active', 'phase-0', 'phase-1', 'phase-2', 'phase-3', 'phase-4', 'phase-5',
+                    'phase-6', 'phase-7');
+                const a = timelineItems[i],
+                    b = timelineItems[i + 1];
+                if (a && b) {
+                    const pa = parseInt(a.dataset.phase),
+                        pb = parseInt(b.dataset.phase);
+                    if (pa === idx || pb === idx) { conn.classList.add('active');
+                        conn.classList.add(`phase-${pa === idx ? pa : pb}`); }
+                }
+            });
+
+            const isLight = phaseConfig[idx].isSingularity;
+            bottomOverlay.classList.toggle('light-overlay', isLight);
+            logoLink.classList.toggle('light-logo', isLight);
+
+            if (idx === 0) {
+                subInfo.textContent = '[LOG] SUPERGIGANTE VERMELHA DETECTADA. COLAPSO IMINENTE.';
+            } else {
+                subInfo.textContent = idx === 1 ? '11•07•2026 | -20.907482, -46.994238 | IMPACTO REGISTRADO' :
+                    'DESCONHECIDO';
+            }
+        }
+
+        function setPhase(idx) {
+            if (idx < 0 || idx > 7) return;
+            if (idx === currentPhase && phaseTransition === 1) return;
+            fromPhase = currentPhase;
+            toPhase = idx;
+            phaseTransition = 0;
+            currentPhase = idx;
+            updateTimelineUI(idx);
+        }
+        timelineItems.forEach(el => el.addEventListener('click', () => {
+            const phase = parseInt(el.dataset.phase);
+            if (phase >= 3) return;
+            setPhase(phase);
+        }));
+        mainTitle.addEventListener('click', () => window.open('https://www.instagram.com/supernova.file/', '_blank'));
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth,
+                h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
+
+        function updateParticles(pA, pB, t, dualDist, mixBeam) {
+            const cfgA = phaseConfig[pA],
+                cfgB = phaseConfig[pB];
+            const color = cfgA.color.clone().lerp(cfgB.color, t);
+            const bgColor = cfgA.bgColor.clone().lerp(cfgB.bgColor, t);
+            const scale = cfgA.scale + (cfgB.scale - cfgA.scale) * t;
+            const expansion = cfgA.expansion + (cfgB.expansion - cfgA.expansion) * t;
+            const coreScale = cfgA.coreScale + (cfgB.coreScale - cfgA.coreScale) * t;
+            const coreColor = cfgA.coreColor.clone().lerp(cfgB.coreColor, t);
+            const useDual = (cfgA.dualCenter && t < 0.5) || (cfgB.dualCenter && t >= 0.5);
+            const effDist = useDual ? dualDist : 0;
+
+            const densA = cfgA.densityFactor || 1.0;
+            const densB = cfgB.densityFactor || 1.0;
+            const densityFactor = densA + (densB - densA) * t;
+
+            const isPulsar = (pA === 3 && t < 0.5) || (pB === 3 && t >= 0.5);
+            const isQuasar = (pA === 6 && t < 0.5) || (pB === 6 && t >= 0.5);
+
+            scene.background = bgColor;
+            const posArr = geometry.attributes.position.array;
+            const colArr = geometry.attributes.color.array;
+
+            const c1 = new THREE.Vector3(-effDist / 2, 0, 0);
+            const c2 = new THREE.Vector3(effDist / 2, 0, 0);
+
+            const r = color.r,
+                g = color.g,
+                b = color.b;
+
+            for (let i = 0; i < NUM_PARTICLES; i++) {
+                const timeF = 1 + Math.sin(animTime * 0.3 + i * 0.001) * 0.02;
+                const radiusFactor = 1 + (densityFactor - 1) * (1 - baseRadii[i] / MAX_RADIUS);
+                const curR = baseRadii[i] * (scale + expansion * speeds[i] * 0.35) * timeF * radiusFactor;
+                const pAmt = expansion * 0.35 * speeds[i];
+                const axis = pertAxis[i];
+                const angle = pertAngle[i] + animTime * 0.08 * speeds[i];
+                const dirRot = dirs[i].clone().applyAxisAngle(axis, angle * pAmt);
+                let posNormal = dirRot.multiplyScalar(curR);
+
+                let posBeam = new THREE.Vector3(0, 0, 0);
+                const isUp = i < NUM_PARTICLES / 2;
+                const z = beamZ[i] * BEAM_LENGTH;
+                const radius = Math.sqrt(beamR[i]) * Math.tan(BEAM_ANGLE) * z;
+                const theta = beamTheta[i];
+                const x = radius * Math.cos(theta);
+                const y = radius * Math.sin(theta);
+                if (isUp) {
+                    posBeam.set(x, y, z);
+                } else {
+                    posBeam.set(x, y, -z);
+                }
+
+                let pos = posNormal.clone().lerp(posBeam, mixBeam);
+
+                if (effDist > 0.001) {
+                    const center = i < NUM_PARTICLES / 2 ? c1 : c2;
+                    pos.add(center);
+                }
+
+                posArr[i * 3] = pos.x;
+                posArr[i * 3 + 1] = pos.y;
+                posArr[i * 3 + 2] = pos.z;
+
+                let cr = r,
+                    cg = g,
+                    cb = b;
+                if (coreSet.has(i)) {
+                    if (isPulsar) {
+                        cr = 1.0;
+                        cg = 1.0;
+                        cb = 1.0;
+                    } else if (isQuasar) {
+                        cr = 0.0;
+                        cg = 0.0;
+                        cb = 0.0;
+                    }
+                }
+
+                colArr[i * 3] = cr;
+                colArr[i * 3 + 1] = cg;
+                colArr[i * 3 + 2] = cb;
+            }
+
+            geometry.attributes.position.needsUpdate = true;
+            geometry.attributes.color.needsUpdate = true;
+
+            const isSing = (cfgA.isSingularity && t < 0.5) || (cfgB.isSingularity && t >= 0.5);
+            material.blending = isSing ? THREE.NormalBlending : THREE.AdditiveBlending;
+            material.opacity = isSing ? 0.85 : 0.96;
+
+            coreMain.visible = !useDual;
+            coreMain.material.color.set(coreColor);
+            coreMain.material.blending = isSing ? THREE.NormalBlending : THREE.AdditiveBlending;
+            coreMain.material.opacity = isSing ? 0.15 : 0.9;
+            coreMain.scale.set(coreScale, coreScale, 1);
+            coreMain.position.set(0, 0, 0);
+
+            coreLeft.visible = useDual;
+            coreRight.visible = useDual;
+            if (useDual) {
+                coreLeft.material.color.set(coreColor);
+                coreRight.material.color.set(coreColor);
+                coreLeft.material.blending = isSing ? THREE.NormalBlending : THREE.AdditiveBlending;
+                coreRight.material.blending = isSing ? THREE.NormalBlending : THREE.AdditiveBlending;
+                coreLeft.material.opacity = isSing ? 0.2 : 0.9;
+                coreRight.material.opacity = isSing ? 0.2 : 0.9;
+                coreLeft.scale.set(coreScale, coreScale, 1);
+                coreRight.scale.set(coreScale, coreScale, 1);
+                coreLeft.position.copy(c1);
+                coreRight.position.copy(c2);
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (phaseTransition < 1) {
+                phaseTransition += 0.025;
+                if (phaseTransition > 1) phaseTransition = 1;
+            }
+            let pA, pB, t;
+            if (phaseTransition < 1) {
+                pA = fromPhase;
+                pB = toPhase;
+                t = phaseTransition;
+            } else {
+                pA = currentPhase;
+                pB = currentPhase;
+                t = 0;
+            }
+
+            const targetDualDist = (t < 0.5) ? phaseConfig[pA].centerDistance : phaseConfig[pB].centerDistance;
+            dualCenterProgress += (targetDualDist - dualCenterProgress) * 0.1;
+
+            const targetBeamMix = ((phaseConfig[pA].hasBeams && t < 0.5) || (phaseConfig[pB].hasBeams && t >= 0.5)) ? 1 : 0;
+            beamMix += (targetBeamMix - beamMix) * 0.15;
+
+            animTime += 0.012;
+
+            updateParticles(pA, pB, t, dualCenterProgress, beamMix);
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        setPhase(1);
+        phaseTransition = 1;
+        fromPhase = toPhase = currentPhase = 1;
+        dualCenterProgress = 0;
+        beamMix = 0;
+        updateTimelineUI(1);
+        setTimeout(() => { controls.autoRotate = true; }, 500);
+
+        animate();
+    </script>
+</body>
+</html>
