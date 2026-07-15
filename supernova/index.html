@@ -41,6 +41,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 0;
+            touch-action: none; /* impede gestos de pinça do navegador */
         }
         #logo-link {
             position: fixed;
@@ -461,16 +462,19 @@
         renderer.toneMappingExposure = 1.2;
         container.appendChild(renderer.domElement);
 
+        // --- CONFIGURAÇÃO DOS CONTROLES (ZOOM CORRIGIDO) ---
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.06;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.8;
         controls.enableZoom = true;
+        controls.zoomSpeed = 0.6;          // velocidade do scroll do mouse
+        controls.touchZoomSpeed = 0.6;     // velocidade da pinça no mobile
         controls.enablePan = false;
         controls.target.set(0, 0, 0);
         controls.maxDistance = 40;
-        controls.minDistance = 3;
+        controls.minDistance = 2.5;        // um pouco mais perto para melhor experiência
         controls.update();
 
         function createGlowTexture() {
