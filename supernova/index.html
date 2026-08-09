@@ -462,20 +462,50 @@
         renderer.toneMappingExposure = 1.2;
         container.appendChild(renderer.domElement);
 
-        // --- CONFIGURAÇÃO DOS CONTROLES (ZOOM CORRIGIDO) ---
+        // --- CONFIGURAÇÃO DOS CONTROLES (ZOOM PC SUAVE) ---
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.06;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.8;
         controls.enableZoom = true;
-        controls.zoomSpeed = 0.2;          // velocidade do scroll do mouse
-        controls.touchZoomSpeed = 0.6;     // velocidade da pinça no mobile
+        controls.zoomSpeed = 0.2;          // mantém o comportamento de pinça/touch existente
+        controls.touchZoomSpeed = 0.6;
         controls.enablePan = false;
         controls.target.set(0, 0, 0);
         controls.maxDistance = 40;
-        controls.minDistance = 2.5;        // um pouco mais perto para melhor experiência
+        controls.minDistance = 2.5;
         controls.update();
+
+        // O wheel do OrbitControls pode receber deltas muito altos em alguns mouses/Windows,
+        // fazendo o zoom saltar direto para minDistance/maxDistance. No desktop, normalizamos
+        // o delta e interpolamos a distância da câmera. Touch/pinça continua com OrbitControls.
+        let wheelZoomTarget = camera.position.distanceTo(controls.target);
+        let wheelZoomActive = false;
+
+        renderer.domElement.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            if (!wheelZoomActive) {
+                wheelZoomTarget = camera.position.distanceTo(controls.target);
+            }
+
+            let delta = event.deltaY;
+            if (event.deltaMode === 1) delta *= 16;                  // linhas -> pixels
+            if (event.deltaMode === 2) delta *= window.innerHeight; // páginas -> pixels
+
+            // Evita que um único "clique" da rodinha seja interpretado como um delta gigantesco.
+            delta = THREE.MathUtils.clamp(delta, -120, 120);
+
+            const zoomFactor = Math.exp(delta * 0.0011);
+            wheelZoomTarget = THREE.MathUtils.clamp(
+                wheelZoomTarget * zoomFactor,
+                controls.minDistance,
+                controls.maxDistance
+            );
+            wheelZoomActive = true;
+        }, { passive: false, capture: true });
 
         function createGlowTexture() {
             const size = 64;
@@ -798,6 +828,24 @@
             animTime += 0.012;
 
             updateParticles(pA, pB, t, dualCenterProgress, beamMix);
+
+            // Zoom suave do mouse no desktop.
+            if (wheelZoomActive) {
+                const currentDistance = camera.position.distanceTo(controls.target);
+                const nextDistance = THREE.MathUtils.lerp(currentDistance, wheelZoomTarget, 0.16);
+                const direction = camera.position.clone().sub(controls.target).normalize();
+
+                camera.position.copy(
+                    controls.target.clone().add(direction.multiplyScalar(nextDistance))
+                );
+
+                if (Math.abs(nextDistance - wheelZoomTarget) < 0.01) {
+                    camera.position.copy(
+                        controls.target.clone().add(direction.multiplyScalar(wheelZoomTarget))
+                    );
+                    wheelZoomActive = false;
+                }
+            }
 
             controls.update();
             renderer.render(scene, camera);
