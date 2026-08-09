@@ -477,34 +477,35 @@
         controls.minDistance = 2.5;
         controls.update();
 
-        // O wheel do OrbitControls pode receber deltas muito altos em alguns mouses/Windows,
-        // fazendo o zoom saltar direto para minDistance/maxDistance. No desktop, normalizamos
-        // o delta e interpolamos a distância da câmera. Touch/pinça continua com OrbitControls.
-        let wheelZoomTarget = camera.position.distanceTo(controls.target);
-        let wheelZoomActive = false;
-
+        // Zoom do mouse no desktop: aplica a mudança diretamente à distância atual
+        // da câmera. Isso evita saltos por deltaY alto e não cria um estado paralelo
+        // que possa disputar com o OrbitControls e "resetar" o zoom.
         renderer.domElement.addEventListener('wheel', (event) => {
             event.preventDefault();
             event.stopImmediatePropagation();
-
-            if (!wheelZoomActive) {
-                wheelZoomTarget = camera.position.distanceTo(controls.target);
-            }
 
             let delta = event.deltaY;
             if (event.deltaMode === 1) delta *= 16;                  // linhas -> pixels
             if (event.deltaMode === 2) delta *= window.innerHeight; // páginas -> pixels
 
-            // Evita que um único "clique" da rodinha seja interpretado como um delta gigantesco.
-            delta = THREE.MathUtils.clamp(delta, -120, 120);
+            // Normaliza mouses que enviam deltas muito altos por clique.
+            delta = THREE.MathUtils.clamp(delta, -100, 100);
 
-            const zoomFactor = Math.exp(delta * 0.0011);
-            wheelZoomTarget = THREE.MathUtils.clamp(
-                wheelZoomTarget * zoomFactor,
+            const currentDistance = camera.position.distanceTo(controls.target);
+            const zoomFactor = Math.exp(delta * 0.00135);
+            const nextDistance = THREE.MathUtils.clamp(
+                currentDistance * zoomFactor,
                 controls.minDistance,
                 controls.maxDistance
             );
-            wheelZoomActive = true;
+
+            const direction = camera.position.clone().sub(controls.target).normalize();
+            camera.position.copy(
+                controls.target.clone().add(direction.multiplyScalar(nextDistance))
+            );
+
+            // Sincroniza imediatamente o estado interno do OrbitControls.
+            controls.update();
         }, { passive: false, capture: true });
 
         function createGlowTexture() {
@@ -828,24 +829,6 @@
             animTime += 0.012;
 
             updateParticles(pA, pB, t, dualCenterProgress, beamMix);
-
-            // Zoom suave do mouse no desktop.
-            if (wheelZoomActive) {
-                const currentDistance = camera.position.distanceTo(controls.target);
-                const nextDistance = THREE.MathUtils.lerp(currentDistance, wheelZoomTarget, 0.16);
-                const direction = camera.position.clone().sub(controls.target).normalize();
-
-                camera.position.copy(
-                    controls.target.clone().add(direction.multiplyScalar(nextDistance))
-                );
-
-                if (Math.abs(nextDistance - wheelZoomTarget) < 0.01) {
-                    camera.position.copy(
-                        controls.target.clone().add(direction.multiplyScalar(wheelZoomTarget))
-                    );
-                    wheelZoomActive = false;
-                }
-            }
 
             controls.update();
             renderer.render(scene, camera);
