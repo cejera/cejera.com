@@ -1,0 +1,176 @@
+:root {
+    --cejera-icon-size: 1.75rem;
+    --cejera-icon-red: #f70707;
+    --cejera-icon-black: #050505;
+}
+
+.brand-mark-offset {
+    filter: none;
+    transform: none;
+    transition: opacity 180ms ease;
+}
+
+.brand-mark-offset:hover {
+    filter: none;
+    transform: none;
+    opacity: 0.86;
+}
+
+.brand-icon {
+    --brand-angle: -2deg;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    overflow: visible;
+    fill: currentColor;
+    vertical-align: -0.15em;
+    filter: drop-shadow(2px 1px 0 var(--cejera-icon-red));
+    transform: rotate(var(--brand-angle));
+    transform-origin: center;
+    transition: transform 180ms ease, filter 180ms ease;
+}
+
+.cejera-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    vertical-align: -0.15em;
+    filter: drop-shadow(2px 1px 0 var(--cejera-icon-red));
+    transform: rotate(-2deg);
+    transition: transform 180ms ease, filter 180ms ease;
+}
+
+.cejera-icon--fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+.cejera-icon--2x {
+    width: 2em !important;
+    height: 2em !important;
+}
+
+.cejera-icon--3x {
+    width: 3em !important;
+    height: 3em !important;
+}
+
+.cejera-icon--spin {
+    animation: cejera-icon-spin 900ms steps(8, end) infinite;
+    transform-origin: center;
+}
+
+@keyframes cejera-icon-spin {
+    to { transform: rotate(358deg); }
+}
+
+.brand-icon--x,
+.brand-icon--spotify,
+.brand-icon--youtube {
+    --brand-angle: 1deg;
+}
+
+.brand-icon--telegram,
+.brand-icon--soundcloud {
+    --brand-angle: -4deg;
+}
+
+.social-icon.brand-icon {
+    width: var(--cejera-icon-size) !important;
+    height: var(--cejera-icon-size) !important;
+    font-size: var(--cejera-icon-size) !important;
+    margin-bottom: 0.5rem;
+}
+
+.social-icon.cejera-icon {
+    width: var(--cejera-icon-size) !important;
+    height: var(--cejera-icon-size) !important;
+    font-size: var(--cejera-icon-size) !important;
+    margin-bottom: 0.5rem;
+}
+
+.social-link:hover .brand-icon,
+.social-link:focus-visible .brand-icon,
+.social-card:hover .brand-icon,
+.social-card:focus-visible .brand-icon,
+.link-item:hover .brand-icon,
+.link-item:focus-visible .brand-icon {
+    filter: drop-shadow(3px 2px 0 var(--cejera-icon-black));
+    transform: translateY(-2px) rotate(1deg) skewX(-2deg);
+}
+
+.social-link:hover .cejera-icon,
+.social-link:focus-visible .cejera-icon,
+.social-card:hover .cejera-icon,
+.social-card:focus-visible .cejera-icon {
+    filter: drop-shadow(3px 2px 0 var(--cejera-icon-black));
+    transform: translateY(-2px) rotate(1deg) skewX(-2deg);
+}
+
+.contact-icon.brand-icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+}
+
+.social-card .brand-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 0.375rem;
+}
+
+.social-card .cejera-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 0.375rem;
+}
+
+.review-icon.cejera-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    stroke-width: 1.75;
+    filter: drop-shadow(3px 2px 0 var(--cejera-icon-red));
+}
+
+.review-card:hover .review-icon,
+.review-card:focus-within .review-icon {
+    filter: drop-shadow(5px 3px 0 var(--cejera-icon-red));
+    transform: translate(-1px, -2px) rotate(1deg) skewX(-2deg);
+}
+
+.link-item .brand-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 0.9375rem;
+}
+
+.btn .brand-icon,
+button .brand-icon,
+a:not(.social-link):not(.social-card):not(.link-item) .brand-icon {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.35em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-icon,
+    .cejera-icon,
+    .brand-mark-offset {
+        transition: none;
+    }
+
+    .cejera-icon--spin {
+        animation: none;
+    }
+}
