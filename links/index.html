@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.1">
+    <title>Links do Cejera | Cejera</title>
+    <meta name="description" content="Encontre os canais oficiais do Cejera e acompanhe a Cejera em design, moda, música e projetos autorais.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#0a0000">
+    <link rel="canonical" href="https://cejera.com/links/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Links do Cejera | Cejera">
+    <meta property="og:description" content="Todos os canais oficiais do Cejera em um só lugar.">
+    <meta property="og:url" content="https://cejera.com/links/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Links do Cejera | Cejera">
+    <meta name="twitter:description" content="Todos os canais oficiais do Cejera em um só lugar.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Links" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: default;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0000 0%, #1a0000 100%);
+            color: #F70707;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            perspective: 1000px;
+            padding-right: 0;
+        }
+        a {
+            color: #F70707;
+            text-decoration: none;
+        }
+
+        .grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(#220000 1px, transparent 1px),
+                linear-gradient(90deg, #220000 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hologram {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.2;
+            z-index: 1;
+            animation: float 15s infinite ease-in-out;
+            filter: blur(2px);
+            border-radius: 50%;
+            box-shadow: inset 0 0 50px rgba(255, 100, 100, 0.1);
+        }
+
+        .hologram-1 {
+            top: 20%;
+            left: 10%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(247, 7, 7, 0.5) 0%, rgba(247, 7, 7, 0) 70%);
+            animation-delay: 0s;
+            transform: translateZ(50px);
+        }
+
+        .hologram-2 {
+            top: 65%;
+            left: 85%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(247, 7, 7, 0.3) 0%, rgba(247, 7, 7, 0) 70%);
+            animation-delay: -5s;
+            transform: translateZ(30px);
+        }
+
+        .hologram-3 {
+            top: 35%;
+            left: 75%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(247, 7, 7, 0.4) 0%, rgba(247, 7, 7, 0) 70%);
+            animation-delay: -10s;
+            transform: translateZ(70px);
+        }
+
+        .hologram-4 {
+            top: 80%;
+            left: 25%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(247, 7, 7, 0.3) 0%, rgba(247, 7, 7, 0) 70%);
+            animation-delay: -15s;
+            transform: translateZ(40px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            25% { transform: translate3d(15px, -10px, 20px) rotate(3deg); }
+            50% { transform: translate3d(-10px, 8px, -15px) rotate(-3deg); }
+            75% { transform: translate3d(8px, 15px, 25px) rotate(2deg); }
+        }
+
+        @keyframes linkReveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes hologramGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(247, 7, 7, 0.5)) brightness(1); }
+            50% { filter: drop-shadow(0 0 15px rgba(247, 7, 7, 0.8)) brightness(1.3); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            25% { opacity: 0.9; }
+            50% { opacity: 0.95; }
+            75% { opacity: 0.92; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            animation: flicker 4s infinite;
+        }
+
+        .logo {
+            width: 200px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 10px rgba(247, 7, 7, 0.7));
+            margin-bottom: 2rem;
+        }
+
+        .logo:hover {
+            transform: translateZ(20px) rotateY(10deg);
+            filter: drop-shadow(0 0 15px rgba(247, 7, 7, 0.9));
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            animation: flicker 4s infinite;
+            text-shadow: 0 0 10px rgba(247, 7, 7, 0.7);
+            min-height: 2rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 500px;
+            width: 100%;
+            margin: 2rem 0;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            background: rgba(34, 0, 0, 0.6);
+            border: 2px solid rgba(247, 7, 7, 0.5);
+            border-radius: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            animation: linkReveal 0.55s ease both;
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0ms; }
+        .link-item:nth-child(2) { animation-delay: 70ms; }
+        .link-item:nth-child(3) { animation-delay: 140ms; }
+        .link-item:nth-child(4) { animation-delay: 210ms; }
+        .link-item:nth-child(5) { animation-delay: 280ms; }
+        .link-item:nth-child(6) { animation-delay: 350ms; }
+        .link-item:nth-child(7) { animation-delay: 420ms; }
+        .link-item:nth-child(8) { animation-delay: 490ms; }
+        .link-item:nth-child(9) { animation-delay: 560ms; }
+
+        .link-item:hover {
+            transform: translateY(-5px) translateZ(20px);
+            border-color: rgba(247, 7, 7, 0.9);
+            background: rgba(247, 7, 7, 0.2);
+            box-shadow: 0 5px 25px rgba(247, 7, 7, 0.4);
+            cursor: pointer;
+        }
+
+        .link-item .cejera-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .link-item:hover .cejera-icon {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(247, 7, 7, 0.9);
+        }
+
+        .link-text {
+            flex-grow: 1;
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px rgba(247, 7, 7, 0.7);
+        }
+
+        .link-item:hover .link-text {
+            letter-spacing: 1px;
+            color: #ffaaaa;
+        }
+
+        footer {
+            width: min(500px, 100%);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(247, 7, 7, 0.45);
+            animation: flicker 6s infinite;
+            text-shadow: 0 0 8px rgba(247, 7, 7, 0.7);
+        }
+
+        footer a {
+            color: #ffaaaa;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .legal-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(247, 7, 7, 0.9);
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.15) 0px,
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 1001;
+            animation: scanMove 3s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0%   { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+
+        .crt-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(247, 7, 7, 0.05) 0%, rgba(0,0,0,0.2) 100%);
+            z-index: 1001;
+            mix-blend-mode: screen;
+            filter: blur(0.8px);
+        }
+
+        /* Efeito Glitch */
+        .glitch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .glitch-effect {
+            animation: glitch 0.5s infinite;
+        }
+
+        .strong-glitch {
+            animation: strongGlitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes strongGlitch {
+            0% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { transform: translate(-10px, 10px); clip-path: polygon(0 20%, 100% 40%, 100% 60%, 0 80%); }
+            20% { transform: translate(10px, -10px); clip-path: polygon(30% 0, 70% 0, 70% 100%, 30% 100%); }
+            30% { transform: translate(-10px, 0); clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); }
+            40% { transform: translate(0, -10px); clip-path: polygon(10% 0, 90% 0, 90% 100%, 10% 100%); }
+            50% { transform: translate(10px, 10px); clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); }
+            60% { transform: translate(-10px, -10px); clip-path: polygon(20% 0, 80% 0, 80% 100%, 20% 100%); }
+            70% { transform: translate(0, 10px); clip-path: polygon(0 10%, 100% 10%, 100% 90%, 0 90%); }
+            80% { transform: translate(10px, 0); clip-path: polygon(40% 0, 60% 0, 60% 100%, 40% 100%); }
+            90% { transform: translate(-10px, 10px); clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); }
+            100% { transform: translate(0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        .glitch-line {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: rgba(247, 7, 7, 0.7);
+            opacity: 0;
+            animation: flickerLine 0.1s infinite;
+        }
+
+        @keyframes flickerLine {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+            }
+
+            .link-item {
+                padding: 1rem;
+            }
+
+            .link-item .cejera-icon {
+                font-size: 1.5rem;
+            }
+
+            .link-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tagline {
+                font-size: 1rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="site-shell legacy-page links-page">
+    <h1 class="visually-hidden">Links oficiais do Cejera e da Cejera</h1>
+    <div class="grid"></div>
+
+    <!-- Hologramas flutuantes -->
+    <div class="hologram hologram-1"></div>
+    <div class="hologram hologram-2"></div>
+    <div class="hologram hologram-3"></div>
+    <div class="hologram hologram-4"></div>
+
+    <!-- Efeito Glitch -->
+    <div class="glitch" id="glitch-effect"></div>
+
+    <div class="crt-effect"></div>
+    <div class="scanlines"></div>
+
+    <div class="container"> <a href="/" aria-label="Voltar para a página inicial">
+        <img src="/assets/brand/cejera-03.svg" class="logo" alt="Cejera"> </a>
+        <div class="tagline" id="tagline">Excêntrico da internet.</div>
+
+        <div class="links">
+            <a href="/" class="link-item">
+                <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#network"></use></svg>
+                <span class="link-text">Cejera.com</span>
+            </a>
+            <a href="https://twitch.tv/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--twitch" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg>
+                <span class="link-text">Twitch</span>
+            </a>
+            <a href="https://www.linkedin.com/in/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--linkedin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg>
+                <span class="link-text">LinkedIn</span>
+            </a>
+            <a href="https://behance.net/AlexandreFSilva" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--behance" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#behance"></use></svg>
+                <span class="link-text">Behance</span>
+            </a>
+            <a href="https://www.tiktok.com/@cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--tiktok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#tiktok"></use></svg>
+                <span class="link-text">TikTok</span>
+            </a>
+            <a href="https://www.youtube.com/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--youtube" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#youtube"></use></svg>
+                <span class="link-text">YouTube</span>
+            </a>
+            <a href="https://www.instagram.com/cejeraa" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--instagram" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg>
+                <span class="link-text">Instagram</span>
+            </a>
+            <a href="https://twitter.com/cejeraaa" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--x" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg>
+                <span class="link-text">Twitter</span>
+            </a>
+            <a href="https://open.spotify.com/user/mr.xandoso" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--spotify" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg>
+                <span class="link-text">Spotify</span>
+            </a>
+        </div>
+
+        <footer>
+            <p>Contato:
+                <a href="mailto:contato@cejera.com">
+                    <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg>contato@cejera.com
+                </a>
+            </p>
+            <p class="legal-links"><a href="/privacidade/">Privacidade</a><span>/</span><a href="/termos/">Termos</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Array de variações da frase
+const phrases = [
+    "Excêntrico da internet.",
+    "Criador de universos digitais.",
+    "Designer, músico e artista.",
+    "Explorador de realidades virtuais.",
+    "Arquiteto de experiências digitais.",
+    "Visionário do ciberespaço.",
+    "Alquimista de bits e pixels.",
+    "Hacker de estéticas futuristas.",
+    "Programador de sonhos digitais.",
+    "Manipulador de códigos e cores.",
+    "Narrador de emoções visuais.",
+    "Protagonista da própria timeline.",
+    "Influencer de atmosferas criativas.",
+    "DJ de sentimentos e frames.",
+    "Piloto de narrativas interativas.",
+    "Engenheiro de percepções.",
+    "Storyteller de pixels e ondas sonoras.",
+    "Bruxo de algoritmos e branding.",
+    "Diretor de estética emocional.",
+    "Curador de realidades alternativas.",
+    "Transmissor de identidades visuais.",
+    "Streamer de experiências sensoriais.",
+    "Codificador de atmosferas urbanas.",
+    "Editor de narrativas visuais.",
+    "Designer de atmosferas imersivas.",
+    "Sintetizador de arte e estratégia.",
+    "Arquitetador de futuros possíveis.",
+    "Mestre de cerimônias digitais.",
+    "Orquestrador de campanhas com propósito.",
+    "Encenador de marcas e movimentos.",
+    "Cineasta de timelines.",
+    "Ilustrador de emoções coletivas.",
+    "Tradutor de briefing em poesia visual.",
+    "Produtor de momentos inesquecíveis.",
+    "Escultor de percepções.",
+    "Cartógrafo de jornadas de marca.",
+    "Ativador de audiências adormecidas.",
+    "Designer de conexões emocionais.",
+    "Narrador de estéticas urbanas.",
+    "Catalisador de cultura pop e comportamento.",
+    "Profeta de trends visuais.",
+    "Executor de ideias impossíveis.",
+    "Encantador de algoritmos sociais.",
+    "Programador de interações humanas.",
+    "Pintor de timelines com emoção crua.",
+    "Decodificador de emoções digitais.",
+    "Tatuador de identidades visuais na memória do público.",
+    "DJ de narrativas visuais e sonoras.",
+    "Iluminador de conceitos esquecidos.",
+    "Astronauta de insights criativos.",
+    "Coreógrafo de movimentos digitais.",
+    "Desbravador de novas linguagens visuais.",
+    "Curador de experiências de marca que ficam na pele.",
+    "Vocalista de campanhas com alma."
+];
+
+        // Selecionar frase aleatória
+        const tagline = document.getElementById('tagline');
+        const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        tagline.textContent = randomPhrase;
+
+        // Efeito Glitch
+        function triggerGlitch() {
+            const glitch = document.getElementById('glitch-effect');
+            glitch.className = 'glitch';
+            glitch.classList.add('glitch-effect');
+            glitch.style.opacity = '1';
+
+            setTimeout(() => {
+                glitch.classList.remove('glitch-effect');
+                glitch.style.opacity = '0';
+            }, 500);
+
+            // Adicionar linhas de glitch
+            for(let i = 0; i < 5; i++) {
+                createGlitchLine();
+            }
+        }
+
+        function createGlitchLine() {
+            const glitch = document.getElementById('glitch-effect');
+            const line = document.createElement('div');
+            line.classList.add('glitch-line');
+
+            // Posição aleatória
+            const top = Math.random() * 100;
+            const height = Math.random() * 3 + 1;
+            const duration = Math.random() * 0.5 + 0.3;
+
+            line.style.top = `${top}%`;
+            line.style.height = `${height}px`;
+            line.style.animation = `flickerLine ${duration}s`;
+
+            glitch.appendChild(line);
+
+            // Remover após animação
+            setTimeout(() => {
+                line.remove();
+            }, duration * 1000);
+        }
+
+        // Trigger glitch inicial
+        setTimeout(() => {
+            triggerGlitch();
+        }, 1000);
+
+        // Trigger glitch aleatório a cada 8-15 segundos
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                triggerGlitch();
+            }
+        }, 8000);
+    </script>
+    <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
