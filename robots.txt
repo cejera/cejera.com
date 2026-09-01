@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Bloquear possíveis parâmetros de busca (caso existam futuramente)
+Disallow: /*?
+
+Sitemap: https://cejera.com/sitemap.xml
