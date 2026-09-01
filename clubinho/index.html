@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Clubinho Cejera | Pessoas, missões e badges</title>
+    <meta name="description" content="Área exclusiva do Clubinho Cejera. Sistema gamificado com missões fixáveis, itens raros e ranking. Autenticidade e atitude.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/clubinho/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Clubinho Cejera | Pessoas, missões e badges">
+    <meta property="og:description" content="Uma comunidade para protagonistas que transformam presença em missão.">
+    <meta property="og:url" content="https://cejera.com/clubinho/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Clubinho Cejera | Pessoas, missões e badges">
+    <meta name="twitter:description" content="Uma comunidade para protagonistas que transformam presença em missão.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Favicons (conforme site modelo) -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Cejera" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 14px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 28px rgba(247, 7, 7, 0.15);
+            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            background-color: var(--light);
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .logo, .footer-heading, .clubinho-subtitle {
+            font-family: 'Mynerve', cursive;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 0.7rem;
+            background: #2c2c2c;
+        }
+
+        .btn-sm:hover {
+            background: var(--red);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: padding 0.25s ease, background 0.2s;
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 70px;
+            transition: height 0.2s ease;
+        }
+
+        header.header-scroll .logo-img {
+            height: 56px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(0,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            z-index: 101;
+            padding: 12px;
+            transition: var(--transition);
+        }
+        .menu-toggle:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+            border-radius: 4px;
+        }
+        .hamburger::before, .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--red);
+            left: 0;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .hamburger::before { top: -8px; }
+        .hamburger::after { bottom: -8px; }
+        .menu-toggle[aria-expanded="true"] .hamburger { background-color: transparent; }
+        .menu-toggle[aria-expanded="true"] .hamburger::before { top: 0; transform: rotate(45deg); }
+        .menu-toggle[aria-expanded="true"] .hamburger::after { bottom: 0; transform: rotate(-45deg); }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+        .header-cta .btn {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== HERO E CONTAINER PRINCIPAL ===== */
+        .clubinho-hero {
+            padding: 60px 0 50px;
+            flex: 1;
+        }
+        .clubinho-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .clubinho-title::before,
+        .clubinho-title::after {
+            content: none;
+            padding: 0;
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+        }
+        .clubinho-title::before { left: clamp(8px, 8vw, 96px); }
+        .clubinho-title::after { right: clamp(8px, 8vw, 96px); }
+        @media (max-width: 680px) {
+            .clubinho-title::before, .clubinho-title::after { display: none; }
+        }
+        .clubinho-subtitle {
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--red);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .clubinho-manifest {
+            max-width: 920px;
+            margin: 0 auto 58px;
+            padding: clamp(26px, 5vw, 48px);
+            border: 2px solid var(--black);
+            background: var(--light);
+            box-shadow: 10px 10px 0 var(--red);
+            position: relative;
+        }
+
+        .clubinho-manifest h2 {
+            max-width: 760px;
+            margin: 0;
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(1.65rem, 4vw, 3.1rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+
+        .clubinho-manifest > p {
+            max-width: 760px;
+            margin: 20px 0 0;
+        }
+
+        .clubinho-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            padding: 0;
+            margin: 28px 0 0;
+            list-style: none;
+        }
+
+        .clubinho-pillars li {
+            padding: 16px;
+            border-top: 3px solid var(--red);
+            background: white;
+            font-size: 0.78rem;
+        }
+
+        .clubinho-pillars strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+
+        .clubinho-manifest-note {
+            display: block;
+            width: fit-content;
+            margin: 24px auto 0;
+            padding: 9px 14px;
+            background: var(--red);
+            color: var(--light);
+            font-family: 'Mynerve', cursive;
+            font-size: 1.05rem;
+            text-align: center;
+            transform: rotate(-1.4deg);
+            clip-path: polygon(3% 8%, 95% 0, 100% 20%, 96% 91%, 8% 100%, 0 78%);
+        }
+
+        @media (max-width: 680px) {
+            .clubinho-pillars {
+                grid-template-columns: 1fr;
+            }
+
+            .clubinho-manifest {
+                margin-bottom: 48px;
+            }
+        }
+
+        .login-container {
+            max-width: 520px;
+            width: 90%;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius);
+            border: 2px solid var(--red);
+            padding: 35px 28px;
+            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .login-badge {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: var(--light);
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .secure-badge {
+            text-align: center;
+            margin: 0 auto 20px;
+            font-size: 0.8rem;
+            color: #333;
+            background: #f7f7f7;
+            display: block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            border: 1px solid #ddd;
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 16px;
+        }
+        .forgot-password button {
+            background: none;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-decoration: underline;
+            font-family: inherit;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius);
+            border: 2px solid var(--red);
+            padding: 35px 30px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        .form-group { margin-bottom: 22px; }
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #ddd;
+            border-radius: 14px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: rgba(247,247,247,0.6);
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(247,7,7,0.1);
+        }
+        .password-container { position: relative; }
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .waitlist-section { text-align: center; margin-top: 25px; }
+        .waitlist-section p { margin: 0 0 12px; font-size: 0.78rem; color: #666; }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .user-profile {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .user-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--red);
+            object-fit: cover;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .user-avatar:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 4px rgba(247,7,7,0.2);
+        }
+        .cerejas-count {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--red);
+            text-shadow: 0 0 6px rgba(247,7,7,0.2);
+        }
+        .cerejas-breakdown {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .breakdown-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.05);
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+        .breakdown-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .mission-section { margin: 40px 0; }
+        .mission-grid { display: flex; flex-direction: column; gap: 12px; }
+        .mission-card {
+            background: rgba(0,0,0,0.02);
+            border-radius: 20px;
+            padding: 16px 20px;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            border: 1px solid #eee;
+        }
+        .mission-card:hover {
+            transform: translateX(5px);
+            background: rgba(247,7,7,0.02);
+            border-color: var(--red);
+        }
+        .mission-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .mission-title {
+            font-weight: 800;
+            font-size: 1rem;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            overflow-x: auto;
+            white-space: normal;
+        }
+        .mission-meta { font-size: 0.7rem; opacity: 0.7; margin-top: 4px; }
+        .progress-bar-bg {
+            background: #e2e2e2;
+            border-radius: 30px;
+            height: 8px;
+            overflow: hidden;
+            margin: 10px 0 0;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--red);
+            transition: width 0.5s ease;
+        }
+        .pinned-mission { border-left: 6px solid #ff6666; background: rgba(255, 102, 102, 0.08); }
+
+        /* INVENTÁRIO - RARIDADES */
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+        .item-slot {
+            background: #fafafa;
+            border-radius: 20px;
+            padding: 14px 6px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            will-change: transform;
+        }
+        .item-slot:hover {
+            transform: scale(1.2);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            z-index: 5;
+        }
+        /* Classes de raridade para inventário */
+        .rarity-cinza { border-left: 6px solid #888; background: #ffffff; }
+        .rarity-verde { border-left: 6px solid #2d6a4f; background: #f0faf0; }
+        .rarity-azul { border-left: 6px solid #1e6091; background: #eef5ff; }
+        .rarity-roxo { border-left: 6px solid #9b59b6; background: #f9f0ff; }
+        .rarity-dourado { border-left: 6px solid #f9d423; background: #fffce6; animation: softGold 1.5s infinite alternate; position: relative; overflow: hidden; }
+        /* Partículas de ouro APENAS para lendários */
+        .rarity-dourado::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.3) 2px, transparent 2px);
+            background-size: 30px 30px;
+            animation: particlesFloat 4s linear infinite;
+        }
+        /* Efeito GLITCH para itens míticos (sem bolinhas, apenas glitch e scanlines) */
+        .rarity-vermelho {
+            border-left: 6px solid #ff3366;
+            background: #fff0f2;
+            position: relative;
+            overflow: hidden;
+            animation: glitchBorderInv 0.4s infinite alternate;
+        }
+        /* Scanlines e distorção para mítico */
+        .rarity-vermelho::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(255,51,102,0.08) 0px, rgba(255,51,102,0.08) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            z-index: 1;
+            animation: scanlinesMove 0.6s linear infinite;
+        }
+        .rarity-vermelho::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,51,102,0.05);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            animation: chromaticAberration 0.15s infinite alternate;
+        }
+        @keyframes softGold { 0% { border-left-color: #f9d423; } 100% { border-left-color: #ffaa00; } }
+        @keyframes glitchBorderInv { 0% { border-left-color: #ff3366; transform: translateX(0); } 100% { border-left-color: #ff6699; transform: translateX(2px); } }
+        @keyframes particlesFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+        @keyframes scanlinesMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 10px; }
+        }
+        @keyframes chromaticAberration {
+            0% { text-shadow: -1px 0 #ff3366, 1px 0 #00ffcc; }
+            100% { text-shadow: 1px 0 #ff3366, -1px 0 #00ffcc; }
+        }
+
+        .item-tooltip {
+            position: absolute;
+            bottom: 105%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            min-width: 180px;
+            max-width: 240px;
+            white-space: normal;
+            word-wrap: break-word;
+            z-index: 200;
+            display: none;
+            pointer-events: none;
+            border: 1px solid var(--red);
+            text-align: left;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .item-slot:hover .item-tooltip { display: block; }
+
+        .ranking-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .top1 { background: linear-gradient(90deg, #ffd70020, transparent); font-weight: bold; color: #b8860b; }
+        .top2 { background: linear-gradient(90deg, #c0c0c020, transparent); }
+        .top3 { background: linear-gradient(90deg, #cd7f3220, transparent); }
+
+        .timer-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            transition: var(--transition);
+            z-index: 99;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .timer-container:hover { opacity: 1; }
+        .prank-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            display: none;
+            z-index: 200;
+            font-weight: bold;
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translate(-50%,20px); } to { opacity: 1; transform: translate(-50%,0); } }
+        .curiosity-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: #0a0a0a;
+            border: 3px solid var(--red);
+            border-radius: 28px;
+            padding: 32px;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            max-width: 460px;
+            width: 90%;
+            color: white;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* ===== CARTA POPUP COM 3D INTERATIVO ===== */
+        .card-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.2s, opacity 0.2s;
+        }
+        .card-overlay.active { visibility: visible; opacity: 1; }
+        .card-container {
+            perspective: 1200px;
+            width: 90%;
+            max-width: 550px;
+        }
+        .carta-3d {
+            background: #fffdf7;
+            border-radius: 4px;
+            padding: 24px 24px 32px;
+            position: relative;
+            transition: transform 0.15s ease-out, box-shadow 0.2s;
+            transform-style: preserve-3d;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            will-change: transform;
+            overflow: hidden;
+        }
+        /* Partículas de OURO apenas para cartas lendárias */
+        .carta-3d.particle-dourado::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.2) 2px, transparent 2px);
+            background-size: 40px 40px;
+            animation: particlesFloat 4s linear infinite;
+        }
+        /* Efeito GLITCH aprimorado para cartas míticas (sem partículas) */
+        .carta-3d.glitch-card {
+            animation: glitchAdvanced 0.2s infinite alternate;
+            position: relative;
+        }
+        .carta-3d.glitch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(255,51,102,0.15) 0px, rgba(255,51,102,0.15) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            animation: scanlinesMove 0.3s linear infinite;
+            z-index: 1;
+        }
+        .carta-3d.glitch-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,51,102,0.1), transparent);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+        @keyframes glitchAdvanced {
+            0% { transform: translate(0); box-shadow: 0 0 5px #ff3366, 0 0 10px #ff3366; filter: hue-rotate(0deg); }
+            20% { transform: translate(-2px, 1px); box-shadow: 0 0 12px #ff6699, 0 0 20px #ff3366; filter: hue-rotate(5deg); }
+            40% { transform: translate(2px, -1px); box-shadow: 0 0 8px #ff3366, 0 0 15px #ff6699; filter: hue-rotate(-3deg); }
+            60% { transform: translate(-1px, 2px); box-shadow: 0 0 15px #ff6699, 0 0 25px #ff3366; filter: hue-rotate(4deg); }
+            80% { transform: translate(1px, -2px); box-shadow: 0 0 10px #ff3366, 0 0 18px #ff6699; }
+            100% { transform: translate(0); box-shadow: 0 0 5px #ff3366, 0 0 10px #ff3366; filter: hue-rotate(0deg); }
+        }
+
+        .close-card {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: rgba(0,0,0,0.08);
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .close-card:hover { background: var(--red); color: white; }
+
+        .item-code {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.25rem;
+            border-bottom: 4px dotted rgba(0,0,0,0.1);
+            color: #888;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .card-title {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 900;
+            font-size: 1.8rem;
+            margin: 8px 0 4px 0;
+            display: inline-block;
+            color: #000;
+        }
+        .card-rarity {
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .item-image-card {
+            width: 100%;
+            max-width: 280px;
+            margin: 16px auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 0;
+            padding: 4px;
+        }
+        .card-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 20px 0 16px;
+            background: rgba(0,0,0,0.02);
+            padding: 14px;
+            border-radius: 8px;
+            text-align: left;
+            color: #1e1e1e;
+            width: 100%;
+        }
+
+        .card-description strong,
+        .item-tooltip strong {
+            color: var(--red);
+            font-weight: 900;
+        }
+
+        .card-description em,
+        .item-tooltip em {
+            font-style: italic;
+            opacity: 0.84;
+        }
+        .card-footer {
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 4px dotted rgba(0,0,0,0.1);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1rem;
+            color: #aaa;
+            text-align: center;
+        }
+        .rarity-text-cinza { color: #5a5a5a; }
+        .rarity-text-verde { color: #2d6a4f; }
+        .rarity-text-azul { color: #1e6091; }
+        .rarity-text-roxo { color: #6a1b9a; }
+        .rarity-text-dourado { color: #b8860b; }
+        .rarity-text-vermelho { color: #ff3366; }
+
+        footer {
+            background: var(--black);
+            color: var(--light);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-logo-img { width: 120px; margin-bottom: 16px; }
+        .footer-about { font-size: 0.85rem; opacity: 0.8; max-width: 280px; }
+        .footer-heading { font-size: 1.4rem; margin-bottom: 20px; color: var(--light); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { opacity: 0.8; transition: var(--transition); }
+        .footer-links a:hover { opacity: 1; color: var(--red); }
+        .footer-newsletter p { opacity: 0.8; margin-bottom: 16px; font-size: 0.9rem; }
+        .footer-form { display: flex; flex-direction: column; gap: 12px; }
+        .footer-input {
+            padding: 12px 16px;
+            border: 2px solid var(--red);
+            border-radius: 40px;
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+        .footer-input:focus { outline: none; box-shadow: 0 0 0 2px rgba(247,7,7,0.3); }
+        .newsletter-note { font-size: 0.7rem; opacity: 0.6; margin-top: 8px; }
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border: 2px solid var(--red);
+            border-radius: 16px;
+            transition: var(--transition);
+            text-align: center;
+            background-color: transparent;
+            color: var(--light);
+        }
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
+        .social-icon { font-size: 24px; margin-bottom: 6px; }
+        .social-name { font-size: 0.75rem; font-weight: 600; }
+        .social-desc { font-size: 0.65rem; opacity: 0.7; }
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+        .copyright { text-align: center; font-size: 0.75rem; opacity: 0.6; padding-top: 30px; border-top: 1px solid #333; margin-top: 20px; }
+
+        /* ===== RESPONSIVIDADE DA CARTA (mobile) ===== */
+        @media (max-width: 980px) {
+            .menu-toggle { display: block; }
+            nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 75%;
+                height: 100vh;
+                background: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+                visibility: hidden;
+                clip-path: inset(0 0 0 100%);
+                pointer-events: none;
+                transition: clip-path 0.3s ease, visibility 0.3s;
+                padding: 40px;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+            }
+            nav[data-visible="true"] {
+                visibility: visible;
+                clip-path: inset(0);
+                pointer-events: auto;
+            }
+            .nav-menu { flex-direction: column; align-items: center; gap: 24px; }
+            .user-avatar { width: 60px; height: 60px; }
+            .cerejas-count { font-size: 1.8rem; }
+            .dashboard-container { padding: 25px 16px; }
+            .inventory-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+            .item-image-card { max-width: 200px; }
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .social-link { min-width: 0; }
+
+            /* Ajustes exclusivos da carta em mobile */
+            .card-container {
+                width: 95%;
+                max-width: 95%;
+                margin: 0 auto;
+                perspective: 800px;
+            }
+            .carta-3d {
+                padding: 20px 16px 24px;
+                transform-origin: center center;
+            }
+            .card-title {
+                font-size: 1.4rem;
+            }
+            .item-image-card {
+                max-width: 180px;
+                margin: 12px auto;
+            }
+            .card-description {
+                font-size: 0.85rem;
+                padding: 12px;
+            }
+            .close-card {
+                top: 8px;
+                right: 12px;
+                width: 32px;
+                height: 32px;
+                font-size: 24px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .footer-social-fullwidth .social-links-grid { grid-template-columns: repeat(8, 1fr); }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/paused.css?v=20260901.2">
+    <script src="/assets/js/paused.js?v=20260901.2" defer></script>
+</head>
+<body class="site-shell legacy-page clubinho-page">
+    <header id="main-header" data-header-cut>
+        <div class="container header-content">
+            <div class="logo-container"><a href="/"><img src="/assets/brand/cejera-02.svg" class="logo-img brand-logo-registered" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=Cejera'"></a></div>
+            <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><span class="hamburger"></span></button>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link">Moda</a></li>
+                    <li><a href="/design/" class="nav-link">Design</a></li>
+                    <li><a href="/musica/" class="nav-link">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
+                </ul>
+                <div class="header-cta"><a href="/clubinho/" class="btn">CLUBINHO</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="clubinho-hero container">
+            <h1 class="clubinho-title">Clubinho</h1>
+            <p class="clubinho-subtitle">Pessoas, missões e impacto compartilhado</p>
+            <div class="clubinho-manifest">
+                <h2>Onde o chamado deixa de ser discurso e vira ação.</h2>
+                <p>O Clubinho conecta pessoas dispostas a colocar habilidades, curiosidade e presença em movimento. Missões aproximam membros das necessidades reais da marca; badges registram percursos, contribuições e formas diferentes de ajudar.</p>
+                <ul class="clubinho-pillars">
+                    <li><strong><svg class="cejera-icon cejera-icon--signal" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#mission"></use></svg> Missões</strong>Ações concretas, individuais ou coletivas, ligadas ao ecossistema Cejera.</li>
+                    <li><strong><svg class="cejera-icon cejera-icon--signal" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#badge"></use></svg> Badges</strong>Marcas de participação e trajetória — reconhecimento, não decoração vazia.</li>
+                    <li><strong><svg class="cejera-icon cejera-icon--signal" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#network"></use></svg> Rede</strong>Pessoas que se encontram, colaboram e ajudam a marca a construir o próximo movimento.</li>
+                </ul>
+                <span class="clubinho-manifest-note">Você não nasce protagonista. Você responde.</span>
+            </div>
+            <div id="dynamicArea" class="login-container">
+                <div class="login-badge"><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#shield"></use></svg> ACESSO RESTRITO <svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#shield"></use></svg></div>
+                <div class="secure-badge"><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#member"></use></svg> Terreno em preparação</div>
+                <div id="loginFormContent">
+                    <div class="form-group"><label><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg> E-mail do Membro</label><input type="email" id="email" class="form-input" placeholder="membro@cejera.com"></div>
+                    <div class="form-group"><label><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#key"></use></svg> Senha Secreta</label><div class="password-container"><input type="password" id="password" class="form-input"><button type="button" id="togglePasswordBtn" class="toggle-password"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#eye"></use></svg></button></div></div>
+                    <button class="btn login-btn" id="loginBtn" data-paused-trigger="#clubinho-paused" style="width:100%;"><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#enter"></use></svg> ACESSAR CLUBINHO</button>
+                    <div class="forgot-password"><button id="forgotPasswordBtn"><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#help"></use></svg> Esqueci minha senha</button></div>
+                    <div class="waitlist-section"><p id="createAccountNote">Novas contas entram primeiro pela lista de espera.</p><button class="btn waitlist-btn" id="createAccountBtn" data-waitlist-trigger data-waitlist-target="#clubinho-waitlist" aria-describedby="createAccountNote" style="background:black;"><svg class="cejera-icon" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#member"></use></svg> CRIAR CONTA</button></div>
+                </div>
+            </div>
+        </section>
+        <div class="timer-container"><span id="timer">00:00</span></div>
+        <div class="prank-message" id="prankMsg"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#brain"></use></svg> Não esqueceu não.</div>
+        <div class="curiosity-popup" id="curiosityPopup"><button id="closeCuriosity" style="float:right;background:none;border:none;color:white;font-size:24px;">&times;</button><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false" style="font-size:52px;color:var(--red);margin:20px 0;"><use href="/assets/icons/cejera-system-v2.svg#scan-face"></use></svg><h3 style="font-family:Mynerve;">Olá, curios@</h3><p>Você tem uma curiosidade fora do comum. Me chama no WhatsApp.</p><button id="curiosityWhatsBtn" class="btn" style="margin-top:16px;"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Chamar Agora</button></div>
+    </main>
+
+    <div id="cardPopupOverlay" class="card-overlay">
+        <div class="card-container">
+            <div class="carta-3d" id="carta3d">
+                <button class="close-card" id="closeCardBtn">&times;</button>
+                <div class="item-code" id="itemCode">000</div>
+                <h2 class="card-title" id="cardTitle">Item</h2>
+                <div class="card-rarity" id="cardRarity">Raridade: --</div>
+                <img id="cardItemImage" class="item-image-card" alt="Item" hidden>
+                <div class="card-description" id="cardDesc">Descrição</div>
+                <div class="card-footer" id="cardFooter">© 2026 Cejera® | Todos os direitos reservados</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div><img src="/assets/brand/cejera-00.svg" class="footer-logo-img brand-mark-offset" onerror="this.src='https://placehold.co/120x120?text=Cejera'"><div class="footer-about">Moda, design e música com coerência e atitude. Protagonista desde 2015.</div></div>
+                <div><h3 class="footer-heading">Navegação</h3><ul class="footer-links"><li><a href="/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#home"></use></svg> Início</a></li><li><a href="/projetos/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#archive"></use></svg> Projetos</a></li><li><a href="/moda/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg> Moda</a></li><li><a href="/design/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#paintbrush"></use></svg> Design</a></li><li><a href="/musica/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#music"></use></svg> Música</a></li><li><a href="/sobre/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#info"></use></svg> Sobre</a></li><li><a href="/contato/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg> Contato</a></li><li><a href="/clubinho/"><svg class="cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg> Clubinho</a></li></ul></div>
+                <div class="footer-newsletter" id="clubinho-waitlist" data-waitlist-target><h3 class="footer-heading"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#gift"></use></svg> Clubinho Divertido</h3><p>Entre para a lista de espera do clubinho e seja notificado!</p><form class="footer-form" id="footer-waitlist-form"><input type="email" id="footer-waitlist-email" class="footer-input" placeholder="seu@email.com" required><button type="submit" class="btn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#send"></use></svg> Lista de espera</button></form><p class="newsletter-note">Sorteio mensal de brindes para membros!</p><p style="margin-top: 20px; font-size: 0.8rem;"><a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> / <a href="/termos/" style="color: var(--red);">Termos de uso</a></p></div>
+            </div>
+            <div class="footer-social-fullwidth"><div class="social-links-grid"><a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a><a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a><a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a><a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a><a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a><a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a><a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a><a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a></div></div>
+            <div class="copyright"><p>© 2026 Cejera® | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p></div>
+        </div>
+    </footer>
+
+    <div class="paused-overlay" id="clubinho-paused" data-paused-overlay aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="clubinho-paused-title">
+        <div class="paused-panel">
+            <button class="paused-close" type="button" data-paused-close aria-label="Fechar aviso">×</button>
+            <img class="paused-art" src="/assets/media/identity/piramesde.png" alt="" width="496" height="434">
+            <p class="paused-kicker">// RAÍZES EM RECALIBRAÇÃO //</p>
+            <h2 class="paused-title" id="clubinho-paused-title">Estamos preparando este terreno ainda.</h2>
+            <p class="paused-copy">O Clubinho está sendo reconstruído para receber pessoas, missões e badges com segurança. Enquanto isso, a lista de espera continua aberta logo abaixo.</p>
+        </div>
+    </div>
+
+    <script>
+        // ================= AJUSTES COMPLETOS: BÔNUS, GLITCH, PARTÍCULAS + INTEIROS + GIROSCÓPIO MOBILE =================
+        const CLUBINHO_ACCESS_ACTIVE = false;
+        const SPREADSHEET_ID = "";
+        const API_KEY = "";
+        let VALID_USERS = [];
+        let AUTH_DIRECTORY_AVAILABLE = false;
+        let loggedUser = null;
+        let globalItemsCatalog = new Map();
+        let userInventory = [];
+        let userName = "";
+        let userMissions = [];
+        let userBonusDetails = { coletadas:0, mutantes:0, bonus:0, totalReais:0 };
+
+        // Detecção de dispositivo móvel (celular/tablet)
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+        async function fetchSheet(range) {
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${encodeURIComponent(range)}?key=${API_KEY}&_=${Date.now()}`;
+            try { const res = await fetch(url); if(!res.ok) return null; const data = await res.json(); return data.values || []; } catch(e) { return null; }
+        }
+        async function loadUsers() {
+            if (!CLUBINHO_ACCESS_ACTIVE) {
+                VALID_USERS = [];
+                AUTH_DIRECTORY_AVAILABLE = false;
+                return;
+            }
+            try {
+                const resp = await fetch('users.txt?_='+Date.now(), { cache: 'no-store' });
+                if(!resp.ok) throw new Error();
+                const text = await resp.text();
+                const lines = text.split(/\r?\n/);
+                const users = [];
+                for(let line of lines){
+                    line = line.trim(); if(!line) continue;
+                    let parts = line.includes('|') ? line.split('|') : line.match(/"?([^"|]+)"?\|"?([^"|]+)"?/);
+                    if(parts && parts.length>=2) users.push({ email: parts[0].replace(/"/g,''), senha: parts[1].replace(/"/g,'') });
+                }
+                if(users.length) {
+                    VALID_USERS = users;
+                    AUTH_DIRECTORY_AVAILABLE = true;
+                }
+                else throw new Error();
+            } catch(e) {
+                VALID_USERS = [];
+                AUTH_DIRECTORY_AVAILABLE = false;
+                console.warn('Diretório de membros indisponível. O acesso foi mantido fechado.');
+            }
+        }
+        async function loadGlobalItemsCatalog() {
+            const rows = await fetchSheet("GABARITO!A30:G59");
+            globalItemsCatalog.clear();
+            if(rows && rows.length) {
+                for(let row of rows){
+                    const codigo = row[0]?.toString().trim();
+                    if(!codigo) continue;
+                    globalItemsCatalog.set(codigo, { nome: row[1]?.trim() || "Item", raridade: row[2]?.trim() || "Básico", multiplicaEm: row[3]?.trim(), bonus: row[4]?.trim(), tipo: row[5]?.trim(), descricao: row[6]?.trim() || "Sem descrição" });
+                }
+            }
+        }
+        function parseMoneyToNumber(v){ if(v===undefined||v===null) return 0; let n = typeof v==='number'?v:parseFloat(String(v).replace(/R\$\s*/g,'').replace(/\./g,'').replace(/,/g,'.')); return isNaN(n)?0:n; }
+        function parseNumber(v){ let n = typeof v==='number'?v:parseFloat(String(v).replace(/[^0-9.-]/g,'')); return isNaN(n)?0:n; }
+
+        function calculateMissionCherries(m){ return Math.floor((m.totalLinha || 0) * 100); }
+
+        function computeTotalCherriesFromUserMissions(m){ return m.reduce((sum,miss)=>sum+calculateMissionCherries(miss),0); }
+
+        async function fetchUserSheetData(email){
+            const rows = await fetchSheet(`'${email}'!A:Z`);
+            if(!rows || rows.length<2) return null;
+            let userNameFromSheet = (rows[1] && rows[1][1]) ? rows[1][1].trim() : email.split('@')[0];
+            const coletadasReais = (rows[2] && rows[2][1]) ? parseMoneyToNumber(rows[2][1]) : 0;
+            const mutantesReais = (rows[3] && rows[3][1]) ? parseMoneyToNumber(rows[3][1]) : 0;
+            const bonusReais = (rows[4] && rows[4][1]) ? parseMoneyToNumber(rows[4][1]) : 0;
+            const totalReais = (rows[5] && rows[5][1]) ? parseMoneyToNumber(rows[5][1]) : (coletadasReais+mutantesReais+bonusReais);
+            userBonusDetails = {
+                coletadas: Math.floor(coletadasReais * 100),
+                mutantes: Math.floor(mutantesReais * 100),
+                bonus: Math.floor(bonusReais * 100),
+                totalReais: totalReais
+            };
+
+            const userMissionsRaw = [];
+            for(let i=9; i<=33 && i<rows.length; i++){
+                const row = rows[i]; if(!row || !row[0]) continue;
+                userMissionsRaw.push({ numero: row[0]?.trim(), acao: row[1]?.trim()||"", grupo: row[2]?.trim()||"", base: parseMoneyToNumber(row[3]), vezesConcluida: parseNumber(row[4]), totalFixo: parseMoneyToNumber(row[5]), bonusItens: parseMoneyToNumber(row[6]), bonusExtra: parseMoneyToNumber(row[7]), totalLinha: parseMoneyToNumber(row[8]), meta: parseNumber(row[9])||1 });
+            }
+            const inventoryRaw = [];
+            for(let i=9; i<=38 && i<rows.length; i++){
+                const row = rows[i];
+                const codigo = row?.[10]?.toString().trim();
+                if(codigo) inventoryRaw.push({ codigo, nome: row[11]?.trim()||"", raridade: row[12]?.trim()||"Básico" });
+            }
+            const foto = (rows[1] && rows[1][2]) ? rows[1][2] : `https://ui-avatars.com/api/?background=F70707&color=fff&name=${userNameFromSheet.charAt(0)}`;
+            return { email, userName: userNameFromSheet, foto, userMissions: userMissionsRaw, inventory: inventoryRaw };
+        }
+
+        function getPinnedKey(){ return loggedUser ? `pinnedMissions_${loggedUser.email}` : null; }
+        function loadPinnedMissions(){ const key=getPinnedKey(); if(!key) return []; try{ return JSON.parse(localStorage.getItem(key)||"[]"); }catch(e){ return []; } }
+        function savePinnedMissions(p){ const key=getPinnedKey(); if(key) localStorage.setItem(key,JSON.stringify(p)); }
+        function pinMission(name){ let p=loadPinnedMissions(); if(!p.includes(name)){ p.push(name); savePinnedMissions(p); showToast(`<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg> Missão "${name}" fixada!`); renderDashboardAfterLogin(); } }
+        function unpinMission(name){ let p=loadPinnedMissions(); p=p.filter(n=>n!==name); savePinnedMissions(p); showToast(`<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg> Missão "${name}" desafixada.`); renderDashboardAfterLogin(); }
+        function escapeHtml(str){ return String(str).replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+        function sanitizeItemDescription(value){
+            const template = document.createElement('template');
+            template.innerHTML = String(value || '');
+            const allowedTags = new Set(['STRONG', 'EM', 'BR']);
+            const blockedTags = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'LINK', 'META']);
+
+            template.content.querySelectorAll('*').forEach((element) => {
+                if (allowedTags.has(element.tagName)) {
+                    [...element.attributes].forEach((attribute) => element.removeAttribute(attribute.name));
+                    return;
+                }
+                if (blockedTags.has(element.tagName)) {
+                    element.remove();
+                    return;
+                }
+                element.replaceWith(...element.childNodes);
+            });
+
+            return template.innerHTML;
+        }
+
+        function getRarityMappings(raridadeRaw){
+            const r = (raridadeRaw || "basico").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if(r.includes("cinza") || r.includes("comum")) return { textClass: "rarity-text-cinza", glow: "0 0 20px 8px rgba(136,136,136,0.5)", particle: false, rarityDisplay: "Comum (Cinza)", invClass: "rarity-cinza", glitch: false };
+            if(r.includes("verde") || r.includes("incomum")) return { textClass: "rarity-text-verde", glow: "0 0 24px 10px rgba(45,106,79,0.6)", particle: false, rarityDisplay: "Incomum (Verde)", invClass: "rarity-verde", glitch: false };
+            if(r.includes("azul") || r.includes("raro")) return { textClass: "rarity-text-azul", glow: "0 0 24px 10px rgba(30,96,145,0.6)", particle: false, rarityDisplay: "Raro (Azul)", invClass: "rarity-azul", glitch: false };
+            if(r.includes("roxo") || r.includes("epico")) return { textClass: "rarity-text-roxo", glow: "0 0 28px 12px rgba(106,27,154,0.6)", particle: false, rarityDisplay: "Épico (Roxo)", invClass: "rarity-roxo", glitch: false };
+            if(r.includes("dourado") || r.includes("lendario")) return { textClass: "rarity-text-dourado", glow: "0 0 30px 14px rgba(249,212,35,0.7)", particle: true, particleClass: "particle-dourado", rarityDisplay: "Lendário (Dourado)", invClass: "rarity-dourado", glitch: false };
+            if(r.includes("vermelho") || r.includes("mitico") || r.includes("mítico")) return { textClass: "rarity-text-vermelho", glow: "0 0 30px 15px rgba(255,51,102,0.8)", particle: false, rarityDisplay: "Mítico (Vermelho)", invClass: "rarity-vermelho", glitch: true };
+            return { textClass: "rarity-text-cinza", glow: "0 0 10px rgba(0,0,0,0.2)", particle: false, rarityDisplay: "Básico", invClass: "", glitch: false };
+        }
+
+        // --- Versão Desktop: mouse move ---
+        let desktopCardHandlerAttached = false;
+        function setupCard3DEffectDesktop() {
+            const card = document.getElementById('carta3d');
+            const container = document.querySelector('.card-container');
+            if(!card || !container) return;
+            const onMove = (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = ((x - centerX) / centerX) * 12;
+                const rotateX = ((centerY - y) / centerY) * 12;
+                card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            };
+            const onLeave = () => {
+                card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            };
+            container.addEventListener('mousemove', onMove);
+            container.addEventListener('mouseleave', onLeave);
+            // guardar referências para limpeza futura (opcional)
+            desktopCardHandlerAttached = true;
+        }
+
+        // --- Versão Mobile: giroscópio ---
+        let gyroHandlerActive = false;
+        let lastGamma = 0, lastBeta = 0;
+        let gyroEventAttached = false;
+        function setupCard3DEffectMobile() {
+            const card = document.getElementById('carta3d');
+            if(!card) return;
+            // Se já existe handler, não adicionar novamente
+            if(gyroEventAttached) return;
+
+            // Função que atualiza a rotação baseada nos ângulos gamma (esquerda/direita) e beta (frente/trás)
+            function updateOrientation(event) {
+                if(!card) return;
+                let gamma = event.gamma;  // -90 a 90, rotação lateral
+                let beta = event.beta;    // -180 a 180, inclinação frontal
+                // Limitar ângulos para efeito suave (-25 a 25 graus)
+                let rotY = Math.min(20, Math.max(-20, gamma)) * 0.6;
+                let rotX = Math.min(20, Math.max(-20, beta)) * 0.5;
+                card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(10px)`;
+                lastGamma = gamma;
+                lastBeta = beta;
+            }
+
+            // Para iOS, é necessário solicitar permissão via user interaction
+            const requestOrientation = () => {
+                if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // iOS: pede ao usuário para ativar
+                    DeviceOrientationEvent.requestPermission()
+                        .then(permissionState => {
+                            if (permissionState === 'granted') {
+                                window.addEventListener('deviceorientation', updateOrientation);
+                                gyroEventAttached = true;
+                            } else {
+                                console.warn("Permissão de giroscópio negada");
+                            }
+                        })
+                        .catch(err => console.warn(err));
+                } else {
+                    // Android e outros: adiciona diretamente
+                    window.addEventListener('deviceorientation', updateOrientation);
+                    gyroEventAttached = true;
+                }
+            };
+
+            // Se for iOS, associamos o pedido de permissão ao toque na própria carta (overlay)
+            // mas a carta é aberta pelo clique no item. Vamos disparar a solicitação no momento da abertura.
+            if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // iOS: precisa de um gesto explícito do usuário. Vamos adicionar um ouvinte único de toque na overlay.
+                const overlay = document.getElementById('cardPopupOverlay');
+                const requestOnce = () => {
+                    DeviceOrientationEvent.requestPermission()
+                        .then(permissionState => {
+                            if (permissionState === 'granted') {
+                                window.addEventListener('deviceorientation', updateOrientation);
+                                gyroEventAttached = true;
+                                overlay.removeEventListener('touchstart', requestOnce);
+                                overlay.removeEventListener('click', requestOnce);
+                            }
+                        }).catch(e => console.warn(e));
+                };
+                overlay.addEventListener('touchstart', requestOnce, { once: true });
+                overlay.addEventListener('click', requestOnce, { once: true });
+                // Se o usuário já permitiu antes? tentamos silenciosamente
+                setTimeout(() => {
+                    if(!gyroEventAttached) {
+                        // não força, aguarda interação
+                    }
+                }, 100);
+            } else {
+                // Android: adiciona diretamente
+                window.addEventListener('deviceorientation', updateOrientation);
+                gyroEventAttached = true;
+            }
+
+            // Opcional: reset ao fechar a carta
+            const closeBtn = document.getElementById('closeCardBtn');
+            const resetOrientation = () => {
+                card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                // não removemos o evento permanentemente, mas a carta será fechada.
+            };
+            if(closeBtn) closeBtn.addEventListener('click', resetOrientation);
+        }
+
+        function setupCard3D() {
+            if(isMobile) {
+                setupCard3DEffectMobile();
+            } else {
+                setupCard3DEffectDesktop();
+            }
+        }
+
+        function openItemCard(itemCodigo, itemNome, itemRaridade, itemDescHtml, imgUrl){
+            const overlay = document.getElementById('cardPopupOverlay');
+            const codeEl = document.getElementById('itemCode');
+            const titleEl = document.getElementById('cardTitle');
+            const descEl = document.getElementById('cardDesc');
+            const rarityEl = document.getElementById('cardRarity');
+            const cardDiv = document.getElementById('carta3d');
+            const imgEl = document.getElementById('cardItemImage');
+            const mappings = getRarityMappings(itemRaridade);
+
+            codeEl.textContent = `#${itemCodigo}`;
+            titleEl.textContent = itemNome;
+            descEl.innerHTML = sanitizeItemDescription(itemDescHtml || "Sem descrição especial, mas certamente raro.");
+            rarityEl.textContent = `Raridade: ${mappings.rarityDisplay}`;
+            rarityEl.className = `card-rarity ${mappings.textClass}`;
+            imgEl.hidden = !imgUrl;
+            if (imgUrl) imgEl.src = imgUrl;
+            imgEl.onerror = () => { imgEl.src = 'https://placehold.co/500x500?text=' + encodeURIComponent(itemNome) + '&font=montserrat'; };
+            cardDiv.style.boxShadow = `0 25px 40px rgba(0,0,0,0.3), 0 0 0 2px rgba(0,0,0,0.05), ${mappings.glow}`;
+
+            if(mappings.particle) { cardDiv.classList.add('particle-dourado'); } else { cardDiv.classList.remove('particle-dourado'); }
+            if(mappings.glitch) { cardDiv.classList.add('glitch-card'); } else { cardDiv.classList.remove('glitch-card'); }
+            cardDiv.classList.remove('particle-vermelho');
+            overlay.classList.add('active');
+            // Chama a função de setup de acordo com o dispositivo
+            setupCard3D();
+        }
+        function closeCardPopup(){
+            document.getElementById('cardPopupOverlay').classList.remove('active');
+            // Limpeza opcional: remover evento de giroscópio para evitar consumo desnecessário, mas não obrigatório
+        }
+
+        async function renderDashboardAfterLogin(){
+            if(!loggedUser) return;
+            const container = document.getElementById('dynamicArea');
+            container.innerHTML = `<div class="dashboard-container"><div class="login-badge" style="position:relative; top:0; text-align: center; width: 100%; display: block;">ÁREA DO MEMBRO</div><div style="text-align:center;padding:40px;"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin cejera-icon--3x" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg></div></div>`;
+            await loadGlobalItemsCatalog();
+            const userData = await fetchUserSheetData(loggedUser.email);
+            if(!userData){ container.innerHTML = `<div class="dashboard-container"><div class="login-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#warning"></use></svg> ERRO</div><button class="btn" id="logoutErr"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-out"></use></svg> Sair</button></div>`; document.getElementById('logoutErr')?.addEventListener('click',logout); return; }
+            userName = userData.userName;
+            userMissions = userData.userMissions;
+            userInventory = userData.inventory;
+            const totalCherries = Math.floor(userBonusDetails.totalReais * 100);
+            const pinned = loadPinnedMissions();
+            const pinnedMissions = userMissions.filter(m => pinned.includes(m.acao));
+            const otherMissions = userMissions.filter(m => !pinned.includes(m.acao));
+
+            let html = `<div class="dashboard-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <button id="logoutUserBtn" class="btn btn-sm" style="background:#333;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-out"></use></svg></button>
+                    <div class="login-badge" style="position: absolute; top: 20px; margin: 0; display: inline-block;">ÁREA DO MEMBRO</div>
+                    <button id="refreshDataBtn" class="btn btn-sm"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#refresh"></use></svg></button>
+                </div>
+                <div class="dashboard-header" style="margin-top: 0;">
+                    <div class="user-profile"><img class="user-avatar" src="${userData.foto}" onerror="this.src='https://ui-avatars.com/api/?background=F70707&color=fff&name=${userName.charAt(0)}'"><div><strong><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#operator"></use></svg> ${escapeHtml(userName)}</strong>
+                    <div class="cerejas-count"><img src="cereja.svg" style="width:36px;height:36px;display:inline-block;vertical-align:middle;"> ${totalCherries}</div>
+                    <div class="cerejas-breakdown">
+                        <span class="breakdown-item"><img src="cereja.svg" class="breakdown-icon" style="filter: brightness(0) saturate(100%) invert(13%) sepia(99%) saturate(7452%) hue-rotate(360deg) brightness(98%) contrast(110%);"><span style="color:#F70707;">${userBonusDetails.coletadas}</span></span>
+                        <span class="breakdown-item"><img src="cereja.svg" class="breakdown-icon" style="filter: brightness(0) saturate(100%) invert(34%) sepia(94%) saturate(748%) hue-rotate(95deg) brightness(93%) contrast(96%);"><span style="color:#2d6a4f;">${userBonusDetails.mutantes}</span></span>
+                        <span class="breakdown-item"><img src="cereja.svg" class="breakdown-icon" style="filter: brightness(0) saturate(100%) invert(76%) sepia(87%) saturate(784%) hue-rotate(359deg) brightness(102%) contrast(102%);"><span style="color:#b8860b;">${userBonusDetails.bonus}</span></span>
+                    </div>
+                    <div><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#coins"></use></svg> R$ ${(totalCherries/100).toFixed(2)}</div></div></div>
+                </div>
+                <div class="mission-section"><h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg> MISSÕES FIXADAS (${pinnedMissions.length})</h3><div class="mission-grid">${pinnedMissions.length ? pinnedMissions.map(m=>{ const prog=Math.min(100,(m.vezesConcluida/m.meta)*100); return `<div class="mission-card pinned-mission"><div class="mission-info"><div class="mission-title"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg> ${escapeHtml(m.acao)}</div><div class="mission-meta"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chart-line"></use></svg> ${m.vezesConcluida}/${m.meta} | <img src="cereja.svg" style="width:14px;height:14px;display:inline-block;"> ${calculateMissionCherries(m)}</div><div class="progress-bar-bg"><div class="progress-fill" data-progress="${prog}"></div></div></div><button class="btn btn-sm btn-deactivate" data-nome="${escapeHtml(m.acao)}" style="background:none; color:var(--red);"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg></button></div>`; }).join('') : '<div class="mission-card"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#info"></use></svg> Nenhuma fixada. Fixe suas metas!</div>'}</div></div>
+                <div class="mission-section"><h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#list"></use></svg> TODAS AS MISSÕES</h3><div class="mission-grid">${otherMissions.length ? otherMissions.map(m=>{ const prog=Math.min(100,(m.vezesConcluida/m.meta)*100); return `<div class="mission-card"><div class="mission-info"><div class="mission-title"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#flag"></use></svg> ${escapeHtml(m.acao)}</div><div class="mission-meta"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chart-line"></use></svg> ${m.vezesConcluida}/${m.meta} | <img src="cereja.svg" style="width:14px;height:14px;display:inline-block;"> ${calculateMissionCherries(m)}</div><div class="progress-bar-bg"><div class="progress-fill" data-progress="${prog}"></div></div></div><button class="btn btn-sm btn-activate" data-nome="${escapeHtml(m.acao)}" style="background:none; color:#333;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#pin"></use></svg></button></div>`; }).join('') : '<div class="mission-card"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#check-circle"></use></svg> Todas as suas missões estão fixadas!</div>'}</div></div>
+                <h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#backpack"></use></svg> INVENTÁRIO · ITENS RAROS</h3><div id="inventoryGrid" class="inventory-grid"></div>
+            </div>`;
+            container.innerHTML = html;
+            document.querySelectorAll('.progress-fill').forEach(el=>{ const p=parseFloat(el.dataset.progress); if(!isNaN(p)) setTimeout(()=>el.style.width=`${Math.min(100,p)}%`,100); });
+            const invGrid = document.getElementById('inventoryGrid');
+            if(invGrid && userInventory.length){
+                invGrid.innerHTML = '';
+                for(let item of userInventory){
+                    const cat = globalItemsCatalog.get(item.codigo) || { nome: item.nome || `Item ${item.codigo}`, raridade: item.raridade, descricao: "📦 Sem descrição na planilha." };
+                    const mappings = getRarityMappings(cat.raridade);
+                    let invClass = mappings.invClass;
+                    const slot = document.createElement('div');
+                    slot.className = `item-slot ${invClass}`;
+                    const imgSrc = `${item.codigo}.png`;
+                    slot.innerHTML = `<img src="${imgSrc}" onerror="this.src='https://placehold.co/80x80?text=${item.codigo}'" style="width:70px;height:70px;object-fit:contain;margin:0 auto;"><div style="font-weight:600;">${escapeHtml(cat.nome)}</div><small>${escapeHtml(cat.raridade)}</small><div class="item-tooltip"><strong>${escapeHtml(cat.nome)}</strong><br>${sanitizeItemDescription(cat.descricao)}</div>`;
+                    slot.addEventListener('click', (e) => { e.stopPropagation(); openItemCard(item.codigo, cat.nome, cat.raridade, cat.descricao, imgSrc); });
+                    invGrid.appendChild(slot);
+                }
+            } else if(invGrid) invGrid.innerHTML = '<div class="item-slot" style="grid-column:span 2;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#package-open"></use></svg> Nenhum item encontrado ainda.<br>Complete missões!</div>';
+            document.querySelectorAll('.btn-activate').forEach(btn=>btn.addEventListener('click',()=>{ const n=btn.getAttribute('data-nome'); if(n) pinMission(n); }));
+            document.querySelectorAll('.btn-deactivate').forEach(btn=>btn.addEventListener('click',()=>{ const n=btn.getAttribute('data-nome'); if(n) unpinMission(n); }));
+            document.getElementById('logoutUserBtn')?.addEventListener('click',logout);
+            document.getElementById('refreshDataBtn')?.addEventListener('click', async () => {
+                showToast(`<svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#refresh"></use></svg> Atualizando...`);
+                await renderDashboardAfterLogin();
+                showToast(`<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#check-circle"></use></svg> Atualizado!`);
+            });
+        }
+
+        async function renderAdminDashboard(){
+            const container = document.getElementById('dynamicArea');
+            container.innerHTML = `<div class="dashboard-container"><div class="login-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trophy"></use></svg> RANKING GERAL</div><div style="text-align:center;"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg></div></div>`;
+            let ranking=[];
+            for(let u of VALID_USERS){
+                const data = await fetchUserSheetData(u.email);
+                if(data) ranking.push({ name: data.userName, total: data.userMissions.reduce((s,m)=>s+calculateMissionCherries(m),0) });
+            }
+            ranking.sort((a,b)=>b.total-a.total);
+            let html = `<div class="dashboard-container"><div class="login-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg> PAINEL ADMIN</div><div class="dashboard-header"><h2><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trophy"></use></svg> Ranking do Clubinho</h2><div><img src="cereja.svg" style="width:20px;height:20px;display:inline-block;"> Total: ${ranking.reduce((s,r)=>s+r.total,0)} cerejas</div></div><ul class="ranking-list">${ranking.map((u,idx)=>`<li class="${idx===0?'top1':idx===1?'top2':idx===2?'top3':''}"><span>${idx+1}. ${escapeHtml(u.name)} ${idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':''}</span><span>${u.total} <img src="cereja.svg" style="width:14px;height:14px;display:inline-block;"></span></li>`).join('')}</ul><button id="logoutAdminBtn" class="btn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-out"></use></svg></button></div>`;
+            container.innerHTML = html;
+            document.getElementById('logoutAdminBtn')?.addEventListener('click',logout);
+        }
+
+        async function login(email, senha){
+            if(!AUTH_DIRECTORY_AVAILABLE) {
+                alert("O acesso do Clubinho está temporariamente indisponível. Tente novamente mais tarde ou fale com o Cejera pelo WhatsApp.");
+                return false;
+            }
+            const valid = VALID_USERS.find(u=>u.email===email && u.senha===senha);
+            if(!valid) { alert("Credenciais inválidas. Acesso negado."); return false; }
+            if(email !== "cejera@cejera.com"){
+                const test = await fetchUserSheetData(email);
+                if(!test){ alert("E-mail não cadastrado no banco de dados ou banco de dados indisponível no momento."); return false; }
+            }
+            loggedUser = { email };
+            if(email === "cejera@cejera.com") await renderAdminDashboard();
+            else await renderDashboardAfterLogin();
+            return true;
+        }
+        function logout(){ loggedUser = null; location.reload(); }
+        function showToast(msg){ const t=document.getElementById('toastMsg'); if(t){ t.innerHTML=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',3000); } else { alert(msg); } }
+        let timerSeconds=0, timerMinutes=0, timerInterval;
+        function startTimer(){
+            timerInterval = setInterval(()=>{
+                timerSeconds++;
+                if(timerSeconds===60){ timerMinutes++; timerSeconds=0; }
+                document.getElementById('timer').innerHTML = `<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#hourglass"></use></svg> ${timerMinutes.toString().padStart(2,'0')}:${timerSeconds.toString().padStart(2,'0')}`;
+                if(timerMinutes>=5 && !loggedUser){ document.getElementById('curiosityPopup').style.display='block'; clearInterval(timerInterval); }
+            },1000);
+        }
+        window.addEventListener('DOMContentLoaded', async () => {
+            await loadUsers(); startTimer();
+            document.getElementById('loginBtn').addEventListener('click', async (e) => { e.preventDefault(); const email=document.getElementById('email').value.trim(); const pwd=document.getElementById('password').value; if(!email||!pwd){ alert("Preencha e-mail e senha."); return; } const btn=e.target; btn.disabled=true; btn.innerHTML='<svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg>'; const ok=await login(email,pwd); if(!ok){ btn.disabled=false; btn.innerHTML='<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-in"></use></svg> ACESSAR CLUBINHO'; } else clearInterval(timerInterval); });
+            document.getElementById('togglePasswordBtn')?.addEventListener('click',()=>{ const pwd=document.getElementById('password'); const iconUse = document.querySelector('#togglePasswordBtn use'); if(pwd.type==='password'){ pwd.type='text'; iconUse?.setAttribute('href','/assets/icons/cejera-system-v2.svg#eye-off'); } else { pwd.type='password'; iconUse?.setAttribute('href','/assets/icons/cejera-system-v2.svg#eye'); } });
+            document.getElementById('forgotPasswordBtn')?.addEventListener('click',()=>{ window.open('https://wa.me/5535999286246?text=Esqueci%20minha%20senha%20do%20Clubinho%20Cejera%20-%20solicito%20altera%C3%A7%C3%A3o','_blank','noopener,noreferrer'); });
+            document.getElementById('closeCuriosity')?.addEventListener('click',()=>document.getElementById('curiosityPopup').style.display='none');
+            document.getElementById('curiosityWhatsBtn')?.addEventListener('click',()=>window.open('https://wa.me/5535999286246?text=Curiosidade%20JARDIM','_blank','noopener,noreferrer'));
+            const footerForm = document.getElementById('footer-waitlist-form');
+            if(footerForm){
+                footerForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const emailFoot = document.getElementById('footer-waitlist-email').value.trim();
+                    if(emailFoot) window.open(`https://wa.me/5535999286246?text=Lista%20de%20espera:%20${encodeURIComponent(emailFoot)}`,'_blank','noopener,noreferrer');
+                    else alert("Digite um e-mail válido.");
+                });
+            }
+            window.addEventListener('scroll', function() { const header = document.getElementById('main-header'); if (window.scrollY > 50) header.classList.add('header-scroll'); else header.classList.remove('header-scroll'); });
+            const menuToggle = document.querySelector('.menu-toggle'); const nav = document.querySelector('nav');
+            if(menuToggle && nav){ menuToggle.addEventListener('click', () => { const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true'; menuToggle.setAttribute('aria-expanded', !isExpanded); nav.setAttribute('data-visible', !isExpanded); }); }
+            document.getElementById('closeCardBtn')?.addEventListener('click', closeCardPopup);
+            document.getElementById('cardPopupOverlay')?.addEventListener('click', (e) => { if(e.target === document.getElementById('cardPopupOverlay')) closeCardPopup(); });
+        });
+    </script>
+    <script src="/assets/js/site.js" defer></script>
+    <div id="toastMsg" style="position:fixed; bottom:100px; right:20px; background:#1a1a1a; color:white; padding:10px 20px; border-radius:40px; z-index:200; font-size:0.8rem; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.2);"></div>
+</body>
+</html>
