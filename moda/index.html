@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moda autoral | Cejera</title>
+    <meta name="description" content="Loja oficial Cejera. Lançamento da coleção ASTRO e BRASIL: camisetas oversized com estampas exclusivas. Moda autêntica e excêntrica.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <meta name="google-maps-api-key" content="">
+    <link rel="canonical" href="https://cejera.com/moda/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Moda autoral | Cejera">
+    <meta property="og:description" content="Peças autorais da Cejera com atendimento direto e compra pelo WhatsApp.">
+    <meta property="og:url" content="https://cejera.com/moda/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moda autoral | Cejera">
+    <meta name="twitter:description" content="Peças autorais da Cejera com atendimento direto e compra pelo WhatsApp.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Moda" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <style>
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+            --green: #00a651;
+            --blue: #0072bc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+            font-family: 'Source Code Pro', monospace, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .collection-title {
+            font-family: 'Mynerve', cursive, ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-disabled {
+            background: #8B0000;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: var(--shadow);
+        }
+
+        .banner-topo {
+            max-width: 1920px;
+            max-height: 60vh;
+            overflow: hidden;
+            line-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner-topo img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(247, 7, 7, 0.03);
+            border: 2px solid rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            z-index: 1001;
+            padding: 12px;
+            transition: var(--transition);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        .email-capture {
+            margin-bottom: 12px;
+        }
+
+        .hero-loja {
+            padding: clamp(92px, 11vw, 150px) 0 clamp(64px, 8vw, 104px);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: clamp(4.8rem, 14vw, 11rem);
+            line-height: 0.78;
+            letter-spacing: -0.08em;
+            margin: 0 0 34px;
+            position: relative;
+            display: block;
+            width: fit-content;
+        }
+
+        .hero-title::before,
+        .hero-title::after {
+            content: none;
+            color: var(--red);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .hero-title::before {
+            left: -40px;
+        }
+
+        .hero-title::after {
+            right: -40px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 720px;
+            margin: 0 0 40px;
+            color: #333;
+        }
+
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 0 0 28px;
+            text-transform: uppercase;
+        }
+
+        .hero-loja .hero-kicker {
+            margin-bottom: 22px;
+        }
+
+        .hero-loja .email-capture,
+        .hero-loja .email-microcopy {
+            width: fit-content;
+        }
+
+        .colecoes-section {
+            padding: 20px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
+
+        .collection-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .collection-title {
+            font-size: 3.5rem;
+            color: var(--red);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .collection-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .collection-status {
+            display: inline-block;
+            background: var(--black);
+            color: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .collection-status--available {
+            background: var(--red);
+        }
+
+        .collection-status--soon {
+            background: #8B0000;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .produto-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .produto-card.esgotado {
+            opacity: 0.8;
+        }
+
+        .produto-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--black);
+            color: var(--light);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+
+        .produto-badge--esgotado {
+            background: #8B0000;
+        }
+
+        .produto-badge--lancamento {
+            background: var(--red);
+        }
+
+        .carrossel-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .carrossel-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .carrossel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .produto-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carrossel-container::after,
+        .adesivo-imagem::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgb(0 0 0 / 20%) 0,
+                rgb(0 0 0 / 20%) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            mix-blend-mode: multiply;
+            opacity: 0.62;
+        }
+
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .carrossel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carrossel-btn--prev {
+            left: 10px;
+        }
+
+        .carrossel-btn--next {
+            right: 10px;
+        }
+
+        .carrossel-indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .indicador {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .indicador.active {
+            background: var(--red);
+        }
+
+        .produto-info {
+            padding: 24px;
+        }
+
+        .produto-nome {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .produto-descricao {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .produto-preco {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preco-antigo {
+            font-size: 0.9rem;
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        .preco-atual {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .desconto {
+            background: var(--red);
+            color: var(--light);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .produto-btn {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .produto-btn .cejera-icon {
+            font-size: 1.1rem;
+        }
+
+        .status-banner {
+            background: var(--black);
+            color: var(--light);
+            padding: clamp(34px, 5vw, 64px);
+            margin: 60px auto;
+            border: 2px solid var(--black);
+            border-radius: 0;
+            max-width: 1280px;
+            box-shadow: 12px 12px 0 var(--red);
+        }
+
+        .studio-invite {
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(1% 2%, 98% 0, 100% 8%, 99% 96%, 72% 100%, 2% 98%, 0 78%);
+        }
+
+        .studio-invite::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent 0 5px, rgb(247 7 7 / 7%) 6px);
+            mix-blend-mode: screen;
+        }
+
+        .studio-invite__grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+            gap: clamp(28px, 5vw, 64px);
+            align-items: center;
+        }
+
+        .studio-invite__copy {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .studio-invite h2 {
+            max-width: 680px;
+            margin: 0;
+            color: var(--light);
+            font-size: clamp(2.4rem, 5vw, 5.4rem);
+            line-height: 0.93;
+        }
+
+        .studio-invite p {
+            max-width: 620px;
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .studio-invite__eyebrow,
+        .studio-invite__location {
+            color: var(--red);
+            font-size: 0.78rem !important;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 1 !important;
+        }
+
+        .studio-invite__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .studio-invite__map {
+            position: relative;
+            min-height: 420px;
+            border: 3px solid var(--light);
+            background: #120000;
+            box-shadow: 10px 10px 0 var(--red);
+            transform: rotate(0.6deg);
+        }
+
+        .studio-invite__map iframe {
+            display: block;
+            width: 100%;
+            height: 420px;
+            border: 0;
+            filter: grayscale(1) contrast(1.15) brightness(0.82);
+        }
+
+        .studio-invite__map::after {
+            content: 'MAPA // ESTÚDIO Cejera';
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            padding: 8px 10px;
+            color: var(--light);
+            background: var(--black);
+            border: 1px solid var(--red);
+            font: 800 0.7rem/1 'Source Code Pro', monospace;
+            letter-spacing: 0.08em;
+        }
+
+        .highlight {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .btn-estudio {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #F70707;
+            color: white;
+            padding: 13px 20px;
+            border: 2px solid #F70707;
+            border-radius: 0;
+            box-shadow: 5px 5px 0 #fff;
+            font-weight: 900;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+            text-decoration: none;
+            font-family: 'Source Code Pro', monospace;
+            text-transform: uppercase;
+        }
+
+        .btn-estudio:hover {
+            background: #9f0000;
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 #fff;
+        }
+
+        .btn-estudio:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+
+        .btn-estudio--ghost {
+            color: var(--light);
+            background: transparent;
+            border-color: var(--light);
+            box-shadow: 5px 5px 0 var(--red);
+        }
+
+        .adesivos-section {
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .adesivos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .adesivo-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .adesivo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .adesivo-imagem {
+            height: 260px;
+            background-color: #222;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .adesivo-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-em-breve {
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placeholder-em-breve::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 0, 0, 0.2) 0px,
+                rgba(255, 0, 0, 0.2) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .placeholder-em-breve span {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red);
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 8px;
+            letter-spacing: 2px;
+            z-index: 2;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .adesivo-info {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .adesivo-nome {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .adesivo-descricao {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .adesivo-preco {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 16px 0;
+            color: var(--black);
+        }
+
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            height: 140px;
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+            box-sizing: border-box;
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+            line-height: 1.2;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .produtos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-form {
+                flex-direction: row;
+            }
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .adesivos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .produtos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .nav-menu {
+                gap: 40px;
+            }
+            .footer-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .footer-logo-container {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+            .footer-links-container {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
+            .footer-newsletter {
+                flex: 0 0 35%;
+                max-width: 35%;
+            }
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+            .footer-social-fullwidth .social-link {
+                width: 100%;
+                max-width: 140px;
+            }
+            .adesivos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .menu-toggle {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: var(--transition);
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            nav[data-visible="true"] {
+                right: 0;
+            }
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+            .header-cta {
+                margin-top: 20px;
+            }
+            .logo-img {
+                height: 80px;
+            }
+            .footer-logo-img {
+                width: 120px;
+                height: 120px;
+            }
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .social-link {
+                height: 120px;
+            }
+            .hero-title::before,
+            .hero-title::after {
+                display: none;
+            }
+            .collection-title {
+                font-size: 2.5rem;
+            }
+            .carrossel-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            .adesivos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+        *:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        /* ========== COLEÇÃO SUPERNOVA ========== */
+        .supernova-section {
+            position: relative;
+            background: radial-gradient(circle at center, #1a0000, #000000);
+            overflow: hidden;
+            padding: 80px 0 100px;
+            margin: 40px 0 60px;
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--red);
+            box-shadow: 0 0 40px rgba(247, 7, 7, 0.3);
+        }
+        .supernova-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .supernova-section .collection-title {
+            color: #fff;
+            text-shadow: 0 0 20px var(--red), 0 0 40px var(--red);
+            font-size: 4rem;
+        }
+        .supernova-section .collection-subtitle {
+            color: #ccc;
+        }
+        .supernova-section .collection-status {
+            background: var(--red);
+        }
+        .supernova-destaque {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 2px solid var(--red);
+            box-shadow: 0 0 60px rgba(247, 7, 7, 0.3);
+            transition: var(--transition);
+        }
+        .supernova-destaque:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 80px rgba(247, 7, 7, 0.5);
+        }
+        .supernova-destaque .carrossel-container {
+            height: 500px;
+            background: #000;
+        }
+        .supernova-destaque .produto-info {
+            background: #000;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .supernova-destaque .produto-nome {
+            color: #fff;
+            font-size: 2rem;
+        }
+        .supernova-destaque .produto-descricao {
+            color: #aaa;
+            font-size: 1rem;
+        }
+        .supernova-destaque .preco-atual {
+            color: #fff;
+            font-size: 2.2rem;
+        }
+        .supernova-destaque .produto-btn {
+            background: var(--red);
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 14px;
+        }
+        .supernova-destaque .produto-btn:hover {
+            background: #cc0000;
+        }
+        .supernova-destaque .produto-badge {
+            background: var(--red);
+            color: #fff;
+        }
+        .supernova-stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+                        radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.6), transparent),
+                        radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.7), transparent),
+                        radial-gradient(2px 2px at 80% 80%, rgba(255,255,255,0.5), transparent),
+                        radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.4), transparent),
+                        radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.4), transparent),
+                        radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.3), transparent);
+            background-size: 200px 200px;
+            opacity: 0.6;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
+
+        /* ========== COLEÇÃO ASTRO (DISPONÍVEL) ========== */
+        .astro-section {
+            position: relative;
+            background: radial-gradient(circle at 30% 20%, #0a0a2a, #010105);
+            overflow: hidden;
+            padding: 60px 0 80px;
+            margin: 40px 0 60px;
+            border-top: 3px solid var(--red);
+            border-bottom: 3px solid var(--red);
+            box-shadow: 0 0 20px rgba(247, 7, 7, 0.2);
+        }
+        .astro-content {
+            position: relative;
+            z-index: 5;
+        }
+        .astro-section .collection-title {
+            color: #ffdddd;
+            text-shadow: 0 0 8px var(--red);
+        }
+        .astro-section .collection-subtitle {
+            color: #aaa;
+        }
+        .astro-section .produto-card {
+            background: rgba(20, 20, 45, 0.85);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(247, 7, 7, 0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+        }
+        .astro-section .produto-nome {
+            color: #cc5555;
+        }
+        .astro-section .produto-descricao {
+            color: #999;
+        }
+        .astro-section .preco-atual {
+            padding: 5px 10px;
+            background: #f7f7f7;
+            color: #000;
+            box-shadow: 4px 4px 0 var(--red);
+        }
+        .astro-section .produto-badge {
+            background: var(--red);
+        }
+
+        /* ========== COLEÇÃO BRASIL ========== */
+        .brasil-section {
+            position: relative;
+            background: linear-gradient(135deg, #0a2a1a 0%, #0a1a2a 100%);
+            overflow: hidden;
+            padding: 60px 0 80px;
+            margin: 40px 0 60px;
+            border-top: 3px solid var(--green);
+            border-bottom: 3px solid var(--blue);
+            box-shadow: 0 0 30px rgba(0, 166, 81, 0.2);
+        }
+        .brasil-scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.3) 0px,
+                rgba(0, 0, 0, 0.3) 2px,
+                transparent 2px,
+                transparent 6px
+            );
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.5;
+            animation: scanlines 8s linear infinite;
+        }
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 600px; }
+        }
+        .brasil-glitch {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0, 255, 100, 0.03) 0%, transparent 50%, rgba(0, 100, 255, 0.03) 100%);
+            pointer-events: none;
+            z-index: 3;
+            animation: glitch-bg 0.3s infinite;
+        }
+        @keyframes glitch-bg {
+            0% { transform: translate(0); opacity: 0.8; }
+            20% { transform: translate(-3px, 2px); opacity: 0.6; }
+            40% { transform: translate(3px, -2px); opacity: 0.7; }
+            60% { transform: translate(-1px, -1px); opacity: 0.5; }
+            80% { transform: translate(2px, 1px); opacity: 0.6; }
+            100% { transform: translate(0); opacity: 0.8; }
+        }
+        .brasil-content {
+            position: relative;
+            z-index: 5;
+        }
+        .brasil-section .collection-title {
+            color: #fff;
+            text-shadow: 0 0 10px var(--green), 0 0 20px var(--blue);
+        }
+        .brasil-section .collection-subtitle {
+            color: #ccc;
+        }
+        .brasil-section .produto-card {
+            background-color: rgba(5, 16, 11, 0.96) !important;
+            background-image:
+                linear-gradient(rgb(5 16 11 / 96%), rgb(5 16 11 / 96%)),
+                url('/assets/media/identity/paper-texture.webp') !important;
+            background-size: auto, 760px auto !important;
+            border: 1px solid var(--green);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s;
+        }
+        .brasil-section .produto-card:nth-child(2) {
+            border-color: var(--blue);
+        }
+        .brasil-section .produto-card:hover {
+            box-shadow: 0 0 20px rgba(0, 166, 81, 0.5);
+            transform: translateY(-10px);
+        }
+        .brasil-section .produto-nome {
+            color: #fff !important;
+            text-shadow: 2px 2px 0 #000;
+        }
+        .brasil-section .produto-descricao {
+            color: #ccc;
+        }
+        .brasil-section .produto-descricao strong {
+            color: var(--green);
+        }
+        .brasil-section .preco-atual {
+            color: #fff !important;
+        }
+
+        @media (max-width: 860px) {
+            .studio-invite__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .studio-invite__map,
+            .studio-invite__map iframe {
+                min-height: 340px;
+                height: 340px;
+            }
+        }
+        .btn-brasil {
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-brasil:hover {
+            background: linear-gradient(90deg, var(--blue), var(--green));
+            box-shadow: 0 0 20px rgba(0, 166, 81, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Ajustes responsivos para Supernova */
+        @media (max-width: 767px) {
+            .supernova-destaque .carrossel-container {
+                height: 300px;
+            }
+            .supernova-destaque .produto-info {
+                padding: 20px;
+            }
+            .supernova-destaque .produto-nome {
+                font-size: 1.5rem;
+            }
+            .supernova-destaque .preco-atual {
+                font-size: 1.6rem;
+            }
+            .supernova-section .collection-title {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body class="site-shell legacy-page">
+
+    <header data-header-cut id="main-header">
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera Logo" class="logo-img brand-logo-registered">
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu" role="menubar">
+                    <li><a href="/" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link" role="menuitem">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link active" role="menuitem" aria-current="page">Moda</a></li>
+                    <li><a href="/design/" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="/musica/" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link" role="menuitem">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero-loja container">
+            <p class="hero-kicker">// PEÇAS AUTORAIS PARA CORPOS PROTAGONISTAS //</p>
+            <h1 class="hero-title">LOJA</h1>
+            <p class="slogan">Vista sua excentricidade</p>
+            <p class="hero-subtitle">
+                <strong>Moda autêntica</strong>, <strong>peças limitadas</strong> e <strong>edições especiais</strong>.
+                Porque ser normal é muito chato e se vestir com autenticidade é nosso superpoder.
+            </p>
+            <div class="email-capture">
+                <button type="button" id="pedido-btn" class="btn">Fazer pedido geral</button>
+            </div>
+            <p class="email-microcopy">PEDIDOS VIA WHATSAPP</p>
+        </section>
+
+        <section class="status-banner studio-invite container" aria-labelledby="studio-invite-title">
+            <div class="studio-invite__grid">
+                <div class="studio-invite__copy">
+                    <p class="studio-invite__eyebrow">// UM CONVITE PARA SAIR DA TELA //</p>
+                    <h2 id="studio-invite-title">CONHEÇA O ESTÚDIO Cejera #01</h2>
+                    <p>Conheça o espaço onde as coleções, identidades e ideias da Cejera ganham corpo. Visitas são combinadas diretamente para que a experiência não pareça atendimento de balcão.</p>
+                    <p class="studio-invite__location">AV. ÂNGELO CALAFIORI, 724A // MOCOQUINHA // SÃO SEBASTIÃO DO PARAÍSO, MG // 37957-118</p>
+                    <p>A coleção <span class="highlight">AKA</span> está em <span class="highlight">PRÉ-VENDA</span>. Confirme sua visita para combinar o melhor horário e conhecer as peças de perto.</p>
+                    <div class="studio-invite__actions">
+                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%2C%20Cejera!%20Quero%20confirmar%20uma%20visita%20ao%20est%C3%BAdio%20e%20receber%20a%20localiza%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="btn-estudio">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg>
+                            Confirmar visita
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118" target="_blank" rel="noopener noreferrer" class="btn-estudio btn-estudio--ghost">Abrir no Google Maps</a>
+                    </div>
+                </div>
+                <div class="studio-invite__map">
+                    <iframe
+                        id="studio-map"
+                        title="Mapa do Estúdio Cejera na Avenida Ângelo Calafiori, em São Sebastião do Paraíso"
+                        src="https://www.google.com/maps?q=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118&amp;output=embed"
+                        data-map-query="Av. Ângelo Calafiori, 724A - Mocoquinha, São Sebastião do Paraíso - MG, 37957-118"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COLEÇÃO SUPERNOVA ========== -->
+        <section class="supernova-section" id="supernova">
+            <div class="supernova-stars"></div>
+            <div class="container supernova-content">
+                <div class="collection-header">
+                    <h2 class="collection-title">SUPERNOVA</h2>
+                    <p class="collection-subtitle">A explosão que ilumina o universo da moda. Peça única, presença absoluta.</p>
+                    <span class="collection-status collection-status--available">LANÇAMENTO</span>
+                </div>
+
+                <div class="supernova-destaque">
+                    <div class="carrossel-container" id="carrossel-supernova">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide">
+                                <img src="/assets/media/home/supernova-tee.webp" alt="Supernova Tee - Camiseta exclusiva" class="produto-imagem" width="1080" height="1350" loading="eager" fetchpriority="high">
+                            </div>
+                        </div>
+                        <span class="produto-badge">✦ SUPERNOVA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Supernova Tee</h3>
+                        <p class="produto-descricao">
+                            Camiseta oversized com estampa explosiva. Feita para quem brilha intensamente.
+                            Edição limitada • uma peça, um momento, uma estrela. (Parte do projeto <a href="/supernova/" style="font-weight: bold;">SUPERNOVA</a>)
+                        </p>
+                        <div class="produto-preco" style="justify-content: center;">
+                            <span class="preco-atual">R$99,90</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a Supernova Tee (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Garantir a minha
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COLEÇÃO ASTRO (DISPONÍVEL) ========== -->
+        <section class="astro-section" id="astro">
+            <div class="container astro-content">
+                <div class="collection-header">
+                    <h2 class="collection-title">ASTRO</h2>
+                    <p class="collection-subtitle">Camisetas oversized com estampas cósmicas nas costas. Edição limitada — <strong>agora disponível novamente!</strong></p>
+                    <span class="collection-status collection-status--available">DISPONÍVEL</span>
+                </div>
+                <div class="produtos-grid">
+                    <!-- Card 1 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
+                        <div class="carrossel-container" style="background:#111122;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="astro1.webp" alt="Carta de tarot Arcano VII - A Cereja" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            </div>
+                            <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Arcano VII - A Cereja</h3>
+                            <p class="produto-descricao">Camiseta oversized. Nas costas, uma carta de tarot exclusiva com o Arcano VII “A Cereja”.</p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Arcano VII - A Cereja (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
+                        <div class="carrossel-container" style="background:#111122;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="astro2.webp" alt="Constelação de Cereja" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            </div>
+                            <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Constelação de Cereja</h3>
+                            <p class="produto-descricao">Mapa estelar que forma uma cereja brilhante. Oversized e astronômico.</p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Constelação de Cereja (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
+                        <div class="carrossel-container" style="background:#111122;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="astro3.webp" alt="Supergigante Vermelha - Cereja Estrela" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            </div>
+                            <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">Supergigante Vermelha</h3>
+                            <p class="produto-descricao">Cereja gigante como uma estrela prestes a explodir. Estampa dramática nas costas.</p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Supergigante Vermelha (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COLEÇÃO BRASIL ========== -->
+        <section class="brasil-section" id="brasil">
+            <div class="brasil-scanlines"></div>
+            <div class="brasil-glitch"></div>
+            <div class="container brasil-content">
+                <div class="collection-header">
+                    <h2 class="collection-title">BRASIL</h2>
+                    <p class="collection-subtitle">Coleção que veste a alma verde amarela e azul. Camisetas oversized com três variações de estampa.</p>
+                    <span class="collection-status" style="background: linear-gradient(90deg, var(--green), var(--blue));">DISPONÍVEL</span>
+                </div>
+                <div class="produtos-grid" style="max-width: 900px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                    <!-- Card Verde -->
+                    <article class="produto-card">
+                        <div class="carrossel-container" style="background: #0a2a1a; height: 380px;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="brasil2.webp" alt="Camiseta Brasil Verde" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            </div>
+                            <span class="produto-badge" style="background: var(--green);">BRASIL</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">BRASIL — Verde</h3>
+                            <p class="produto-descricao">
+                                Camiseta oversized <strong>verde</strong>. Escolha entre 3 estampas:<br>
+                                <strong>• Grande no peito</strong><br>
+                                <strong>• Grande nas costas</strong><br>
+                                <strong>• Pequena (peito esquerdo)</strong>
+                            </p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Verde. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card Azul -->
+                    <article class="produto-card">
+                        <div class="carrossel-container" style="background: #0a1a2a; height: 380px;">
+                            <div class="carrossel-slides">
+                                <div class="carrossel-slide"><img src="brasil3.webp" alt="Camiseta Brasil Azul" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            </div>
+                            <span class="produto-badge" style="background: var(--blue);">BRASIL</span>
+                        </div>
+                        <div class="produto-info">
+                            <h3 class="produto-nome">BRASIL — Azul</h3>
+                            <p class="produto-descricao" >
+                                Camiseta oversized <strong style="color: var(--blue);">azul</strong>. Escolha entre 3 estampas:<br>
+                                <strong style="color: var(--blue);">• Grande no peito</strong><br>
+                                <strong style="color: var(--blue);">• Grande nas costas</strong><br>
+                                <strong style="color: var(--blue);">• Pequena (peito esquerdo)</strong>
+                            </p>
+                            <div class="produto-preco">
+                                <span class="preco-atual">R$99,90</span>
+                            </div>
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Azul. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <p style="color:#00a651; font-size:0.9rem;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg> Escolha sua estampa no atendimento via WhatsApp <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coleção ROT -->
+        <section class="colecoes-section container" id="rot">
+            <div class="collection-header">
+                <h2 class="collection-title">ROT</h2>
+                <p class="collection-subtitle">"Oi, eu sou o Rot! x_x" - Disse Rot. Rot não aparenta ser muito amigável, mas ele é bem legal.</p>
+                <span class="collection-status collection-status--available">JÁ DISPONÍVEL! PEÇA AGORA!</span>
+            </div>
+            <div class="produtos-grid">
+                <article class="produto-card">
+                    <div class="carrossel-container">
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-preto.webp" alt="Moletom Preto Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
+                        <span class="produto-badge produto-badge--lancamento">— ROT</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Moletom Preto Rot (sem capuz)</h3>
+                        <p class="produto-descricao">Moletom de alta qualidade, corte moderno e design exclusivo da coleção ROT.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$199,80</span>
+                            <span class="preco-atual">R$179,82</span>
+                            <span class="desconto">10%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Preto Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
+                    </div>
+                </article>
+                <article class="produto-card">
+                    <div class="carrossel-container">
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-branco.webp" alt="Moletom Branco Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
+                        <span class="produto-badge produto-badge--lancamento">— ROT</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Moletom Branco Rot (com capuz)</h3>
+                        <p class="produto-descricao">Moletom com capuz, design exclusivo ROT. Conforto e estilo em uma peça única.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$199,80</span>
+                            <span class="preco-atual">R$179,82</span>
+                            <span class="desconto">10%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Branco Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
+                    </div>
+                </article>
+                <article class="produto-card">
+                    <div class="carrossel-container">
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-vermelho.webp" alt="Moletom Vermelho Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
+                        <span class="produto-badge produto-badge--lancamento">— ROT</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Moletom Vermelho Rot (com capuz)</h3>
+                        <p class="produto-descricao">Moletom vermelho com capuz e estampa "Olá mundo_". Design exclusivo e atitude.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$199,80</span>
+                            <span class="preco-atual">R$179,82</span>
+                            <span class="desconto">10%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Vermelho Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Coleção Bazika -->
+        <section class="colecoes-section container" id="bazika">
+            <div class="collection-header">
+                <h2 class="collection-title">BAZIKA</h2>
+                <p class="collection-subtitle">O básico que funciona (para causar impacto)</p>
+                <span class="collection-status collection-status--available">LANÇAMENTO: JÁ DISPONÍVEL!</span>
+            </div>
+
+            <div class="produtos-grid">
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-camiseta-bazika">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="Camiseta+Preta.webp" alt="Camiseta Bazika - Preta" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta+Vermelha.webp" alt="Camiseta Bazika - Vermelha" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta+Branca.webp" alt="Camiseta Bazika - Branca" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— BAZIKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Camiseta Bazika</h3>
+                        <p class="produto-descricao">Disponível em preto, vermelho e branco. Algodão premium, corte regular.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$99,80</span>
+                            <span class="preco-atual">R$49,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-calca-cargo">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="calca-bazika1.webp" alt="Calça Cargo Bazika - Areia" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="calca-bazika2.webp" alt="Calça Cargo Bazika - Cinza" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="calca-bazika3.webp" alt="Calça Cargo Bazika - Preta" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— BAZIKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Calça Bazika Cargo</h3>
+                        <p class="produto-descricao">Modelo cargo com 3 cores: Areia, Cinza e Preto. Conforto, estilo e muitos bolsos.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$239,80</span>
+                            <span class="preco-atual">R$119,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar a Calça Bazika Cargo." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-corta-vento-bazika">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="Corta-vento+Preto.webp" alt="Corta-vento Bazika - Preto" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Corta-vento+Vermelho.webp" alt="Corta-vento Bazika - Vermelho" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Corta-vento+Branco.webp" alt="Corta-vento Bazika - Branco" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active" data-slide="0"></span>
+                            <span class="indicador" data-slide="1"></span>
+                            <span class="indicador" data-slide="2"></span>
+                        </div>
+                        <span class="produto-badge produto-badge--lancamento">— BAZIKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Corta-vento Bazika</h3>
+                        <p class="produto-descricao">Disponível em preto, vermelho e branco. Leve, resistente e estiloso.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$299,80</span>
+                            <span class="preco-atual">R$149,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar o Corta-vento Bazika." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Coleção AKA - PRÉ-VENDA -->
+        <section class="colecoes-section container" id="aka">
+            <div class="collection-header">
+                <h2 class="collection-title">AKA</h2>
+                <p class="collection-subtitle">Feita pra quem também é conhecido como.</p>
+                <span class="collection-status collection-status--available">PRÉ-VENDA — LANÇAMENTO EM JULHO</span>
+            </div>
+            <div class="produtos-grid">
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-camiseta-aka">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Preta.webp" alt="Camiseta AKA - Preto" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Branca.webp" alt="Camiseta AKA - Branca" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Vermelha.webp" alt="Camiseta AKA - Vermelha" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Cinza.webp" alt="Camiseta AKA - Cinza" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span><span class="indicador"></span>
+                        </div>
+                        <span class="produto-badge">— AKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Camiseta AKA</h3>
+                        <p class="produto-descricao">Disponível em preto, branco, vermelho e cinza. Design minimalista.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$155,40</span>
+                            <span class="preco-atual">R$77,70</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA da Camiseta AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
+                    </div>
+                </article>
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-short-aka">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="Short+Preto.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Branco.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Vermelho.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Cinza.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span><span class="indicador"></span>
+                        </div>
+                        <span class="produto-badge">— AKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Short AKA</h3>
+                        <p class="produto-descricao">Disponível em preto, branco, vermelho e cinza. Conforto e estilo.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$155,40</span>
+                            <span class="preco-atual">R$77,70</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Short AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
+                    </div>
+                </article>
+                <article class="produto-card">
+                    <div class="carrossel-container" id="carrossel-conjunto-aka">
+                        <div class="carrossel-slides">
+                            <div class="carrossel-slide"><img src="conjuntoaka01.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="conjuntoaka02.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="conjuntoaka03.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                        </div>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
+                        <div class="carrossel-indicadores">
+                            <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span>
+                        </div>
+                        <span class="produto-badge">— AKA</span>
+                    </div>
+                    <div class="produto-info">
+                        <h3 class="produto-nome">Conjunto Short + Camiseta AKA</h3>
+                        <p class="produto-descricao">Combine estilo e conforto com o conjunto completo da coleção AKA.</p>
+                        <div class="produto-preco">
+                            <span class="preco-antigo">R$279,80</span>
+                            <span class="preco-atual">R$139,90</span>
+                            <span class="desconto">50%</span>
+                        </div>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Conjunto AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Adesivos -->
+        <section class="adesivos-section container">
+            <div class="collection-header">
+                <h2 class="collection-title">ADESIVOS</h2>
+                <p class="collection-subtitle">Personalize com a autenticidade da Cejera</p>
+            </div>
+            <div class="adesivos-grid">
+                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set01.webp" alt="Adesivos 1" loading="lazy" decoding="async"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 1</h3><p class="adesivo-descricao">Primeira coleção de adesivos oficiais da Cejera.</p><span class="preco-antigo">R$30,00</span><span class="preco-atual">R$15,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 1" class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a></div></div>
+                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set02.webp" alt="Adesivos 2" loading="lazy" decoding="async"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 2</h3><p class="adesivo-descricao">Adesivos estilizados + nametags personalizadas.</p><span class="preco-antigo">R$46,00</span><span class="preco-atual">R$23,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 2" class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a></div></div>
+                <div class="adesivo-card"><div class="adesivo-imagem"><div class="placeholder-em-breve"><span>EM BREVE</span></div></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 3</h3><p class="adesivo-descricao">Novo set em desenvolvimento.</p><button class="btn produto-btn btn-disabled" disabled>EM BREVE</button></div></div>
+            </div>
+        </section>
+
+        <div class="status-banner container">
+            <h2>INFORMAÇÕES IMPORTANTES</h2>
+            <p><span class="highlight">*Frete não está incluso no valor</span>; o frete é calculado no momento do pedido com base em sua localização.</p>
+            <p style="margin-top: 15px;"><span class="highlight">Compras presenciais podem receber descontos especiais</span>, definidos conforme a peça e a disponibilidade no estúdio.</p>
+            <p style="margin-top: 15px;">Os pedidos podem ser feitos sob demanda via WhatsApp. Algumas peças também estão disponíveis no Mercado Livre.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
+                    <div class="footer-about">Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.</div>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" id="waitlist-email" class="footer-input" placeholder="seu@email.com" required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana. Sorteio mensal de adesivos!</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-social-fullwidth">
+            <div class="container">
+                <div class="social-links-grid">
+                    <a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter</span><span class="social-desc">@cejeraaa</span></a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                    <a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                    <a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                    <a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                    <a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="container"><div class="copyright"><p>© 2026 Cejera® | LOJA | EXCENTRICIDADE E AUTENTICIDADE.</p></div></div>
+    </footer>
+
+    <script>
+        // Menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.setAttribute('data-visible', !isExpanded);
+            body.style.overflow = !isExpanded ? 'hidden' : '';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (nav.getAttribute('data-visible') === 'true' && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.getAttribute('data-visible') === 'true') {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.setAttribute('data-visible', 'false');
+                body.style.overflow = '';
+                menuToggle.focus();
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) header.classList.add('header-scroll');
+            else header.classList.remove('header-scroll');
+        });
+
+        document.getElementById('pedido-btn')?.addEventListener('click', function() {
+            window.open('https://wa.me/5535999286246?text=Olá%2C%20Cejera!%20Gostaria%20de%20fazer%20um%20pedido%20na%20sua%20loja.', '_blank', 'noopener,noreferrer');
+        });
+
+        document.getElementById('waitlist-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('waitlist-email').value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Por favor, insira um e-mail válido!');
+                return;
+            }
+            window.open(`https://wa.me/5535999286246?text=Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${encodeURIComponent(email)}`, '_blank', 'noopener,noreferrer');
+            document.getElementById('waitlist-email').value = '';
+            alert('Obrigado! Redirecionando para o WhatsApp.');
+        });
+
+        // Carrosséis (genérico)
+        document.querySelectorAll('.carrossel-container').forEach((carrossel) => {
+            const slides = carrossel.querySelector('.carrossel-slides');
+            if (!slides || slides.children.length <= 1) return;
+            const slideCount = slides.children.length;
+            const prevBtn = carrossel.querySelector('.carrossel-btn--prev');
+            const nextBtn = carrossel.querySelector('.carrossel-btn--next');
+            const indicadores = carrossel.querySelectorAll('.indicador');
+            let currentSlide = 0;
+            function updateCarrossel() {
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                indicadores.forEach((ind, i) => ind.classList.toggle('active', i === currentSlide));
+            }
+            if (prevBtn) prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + slideCount) % slideCount; updateCarrossel(); });
+            if (nextBtn) nextBtn.addEventListener('click', () => { currentSlide = (currentSlide + 1) % slideCount; updateCarrossel(); });
+            indicadores.forEach((ind, i) => ind.addEventListener('click', () => { currentSlide = i; updateCarrossel(); }));
+            setInterval(() => { currentSlide = (currentSlide + 1) % slideCount; updateCarrossel(); }, 4000);
+        });
+    </script>
+    <script src="/assets/js/site.js" defer></script>
+</body>
+</html>
