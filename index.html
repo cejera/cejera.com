@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cejera | Universos, design, moda e música</title>
+    <meta name="description" content="Cejera é a assinatura do Cejera para universos narrativos, design, moda e música. Obras excêntricas construídas entre papel, código, imagem e som.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Cejera | Universos, design, moda e música">
+    <meta property="og:description" content="Uma assinatura autoral entre papel, código, imagem e som.">
+    <meta property="og:url" content="https://cejera.com/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cejera em colagem de papel preto, branco e vermelho">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cejera | Universos, design, moda e música">
+    <meta name="twitter:description" content="Uma assinatura autoral entre papel, código, imagem e som.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Cejera" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cejera",
+      "url": "https://cejera.com/",
+      "logo": "https://cejera.com/assets/brand/cejera-00.svg",
+      "description": "Marca autoral dedicada a universos narrativos, design, moda e música.",
+      "sameAs": [
+        "https://instagram.com/cejeraa",
+        "https://linkedin.com/in/cejera",
+        "https://open.spotify.com/user/mr.xandoso",
+        "https://twitch.tv/cejera",
+        "https://kick.com/cejera"
+      ]
+    }
+    </script>
+    <style>
+        /* CSS Variables - Design System */
+        :root {
+            --red: #F70707;
+            --light: #F7F7F7;
+            --black: #000000;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(247, 7, 7, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: var(--black);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .section-title, .footer-logo, .footer-heading {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .banner-title {
+            font-family: 'Mynerve', cursive;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: var(--light);
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 247, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 2px dashed var(--red);
+            transition: var(--transition);
+        }
+
+        header.header-scroll {
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        header.header-scroll .logo-img {
+            height: 60px;
+        }
+
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            background: rgba(255,0,0,0.03);
+            border: 2px solid rgba(0,0,0,0.03);
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            z-index: 101;
+            padding: 12px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .hamburger {
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: var(--red);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -8px;
+        }
+
+        .hamburger::after {
+            bottom: -8px;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .hamburger::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 4px 0;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--red);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            text-align: center;
+        }
+
+        .cta-microcopy {
+            font-size: 0.75rem;
+            color: var(--black);
+            opacity: 0.8;
+            margin-top: 4px;
+            max-width: 200px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+            padding-right: 0.5rem;
+        }
+
+        .hero-title::after {
+            content: "_";
+            display: inline-block;
+            width: 0.5rem;
+            margin-left: 0.2rem;
+            animation: blink 1s step-end infinite;
+            font-weight: 400;
+            color: var(--red);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #333;
+        }
+
+        .hero-subtitle strong {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .slogan {
+            font-family: 'Mynerve', cursive;
+            font-size: 1.8rem;
+            color: var(--red);
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .email-capture {
+            max-width: 480px;
+            margin: 0 auto;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .email-microcopy {
+            font-size: 0.85rem;
+            color: #666;
+            padding-top: 10px;
+        }
+
+        /* Efeito scanlines */
+        .banner-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .banner-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .banner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg,
+                rgba(0, 0, 0, 0.20) 2px,
+                transparent 2px,
+                transparent 3px,
+                rgba(0, 0, 0, 0.20) 3px,
+                rgba(0, 0, 0, 0.20) 4px,
+                transparent 5px);
+            background-size: 100% 6px;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: scanline 10s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 600px; }
+        }
+
+        .banner-link {
+            display: block;
+            height: 100%;
+            position: relative;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            transition: transform 0.5s ease;
+        }
+
+        .banner-card:hover .banner-image {
+            transform: scale(1.03);
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 28px 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+            color: var(--light);
+            z-index: 3;
+        }
+
+        .banner-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--black);
+            color: var(--light);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+
+        .banner-title {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .banner-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .banner-cta {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .banner-cta::after {
+            content: '→';
+            transition: var(--transition);
+        }
+
+        .banner-link:hover .banner-cta::after {
+            transform: translateX(4px);
+        }
+
+        /* GRID DOS DESTAQUES — dois cards grandões, verticais (4:5), lado a lado */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-bottom: 70px;
+        }
+
+        /* Card vertical com proporção 4:5 (largura 4, altura 5) */
+        .featured-card {
+            aspect-ratio: 4 / 5;
+            height: auto;
+        }
+
+        .featured-card .banner-link {
+            height: 100%;
+        }
+
+        .featured-card .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Segunda grid: Explore mais (mantém o formato original) */
+        .secondary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        /* Para os cards secundários manterem altura flexível */
+        .secondary-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .secondary-card .banner-image {
+            aspect-ratio: 4 / 3;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 80px 0;
+            background-color: var(--black);
+            color: var(--light);
+            border-radius: var(--radius);
+            margin: 40px 0;
+        }
+
+        .social-proof .section-title {
+            color: var(--light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px dashed var(--red);
+        }
+
+        .review-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+            color: var(--red);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--red);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--light);
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-logo-img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            max-width: 300px;
+        }
+
+        .social-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            text-align: center;
+            height: 140px;
+            width: 100%;
+            background-color: transparent;
+            color: var(--light);
+        }
+
+        .social-link:hover {
+            background-color: var(--red);
+            transform: translateY(-4px);
+            border-color: transparent;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--red);
+        }
+
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+
+        .footer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-input {
+            padding: 14px 16px;
+            border: 2px solid var(--red);
+            border-radius: var(--radius);
+            background: transparent;
+            color: var(--light);
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .footer-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
+        }
+
+        .newsletter-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-social-fullwidth {
+            width: 100%;
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px dashed #333;
+            border-bottom: 1px dashed #333;
+        }
+
+        .footer-social-fullwidth .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-social-fullwidth .social-links-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        /* Responsivo */
+        @media (max-width: 980px) {
+            .featured-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .featured-card {
+                aspect-ratio: 4 / 5;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                visibility: hidden;
+                clip-path: inset(0 0 0 100%);
+                pointer-events: none;
+                transition: clip-path 0.3s ease, visibility 0.3s;
+                padding: 40px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+            }
+            nav[data-visible="true"] {
+                visibility: visible;
+                clip-path: inset(0);
+                pointer-events: auto;
+            }
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+            .header-cta {
+                margin-top: 20px;
+            }
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .social-link {
+                height: 120px;
+            }
+            .banner-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-social-fullwidth .social-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 12px;
+            }
+        }
+
+        *:focus {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+        *:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 0.82fr) minmax(390px, 1.18fr);
+            align-items: center;
+            gap: clamp(36px, 6vw, 92px);
+            min-height: 650px;
+            padding-block: clamp(72px, 9vw, 126px);
+            text-align: left;
+        }
+
+        .hero-title {
+            display: block;
+            width: fit-content;
+            font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+            font-weight: 900;
+            line-height: 0.92;
+        }
+
+        .hero-subtitle,
+        .email-capture {
+            margin-inline: 0;
+        }
+
+        .email-capture {
+            align-items: flex-start;
+        }
+
+        .home-collage {
+            position: relative;
+            min-height: 500px;
+            isolation: isolate;
+        }
+
+        .home-collage::before {
+            content: "";
+            position: absolute;
+            inset: 10% 5% 6% 8%;
+            z-index: -1;
+            border: 3px solid var(--black);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            clip-path: polygon(4% 9%, 91% 0, 100% 17%, 96% 91%, 68% 100%, 5% 94%, 0 31%);
+            box-shadow: 13px 13px 0 var(--red);
+            transform: rotate(1.2deg);
+        }
+
+        .home-collage-core,
+        .home-floating,
+        .home-collage-note {
+            position: absolute;
+            display: block;
+        }
+
+        .home-collage-core {
+            top: 23%;
+            left: 19%;
+            z-index: 2;
+            width: 61%;
+            transform: rotate(-3deg);
+        }
+
+        .home-floating {
+            z-index: 3;
+            width: clamp(112px, 19vw, 205px);
+            filter: drop-shadow(7px 7px 0 rgb(247 7 7 / 65%));
+            pointer-events: none;
+        }
+
+        .home-floating--seste {
+            top: 0;
+            right: 0;
+            translate: calc(var(--pointer-x, 0) * 9px) calc(var(--pointer-y, 0) * 7px);
+            rotate: 8deg;
+            animation: homePaperDrift 6.2s ease-in-out infinite alternate;
+        }
+
+        .home-floating--piramesde {
+            bottom: 0;
+            left: 0;
+            translate: calc(var(--pointer-x, 0) * -7px) calc(var(--pointer-y, 0) * -9px);
+            rotate: -7deg;
+            animation: homePaperDriftReverse 7s ease-in-out infinite alternate;
+        }
+
+        .home-collage-note {
+            right: 3%;
+            bottom: 5%;
+            z-index: 4;
+            width: min(310px, 48%);
+            max-width: none;
+            padding: 20px 26px;
+            border: 2px solid var(--black);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 520px auto;
+            color: var(--black);
+            clip-path: polygon(2% 3%, 97% 0, 100% 9%, 98% 96%, 5% 100%, 0 91%, 1% 8%);
+            filter: drop-shadow(7px 7px 0 var(--red));
+            font-family: 'Mynerve', cursive;
+            font-size: clamp(1.2rem, 2.2vw, 1.9rem);
+            line-height: 1;
+            text-align: center;
+            transform: rotate(3deg);
+        }
+
+        .home-manifesto-card {
+            display: grid;
+            grid-template-columns: minmax(260px, 0.72fr) 1fr;
+            gap: clamp(20px, 4vw, 56px);
+            align-items: center;
+            margin-bottom: clamp(70px, 10vw, 130px);
+            padding: clamp(30px, 5vw, 62px);
+            border: 3px solid var(--red);
+            background:
+                linear-gradient(rgb(0 0 0 / 95%), rgb(0 0 0 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--light);
+            clip-path: polygon(1% 5%, 97% 0, 100% 13%, 99% 95%, 72% 100%, 2% 96%, 0 32%);
+            box-shadow: 12px 12px 0 var(--red);
+        }
+
+        .home-manifesto-card strong {
+            color: var(--red);
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(1.75rem, 3.8vw, 3.7rem);
+            font-weight: 900;
+            line-height: 0.98;
+            text-transform: uppercase;
+        }
+
+        .home-manifesto-card p {
+            margin: 0;
+            font-size: clamp(0.95rem, 1.55vw, 1.15rem);
+        }
+
+        .exit-intent {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background: rgb(0 0 0 / 78%);
+            backdrop-filter: blur(4px);
+        }
+
+        .exit-intent[hidden] {
+            display: none;
+        }
+
+        .exit-intent__panel {
+            position: relative;
+            width: min(560px, 100%);
+            padding: clamp(24px, 5vw, 48px);
+            border: 3px solid var(--red);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            clip-path: polygon(2% 5%, 95% 0, 100% 13%, 97% 94%, 12% 100%, 0 86%);
+            box-shadow: 13px 13px 0 var(--red);
+            text-align: center;
+        }
+
+        .exit-intent__image {
+            width: min(390px, 88%);
+            margin: 0 auto 12px;
+        }
+
+        .exit-intent__panel p {
+            max-width: 390px;
+            margin: 0 auto 22px;
+        }
+
+        .exit-intent__close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--black);
+            font: 900 1.2rem/1 'Source Code Pro', monospace;
+            cursor: pointer;
+        }
+
+        @keyframes homePaperDrift {
+            from { margin-top: 0; }
+            to { margin-top: -10px; }
+        }
+
+        @keyframes homePaperDriftReverse {
+            from { margin-bottom: -6px; }
+            to { margin-bottom: 8px; }
+        }
+
+        @media (max-width: 860px) {
+            .hero,
+            .home-manifesto-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 0;
+                text-align: center;
+            }
+
+            .hero-title,
+            .hero-subtitle,
+            .email-capture {
+                margin-inline: auto;
+            }
+
+            .email-capture {
+                align-items: center;
+            }
+
+            .home-collage {
+                min-height: clamp(390px, 105vw, 530px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Cejera",
+            "alternateName": "Cejera",
+            "url": "https://cejera.com/",
+            "description": "Assinatura autoral de Cejera para universos narrativos, design, moda e música.",
+            "inLanguage": "pt-BR"
+        }
+    </script>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+</head>
+<body class="site-shell legacy-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header id="main-header" data-header-cut>
+        <div class="container header-content">
+            <div class="logo-container">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera" class="logo-img brand-logo-registered">
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav id="primary-navigation" data-visible="false">
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link active" aria-current="page">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link">Moda</a></li>
+                    <li><a href="/design/" class="nav-link">Design</a></li>
+                    <li><a href="/musica/" class="nav-link">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
+                </ul>
+                <div class="header-cta">
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
+                    <p class="cta-microcopy">Exclusivo para membros</p>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="hero container" data-float-stage>
+            <div class="hero-copy-block">
+                <p class="hero-kicker">// SISTEMA INICIADO //</p>
+                <h1 class="hero-title">Olá, mundo!</h1>
+                <p class="hero-subtitle">
+                    <strong>Moda autêntica</strong>, <strong>design estrategicamente bonito</strong> e <strong>música daora</strong>.
+                    Porque ser normal é muito chato e ser autêntico é meu superpoder.
+                </p>
+                <div class="email-capture">
+                    <button type="button" id="clubinho-btn" class="btn" data-waitlist-trigger data-waitlist-target="#home-waitlist">ENTRAR NO CLUBINHO</button>
+                </div>
+                <p class="email-microcopy">VAGAS ESGOTADAS / LISTA DE ESPERA</p>
+            </div>
+            <div class="home-collage" aria-hidden="true">
+                <img class="home-collage-core" src="/assets/media/identity/cards/ola.png" alt="" width="650" height="468">
+                <img class="home-floating home-floating--seste" src="/assets/media/identity/seste.png" alt="" width="368" height="430">
+                <img class="home-floating home-floating--piramesde" src="/assets/media/identity/piramesde.png" alt="" width="496" height="434">
+                <span class="home-collage-note">Excentricidade<br>e Autenticidade</span>
+            </div>
+        </section>
+
+        <aside class="container home-manifesto-card" aria-label="Arquétipo autoral da Cejera" data-reveal>
+            <strong>Herói + Rebelde = Protagonista</strong>
+            <p>O rebelde rompe o papel herdado. O herói aceita as consequências. O protagonista faz os dois, reconhece a próxima ação possível e responde.</p>
+        </aside>
+
+        <!-- DESTAQUES PRINCIPAIS: dois cards verticais 4:5 lado a lado -->
+        <section class="banners-section container">
+            <h2 class="section-title">DESTAQUES</h2>
+            <div class="featured-grid">
+                <!-- CARD 1: PROJETO SUPERNOVA -->
+                <article class="banner-card featured-card">
+                    <a href="/supernova/" class="banner-link">
+                        <span class="banner-badge">PROJETO</span>
+                        <img src="/assets/media/home/supernova-file.webp" alt="Projeto Supernova" class="banner-image" width="1080" height="1080" loading="eager" fetchpriority="high">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Projeto Supernova</h3>
+                            <p class="banner-description">
+                                Uma explosão de criatividade, identidade e futuro.
+                            </p>
+                            <span class="banner-cta">Explorar →</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- CARD 2: SUPERNOVA TEE -->
+                <article class="banner-card featured-card">
+                    <a href="/moda/" class="banner-link">
+                        <span class="banner-badge">MODA</span>
+                        <img src="/assets/media/home/supernova-tee.webp" alt="Supernova Tee" class="banner-image" width="1080" height="1350" loading="eager">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Supernova Tee</h3>
+                            <p class="banner-description">
+                                A camiseta que carrega a energia de uma supernova. Estilo e autenticidade em cada fio.
+                            </p>
+                            <span class="banner-cta">Comprar →</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+
+            <!-- SEÇÃO SECUNDÁRIA: EXPLORE MAIS (mesmos cards de antes) -->
+            <h2 class="section-title">EXPLORE MAIS</h2>
+            <div class="secondary-grid">
+                <article class="banner-card secondary-card">
+                    <a href="/moda/" class="banner-link">
+                        <span class="banner-badge">Moda</span>
+                        <img src="/assets/media/home/moda.webp" alt="Moda autêntica" class="banner-image" width="1024" height="1024" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Confira a Loja!</h3>
+                            <p class="banner-description">Enviamos para todo o Brasil.</p>
+                            <span class="banner-cta">Entrar na loja</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="banner-card secondary-card">
+                    <a href="/design/" class="banner-link">
+                        <span class="banner-badge">Design</span>
+                        <img src="/assets/media/home/design.webp" alt="Design estratégico" class="banner-image" width="1000" height="1000" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Já pensou em... sei lá...</h3>
+                            <p class="banner-description">Contratar um profissional de design?</p>
+                            <span class="banner-cta">Explorar projetos</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="banner-card secondary-card">
+                    <a href="/musica/" class="banner-link">
+                        <span class="banner-badge">Música</span>
+                        <img src="/assets/media/home/musica.webp" alt="Experiência sinestésica" class="banner-image" width="1000" height="1000" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">DJ de verdade</h3>
+                            <p class="banner-description">Sua festa não vai ser mais uma festa comum.</p>
+                            <span class="banner-cta">"Duvido!" (Conferir)</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="banner-card secondary-card">
+                    <a href="https://www.linkedin.com/posts/cejera_nem-tudo-que-ia-faz-foi-voc%C3%AA-que-fez-activity-7417699329462685696-r19s" class="banner-link">
+                        <span class="banner-badge">Design</span>
+                        <img src="/assets/media/home/post-ia.webp" alt="Post LinkedIn" class="banner-image" width="1080" height="1350" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Post em destaque</h3>
+                            <p class="banner-description">"EU QUE FIZ" (ou será que foi a IA?) | LinkedIn</p>
+                            <span class="banner-cta">Ver mais</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="banner-card secondary-card">
+                    <a href="https://www.linkedin.com/posts/cejera_hip%C3%B3crates-acreditava-que-o-ser-humano-era-share-7462881246709346304-XYYQ" class="banner-link">
+                        <span class="banner-badge">Branding</span>
+                        <img src="/assets/media/home/hipocrates-branding.webp" alt="Hipócrates e o Branding" class="banner-image" width="1080" height="1350" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Hipócrates - Um cara legal</h3>
+                            <p class="banner-description">Sanguíneo, colérico, melancólico e fleumático. Qual é você?</p>
+                            <span class="banner-cta">Ler mais</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="banner-card secondary-card">
+                    <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" class="banner-link">
+                        <span class="banner-badge">Música</span>
+                        <img src="/assets/media/home/playlist-sono.webp" alt="Playlist relax" class="banner-image" width="300" height="300" loading="lazy" decoding="async">
+                        <div class="banner-content">
+                            <h3 class="banner-title">Playlist pra ouvir "com sono"</h3>
+                            <p class="banner-description">Essa eu fiz especialmente pra vocês.</p>
+                            <span class="banner-cta">Ouvir</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Social proof -->
+        <section class="social-proof">
+            <div class="container">
+                <h2 class="section-title">SESSÃO DE COISAS DESINTERESSANTES SOBRE MIM</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#self-award"></use></svg>
+                        <p class="review-text">"O melhor (e mais bem conceituado) especialista de branding do meu bairro."</p>
+                        <p class="review-author">Nomeado por mim mesmo</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#self-scan"></use></svg>
+                        <p class="review-text">"Tentei ser famoso na internet aos 17 mas descobri aos 25 que isso é só pra quem é bom de verdade (sou inseguro)."</p>
+                        <p class="review-author">Autoanálise sincera</p>
+                    </div>
+                    <div class="review-card">
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#maternal-orbit"></use></svg>
+                        <p class="review-text">"Minha mãe diz que eu sou talentoso. Ela também diz que meu irmão é bonito, então a credibilidade é questionável."</p>
+                        <p class="review-author">Avaliação materna independente</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-container">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
+                    <div class="footer-about">
+                        Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
+                        Ouça, veja, vista. Seja protagonista!
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter" id="home-waitlist" data-waitlist-target>
+                    <h3 class="footer-heading">Clubinho Divertido</h3>
+                    <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
+                    <form class="footer-form" id="waitlist-form">
+                        <input type="email" id="waitlist-email" class="footer-input" placeholder="seu@email.com" required>
+                        <button type="submit" class="btn">Entrar na lista de espera</button>
+                    </form>
+                    <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
+                    <p style="margin-top: 20px; font-size: 0.8rem;">
+                        <a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> /
+                        <a href="/termos/" style="color: var(--red);">Termos de uso</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-social-fullwidth">
+                <div class="container">
+                    <div class="social-links-grid">
+                        <a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                        <a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
+                        <a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                        <a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                        <a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                        <a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                        <a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Cejera®. EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="exit-intent" data-exit-intent hidden>
+        <section class="exit-intent__panel" role="dialog" aria-modal="true" aria-labelledby="exit-intent-title">
+            <button class="exit-intent__close" type="button" aria-label="Fechar aviso" data-exit-close>×</button>
+            <img class="exit-intent__image" src="/assets/media/identity/cards/tchau.png" alt="Tchau" width="1000" height="500">
+            <h2 id="exit-intent-title">Já vai?</h2>
+            <p>Sem chantagem de marketing. Só um último sinal da Cejera antes de você sair.</p>
+            <button class="btn" type="button" data-exit-close>CONTINUAR EXPLORANDO</button>
+        </section>
+    </div>
+
+    <script src="/assets/js/site.js" defer></script>
+    <script>
+        (function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', () => {
+                    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                    menuToggle.setAttribute('aria-expanded', !expanded);
+                    nav.setAttribute('data-visible', !expanded);
+                });
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        nav.setAttribute('data-visible', 'false');
+                    });
+                });
+            }
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('main-header');
+                if (window.scrollY > 50) header.classList.add('header-scroll');
+                else header.classList.remove('header-scroll');
+            });
+            document.getElementById('waitlist-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('waitlist-email')?.value.trim();
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert('Por favor, insira um e-mail válido!');
+                    return;
+                }
+                window.open('https://wa.me/5535999286246?text=' + encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`), '_blank', 'noopener,noreferrer');
+                document.getElementById('waitlist-email').value = '';
+                alert('Obrigado! Redirecionando para o WhatsApp.');
+            });
+        })();
+    </script>
+</body>
+</html>
