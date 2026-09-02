@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.1">
-    <title>Cejera</title>
+    <title>Links do Cejera | Cejera</title>
+    <meta name="description" content="Encontre os canais oficiais do Cejera e acompanhe a Cejera em design, moda, música e projetos autorais.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#0a0000">
+    <link rel="canonical" href="https://cejera.com/links/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Links do Cejera | Cejera">
+    <meta property="og:description" content="Todos os canais oficiais do Cejera em um só lugar.">
+    <meta property="og:url" content="https://cejera.com/links/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Links do Cejera | Cejera">
+    <meta name="twitter:description" content="Todos os canais oficiais do Cejera em um só lugar.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera® - Links" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Links" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -42,7 +57,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 linear-gradient(#220000 1px, transparent 1px),
                 linear-gradient(90deg, #220000 1px, transparent 1px);
             background-size: 40px 40px;
@@ -109,9 +124,9 @@
             75% { transform: translate3d(8px, 15px, 25px) rotate(2deg); }
         }
 
-        @keyframes floatLinks {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-            50% { transform: translate3d(0, -5px, 10px) rotate(1deg); }
+        @keyframes linkReveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes hologramGlow {
@@ -177,24 +192,24 @@
             padding: 1.2rem;
             background: rgba(34, 0, 0, 0.6);
             border: 2px solid rgba(247, 7, 7, 0.5);
-            border-radius: 8px;
+            border-radius: 0;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
             text-align: left;
-            animation: floatLinks 8s infinite ease-in-out;
+            animation: linkReveal 0.55s ease both;
         }
 
-        .link-item:nth-child(1) { animation-delay: 0s; }
-        .link-item:nth-child(2) { animation-delay: 1s; }
-        .link-item:nth-child(3) { animation-delay: 2s; }
-        .link-item:nth-child(4) { animation-delay: 3s; }
-        .link-item:nth-child(5) { animation-delay: 0s; }
-        .link-item:nth-child(6) { animation-delay: 1s; }
-        .link-item:nth-child(7) { animation-delay: 2s; }
-        .link-item:nth-child(8) { animation-delay: 3s; }
-        .link-item:nth-child(9) { animation-delay: 0s; }
+        .link-item:nth-child(1) { animation-delay: 0ms; }
+        .link-item:nth-child(2) { animation-delay: 70ms; }
+        .link-item:nth-child(3) { animation-delay: 140ms; }
+        .link-item:nth-child(4) { animation-delay: 210ms; }
+        .link-item:nth-child(5) { animation-delay: 280ms; }
+        .link-item:nth-child(6) { animation-delay: 350ms; }
+        .link-item:nth-child(7) { animation-delay: 420ms; }
+        .link-item:nth-child(8) { animation-delay: 490ms; }
+        .link-item:nth-child(9) { animation-delay: 560ms; }
 
         .link-item:hover {
             transform: translateY(-5px) translateZ(20px);
@@ -202,10 +217,9 @@
             background: rgba(247, 7, 7, 0.2);
             box-shadow: 0 5px 25px rgba(247, 7, 7, 0.4);
             cursor: pointer;
-            animation-play-state: paused;
         }
 
-        .link-item i {
+        .link-item .cejera-icon {
             font-size: 1.8rem;
             margin-right: 15px;
             width: 30px;
@@ -213,7 +227,7 @@
             transition: all 0.3s;
         }
 
-        .link-item:hover i {
+        .link-item:hover .cejera-icon {
             transform: scale(1.2);
             text-shadow: 0 0 10px rgba(247, 7, 7, 0.9);
         }
@@ -232,6 +246,7 @@
         }
 
         footer {
+            width: min(500px, 100%);
             padding: 2rem;
             text-align: center;
             font-size: 0.9rem;
@@ -239,6 +254,7 @@
             position: relative;
             z-index: 2;
             margin-top: 1rem;
+            border-top: 1px solid rgba(247, 7, 7, 0.45);
             animation: flicker 6s infinite;
             text-shadow: 0 0 8px rgba(247, 7, 7, 0.7);
         }
@@ -246,10 +262,18 @@
         footer a {
             color: #ffaaaa;
             transition: all 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+        }
+
+        .legal-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         footer a:hover {
@@ -344,7 +368,7 @@
             opacity: 0;
             animation: flickerLine 0.1s infinite;
         }
-        
+
         @keyframes flickerLine {
             0%, 100% { opacity: 0; }
             50% { opacity: 1; }
@@ -355,15 +379,15 @@
             .logo {
                 width: 150px;
             }
-            
+
             .link-item {
                 padding: 1rem;
             }
-            
-            .link-item i {
+
+            .link-item .cejera-icon {
                 font-size: 1.5rem;
             }
-            
+
             .link-text {
                 font-size: 1rem;
             }
@@ -373,77 +397,81 @@
             .tagline {
                 font-size: 1rem;
             }
-            
+
             footer {
                 font-size: 0.8rem;
             }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="site-shell legacy-page links-page">
+    <h1 class="visually-hidden">Links oficiais do Cejera e da Cejera</h1>
     <div class="grid"></div>
-    
+
     <!-- Hologramas flutuantes -->
     <div class="hologram hologram-1"></div>
     <div class="hologram hologram-2"></div>
     <div class="hologram hologram-3"></div>
     <div class="hologram hologram-4"></div>
-    
+
     <!-- Efeito Glitch -->
     <div class="glitch" id="glitch-effect"></div>
-    
+
     <div class="crt-effect"></div>
     <div class="scanlines"></div>
 
-    <div class="container"> <a href=https://cejera.com>
-        <img src="cejera-03.svg" class="logo" alt="Cejera Logo"> </a>
-        <div class="tagline" id="tagline">Excentrico da internet.</div>
-        
+    <div class="container"> <a href="/" aria-label="Voltar para a página inicial">
+        <img src="/assets/brand/cejera-03.svg" class="logo" alt="Cejera"> </a>
+        <div class="tagline" id="tagline">Excêntrico da internet.</div>
+
         <div class="links">
-            <a href="https://cejera.com" target="_blank" class="link-item">
-                <i class="fas fa-globe"></i>
+            <a href="/" class="link-item">
+                <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#network"></use></svg>
                 <span class="link-text">Cejera.com</span>
             </a>
-            <a href="https://twitch.tv/cejera" target="_blank" class="link-item">
-                <i class="fab fa-twitch"></i>
+            <a href="https://twitch.tv/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--twitch" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg>
                 <span class="link-text">Twitch</span>
             </a>
-            <a href="https://www.linkedin.com/in/cejera" target="_blank" class="link-item">
-                <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--linkedin" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg>
                 <span class="link-text">LinkedIn</span>
             </a>
-            <a href="https://behance.net/AlexandreFSilva" target="_blank" class="link-item">
-                <i class="fab fa-behance"></i>
+            <a href="https://behance.net/AlexandreFSilva" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--behance" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#behance"></use></svg>
                 <span class="link-text">Behance</span>
             </a>
-            <a href="https://www.tiktok.com/@cejera" target="_blank" class="link-item">
-                <i class="fab fa-tiktok"></i>
+            <a href="https://www.tiktok.com/@cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--tiktok" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#tiktok"></use></svg>
                 <span class="link-text">TikTok</span>
             </a>
-            <a href="https://www.youtube.com/cejera" target="_blank" class="link-item">
-                <i class="fab fa-youtube"></i>
+            <a href="https://www.youtube.com/cejera" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--youtube" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#youtube"></use></svg>
                 <span class="link-text">YouTube</span>
             </a>
-            <a href="https://www.instagram.com/cejeraa" target="_blank" class="link-item">
-                <i class="fab fa-instagram"></i>
+            <a href="https://www.instagram.com/cejeraa" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--instagram" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg>
                 <span class="link-text">Instagram</span>
             </a>
-            <a href="https://twitter.com/cejeraaa" target="_blank" class="link-item">
-                <i class="fab fa-twitter"></i>
+            <a href="https://twitter.com/cejeraaa" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--x" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg>
                 <span class="link-text">Twitter</span>
             </a>
-            <a href="https://open.spotify.com/user/mr.xandoso" target="_blank" class="link-item">
-                <i class="fab fa-spotify"></i>
+            <a href="https://open.spotify.com/user/mr.xandoso" target="_blank" rel="noopener noreferrer" class="link-item">
+                <svg class="brand-icon brand-icon--spotify" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg>
                 <span class="link-text">Spotify</span>
             </a>
         </div>
-        
+
         <footer>
-            <p>Contato: 
+            <p>Contato:
                 <a href="mailto:contato@cejera.com">
-                    <i class="fas fa-envelope"></i>contato@cejera.com
+                    <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg>contato@cejera.com
                 </a>
             </p>
+            <p class="legal-links"><a href="/privacidade/">Privacidade</a><span>/</span><a href="/termos/">Termos</a></p>
         </footer>
     </div>
 
@@ -505,57 +533,57 @@ const phrases = [
     "Curador de experiências de marca que ficam na pele.",
     "Vocalista de campanhas com alma."
 ];
-        
+
         // Selecionar frase aleatória
         const tagline = document.getElementById('tagline');
         const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
         tagline.textContent = randomPhrase;
-        
+
         // Efeito Glitch
         function triggerGlitch() {
             const glitch = document.getElementById('glitch-effect');
             glitch.className = 'glitch';
             glitch.classList.add('glitch-effect');
             glitch.style.opacity = '1';
-            
+
             setTimeout(() => {
                 glitch.classList.remove('glitch-effect');
                 glitch.style.opacity = '0';
             }, 500);
-            
+
             // Adicionar linhas de glitch
             for(let i = 0; i < 5; i++) {
                 createGlitchLine();
             }
         }
-        
+
         function createGlitchLine() {
             const glitch = document.getElementById('glitch-effect');
             const line = document.createElement('div');
             line.classList.add('glitch-line');
-            
+
             // Posição aleatória
             const top = Math.random() * 100;
             const height = Math.random() * 3 + 1;
             const duration = Math.random() * 0.5 + 0.3;
-            
+
             line.style.top = `${top}%`;
             line.style.height = `${height}px`;
             line.style.animation = `flickerLine ${duration}s`;
-            
+
             glitch.appendChild(line);
-            
+
             // Remover após animação
             setTimeout(() => {
                 line.remove();
             }, duration * 1000);
         }
-        
+
         // Trigger glitch inicial
         setTimeout(() => {
             triggerGlitch();
         }, 1000);
-        
+
         // Trigger glitch aleatório a cada 8-15 segundos
         setInterval(() => {
             if (Math.random() > 0.7) {
@@ -563,6 +591,6 @@ const phrases = [
             }
         }, 8000);
     </script>
+    <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
-

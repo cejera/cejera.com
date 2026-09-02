@@ -2,8 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>SUPERNOVA · LINHA DO TEMPO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supernova | Linha do tempo da Cejera</title>
+    <meta name="description" content="Uma linha do tempo interativa para navegar pelo universo Supernova da Cejera.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://cejera.com/supernova/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Supernova | Linha do tempo da Cejera">
+    <meta property="og:description" content="Navegue por acontecimentos e conexões do universo Supernova.">
+    <meta property="og:url" content="https://cejera.com/supernova/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Supernova | Linha do tempo da Cejera">
+    <meta name="twitter:description" content="Navegue por acontecimentos e conexões do universo Supernova.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +40,18 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
         html,
         body {
             width: 100%;
@@ -41,7 +69,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 0;
-            touch-action: none; /* impede gestos de pinça do navegador */
+            touch-action: pinch-zoom;
         }
         #logo-link {
             position: fixed;
@@ -130,6 +158,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
             cursor: pointer;
             transition: opacity 0.3s, transform 0.2s;
             flex: 0 1 auto;
@@ -267,6 +299,7 @@
             padding-bottom: 0.4vh;
         }
         #main-title {
+            display: block;
             font-weight: 900;
             font-size: clamp(1.2rem, 3.2vw, 3.6rem);
             letter-spacing: 0.06em;
@@ -275,6 +308,12 @@
             pointer-events: auto;
             cursor: pointer;
             transition: text-shadow 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+
+        :is(#logo-link, .tl-item, #main-title):focus-visible {
+            outline: 3px solid #f70707;
+            outline-offset: 5px;
         }
         #main-title:hover {
             text-shadow: 0 0 40px rgba(247, 7, 7, 0.7);
@@ -290,25 +329,35 @@
         }
         @media (max-width: 720px) {
             #bottom-overlay {
-                height: 34vh;
-                min-height: 180px;
+                height: 37vh;
+                min-height: 210px;
                 padding-bottom: 1.8vh;
             }
             #timeline {
-                gap: 0.2vw;
+                justify-content: flex-start;
+                gap: 0;
+                overflow-x: auto;
+                overscroll-behavior-inline: contain;
+                scroll-snap-type: x proximity;
+                scroll-padding-inline: 20px;
+                padding: 8px 20px 12px;
                 margin-bottom: 1.2vh;
             }
+            .tl-item {
+                flex: 0 0 78px;
+                scroll-snap-align: center;
+            }
             .tl-dot {
-                min-width: 12px;
-                min-height: 12px;
+                min-width: 16px;
+                min-height: 16px;
                 border-width: 1.5px;
             }
             .tl-label {
-                font-size: clamp(0.4rem, 1.2vw, 0.65rem);
+                font-size: 0.65rem;
             }
             .tl-connector {
-                min-width: 4px;
-                flex: 0 0 1.5vw;
+                min-width: 24px;
+                flex: 0 0 24px;
             }
             #main-title {
                 font-size: clamp(1rem, 5vw, 2rem);
@@ -324,31 +373,40 @@
         }
         @media (max-width: 450px) {
             #bottom-overlay {
-                height: 30vh;
-                min-height: 150px;
+                height: 38vh;
+                min-height: 205px;
                 padding-bottom: 1.2vh;
             }
             .tl-dot {
-                min-width: 10px;
-                min-height: 10px;
+                min-width: 15px;
+                min-height: 15px;
             }
             .tl-label {
-                font-size: clamp(0.3rem, 1.6vw, 0.5rem);
+                font-size: 0.62rem;
             }
             .tl-connector {
-                min-width: 3px;
-                flex: 0 0 1.2vw;
+                min-width: 18px;
+                flex: 0 0 18px;
             }
             #main-title {
-                font-size: clamp(0.8rem, 6vw, 1.4rem);
+                font-size: clamp(1rem, 6vw, 1.4rem);
             }
             #sub-info {
-                font-size: clamp(0.3rem, 1.8vw, 0.55rem);
+                font-size: 0.55rem;
             }
             #logo-link {
                 width: 28px;
                 height: 28px;
                 top: 8px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
         ::-webkit-scrollbar {
@@ -357,8 +415,9 @@
     </style>
 </head>
 <body>
+    <h1 class="sr-only">Supernova, linha do tempo interativa da Cejera</h1>
 
-    <a id="logo-link" href="https://cejera.com/home" target="_blank" title="Cejera">
+    <a id="logo-link" href="/" title="Cejera">
         <img src="./cejera-00.svg" alt="Cejera" />
     </a>
 
@@ -366,24 +425,24 @@
 
     <div id="bottom-overlay">
         <div id="timeline">
-            <div class="tl-item" data-phase="0" id="tl-0"><div class="tl-dot"></div><span class="tl-label">VERMELHA</span></div>
+            <button class="tl-item" type="button" data-phase="0" id="tl-0" aria-label="Exibir fase Vermelha"><span class="tl-dot"></span><span class="tl-label">VERMELHA</span></button>
             <div class="tl-connector" id="conn-0"></div>
-            <div class="tl-item" data-phase="1" id="tl-1"><div class="tl-dot"></div><span class="tl-label">SUPERNOVA</span></div>
+            <button class="tl-item" type="button" data-phase="1" id="tl-1" aria-label="Exibir fase Supernova"><span class="tl-dot"></span><span class="tl-label">SUPERNOVA</span></button>
             <div class="tl-connector" id="conn-1"></div>
-            <div class="tl-item" data-phase="2" id="tl-2"><div class="tl-dot"></div><span class="tl-label">NÊUTRON</span></div>
+            <button class="tl-item" type="button" data-phase="2" id="tl-2" aria-label="Exibir fase Nêutron"><span class="tl-dot"></span><span class="tl-label">NÊUTRON</span></button>
             <div class="tl-connector" id="conn-2"></div>
-            <div class="tl-item disabled" data-phase="3" id="tl-3"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <button class="tl-item disabled" type="button" data-phase="3" id="tl-3" aria-label="Fase ainda bloqueada" disabled><span class="tl-dot"></span><span class="tl-label">[???]</span></button>
             <div class="tl-connector" id="conn-3"></div>
-            <div class="tl-item disabled" data-phase="4" id="tl-4"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <button class="tl-item disabled" type="button" data-phase="4" id="tl-4" aria-label="Fase ainda bloqueada" disabled><span class="tl-dot"></span><span class="tl-label">[???]</span></button>
             <div class="tl-connector" id="conn-4"></div>
-            <div class="tl-item disabled" data-phase="5" id="tl-5"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <button class="tl-item disabled" type="button" data-phase="5" id="tl-5" aria-label="Fase ainda bloqueada" disabled><span class="tl-dot"></span><span class="tl-label">[???]</span></button>
             <div class="tl-connector" id="conn-5"></div>
-            <div class="tl-item disabled" data-phase="6" id="tl-6"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <button class="tl-item disabled" type="button" data-phase="6" id="tl-6" aria-label="Fase ainda bloqueada" disabled><span class="tl-dot"></span><span class="tl-label">[???]</span></button>
             <div class="tl-connector" id="conn-6"></div>
-            <div class="tl-item disabled" data-phase="7" id="tl-7"><div class="tl-dot"></div><span class="tl-label">[???]</span></div>
+            <button class="tl-item disabled" type="button" data-phase="7" id="tl-7" aria-label="Fase ainda bloqueada" disabled><span class="tl-dot"></span><span class="tl-label">[???]</span></button>
         </div>
         <div id="footer-text">
-            <div id="main-title" class="clickable">[SUPERNOVA.FILE]</div>
+            <a id="main-title" class="clickable" href="https://www.instagram.com/supernova.file/" target="_blank" rel="noopener noreferrer">[SUPERNOVA.FILE]</a>
             <div id="sub-info">11•07•2026 | -20.907482, -46.994238 | IMPACTO REGISTRADO</div>
         </div>
     </div>
@@ -399,6 +458,7 @@
         const subInfo = document.getElementById('sub-info');
         const bottomOverlay = document.getElementById('bottom-overlay');
         const logoLink = document.getElementById('logo-link');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const phaseConfig = [
             {
@@ -457,7 +517,7 @@
         camera.position.set(4, 3, 18);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 720 ? 1.25 : 1.5));
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2;
         container.appendChild(renderer.domElement);
@@ -466,7 +526,7 @@
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.06;
-        controls.autoRotate = true;
+        controls.autoRotate = !reducedMotion;
         controls.autoRotateSpeed = 0.8;
         controls.enableZoom = true;
         controls.zoomSpeed = 0.2;          // mantém o comportamento de pinça/touch existente
@@ -525,7 +585,7 @@
         }
         const glowTexture = createGlowTexture();
 
-        const NUM_PARTICLES = 12000;
+        const NUM_PARTICLES = reducedMotion ? 3500 : (window.innerWidth < 720 ? 6000 : 9000);
         const MAX_RADIUS = 16;
         const dirs = [],
             baseRadii = [],
@@ -604,7 +664,7 @@
         scene.add(coreRight);
 
         const bgGeo = new THREE.BufferGeometry();
-        const bgCount = 2000;
+        const bgCount = reducedMotion ? 600 : (window.innerWidth < 720 ? 1000 : 1600);
         const bgPosArr = new Float32Array(bgCount * 3);
         for (let i = 0; i < bgCount; i++) {
             const r = 60 + Math.random() * 200;
@@ -635,6 +695,7 @@
         function updateTimelineUI(idx) {
             timelineItems.forEach(item => {
                 const p = parseInt(item.dataset.phase);
+                item.setAttribute('aria-pressed', String(p === idx));
                 item.classList.remove('active', 'phase-0', 'phase-1', 'phase-2', 'phase-3', 'phase-4', 'phase-5',
                     'phase-6', 'phase-7');
                 if (p === idx) { item.classList.add('active');
@@ -670,23 +731,29 @@
             if (idx === currentPhase && phaseTransition === 1) return;
             fromPhase = currentPhase;
             toPhase = idx;
-            phaseTransition = 0;
+            phaseTransition = reducedMotion ? 1 : 0;
             currentPhase = idx;
             updateTimelineUI(idx);
+            startAnimation();
         }
         timelineItems.forEach(el => el.addEventListener('click', () => {
             const phase = parseInt(el.dataset.phase);
             if (phase >= 3) return;
             setPhase(phase);
         }));
-        mainTitle.addEventListener('click', () => window.open('https://www.instagram.com/supernova.file/', '_blank'));
         window.addEventListener('resize', () => {
             const w = window.innerWidth,
                 h = window.innerHeight;
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, w < 720 ? 1.25 : 1.5));
+            if (reducedMotion) startAnimation();
         });
+
+        const tempDirection = new THREE.Vector3();
+        const tempBeam = new THREE.Vector3();
+        const tempPosition = new THREE.Vector3();
 
         function updateParticles(pA, pB, t, dualDist, mixBeam) {
             const cfgA = phaseConfig[pA],
@@ -725,10 +792,9 @@
                 const pAmt = expansion * 0.35 * speeds[i];
                 const axis = pertAxis[i];
                 const angle = pertAngle[i] + animTime * 0.08 * speeds[i];
-                const dirRot = dirs[i].clone().applyAxisAngle(axis, angle * pAmt);
-                let posNormal = dirRot.multiplyScalar(curR);
+                const posNormal = tempDirection.copy(dirs[i]).applyAxisAngle(axis, angle * pAmt).multiplyScalar(curR);
 
-                let posBeam = new THREE.Vector3(0, 0, 0);
+                const posBeam = tempBeam.set(0, 0, 0);
                 const isUp = i < NUM_PARTICLES / 2;
                 const z = beamZ[i] * BEAM_LENGTH;
                 const radius = Math.sqrt(beamR[i]) * Math.tan(BEAM_ANGLE) * z;
@@ -741,7 +807,7 @@
                     posBeam.set(x, y, -z);
                 }
 
-                let pos = posNormal.clone().lerp(posBeam, mixBeam);
+                const pos = tempPosition.copy(posNormal).lerp(posBeam, mixBeam);
 
                 if (effDist > 0.001) {
                     const center = i < NUM_PARTICLES / 2 ? c1 : c2;
@@ -802,8 +868,17 @@
             }
         }
 
+        let animationFrameId = 0;
+
+        function startAnimation() {
+            if (!animationFrameId && !document.hidden) {
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        }
+
         function animate() {
-            requestAnimationFrame(animate);
+            animationFrameId = 0;
+            if (document.hidden) return;
 
             if (phaseTransition < 1) {
                 phaseTransition += 0.025;
@@ -826,13 +901,28 @@
             const targetBeamMix = ((phaseConfig[pA].hasBeams && t < 0.5) || (phaseConfig[pB].hasBeams && t >= 0.5)) ? 1 : 0;
             beamMix += (targetBeamMix - beamMix) * 0.15;
 
-            animTime += 0.012;
+            if (!reducedMotion) animTime += 0.012;
 
             updateParticles(pA, pB, t, dualCenterProgress, beamMix);
 
             controls.update();
             renderer.render(scene, camera);
+
+            if (!reducedMotion || phaseTransition < 1) startAnimation();
         }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = 0;
+            } else if (!document.hidden) {
+                startAnimation();
+            }
+        });
+
+        controls.addEventListener('change', () => {
+            if (reducedMotion) startAnimation();
+        });
 
         setPhase(1);
         phaseTransition = 1;
@@ -840,9 +930,9 @@
         dualCenterProgress = 0;
         beamMix = 0;
         updateTimelineUI(1);
-        setTimeout(() => { controls.autoRotate = true; }, 500);
+        if (!reducedMotion) setTimeout(() => { controls.autoRotate = true; }, 500);
 
-        animate();
+        startAnimation();
     </script>
 </body>
 </html>

@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>DELFOS — Máximas délficas · Clube de Coleção</title>
+    <title>Delfos | Máximas délficas para colecionar</title>
     <meta name="description" content="Colecione as máximas délficas. Abra pacotes, desbloqueie conhecimentos ancestrais.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/delfos/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Delfos | Máximas délficas para colecionar">
+    <meta property="og:description" content="Abra pacotes e desbloqueie conhecimentos ancestrais em uma coleção interativa.">
+    <meta property="og:url" content="https://cejera.com/delfos/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Delfos | Máximas délficas para colecionar">
+    <meta name="twitter:description" content="Abra pacotes e desbloqueie conhecimentos ancestrais em uma coleção interativa.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -20,6 +34,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: clip;
         }
 
         :root {
@@ -37,7 +55,7 @@
             background-color: var(--light);
             color: var(--black);
             line-height: 1.5;
-            overflow-x: hidden;
+            overflow-x: clip;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -73,7 +91,7 @@
             background: var(--red);
             color: var(--light);
             padding: 12px 28px;
-            border-radius: 40px;
+            border-radius: 0;
             font-weight: 600;
             border: none;
             cursor: pointer;
@@ -199,14 +217,14 @@
         .nav-link:focus::after {
             width: 100%;
         }
-        .header-cta .btn { 
-            padding: 8px 20px; 
-            font-size: 0.85rem; 
+        .header-cta .btn {
+            padding: 8px 20px;
+            font-size: 0.85rem;
         }
 
         .clubinho-hero {
             padding: 60px 0 50px;
-            flex: 1; 
+            flex: 1;
         }
         .clubinho-title {
             font-size: clamp(2.5rem, 6vw, 4rem);
@@ -217,7 +235,7 @@
         }
         .clubinho-title::before,
         .clubinho-title::after {
-            content: '•';
+            content: none;
             padding: 10rem;
             color: var(--red);
             position: absolute;
@@ -650,7 +668,7 @@
             background: var(--black);
             color: white;
             padding: 8px 14px;
-            border-radius: 16px;
+            border-radius: 0;
             font-size: 0.7rem;
             width: 200px;
             display: none;
@@ -877,7 +895,7 @@
             justify-content: center;
             padding: 8px;
             border: 2px solid var(--red);
-            border-radius: 16px;
+            border-radius: 0;
             transition: var(--transition);
             text-align: center;
             background-color: transparent;
@@ -892,15 +910,18 @@
         .social-name { font-size: 0.75rem; font-weight: 600; }
         .social-desc { font-size: 0.65rem; opacity: 0.7; }
         .footer-social-fullwidth {
-            width: 100%;
-            margin: 40px 0;
+            position: relative;
+            left: 50%;
+            width: 100vw;
+            margin: 40px 0 40px -50vw;
             padding: 30px 0;
-            border-top: 1px dashed #333;
-            border-bottom: 1px dashed #333;
+            border-top: 1px solid rgba(247, 7, 7, 0.42);
+            border-bottom: 1px solid rgba(247, 7, 7, 0.42);
         }
-        .copyright { text-align: center; font-size: 0.75rem; opacity: 0.6; padding-top: 30px; border-top: 1px solid #333; margin-top: 20px; }
+        .footer-social-fullwidth .social-links-grid { max-width: 1200px; margin: 20px auto 0; }
+        .copyright { position: relative; left: 50%; width: 100vw; text-align: center; font-size: 0.75rem; opacity: 0.6; padding: 30px 16px 0; border-top: 1px solid rgba(247, 7, 7, 0.28); margin: 20px 0 0 -50vw; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
             .menu-toggle { display: block; }
             nav {
                 position: fixed;
@@ -971,22 +992,26 @@
             visibility: visible;
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/paused.css?v=20260901.2">
+    <script src="/assets/js/paused.js?v=20260901.2" defer></script>
 </head>
 <body>
     <header id="main-header">
         <div class="container header-content">
-            <div class="logo-container"><a href="https://cejera.com/home"><img src="cejera-02.svg" class="logo-img" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=CEJERA®'"></a></div>
+            <div class="logo-container"><a href="/"><img src="/assets/brand/cejera-02.svg" class="logo-img brand-logo-registered" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=Cejera'"></a></div>
             <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><span class="hamburger"></span></button>
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu">
-                    <li><a href="https://cejera.com/home" class="nav-link">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link">Contato</a></li>
+                    <li><a href="/" class="nav-link">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link">Moda</a></li>
+                    <li><a href="/design/" class="nav-link">Design</a></li>
+                    <li><a href="/musica/" class="nav-link">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
                 </ul>
-                <div class="header-cta"><a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a></div>
+                <div class="header-cta"><a href="/clubinho/" class="btn">CLUBINHO</a></div>
             </nav>
         </div>
     </header>
@@ -1025,65 +1050,77 @@
     <div id="rankModal" class="modal-rank">
         <div class="rank-content">
             <button class="close-rank">&times;</button>
-            <h2><i class="fas fa-trophy"></i> Ranking - Top 10 Colecionadores</h2>
-            <div id="rankLoading" style="text-align:center; padding:20px;"><i class="fas fa-spinner fa-pulse"></i> Carregando...</div>
+            <h2><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trophy"></use></svg> Ranking - Top 10 Colecionadores</h2>
+            <div id="rankLoading" style="text-align:center; padding:20px;"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg> Carregando...</div>
             <div id="rankList" style="display:none;"></div>
         </div>
     </div>
 
     <div id="loadingSpinner" class="spinner-overlay">
-        <i class="fas fa-spinner fa-pulse fa-3x" style="color: white;"></i>
+        <svg class="cejera-icon cejera-icon--signal cejera-icon--spin cejera-icon--3x" aria-hidden="true" focusable="false" style="color: white;"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg>
     </div>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div><img src="cejera-00.svg" class="footer-logo-img" onerror="this.src='https://placehold.co/120x120?text=CEJERA'"><div class="footer-about">Moda, design e música com coerência e atitude. Protagonista desde 2015.</div></div>
-                <div><h3 class="footer-heading">Navegação</h3><ul class="footer-links"><li><a href="https://cejera.com/home"><i class="fas fa-home"></i> Início</a></li><li><a href="https://cejera.com/moda"><i class="fas fa-tshirt"></i> Moda</a></li><li><a href="https://cejera.com/design"><i class="fas fa-paint-brush"></i> Design</a></li><li><a href="https://cejera.com/musica"><i class="fas fa-music"></i> Música</a></li><li><a href="https://cejera.com/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li><li><a href="https://cejera.com/contato"><i class="fas fa-envelope"></i> Contato</a></li><li><a href="https://cejera.com/clubinho"><i class="fas fa-crown"></i> Clubinho</a></li></ul></div>
+                <div><img src="/assets/brand/cejera-00.svg" class="footer-logo-img brand-mark-offset" onerror="this.src='https://placehold.co/120x120?text=Cejera'"><div class="footer-about">Moda, design e música com coerência e atitude. Protagonista desde 2015.</div></div>
+                <div><h3 class="footer-heading">Navegação</h3><ul class="footer-links"><li><a href="/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#home"></use></svg> Início</a></li><li><a href="/projetos/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#archive"></use></svg> Projetos</a></li><li><a href="/moda/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg> Moda</a></li><li><a href="/design/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#paintbrush"></use></svg> Design</a></li><li><a href="/musica/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#music"></use></svg> Música</a></li><li><a href="/sobre/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#info"></use></svg> Sobre</a></li><li><a href="/contato/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg> Contato</a></li><li><a href="/clubinho/"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;vertical-align:-.15em;"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg> Clubinho</a></li></ul></div>
 <div class="footer-newsletter">
   <h3 class="footer-heading">
-    <i class="fas fa-key"></i> Receba acesso
+    <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#key"></use></svg> Receba acesso
   </h3>
 
   <p>Entre para a lista de espera do oráculo!</p>
 
-  <a 
+  <a
     href="https://wa.me/5535999286246?text=Olá!%20Quero%20solicitar%20acesso%20ao%20Oráculo%20de%20Delfos."
     class="btn"
-    target="_blank"
+    target="_blank" rel="noopener noreferrer"
   >
-    <i class="fas fa-paper-plane"></i>
+    <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#send"></use></svg>
     Solicitar acesso →
   </a>
 
   <p class="newsletter-note">
-    *Acesso sujeito a aprovação.
+    Acesso sujeito a aprovação.
   </p>
 
   <p style="margin-top: 20px; font-size: 0.8rem;">
-    <a href="https://cejera.com/privacidade" style="color: var(--red);">
+    <a href="/privacidade/" style="color: var(--red);">
       Política de privacidade
     </a>
-    •
-    <a href="https://cejera.com/termos" style="color: var(--red);">
+    /
+    <a href="/termos/" style="color: var(--red);">
       Termos de uso
     </a>
   </p>
 </div>
             </div>
-            <div class="footer-social-fullwidth"><div class="social-links-grid"><a href="https://instagram.com/cejeraa" class="social-link"><i class="fab fa-instagram social-icon"></i><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a><a href="https://twitter.com/cejeraaa" class="social-link"><i class="fab fa-twitter social-icon"></i><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a><a href="https://linkedin.com/in/cejera" class="social-link"><i class="fab fa-linkedin-in social-icon"></i><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a><a href="https://t.me/cejera" class="social-link"><i class="fab fa-telegram social-icon"></i><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a><a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><i class="fab fa-spotify social-icon"></i><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a><a href="https://twitch.tv/cejera" class="social-link"><i class="fab fa-twitch social-icon"></i><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a><a href="https://kick.com/cejera" class="social-link"><i class="fas fa-gamepad social-icon"></i><span class="social-name">Kick</span><span class="social-desc">cejera</span></a><a href="https://cejera.com/links" class="social-link"><i class="fas fa-plus social-icon"></i><span class="social-name">7+</span><span class="social-desc">links</span></a></div></div>
-            <div class="copyright"><p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p></div>
+            <div class="footer-social-fullwidth"><div class="social-links-grid"><a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a><a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a><a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a><a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a><a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a><a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a><a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a><a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a></div></div>
+            <div class="copyright"><p>© 2026 Cejera® | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p></div>
         </div>
     </footer>
 
+    <div class="paused-overlay" id="delfos-paused" data-paused-overlay aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="delfos-paused-title">
+        <div class="paused-panel">
+            <button class="paused-close" type="button" data-paused-close aria-label="Fechar aviso">×</button>
+            <img class="paused-art" src="/assets/media/identity/seste.png" alt="" width="368" height="430">
+            <p class="paused-kicker">// ORÁCULO FORA DE SINCRONIA //</p>
+            <h2 class="paused-title" id="delfos-paused-title">Estamos preparando este terreno ainda.</h2>
+            <p class="paused-copy">Delfos permanece adormecido enquanto sua estrutura é protegida e recalibrada. As máximas voltarão a responder quando o sistema estiver seguro.</p>
+        </div>
+    </div>
+
     <script>
         // ================= CONFIGURAÇÕES =================
-        const SPREADSHEET_ID = "1k3hGNchBsGBBlCPw9I1nZBu_KRBcE7Sj5x2UAraENx8";
-        const API_KEY = "AIzaSyCnP6LpDl4Ez2x4ASYbRLbTc1wr9w8hAq0";
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZh-weDDniFNVGShMKobdmDk_siOQ8n9lGI8JPDxA0ctBn-gAH-jlWk4zYsVHW6Wre/exec";
+        const DELFOS_ACCESS_ACTIVE = false;
+        const SPREADSHEET_ID = "";
+        const API_KEY = "";
+        const SCRIPT_URL = "";
 
         let cardsCatalog = [];
         let validUsers = [];
+        let authDirectoryAvailable = true;
         let loggedUser = null;
         let userData = null;
         let currentSort = "numero";
@@ -1122,6 +1159,11 @@
         }
 
         async function loadUsers() {
+            if (!DELFOS_ACCESS_ACTIVE) {
+                validUsers = [];
+                authDirectoryAvailable = false;
+                return;
+            }
             try {
                 const resp = await fetch('users.txt?_='+Date.now());
                 const text = await resp.text();
@@ -1134,8 +1176,11 @@
                     if(parts && parts.length>=2) users.push({ email: parts[0].replace(/"/g,''), senha: parts[1].replace(/"/g,'') });
                 }
                 validUsers = users;
+                authDirectoryAvailable = users.length > 0;
             } catch(e) {
-                validUsers = [{ email:"teste@delfos.com", senha:"delfos" }];
+                validUsers = [];
+                authDirectoryAvailable = false;
+                console.warn('Diretório de usuários indisponível. O acesso foi mantido fechado.');
             }
         }
 
@@ -1285,8 +1330,8 @@
                         }
                     } else {
                         card = getRandomCardByWeight(weightMapOuro);
-                        if (normalizeRarity(card.raridadeRaw) === "Mítico" || 
-                            normalizeRarity(card.raridadeRaw) === "Lendário" || 
+                        if (normalizeRarity(card.raridadeRaw) === "Mítico" ||
+                            normalizeRarity(card.raridadeRaw) === "Lendário" ||
                             normalizeRarity(card.raridadeRaw) === "CAÓTICO") guaranteed = true;
                     }
                     drawn.push(card);
@@ -1305,13 +1350,13 @@
                 card: card,
                 isNew: !currentCardsSet.has(`#${card.numero.padStart(3,'0')}`)
             }));
-            
+
             let novasCartas = [...userData.cartas];
             for(let item of cardsWithNewFlag) {
                 let code = `#${item.card.numero.padStart(3,'0')}`;
                 if(!novasCartas.includes(code)) novasCartas.push(code);
             }
-            
+
             const novoPacks = (userData.pacotesAbertos || 0) + 1;
             const updates = {
                 prata: (type === 'prata') ? qtd-1 : userData.prata,
@@ -1330,22 +1375,22 @@
                 if(packElement) packElement.classList.remove('loading', 'shaking');
                 return;
             }
-            
+
             if(packElement) {
                 packElement.classList.remove('loading', 'shaking');
                 packElement.classList.add('ripping');
                 await new Promise(r => setTimeout(r, 400));
                 packElement.classList.remove('ripping');
             }
-            
+
             await recalcAndUpdateRanking();
-            
+
             if (!collectionCompletedShown && userData.cartas.length >= 165) {
                 collectionCompletedShown = true;
                 showCompleteCollectionPopup();
                 renderDashboard();
             }
-            
+
             currentRevealQueue = cardsWithNewFlag;
             currentRevealIndex = 0;
             const overlay = document.getElementById('revealOverlay');
@@ -1437,7 +1482,7 @@
                 if (!revealCardDiv.querySelector('.stamp-duplicate')) {
                     const stamp = document.createElement('div');
                     stamp.className = 'stamp-duplicate';
-                    stamp.innerHTML = '<i class="fas fa-stamp"></i> REPETIDA';
+                    stamp.innerHTML = '<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#stamp"></use></svg> REPETIDA';
                     revealCardDiv.appendChild(stamp);
                 }
             }
@@ -1514,7 +1559,7 @@
             modal.classList.add('active');
             loadingDiv.style.display = 'block';
             rankDiv.style.display = 'none';
-            
+
             const topUsers = await fetchRanking();
             if(topUsers.length === 0) {
                 rankDiv.innerHTML = '<p>Nenhum dado encontrado na aba "Resumo".</p>';
@@ -1529,7 +1574,7 @@
                 rankingDetailsCache.set(u.email, counts);
             });
             await Promise.all(detailPromises);
-            
+
             let html = '<table class="rank-table"><thead><tr><th>#</th><th>Usuário</th><th>Total Cartas</th><th>Detalhes</th></tr></thead><tbody>';
             for(let i=0; i<topUsers.length; i++) {
                 const u = topUsers[i];
@@ -1543,7 +1588,7 @@
                             <td>${u.totalCartas}</td>
                             <td>
                                 <button class="details-btn" data-email="${u.email}">
-                                    <i class="fas fa-chart-bar"></i> Detalhes
+                                    <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chart-bar"></use></svg> Detalhes
                                     <span class="details-tooltip">📜 Míticas: ${counts.miticas}  ✨ Lendárias: ${counts.lendarias}  🌀 Caóticas: ${counts.caoticas}</span>
                                 </button>
                             </td>
@@ -1657,7 +1702,7 @@
             const container = document.getElementById('dynamicArea');
             if(!userData) return;
             const isComplete = userData.cartas.length >= 165;
-            const trophyHtml = isComplete ? '<span class="trophy-badge"><i class="fas fa-trophy"></i></span><span class="complete-badge">Coleção Completa!</span>' : '';
+            const trophyHtml = isComplete ? '<span class="trophy-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trophy"></use></svg></span><span class="complete-badge">Coleção Completa!</span>' : '';
             const html = `
                 <div class="dashboard-container">
                     <div class="login-badge" style="position:absolute; top:-18px;">⏤ ΙΕΡΟΝ ΔΕΛΦΩΝ ⏤</div>
@@ -1666,27 +1711,27 @@
                             <img class="user-avatar" src="${userData.foto}" onerror="this.src='https://ui-avatars.com/api/?background=F70707&color=fff&name=${userData.nome.charAt(0)}'">
                             <div><strong>${userData.nome} ${trophyHtml}</strong><br>${userData.email}<br><small>📦 Pacotes abertos: ${userData.pacotesAbertos || 0}</small></div>
                         </div>
-                        <button id="logoutBtn" class="btn-sm btn"><i class="fas fa-sign-out-alt"></i> Sair</button>
+                        <button id="logoutBtn" class="btn-sm btn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-out"></use></svg> Sair</button>
                     </div>
                     <div class="pack-section">
                         <div class="pack-visual" data-type="prata">
-                            <div class="pack-loading"><i class="fas fa-spinner fa-pulse fa-2x"></i></div>
-                            <i class="fas fa-ticket-alt pack-icon" style="color:#C0C0C0;"></i>
+                            <div class="pack-loading"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin cejera-icon--2x" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg></div>
+                            <svg class="cejera-icon cejera-icon--signal pack-icon" aria-hidden="true" focusable="false" style="color:#C0C0C0;"><use href="/assets/icons/cejera-system-v2.svg#ticket"></use></svg>
                             <div class="pack-name">Pacote Prata</div>
                             <div class="pack-count">${userData.prata}</div>
                         </div>
                         <div class="pack-visual" data-type="ouro">
-                            <div class="pack-loading"><i class="fas fa-spinner fa-pulse fa-2x"></i></div>
-                            <i class="fas fa-ticket-alt pack-icon" style="color:#FFD700;"></i>
+                            <div class="pack-loading"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin cejera-icon--2x" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#spinner"></use></svg></div>
+                            <svg class="cejera-icon cejera-icon--signal pack-icon" aria-hidden="true" focusable="false" style="color:#FFD700;"><use href="/assets/icons/cejera-system-v2.svg#ticket"></use></svg>
                             <div class="pack-name">Pacote Ouro</div>
                             <div class="pack-count">${userData.ouro}</div>
                         </div>
                     </div>
                     <div class="collection-header">
-                        <h3><i class="fas fa-scroll"></i> Coleção · ${userData.cartas.length} cartas</h3>
+                        <h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#scroll"></use></svg> Coleção · ${userData.cartas.length} cartas</h3>
                         <div class="filter-buttons">
-                            <button id="filterNumero" class="filter-btn ${currentSort === 'numero' ? 'active' : ''}"><i class="fas fa-hashtag"></i></button>
-                            <button id="filterRaridade" class="filter-btn ${currentSort === 'raridade' ? 'active' : ''}"><i class="fas fa-star"></i></button>
+                            <button id="filterNumero" class="filter-btn ${currentSort === 'numero' ? 'active' : ''}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#hash"></use></svg></button>
+                            <button id="filterRaridade" class="filter-btn ${currentSort === 'raridade' ? 'active' : ''}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#star"></use></svg></button>
                         </div>
                     </div>
                     <div id="inventoryGrid" class="inventory-grid"></div>
@@ -1735,6 +1780,10 @@
 
         // ========== LOGIN ==========
         async function doLogin(email, senha) {
+            if(!authDirectoryAvailable) {
+                alert("O acesso ao Delfos está temporariamente indisponível. Tente novamente mais tarde.");
+                return false;
+            }
             const user = validUsers.find(u => u.email === email && u.senha === senha);
             if(!user) { alert("Credenciais inválidas."); return false; }
             loggedUser = { email };
@@ -1751,32 +1800,38 @@
 
         // ========== INICIALIZAÇÃO ==========
         window.addEventListener('DOMContentLoaded', async () => {
-            await loadCards();
-            await loadUsers();
+            if (DELFOS_ACCESS_ACTIVE) {
+                await loadCards();
+                await loadUsers();
+            } else {
+                authDirectoryAvailable = false;
+            }
             const area = document.getElementById('dynamicArea');
             area.innerHTML = `
-                <div class="login-badge"><i class="fas fa-shield-alt"></i> ACESSO RESTRITO</div>
-                <div class="form-group"><label><i class="fas fa-envelope"></i> E-mail</label><input type="email" id="loginEmail" class="form-input" placeholder="membro@cejera.com"></div>
-                <div class="form-group"><label><i class="fas fa-key"></i> Senha</label><div class="password-container"><input type="password" id="loginSenha" class="form-input"><button type="button" id="togglePwd" class="toggle-password"><i class="far fa-eye"></i></button></div></div>
+                <div class="login-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shield"></use></svg> ACESSO RESTRITO</div>
+                <div class="form-group"><label><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg> E-mail</label><input type="email" id="loginEmail" class="form-input" placeholder="membro@cejera.com"></div>
+                <div class="form-group"><label><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#key"></use></svg> Senha</label><div class="password-container"><input type="password" id="loginSenha" class="form-input"><button type="button" id="togglePwd" class="toggle-password"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#eye"></use></svg></button></div></div>
                 <div style="display:flex; gap:12px; justify-content:center;">
-                    <button id="loginBtn" class="btn" style="flex:1;"><i class="fas fa-sign-in-alt"></i> ENTRAR</button>
-                    <button id="rankBtn" class="btn" style="background:#333;"><i class="fas fa-trophy"></i> RANKING</button>
+                    <button id="loginBtn" class="btn" data-paused-trigger="#delfos-paused" style="flex:1;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sign-in"></use></svg> ENTRAR</button>
+                    <button id="rankBtn" class="btn" data-paused-trigger="#delfos-paused" style="background:#333;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trophy"></use></svg> RANKING</button>
                 </div>
                 <div class="forgot-password" style="text-align:center;margin-top:16px;"><button id="forgotBtn" style="background:none; border:none; color:var(--red); cursor:pointer;">Esqueci minha senha</button></div>
             `;
-            document.getElementById('loginBtn')?.addEventListener('click', async () => {
-                const email = document.getElementById('loginEmail').value.trim();
-                const senha = document.getElementById('loginSenha').value;
-                await doLogin(email, senha);
-            });
-            document.getElementById('rankBtn')?.addEventListener('click', showRanking);
+            if (DELFOS_ACCESS_ACTIVE) {
+                document.getElementById('loginBtn')?.addEventListener('click', async () => {
+                    const email = document.getElementById('loginEmail').value.trim();
+                    const senha = document.getElementById('loginSenha').value;
+                    await doLogin(email, senha);
+                });
+                document.getElementById('rankBtn')?.addEventListener('click', showRanking);
+            }
             document.getElementById('togglePwd')?.addEventListener('click', () => {
                 const pwd = document.getElementById('loginSenha');
-                const icon = document.querySelector('#togglePwd i');
-                if(pwd.type === 'password') { pwd.type='text'; icon.className='far fa-eye-slash'; }
-                else { pwd.type='password'; icon.className='far fa-eye'; }
+                const iconUse = document.querySelector('#togglePwd use');
+                if(pwd.type === 'password') { pwd.type='text'; iconUse?.setAttribute('href','/assets/icons/cejera-system-v2.svg#eye-off'); }
+                else { pwd.type='password'; iconUse?.setAttribute('href','/assets/icons/cejera-system-v2.svg#eye'); }
             });
-            document.getElementById('forgotBtn')?.addEventListener('click', () => window.open('https://wa.me/5535999286246?text=Esqueci%20minha%20senha%20DELFOS','_blank'));
+            document.getElementById('forgotBtn')?.addEventListener('click', () => window.open('https://wa.me/5535999286246?text=Esqueci%20minha%20senha%20DELFOS','_blank','noopener,noreferrer'));
             document.getElementById('closeCardBtn')?.addEventListener('click', () => document.getElementById('cardPopupOverlay').classList.remove('active'));
             document.getElementById('cardPopupOverlay')?.addEventListener('click', (e) => { if(e.target === document.getElementById('cardPopupOverlay')) document.getElementById('cardPopupOverlay').classList.remove('active'); });
             document.getElementById('nextCardBtn')?.addEventListener('click', () => showNextCard());

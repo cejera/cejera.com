@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONTATO — CEJERA® | Excentricidade e Autenticidade</title>
-    <meta name="description" content="Entre em contato com Cejera® através das redes sociais. Telegram, WhatsApp e Email para moda, design e música autênticos.">
+    <title>Contato | Cejera</title>
+    <meta name="description" content="Entre em contato com a Cejera pelas redes sociais. Telegram, WhatsApp e e-mail para moda, design, música e projetos autorais.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/contato/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Contato | Cejera">
+    <meta property="og:description" content="Fale com o Cejera sobre design, moda, música e projetos autorais.">
+    <meta property="og:url" content="https://cejera.com/contato/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contato | Cejera">
+    <meta name="twitter:description" content="Fale com o Cejera sobre design, moda, música e projetos autorais.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Biblioteca de ícones Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Identidade e ícones locais -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera® - Fale comigo" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Contato" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
         /* CSS Variables - Design System */
@@ -279,7 +293,7 @@
 
         .contato-title::before,
         .contato-title::after {
-            content: '✱';
+            content: none;
             color: var(--red);
             position: absolute;
             top: 50%;
@@ -302,6 +316,7 @@
             margin-bottom: 60px;
             text-transform: uppercase;
             text-align: center;
+            margin-inline: auto;
         }
 
         .envelope-container {
@@ -320,8 +335,9 @@
             position: absolute;
             top: 50%;
             left: 50%;
+            width: min(75%, 420px);
+            height: auto;
             transform: translate(-50%, -50%);
-            font-size: 300px;
             color: rgba(247, 7, 7, 0.05);
             z-index: 1;
             pointer-events: none;
@@ -418,6 +434,8 @@
         }
 
         .contact-icon {
+            width: 48px;
+            height: 48px;
             font-size: 48px;
             margin-bottom: 20px;
             transition: var(--transition);
@@ -768,7 +786,7 @@
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 980px) {
             .menu-toggle {
                 display: block;
             }
@@ -861,15 +879,17 @@
             stroke-width: 2;
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="site-shell legacy-page">
 
     <!-- Header (idêntico ao primeiro código) -->
-    <header id="main-header">
+    <header data-header-cut id="main-header">
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/home">
-                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera Logo" class="logo-img brand-logo-registered">
                 </a>
             </div>
 
@@ -879,75 +899,109 @@
 
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu" role="menubar">
-                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link active" role="menuitem" aria-current="page">Contato</a></li>
+                    <li><a href="/" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link" role="menuitem">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="/design/" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="/musica/" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link active" role="menuitem" aria-current="page">Contato</a></li>
                 </ul>
                 <div class="header-cta">
-                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
                     <p class="cta-microcopy">Exclusivo para membros</p>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content (contato com envelope) -->
+    <!-- Main Content -->
     <main id="main-content">
         <section class="contato-hero container">
             <h1 class="contato-title">Contato</h1>
             <p class="contato-subtitle">Excentricidade e Autenticidade</p>
-            
-            <div class="envelope-container">
-                <i class="fas fa-envelope envelope-background" id="envelope-icon"></i>
-                
-                <label for="message" class="message-label">
-                    ✱ Digite sua mensagem aqui ✱
-                </label>
-                
-                <textarea 
-                    id="message" 
-                    class="message-textarea" 
-                    placeholder="Olá Cejera! Gostaria de falar sobre..." 
-                    maxlength="500"></textarea>
-                
-                <div id="char-counter" class="message-counter">
-                    0/500 caracteres
+            <img class="page-collage-card page-collage-card--contact" src="/assets/media/identity/cards/oi.png" alt="" aria-hidden="true" width="1000" height="500">
+            <img class="page-collage-card page-collage-card--contact-seste" src="/assets/media/identity/seste.png" alt="" aria-hidden="true" width="368" height="430">
+            <img class="page-collage-card page-collage-card--contact-piramesde" src="/assets/media/identity/piramesde.png" alt="" aria-hidden="true" width="496" height="434">
+
+            <div class="contact-note-shell">
+                <div class="envelope-container">
+                    <label for="message" class="message-label">
+                        DIGITE SUA MENSAGEM AQUI
+                    </label>
+
+                    <textarea
+                        id="message"
+                        class="message-textarea"
+                        placeholder="Olá Cejera! Gostaria de falar sobre..."
+                        maxlength="500"></textarea>
+
+                    <div id="char-counter" class="message-counter">
+                        0/500 caracteres
+                    </div>
                 </div>
             </div>
-            
+
+            <h2 class="visually-hidden">Canais de contato</h2>
             <div class="contact-buttons">
                 <div class="contact-btn whatsapp" id="whatsapp-btn">
-                    <i class="fab fa-whatsapp contact-icon"></i>
+                    <svg class="brand-icon brand-icon--whatsapp contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg>
                     <h3 class="contact-btn-title">WhatsApp</h3>
                     <p class="contact-btn-desc">+55 (35) 99928-6246</p>
                     <p class="contact-btn-note">Resposta rápida garantida</p>
                 </div>
-                
+
                 <div class="contact-btn telegram" id="telegram-btn">
-                    <i class="fab fa-telegram contact-icon"></i>
+                    <svg class="brand-icon brand-icon--telegram contact-icon" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg>
                     <h3 class="contact-btn-title">Telegram</h3>
                     <p class="contact-btn-desc">@cejera</p>
                     <p class="contact-btn-note">Para mensagens mais longas</p>
                 </div>
-                
+
                 <div class="contact-btn email" id="email-btn">
-                    <i class="fas fa-envelope contact-icon"></i>
+                    <svg class="cejera-icon contact-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg>
                     <h3 class="contact-btn-title">Email</h3>
                     <p class="contact-btn-desc">contato@cejera.com</p>
                     <p class="contact-btn-note">Resposta em até 48h</p>
                 </div>
             </div>
-            
+
             <div class="success-message" id="success-message">
-                <i class="fas fa-paper-plane success-icon"></i>
+                <svg class="cejera-icon cejera-icon--signal success-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#send"></use></svg>
                 <h3>Mensagem pronta!</h3>
                 <p>Sua mensagem foi preparada e o link será aberto em uma nova aba.</p>
                 <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
-                    O envelope voltará em instantes...
+                    A conversa continua na plataforma escolhida.
                 </p>
+            </div>
+        </section>
+
+        <section class="studio-invite container" aria-labelledby="contact-studio-title">
+            <div class="studio-invite__grid">
+                <div class="studio-invite__copy">
+                    <p class="studio-invite__eyebrow">// CONTATO TAMBÉM ACONTECE FORA DA TELA //</p>
+                    <h2 id="contact-studio-title">VISITE O ESTÚDIO Cejera</h2>
+                    <p>Se a conversa pede presença, o Estúdio Cejera está aberto para visitas combinadas. Moda, design, música e ideias ocupam o mesmo espaço.</p>
+                    <p class="studio-invite__location">AV. ÂNGELO CALAFIORI, 724A // MOCOQUINHA // SÃO SEBASTIÃO DO PARAÍSO, MG // 37957-118</p>
+                    <p>Combine o horário pelo WhatsApp ou abra a rota diretamente no mapa.</p>
+                    <div class="studio-invite__actions">
+                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%2C%20Cejera!%20Quero%20confirmar%20uma%20visita%20ao%20est%C3%BAdio." target="_blank" rel="noopener noreferrer" class="btn-estudio">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg>
+                            Confirmar visita
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118" target="_blank" rel="noopener noreferrer" class="btn-estudio btn-estudio--ghost">Abrir no Google Maps</a>
+                    </div>
+                </div>
+                <div class="studio-invite__map">
+                    <iframe
+                        id="studio-map"
+                        title="Mapa do Estúdio Cejera na Avenida Ângelo Calafiori, em São Sebastião do Paraíso"
+                        src="https://www.google.com/maps?q=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118&amp;output=embed"
+                        data-map-query="Av. Ângelo Calafiori, 724A - Mocoquinha, São Sebastião do Paraíso - MG, 37957-118"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
             </div>
         </section>
     </main>
@@ -957,7 +1011,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
                     <div class="footer-about">
                         Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
                         Ouça, veja, vista. Seja protagonista!
@@ -967,22 +1021,23 @@
                 <div class="footer-links-container">
                     <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home">Início</a></li>
-                        <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="https://cejera.com/design">Design</a></li>
-                        <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
-                        <li><a href="https://cejera.com/contato">Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
                     <h3 class="footer-heading">Clubinho Divertido</h3>
                     <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
                     <form class="footer-form" id="waitlist-form">
-                        <input type="email" 
+                        <input type="email"
                                id="waitlist-email"
-                               class="footer-input" 
+                               class="footer-input"
                                placeholder="seu@email.com"
                                aria-label="Insira seu e-mail para a lista de espera"
                                required>
@@ -990,52 +1045,53 @@
                     </form>
                     <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
                     <p style="margin-top: 20px; font-size: 0.8rem;">
-                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
-                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                        <a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> /
+                        <a href="/termos/" style="color: var(--red);">Termos de uso</a>
                     </p>
                 </div>
             </div>
+        </div>
         <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
         <div class="footer-social-fullwidth">
             <div class="container">
                 <div class="social-links-grid">
                     <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram social-icon"></i>
+                        <svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg>
                         <span class="social-name">Instagram</span>
                         <span class="social-desc">@cejeraa</span>
                     </a>
                     <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
-                        <i class="fab fa-twitter social-icon"></i>
+                        <svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg>
                         <span class="social-name">Twitter/X</span>
                         <span class="social-desc">@cejeraaa</span>
                     </a>
                     <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg>
                         <span class="social-name">LinkedIn</span>
                         <span class="social-desc">/in/cejera</span>
                     </a>
                     <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
-                        <i class="fab fa-telegram social-icon"></i>
+                        <svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg>
                         <span class="social-name">Telegram</span>
                         <span class="social-desc">@cejera</span>
                     </a>
                     <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
-                        <i class="fab fa-spotify social-icon"></i>
+                        <svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg>
                         <span class="social-name">Spotify</span>
                         <span class="social-desc">Cejera</span>
                     </a>
                     <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
-                        <i class="fab fa-twitch social-icon"></i>
+                        <svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg>
                         <span class="social-name">Twitch</span>
                         <span class="social-desc">cejera</span>
                     </a>
                     <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
-                        <i class="fas fa-gamepad social-icon"></i>
+                        <svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg>
                         <span class="social-name">Kick</span>
                         <span class="social-desc">cejera</span>
                     </a>
-                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
-                        <i class="fas fa-plus social-icon"></i>
+                    <a href="/links/" class="social-link" aria-label="Mais links">
+                        <svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg>
                         <span class="social-name">7+</span>
                         <span class="social-desc">links</span>
                     </a>
@@ -1045,7 +1101,7 @@
 
         <div class="container">
             <div class="copyright">
-                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+                <p>© 2026 Cejera® | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
             </div>
         </div>
     </footer>
@@ -1060,7 +1116,7 @@
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
-            
+
             // Trap focus no menu quando aberto
             if (!isExpanded) {
                 navLinks[0].focus();
@@ -1099,7 +1155,6 @@
         // --- Funcionalidades específicas da página de Contato ---
         const messageTextarea = document.getElementById('message');
         const charCounter = document.getElementById('char-counter');
-        const envelopeIcon = document.getElementById('envelope-icon');
         const whatsappBtn = document.getElementById('whatsapp-btn');
         const telegramBtn = document.getElementById('telegram-btn');
         const emailBtn = document.getElementById('email-btn');
@@ -1109,7 +1164,7 @@
         messageTextarea.addEventListener('input', function() {
             const length = this.value.length;
             charCounter.textContent = `${length}/500 caracteres`;
-            
+
             if (length > 450) {
                 charCounter.classList.add('warning');
             } else {
@@ -1120,17 +1175,17 @@
         // Função para enviar mensagem
         function sendMessage(platform) {
             const message = messageTextarea.value.trim();
-            
+
             if (!message) {
                 alert('Por favor, digite uma mensagem antes de enviar!');
                 messageTextarea.focus();
                 return;
             }
-            
+
             const encodedMessage = encodeURIComponent(message);
             let url = '';
             let platformName = '';
-            
+
             switch(platform) {
                 case 'whatsapp':
                     url = `https://wa.me/5535999286246?text=${encodedMessage}`;
@@ -1145,30 +1200,14 @@
                     platformName = 'Email';
                     break;
             }
-            
+
             successMessage.querySelector('h3').textContent = `Enviando para ${platformName}!`;
             successMessage.classList.add('show');
-            
-            envelopeIcon.classList.remove('flying', 'returning');
-            void envelopeIcon.offsetWidth; // Trigger reflow
-            envelopeIcon.classList.add('flying');
-            
-            setTimeout(() => {
-                window.open(url, '_blank');
-            }, 800);
-            
+            window.open(url, '_blank', 'noopener,noreferrer');
+
             setTimeout(() => {
                 successMessage.classList.remove('show');
             }, 3000);
-            
-            setTimeout(() => {
-                envelopeIcon.classList.remove('flying');
-                envelopeIcon.classList.add('returning');
-                
-                setTimeout(() => {
-                    envelopeIcon.classList.remove('returning');
-                }, 1000);
-            }, 5000);
         }
 
         whatsappBtn.addEventListener('click', () => sendMessage('whatsapp'));
@@ -1178,27 +1217,27 @@
         // Formulário de lista de espera (idêntico ao primeiro código)
         document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const emailInput = document.getElementById('waitlist-email');
             const email = emailInput.value.trim();
-            
+
             if (!email) {
                 alert('Por favor, insira seu e-mail!');
                 emailInput.focus();
                 return;
             }
-            
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um e-mail válido!');
                 emailInput.focus();
                 return;
             }
-            
+
             const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
-            
-            window.open(whatsappUrl, '_blank');
+
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
@@ -1208,6 +1247,6 @@
             messageTextarea.focus();
         });
     </script>
+    <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
-

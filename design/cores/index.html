@@ -2,10 +2,26 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cejera - Gerador Estratégico de Paletas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador estratégico de paletas | Cejera</title>
+  <meta name="description" content="Ferramenta da Cejera para explorar cores e construir paletas com intenção estratégica.">
+  <meta name="author" content="Cejera">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0d0000">
+  <link rel="canonical" href="https://cejera.com/design/cores/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cejera">
+  <meta property="og:title" content="Gerador estratégico de paletas | Cejera">
+  <meta property="og:description" content="Explore cores e construa paletas com intenção estratégica.">
+  <meta property="og:url" content="https://cejera.com/design/cores/">
+  <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gerador estratégico de paletas | Cejera">
+  <meta name="twitter:description" content="Explore cores e construa paletas com intenção estratégica.">
+  <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,7 +31,9 @@
     }
 
     body {
-      background-color: #0d0000;
+      background:
+        linear-gradient(rgba(13, 0, 0, 0.95), rgba(13, 0, 0, 0.95)),
+        url('/assets/media/identity/paper-texture.webp') center / 720px auto;
       color: #ffffff;
       line-height: 1.6;
       overflow-x: hidden;
@@ -29,7 +47,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
+      background:
         linear-gradient(to right, rgba(247, 7, 7, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(247, 7, 7, 0.03) 1px, transparent 1px);
       background-size: 30px 30px;
@@ -38,7 +56,7 @@
     }
 
     .header {
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       background: rgba(34, 0, 0, 0.9);
@@ -47,6 +65,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #F70707;
+      gap: 1rem;
       z-index: 1000;
     }
 
@@ -68,27 +87,35 @@
     }
 
     .cta-button {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      color: #ffffff;
+      border: 2px solid #F70707;
       padding: 0.8rem 1.5rem;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      border-radius: 0;
       text-transform: uppercase;
-      font-weight: bold;
+      text-decoration: none !important;
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 900;
+      box-shadow: 5px 5px 0 #F70707;
     }
 
     .cta-button:hover {
-      background: #ffffff;
-      box-shadow: 0 0 15px #F70707;
-      transform: translateY(-2px);
+      color: #ffffff;
+      background: #2b0000;
+      box-shadow: 8px 8px 0 #F70707;
+      transform: translate(-2px, -2px);
+      text-decoration: none;
     }
 
     .container {
       max-width: 1200px;
-      margin: 100px auto 0;
+      margin: 24px auto 0;
       padding: 2rem;
       position: relative;
       z-index: 2;
@@ -112,8 +139,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, 
-        rgba(247, 7, 7, 0.05) 0%, 
+      background: linear-gradient(45deg,
+        rgba(247, 7, 7, 0.05) 0%,
         rgba(247, 7, 7, 0.02) 20%,
         rgba(247, 7, 7, 0.05) 40%,
         rgba(247, 7, 7, 0.08) 60%,
@@ -170,7 +197,7 @@
       justify-content: center;
     }
 
-    .control-title i {
+    .control-title .cejera-icon {
       font-size: 1.5rem;
     }
 
@@ -485,6 +512,25 @@
       opacity: 1;
     }
 
+    .palette-generator,
+    .control-group,
+    .option-btn,
+    .scheme-info,
+    .color-card,
+    .lock-btn,
+    .hex-code,
+    .generate-btn,
+    .action-btn {
+      border-radius: 0;
+    }
+
+    .cta-button:active,
+    .generate-btn:active,
+    .action-btn:active {
+      transform: translate(5px, 5px);
+      box-shadow: none;
+    }
+
     footer {
       background: #220000;
       padding: 2rem;
@@ -508,47 +554,47 @@
         flex-direction: column;
         padding: 0.8rem;
       }
-      
+
       .header-logo {
         width: 100px;
         margin-bottom: 0.5rem;
       }
-      
+
       .header-title {
         font-size: 1.5rem;
         margin-bottom: 0.8rem;
       }
-      
+
       .container {
         padding: 1.5rem;
-        margin-top: 120px;
+        margin-top: 24px;
       }
-      
+
       .palette-generator {
         padding: 1.5rem;
       }
-      
+
       .generator-title {
         font-size: 2rem;
       }
-      
+
       .controls {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      
+
       .control-group {
         padding: 1.2rem;
       }
-      
+
       .palette-display {
         grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       }
-      
+
       .color-card {
         height: 200px;
       }
-      
+
       .options-grid {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -558,80 +604,96 @@
       .header-title {
         font-size: 1.3rem;
       }
-      
+
       .cta-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
       }
-      
+
       .container {
         padding: 1rem;
-        margin-top: 140px;
+        margin-top: 20px;
       }
-      
+
       .palette-generator {
         padding: 1rem;
       }
-      
+
       .generator-title {
         font-size: 1.8rem;
       }
-      
+
       .control-title {
         font-size: 1.1rem;
       }
-      
+
       .option-btn {
         padding: 0.6rem;
         font-size: 0.8rem;
         max-width: 100px;
       }
-      
+
       .color-card {
         height: 180px;
       }
-      
+
       .hex-code {
         font-size: 0.9rem;
       }
-      
+
       .generate-btn {
         padding: 0.8rem 2rem;
         font-size: 1rem;
       }
-      
+
       .options-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    :is(a, button, input, select):focus-visible,
+    .slider:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
 </head>
 <body>
   <div class="grid-bg"></div>
   <div class="scanlines"></div>
   <div class="crt-effect"></div>
-  
+
   <div class="notification" id="notification">Código HEX copiado!</div>
 
   <header class="header">
-    <a href="https://cejera.com">
-      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
-    </a> 
+    <a href="/">
+      <img src="/assets/brand/cejera-03.svg" class="header-logo" alt="Cejera">
+    </a>
     <h1 class="header-title">GERADOR</h1>
-    <a href="https://cejera.com/design" class="cta-button">Quem sou eu?</a>
+    <a href="/design/" class="cta-button">Voltar ao design</a>
   </header>
 
   <div class="container">
     <div class="palette-generator">
       <h2 class="generator-title">GERADOR DE PALETA DE CORES</h2>
-      
+
       <div class="controls">
         <div class="control-group">
           <div class="control-title">
-            <i class="fas fa-palette"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#palette"></use></svg>
             <span>CONFIGURAÇÕES DA PALETA</span>
           </div>
-          
+
           <div class="slider-container">
             <div class="slider-label">
               <span>Número de cores:</span>
@@ -639,30 +701,30 @@
             </div>
             <input type="range" min="2" max="7" value="5" class="slider" id="color-count">
           </div>
-          
+
           <div class="options-grid">
             <div class="option-btn active" data-option="scheme" data-value="monochromatic">
-              <i class="fas fa-circle"></i>
+              <svg class="cejera-icon cejera-icon--signal cejera-icon--fill" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#circle"></use></svg>
               <span>Monocromática</span>
             </div>
             <div class="option-btn" data-option="scheme" data-value="analogous">
-              <i class="fas fa-adjust"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#contrast"></use></svg>
               <span>Análoga</span>
             </div>
             <div class="option-btn" data-option="scheme" data-value="complementary">
-              <i class="fas fa-exchange-alt"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#exchange"></use></svg>
               <span>Complementar</span>
             </div>
             <div class="option-btn" data-option="scheme" data-value="triadic">
-              <i class="fas fa-braille"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#grip"></use></svg>
               <span>Triádica</span>
             </div>
             <div class="option-btn" data-option="scheme" data-value="tetradic">
-              <i class="fas fa-th"></i>
-              <span>Tetradica</span>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#grid"></use></svg>
+              <span>Tetrádica</span>
             </div>
           </div>
-          
+
           <div class="scheme-info active" id="monochromatic-info">
             <p><strong>Monocromático:</strong> Variações de uma única cor, criando uma paleta harmoniosa e coesa.</p>
           </div>
@@ -676,71 +738,71 @@
             <p><strong>Triádico:</strong> Três cores equidistantes no círculo cromático, equilibradas e vibrantes.</p>
           </div>
           <div class="scheme-info" id="tetradic-info">
-            <p><strong>Tetradico:</strong> Duas duplas de cores complementares, oferecendo rica variedade.</p>
+            <p><strong>Tetrádico:</strong> Duas duplas de cores complementares, oferecendo rica variedade.</p>
           </div>
         </div>
-        
+
         <div class="control-group">
           <div class="control-title">
-            <i class="fas fa-sun"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sun"></use></svg>
             <span>LUMINOSIDADE</span>
           </div>
-          
+
           <div class="options-grid">
             <div class="option-btn" data-option="lightness" data-value="light">
-              <i class="fas fa-lightbulb"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#idea"></use></svg>
               <span>Claro</span>
             </div>
             <div class="option-btn" data-option="lightness" data-value="dark">
-              <i class="fas fa-moon"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#moon"></use></svg>
               <span>Escuro</span>
             </div>
             <div class="option-btn active" data-option="lightness" data-value="neutral">
-              <i class="fas fa-circle"></i>
+              <svg class="cejera-icon cejera-icon--signal cejera-icon--fill" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#circle"></use></svg>
               <span>Neutro</span>
             </div>
           </div>
-          
+
           <div class="control-title" style="margin-top: 1.5rem;">
-            <i class="fas fa-fire"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#fire"></use></svg>
             <span>SATURAÇÃO</span>
           </div>
-          
+
           <div class="options-grid">
             <div class="option-btn" data-option="saturation" data-value="vibrant">
-              <i class="fas fa-fire"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#fire"></use></svg>
               <span>Vibrante</span>
             </div>
             <div class="option-btn" data-option="saturation" data-value="muted">
-              <i class="fas fa-cloud"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#cloud"></use></svg>
               <span>Sóbrio</span>
             </div>
             <div class="option-btn active" data-option="saturation" data-value="neutral">
-              <i class="fas fa-circle"></i>
+              <svg class="cejera-icon cejera-icon--signal cejera-icon--fill" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#circle"></use></svg>
               <span>Neutro</span>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="palette-display" id="palette-display">
         <!-- Palette colors will be generated here -->
       </div>
-      
+
       <div class="generate-btn-container">
         <button class="generate-btn" id="generate-btn">
-          <i class="fas fa-sync-alt"></i>
+          <svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#refresh"></use></svg>
           GERAR NOVA PALETA
         </button>
       </div>
-      
+
       <div class="action-buttons">
         <button class="action-btn" id="copy-all-btn">
-          <i class="fas fa-copy"></i>
+          <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#copy"></use></svg>
           Copiar todos HEX
         </button>
         <button class="action-btn" id="reset-locks-btn">
-          <i class="fas fa-unlock"></i>
+          <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock-open"></use></svg>
           Desbloquear todas
         </button>
       </div>
@@ -749,7 +811,7 @@
 
   <footer>
     <div class="footer-content">
-      <p>Todos os direitos reservados | © 2025 Cejera | Ferramentas de design</p>
+      <p>Todos os direitos reservados | © 2026 Cejera® | Ferramentas de design</p>
     </div>
   </footer>
 
@@ -762,7 +824,7 @@
       scheme: 'monochromatic',
       lockedColors: []
     };
-    
+
     // Elementos DOM
     const paletteDisplay = document.getElementById('palette-display');
     const generateBtn = document.getElementById('generate-btn');
@@ -771,14 +833,14 @@
     const copyAllBtn = document.getElementById('copy-all-btn');
     const resetLocksBtn = document.getElementById('reset-locks-btn');
     const notification = document.getElementById('notification');
-    
+
     // Função para gerar uma cor baseada nas configurações
     function generateColor() {
       let hue, saturation, lightness;
-      
+
       // Definir matiz (hue)
       hue = Math.floor(Math.random() * 360);
-      
+
       // Definir saturação
       if (settings.saturation === 'vibrant') {
         saturation = Math.floor(Math.random() * 40) + 60; // 60-100%
@@ -787,7 +849,7 @@
       } else {
         saturation = Math.floor(Math.random() * 70) + 15; // 15-85%
       }
-      
+
       // Definir luminosidade
       if (settings.lightness === 'light') {
         lightness = Math.floor(Math.random() * 30) + 70; // 70-100%
@@ -796,19 +858,19 @@
       } else {
         lightness = Math.floor(Math.random() * 60) + 20; // 20-80%
       }
-      
+
       // Converter HSL para HEX
       return hslToHex(hue, saturation, lightness);
     }
-    
+
     // Função para converter HSL para HEX
     function hslToHex(h, s, l) {
       h /= 360;
       s /= 100;
       l /= 100;
-      
+
       let r, g, b;
-      
+
       if (s === 0) {
         r = g = b = l; // Achromatic
       } else {
@@ -820,33 +882,33 @@
           if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
           return p;
         };
-        
+
         const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         const p = 2 * l - q;
-        
+
         r = hue2rgb(p, q, h + 1/3);
         g = hue2rgb(p, q, h);
         b = hue2rgb(p, q, h - 1/3);
       }
-      
+
       const toHex = x => {
         const hex = Math.round(x * 255).toString(16);
         return hex.length === 1 ? '0' + hex : hex;
       };
-      
+
       return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
     }
-    
+
     // Função para gerar paleta baseada na teoria das cores
     function generateScheme(baseHue) {
       const colors = [];
-      
+
       // Forçar luminosidade neutra para esquema monocromático
       const lightnessSetting = settings.scheme === 'monochromatic' ? 'neutral' : settings.lightness;
-      
+
       // Ajustar número de cores para esquemas específicos
       let colorCount = settings.colorCount;
-      
+
       switch(settings.scheme) {
         case 'complementary':
           colorCount = 2;
@@ -858,18 +920,18 @@
           colorCount = 4;
           break;
       }
-      
+
       // Atualizar slider se necessário
       if (colorCount !== settings.colorCount) {
         settings.colorCount = colorCount;
         colorCountSlider.value = colorCount;
         colorCountValue.textContent = colorCount;
       }
-      
+
       // Definir base de saturação e luminosidade
-      const baseSaturation = settings.saturation === 'vibrant' ? 80 : 
+      const baseSaturation = settings.saturation === 'vibrant' ? 80 :
                             settings.saturation === 'muted' ? 30 : 50;
-      
+
       let baseLightness;
       if (lightnessSetting === 'light') {
         baseLightness = 70;
@@ -878,7 +940,7 @@
       } else {
         baseLightness = 50;
       }
-      
+
       // Gerar cores baseadas no esquema
       switch(settings.scheme) {
         case 'monochromatic':
@@ -889,7 +951,7 @@
             colors.push(hslToHex(baseHue, baseSaturation, clampedLightness));
           }
           break;
-          
+
         case 'analogous':
           // Análogo: cores adjacentes (+/- 30 graus)
           for (let i = 0; i < colorCount; i++) {
@@ -898,7 +960,7 @@
             colors.push(hslToHex(normalizedHue, baseSaturation, baseLightness));
           }
           break;
-          
+
         case 'complementary':
           // Complementar: cores opostas (180 graus)
           colors.push(
@@ -906,7 +968,7 @@
             hslToHex((baseHue + 180) % 360, baseSaturation, baseLightness)
           );
           break;
-          
+
         case 'triadic':
           // Triádico: três cores equidistantes (120 graus)
           colors.push(
@@ -915,7 +977,7 @@
             hslToHex((baseHue + 240) % 360, baseSaturation, baseLightness)
           );
           break;
-          
+
         case 'tetradic':
           // Tetradico: duas duplas complementares
           colors.push(
@@ -925,87 +987,87 @@
             hslToHex((baseHue + 210) % 360, baseSaturation, baseLightness)
           );
           break;
-          
+
         default:
           // Aleatório
           for (let i = 0; i < colorCount; i++) {
             colors.push(generateColor());
           }
       }
-      
+
       return colors;
     }
-    
+
     // Função para gerar e exibir a paleta
     function generatePalette() {
       paletteDisplay.innerHTML = '';
-      
+
       // Gerar uma cor base para esquemas que precisam
       const baseHue = Math.floor(Math.random() * 360);
       const schemeColors = generateScheme(baseHue);
-      
+
       for (let i = 0; i < settings.colorCount; i++) {
         // Se a cor estiver bloqueada, mantê-la
         if (settings.lockedColors[i]) {
           createColorCard(settings.lockedColors[i], i);
           continue;
         }
-        
+
         // Usar a cor do esquema
         createColorCard(schemeColors[i], i);
       }
     }
-    
+
     // Função para criar um cartão de cor
     function createColorCard(color, index) {
       const colorCard = document.createElement('div');
       colorCard.className = 'color-card';
-      
+
       const colorPreview = document.createElement('div');
       colorPreview.className = 'color-preview';
       colorPreview.style.backgroundColor = color;
-      
+
       const lockBtn = document.createElement('button');
       lockBtn.className = 'lock-btn';
-      lockBtn.innerHTML = '<i class="fas fa-lock-open"></i>';
-      
+      lockBtn.innerHTML = '<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock-open"></use></svg>';
+
       // Verificar se a cor está bloqueada
       if (settings.lockedColors[index]) {
         lockBtn.classList.add('locked');
-        lockBtn.innerHTML = '<i class="fas fa-lock"></i>';
+        lockBtn.innerHTML = '<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg>';
       }
-      
+
       lockBtn.addEventListener('click', () => {
         if (settings.lockedColors[index]) {
           settings.lockedColors[index] = null;
           lockBtn.classList.remove('locked');
-          lockBtn.innerHTML = '<i class="fas fa-lock-open"></i>';
+          lockBtn.innerHTML = '<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock-open"></use></svg>';
         } else {
           settings.lockedColors[index] = color;
           lockBtn.classList.add('locked');
-          lockBtn.innerHTML = '<i class="fas fa-lock"></i>';
+          lockBtn.innerHTML = '<svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg>';
         }
       });
-      
+
       const colorInfo = document.createElement('div');
       colorInfo.className = 'color-info';
-      
+
       const hexCode = document.createElement('div');
       hexCode.className = 'hex-code';
       hexCode.textContent = color;
-      
+
       hexCode.addEventListener('click', () => {
         copyToClipboard(color);
         showNotification('Código HEX copiado!');
       });
-      
+
       colorInfo.appendChild(hexCode);
       colorPreview.appendChild(lockBtn);
       colorCard.appendChild(colorPreview);
       colorCard.appendChild(colorInfo);
       paletteDisplay.appendChild(colorCard);
     }
-    
+
     // Função para copiar texto para a área de transferência
     function copyToClipboard(text) {
       const textarea = document.createElement('textarea');
@@ -1015,73 +1077,73 @@
       document.execCommand('copy');
       document.body.removeChild(textarea);
     }
-    
+
     // Função para mostrar notificação
     function showNotification(message) {
       notification.textContent = message;
       notification.classList.add('show');
-      
+
       setTimeout(() => {
         notification.classList.remove('show');
       }, 2000);
     }
-    
+
     // Função para copiar todos os códigos HEX
     function copyAllHexCodes() {
       const hexCodes = [];
       const hexElements = document.querySelectorAll('.hex-code');
-      
+
       hexElements.forEach(hex => {
         hexCodes.push(hex.textContent);
       });
-      
+
       copyToClipboard(hexCodes.join('\n'));
       showNotification('Todos os códigos HEX copiados!');
     }
-    
+
     // Event Listeners
     colorCountSlider.addEventListener('input', () => {
       settings.colorCount = parseInt(colorCountSlider.value);
       colorCountValue.textContent = settings.colorCount;
-      
+
       // Ajustar array de cores bloqueadas
       settings.lockedColors.length = settings.colorCount;
       generatePalette();
     });
-    
+
     generateBtn.addEventListener('click', generatePalette);
-    
+
     copyAllBtn.addEventListener('click', copyAllHexCodes);
-    
+
     resetLocksBtn.addEventListener('click', () => {
       settings.lockedColors = [];
       generatePalette();
     });
-    
+
     // Opções de configuração
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const option = btn.dataset.option;
         const value = btn.dataset.value;
-        
+
         // Remover classe ativa de todos os botões do grupo
         document.querySelectorAll(`[data-option="${option}"]`).forEach(b => {
           b.classList.remove('active');
         });
-        
+
         // Adicionar classe ativa ao botão clicado
         btn.classList.add('active');
-        
+
         // Atualizar configuração
         settings[option] = value;
-        
+
         // Mostrar informações do esquema
         document.querySelectorAll('.scheme-info').forEach(info => {
           info.classList.remove('active');
         });
         if (option === 'scheme') {
           document.getElementById(`${value}-info`).classList.add('active');
-          
+
           // Forçar luminosidade neutra para esquema monocromático
           if (value === 'monochromatic') {
             document.querySelectorAll('[data-option="lightness"]').forEach(b => {
@@ -1091,12 +1153,12 @@
             settings.lightness = 'neutral';
           }
         }
-        
+
         // Gerar nova paleta
         generatePalette();
       });
     });
-    
+
     // Gerar paleta inicial
     generatePalette();
   </script>

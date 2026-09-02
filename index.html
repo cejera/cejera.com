@@ -3,18 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEJERA® — EXCENTRICIDADE E AUTENTICIDADE | Moda, Design, Música</title>
-    <meta name="description" content="Marca rebelde com design inteligente. Curadoria de moda autêntica, design estratégico e música underground. Excentricidade e autenticidade.">
+    <title>Cejera | Universos, design, moda e música</title>
+    <meta name="description" content="Cejera é a assinatura do Cejera para universos narrativos, design, moda e música. Obras excêntricas construídas entre papel, código, imagem e som.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Cejera | Universos, design, moda e música">
+    <meta property="og:description" content="Uma assinatura autoral entre papel, código, imagem e som.">
+    <meta property="og:url" content="https://cejera.com/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cejera em colagem de papel preto, branco e vermelho">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cejera | Universos, design, moda e música">
+    <meta name="twitter:description" content="Uma assinatura autoral entre papel, código, imagem e som.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera®" />
+    <meta name="apple-mobile-web-app-title" content="Cejera" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cejera",
+      "url": "https://cejera.com/",
+      "logo": "https://cejera.com/assets/brand/cejera-00.svg",
+      "description": "Marca autoral dedicada a universos narrativos, design, moda e música.",
+      "sameAs": [
+        "https://instagram.com/cejeraa",
+        "https://linkedin.com/in/cejera",
+        "https://open.spotify.com/user/mr.xandoso",
+        "https://twitch.tv/cejera",
+        "https://kick.com/cejera"
+      ]
+    }
+    </script>
     <style>
         /* CSS Variables - Design System */
         :root {
@@ -45,9 +79,18 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo, .section-title, .banner-title, .footer-logo, .footer-heading {
+        h1, h2, h3, .logo, .section-title, .footer-logo, .footer-heading {
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .banner-title {
             font-family: 'Mynerve', cursive;
             font-weight: 400;
+            letter-spacing: 0;
             line-height: 1.2;
             text-transform: uppercase;
         }
@@ -703,7 +746,7 @@
         }
 
         /* Responsivo */
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
             .featured-grid {
                 grid-template-columns: 1fr;
                 gap: 28px;
@@ -717,19 +760,24 @@
             nav {
                 position: fixed;
                 top: 0;
-                right: -100%;
+                right: 0;
                 width: 80%;
                 height: 100vh;
                 background-color: var(--light);
                 flex-direction: column;
                 justify-content: center;
                 gap: 40px;
-                transition: var(--transition);
+                visibility: hidden;
+                clip-path: inset(0 0 0 100%);
+                pointer-events: none;
+                transition: clip-path 0.3s ease, visibility 0.3s;
                 padding: 40px;
                 box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             }
             nav[data-visible="true"] {
-                right: 0;
+                visibility: visible;
+                clip-path: inset(0);
+                pointer-events: auto;
             }
             .nav-menu {
                 flex-direction: column;
@@ -764,15 +812,254 @@
         *:focus:not(:focus-visible) {
             outline: none;
         }
-    </style>
-</head>
-<body>
 
-    <header id="main-header">
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 0.82fr) minmax(390px, 1.18fr);
+            align-items: center;
+            gap: clamp(36px, 6vw, 92px);
+            min-height: 650px;
+            padding-block: clamp(72px, 9vw, 126px);
+            text-align: left;
+        }
+
+        .hero-title {
+            display: block;
+            width: fit-content;
+            font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+            font-weight: 900;
+            line-height: 0.92;
+        }
+
+        .hero-subtitle,
+        .email-capture {
+            margin-inline: 0;
+        }
+
+        .email-capture {
+            align-items: flex-start;
+        }
+
+        .home-collage {
+            position: relative;
+            min-height: 500px;
+            isolation: isolate;
+        }
+
+        .home-collage::before {
+            content: "";
+            position: absolute;
+            inset: 10% 5% 6% 8%;
+            z-index: -1;
+            border: 3px solid var(--black);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            clip-path: polygon(4% 9%, 91% 0, 100% 17%, 96% 91%, 68% 100%, 5% 94%, 0 31%);
+            box-shadow: 13px 13px 0 var(--red);
+            transform: rotate(1.2deg);
+        }
+
+        .home-collage-core,
+        .home-floating,
+        .home-collage-note {
+            position: absolute;
+            display: block;
+        }
+
+        .home-collage-core {
+            top: 23%;
+            left: 19%;
+            z-index: 2;
+            width: 61%;
+            transform: rotate(-3deg);
+        }
+
+        .home-floating {
+            z-index: 3;
+            width: clamp(112px, 19vw, 205px);
+            filter: drop-shadow(7px 7px 0 rgb(247 7 7 / 65%));
+            pointer-events: none;
+        }
+
+        .home-floating--seste {
+            top: 0;
+            right: 0;
+            translate: calc(var(--pointer-x, 0) * 9px) calc(var(--pointer-y, 0) * 7px);
+            rotate: 8deg;
+            animation: homePaperDrift 6.2s ease-in-out infinite alternate;
+        }
+
+        .home-floating--piramesde {
+            bottom: 0;
+            left: 0;
+            translate: calc(var(--pointer-x, 0) * -7px) calc(var(--pointer-y, 0) * -9px);
+            rotate: -7deg;
+            animation: homePaperDriftReverse 7s ease-in-out infinite alternate;
+        }
+
+        .home-collage-note {
+            right: 3%;
+            bottom: 5%;
+            z-index: 4;
+            width: min(310px, 48%);
+            max-width: none;
+            padding: 20px 26px;
+            border: 2px solid var(--black);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 520px auto;
+            color: var(--black);
+            clip-path: polygon(2% 3%, 97% 0, 100% 9%, 98% 96%, 5% 100%, 0 91%, 1% 8%);
+            filter: drop-shadow(7px 7px 0 var(--red));
+            font-family: 'Mynerve', cursive;
+            font-size: clamp(1.2rem, 2.2vw, 1.9rem);
+            line-height: 1;
+            text-align: center;
+            transform: rotate(3deg);
+        }
+
+        .home-manifesto-card {
+            display: grid;
+            grid-template-columns: minmax(260px, 0.72fr) 1fr;
+            gap: clamp(20px, 4vw, 56px);
+            align-items: center;
+            margin-bottom: clamp(70px, 10vw, 130px);
+            padding: clamp(30px, 5vw, 62px);
+            border: 3px solid var(--red);
+            background:
+                linear-gradient(rgb(0 0 0 / 95%), rgb(0 0 0 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--light);
+            clip-path: polygon(1% 5%, 97% 0, 100% 13%, 99% 95%, 72% 100%, 2% 96%, 0 32%);
+            box-shadow: 12px 12px 0 var(--red);
+        }
+
+        .home-manifesto-card strong {
+            color: var(--red);
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(1.75rem, 3.8vw, 3.7rem);
+            font-weight: 900;
+            line-height: 0.98;
+            text-transform: uppercase;
+        }
+
+        .home-manifesto-card p {
+            margin: 0;
+            font-size: clamp(0.95rem, 1.55vw, 1.15rem);
+        }
+
+        .exit-intent {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            background: rgb(0 0 0 / 78%);
+            backdrop-filter: blur(4px);
+        }
+
+        .exit-intent[hidden] {
+            display: none;
+        }
+
+        .exit-intent__panel {
+            position: relative;
+            width: min(560px, 100%);
+            padding: clamp(24px, 5vw, 48px);
+            border: 3px solid var(--red);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            clip-path: polygon(2% 5%, 95% 0, 100% 13%, 97% 94%, 12% 100%, 0 86%);
+            box-shadow: 13px 13px 0 var(--red);
+            text-align: center;
+        }
+
+        .exit-intent__image {
+            width: min(390px, 88%);
+            margin: 0 auto 12px;
+        }
+
+        .exit-intent__panel p {
+            max-width: 390px;
+            margin: 0 auto 22px;
+        }
+
+        .exit-intent__close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: var(--black);
+            font: 900 1.2rem/1 'Source Code Pro', monospace;
+            cursor: pointer;
+        }
+
+        @keyframes homePaperDrift {
+            from { margin-top: 0; }
+            to { margin-top: -10px; }
+        }
+
+        @keyframes homePaperDriftReverse {
+            from { margin-bottom: -6px; }
+            to { margin-bottom: 8px; }
+        }
+
+        @media (max-width: 860px) {
+            .hero,
+            .home-manifesto-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 0;
+                text-align: center;
+            }
+
+            .hero-title,
+            .hero-subtitle,
+            .email-capture {
+                margin-inline: auto;
+            }
+
+            .email-capture {
+                align-items: center;
+            }
+
+            .home-collage {
+                min-height: clamp(390px, 105vw, 530px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Cejera",
+            "alternateName": "Cejera",
+            "url": "https://cejera.com/",
+            "description": "Assinatura autoral de Cejera para universos narrativos, design, moda e música.",
+            "inLanguage": "pt-BR"
+        }
+    </script>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+</head>
+<body class="site-shell legacy-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header id="main-header" data-header-cut>
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/home">
-                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera" class="logo-img brand-logo-registered">
                 </a>
             </div>
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
@@ -780,34 +1067,48 @@
             </button>
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu">
-                    <li><a href="https://cejera.com/home" class="nav-link active">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link">Contato</a></li>
+                    <li><a href="/" class="nav-link active" aria-current="page">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link">Moda</a></li>
+                    <li><a href="/design/" class="nav-link">Design</a></li>
+                    <li><a href="/musica/" class="nav-link">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
                 </ul>
                 <div class="header-cta">
-                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
                     <p class="cta-microcopy">Exclusivo para membros</p>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="hero container">
-            <h1 class="hero-title">Olá, mundo!</h1>
-            <p class="slogan">Excentricidade e Autenticidade</p>
-            <p class="hero-subtitle">
-                <strong>Moda autêntica</strong>, <strong>design estrategicamente bonito</strong> e <strong>música daora</strong>. 
-                Porque ser normal é muito chato e ser autêntico é meu superpoder.
-            </p>
-            <div class="email-capture">
-                <button type="button" id="clubinho-btn" class="btn">ENTRAR NO CLUBINHO</button>
+    <main id="conteudo">
+        <section class="hero container" data-float-stage>
+            <div class="hero-copy-block">
+                <p class="hero-kicker">// SISTEMA INICIADO //</p>
+                <h1 class="hero-title">Olá, mundo!</h1>
+                <p class="hero-subtitle">
+                    <strong>Moda autêntica</strong>, <strong>design estrategicamente bonito</strong> e <strong>música daora</strong>.
+                    Porque ser normal é muito chato e ser autêntico é meu superpoder.
+                </p>
+                <div class="email-capture">
+                    <button type="button" id="clubinho-btn" class="btn" data-waitlist-trigger data-waitlist-target="#home-waitlist">ENTRAR NO CLUBINHO</button>
+                </div>
+                <p class="email-microcopy">VAGAS ESGOTADAS / LISTA DE ESPERA</p>
             </div>
-            <p class="email-microcopy">Vagas esgotadas • Lista de espera</p>
+            <div class="home-collage" aria-hidden="true">
+                <img class="home-collage-core" src="/assets/media/identity/cards/ola.png" alt="" width="650" height="468">
+                <img class="home-floating home-floating--seste" src="/assets/media/identity/seste.png" alt="" width="368" height="430">
+                <img class="home-floating home-floating--piramesde" src="/assets/media/identity/piramesde.png" alt="" width="496" height="434">
+                <span class="home-collage-note">Excentricidade<br>e Autenticidade</span>
+            </div>
         </section>
+
+        <aside class="container home-manifesto-card" aria-label="Arquétipo autoral da Cejera" data-reveal>
+            <strong>Herói + Rebelde = Protagonista</strong>
+            <p>O rebelde rompe o papel herdado. O herói aceita as consequências. O protagonista faz os dois, reconhece a próxima ação possível e responde.</p>
+        </aside>
 
         <!-- DESTAQUES PRINCIPAIS: dois cards verticais 4:5 lado a lado -->
         <section class="banners-section container">
@@ -815,13 +1116,13 @@
             <div class="featured-grid">
                 <!-- CARD 1: PROJETO SUPERNOVA -->
                 <article class="banner-card featured-card">
-                    <a href="https://cejera.com/supernova" class="banner-link" target="_blank" rel="noopener noreferrer">
-                        <span class="banner-badge">• PROJETO •</span>
-                        <img src="supernova.file.png" alt="Projeto Supernova" class="banner-image" loading="eager">
+                    <a href="/supernova/" class="banner-link">
+                        <span class="banner-badge">PROJETO</span>
+                        <img src="/assets/media/home/supernova-file.webp" alt="Projeto Supernova" class="banner-image" width="1080" height="1080" loading="eager" fetchpriority="high">
                         <div class="banner-content">
                             <h3 class="banner-title">Projeto Supernova</h3>
                             <p class="banner-description">
-                                Uma explosão de criatividade, identidade e futuro. 
+                                Uma explosão de criatividade, identidade e futuro.
                             </p>
                             <span class="banner-cta">Explorar →</span>
                         </div>
@@ -830,9 +1131,9 @@
 
                 <!-- CARD 2: SUPERNOVA TEE -->
                 <article class="banner-card featured-card">
-                    <a href="https://cejera.com/moda" class="banner-link" target="_blank" rel="noopener noreferrer">
-                        <span class="banner-badge">• MODA •</span>
-                        <img src="supernovatee.png" alt="Supernova Tee" class="banner-image" loading="eager">
+                    <a href="/moda/" class="banner-link">
+                        <span class="banner-badge">MODA</span>
+                        <img src="/assets/media/home/supernova-tee.webp" alt="Supernova Tee" class="banner-image" width="1080" height="1350" loading="eager">
                         <div class="banner-content">
                             <h3 class="banner-title">Supernova Tee</h3>
                             <p class="banner-description">
@@ -848,9 +1149,9 @@
             <h2 class="section-title">EXPLORE MAIS</h2>
             <div class="secondary-grid">
                 <article class="banner-card secondary-card">
-                    <a href="https://cejera.com/moda" class="banner-link">
-                        <span class="banner-badge">— Moda</span>
-                        <img src="banner1.png" alt="Moda autêntica" class="banner-image" loading="lazy">
+                    <a href="/moda/" class="banner-link">
+                        <span class="banner-badge">Moda</span>
+                        <img src="/assets/media/home/moda.webp" alt="Moda autêntica" class="banner-image" width="1024" height="1024" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Confira a Loja!</h3>
                             <p class="banner-description">Enviamos para todo o Brasil.</p>
@@ -860,9 +1161,9 @@
                 </article>
 
                 <article class="banner-card secondary-card">
-                    <a href="https://cejera.com/design" class="banner-link">
-                        <span class="banner-badge">— Design</span>
-                        <img src="banner2.png" alt="Design estratégico" class="banner-image" loading="lazy">
+                    <a href="/design/" class="banner-link">
+                        <span class="banner-badge">Design</span>
+                        <img src="/assets/media/home/design.webp" alt="Design estratégico" class="banner-image" width="1000" height="1000" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Já pensou em... sei lá...</h3>
                             <p class="banner-description">Contratar um profissional de design?</p>
@@ -872,9 +1173,9 @@
                 </article>
 
                 <article class="banner-card secondary-card">
-                    <a href="https://cejera.com/musica" class="banner-link">
-                        <span class="banner-badge">— Música</span>
-                        <img src="banner3.png" alt="Experiência sinestésica" class="banner-image" loading="lazy">
+                    <a href="/musica/" class="banner-link">
+                        <span class="banner-badge">Música</span>
+                        <img src="/assets/media/home/musica.webp" alt="Experiência sinestésica" class="banner-image" width="1000" height="1000" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">DJ de verdade</h3>
                             <p class="banner-description">Sua festa não vai ser mais uma festa comum.</p>
@@ -885,8 +1186,8 @@
 
                 <article class="banner-card secondary-card">
                     <a href="https://www.linkedin.com/posts/cejera_nem-tudo-que-ia-faz-foi-voc%C3%AA-que-fez-activity-7417699329462685696-r19s" class="banner-link">
-                        <span class="banner-badge">— Design</span>
-                        <img src="1768517333434.jpg" alt="Post LinkedIn" class="banner-image" loading="lazy">
+                        <span class="banner-badge">Design</span>
+                        <img src="/assets/media/home/post-ia.webp" alt="Post LinkedIn" class="banner-image" width="1080" height="1350" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Post em destaque</h3>
                             <p class="banner-description">"EU QUE FIZ" (ou será que foi a IA?) | LinkedIn</p>
@@ -897,8 +1198,8 @@
 
                 <article class="banner-card secondary-card">
                     <a href="https://www.linkedin.com/posts/cejera_hip%C3%B3crates-acreditava-que-o-ser-humano-era-share-7462881246709346304-XYYQ" class="banner-link">
-                        <span class="banner-badge">— Branding</span>
-                        <img src="hipocrates.jpg" alt="Hipócrates e o Branding" class="banner-image" loading="lazy">
+                        <span class="banner-badge">Branding</span>
+                        <img src="/assets/media/home/hipocrates-branding.webp" alt="Hipócrates e o Branding" class="banner-image" width="1080" height="1350" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Hipócrates - Um cara legal</h3>
                             <p class="banner-description">Sanguíneo, colérico, melancólico e fleumático. Qual é você?</p>
@@ -909,8 +1210,8 @@
 
                 <article class="banner-card secondary-card">
                     <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" class="banner-link">
-                        <span class="banner-badge">— Música</span>
-                        <img src="banner6.png" alt="Playlist relax" class="banner-image" loading="lazy">
+                        <span class="banner-badge">Música</span>
+                        <img src="/assets/media/home/playlist-sono.webp" alt="Playlist relax" class="banner-image" width="300" height="300" loading="lazy" decoding="async">
                         <div class="banner-content">
                             <h3 class="banner-title">Playlist pra ouvir "com sono"</h3>
                             <p class="banner-description">Essa eu fiz especialmente pra vocês.</p>
@@ -927,29 +1228,19 @@
                 <h2 class="section-title">SESSÃO DE COISAS DESINTERESSANTES SOBRE MIM</h2>
                 <div class="reviews-grid">
                     <div class="review-card">
-                        <svg class="review-icon" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#self-award"></use></svg>
                         <p class="review-text">"O melhor (e mais bem conceituado) especialista de branding do meu bairro."</p>
-                        <p class="review-author">— Nomeado por mim mesmo</p>
+                        <p class="review-author">Nomeado por mim mesmo</p>
                     </div>
                     <div class="review-card">
-                        <svg class="review-icon" viewBox="0 0 24 24" fill="none">
-                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2"/>
-                            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#self-scan"></use></svg>
                         <p class="review-text">"Tentei ser famoso na internet aos 17 mas descobri aos 25 que isso é só pra quem é bom de verdade (sou inseguro)."</p>
-                        <p class="review-author">— Auto-análise sincera</p>
+                        <p class="review-author">Autoanálise sincera</p>
                     </div>
                     <div class="review-card">
-                        <svg class="review-icon" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 14C15.3137 14 18 11.3137 18 8C18 4.68629 15.3137 2 12 2C8.68629 2 6 4.68629 6 8C6 11.3137 8.68629 14 12 14Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M4 14V16C4 17.1046 4.89543 18 6 18H7M20 14V16C20 17.1046 19.1046 18 18 18H17" stroke="currentColor" stroke-width="2"/>
-                            <path d="M8 22H16" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 18V22" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                        <svg class="review-icon cejera-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="/assets/icons/cejera-system-v2.svg#maternal-orbit"></use></svg>
                         <p class="review-text">"Minha mãe diz que eu sou talentoso. Ela também diz que meu irmão é bonito, então a credibilidade é questionável."</p>
-                        <p class="review-author">— Avaliação Materna Independente</p>
+                        <p class="review-author">Avaliação materna independente</p>
                     </div>
                 </div>
             </div>
@@ -960,7 +1251,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
                     <div class="footer-about">
                         Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
                         Ouça, veja, vista. Seja protagonista!
@@ -969,16 +1260,17 @@
                 <div class="footer-links-container">
                     <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home">Início</a></li>
-                        <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="https://cejera.com/design">Design</a></li>
-                        <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
-                        <li><a href="https://cejera.com/contato">Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
                     </ul>
                 </div>
-                <div class="footer-newsletter">
+                <div class="footer-newsletter" id="home-waitlist" data-waitlist-target>
                     <h3 class="footer-heading">Clubinho Divertido</h3>
                     <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
                     <form class="footer-form" id="waitlist-form">
@@ -987,31 +1279,42 @@
                     </form>
                     <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
                     <p style="margin-top: 20px; font-size: 0.8rem;">
-                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
-                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                        <a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> /
+                        <a href="/termos/" style="color: var(--red);">Termos de uso</a>
                     </p>
                 </div>
             </div>
             <div class="footer-social-fullwidth">
                 <div class="container">
                     <div class="social-links-grid">
-                        <a href="https://instagram.com/cejeraa" class="social-link"><i class="fab fa-instagram social-icon"></i><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
-                        <a href="https://twitter.com/cejeraaa" class="social-link"><i class="fab fa-twitter social-icon"></i><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
-                        <a href="https://linkedin.com/in/cejera" class="social-link"><i class="fab fa-linkedin-in social-icon"></i><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
-                        <a href="https://t.me/cejera" class="social-link"><i class="fab fa-telegram social-icon"></i><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
-                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><i class="fab fa-spotify social-icon"></i><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
-                        <a href="https://twitch.tv/cejera" class="social-link"><i class="fab fa-twitch social-icon"></i><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
-                        <a href="https://kick.com/cejera" class="social-link"><i class="fas fa-gamepad social-icon"></i><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
-                        <a href="https://cejera.com/links" class="social-link"><i class="fas fa-plus social-icon"></i><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                        <a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                        <a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
+                        <a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                        <a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                        <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                        <a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                        <a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                        <a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+                <p>© 2026 Cejera®. EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
             </div>
         </div>
     </footer>
 
+    <div class="exit-intent" data-exit-intent hidden>
+        <section class="exit-intent__panel" role="dialog" aria-modal="true" aria-labelledby="exit-intent-title">
+            <button class="exit-intent__close" type="button" aria-label="Fechar aviso" data-exit-close>×</button>
+            <img class="exit-intent__image" src="/assets/media/identity/cards/tchau.png" alt="Tchau" width="1000" height="500" loading="lazy" decoding="async">
+            <h2 id="exit-intent-title">Já vai?</h2>
+            <p>Sem chantagem de marketing. Só um último sinal da Cejera antes de você sair.</p>
+            <button class="btn" type="button" data-exit-close>CONTINUAR EXPLORANDO</button>
+        </section>
+    </div>
+
+    <script src="/assets/js/site.js" defer></script>
     <script>
         (function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -1035,9 +1338,6 @@
                 if (window.scrollY > 50) header.classList.add('header-scroll');
                 else header.classList.remove('header-scroll');
             });
-            document.getElementById('clubinho-btn')?.addEventListener('click', () => {
-                window.open('https://wa.me/5535999286246?text=' + encodeURIComponent("Cejera, quero entrar no clubinho!"), '_blank');
-            });
             document.getElementById('waitlist-form')?.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = document.getElementById('waitlist-email')?.value.trim();
@@ -1045,7 +1345,7 @@
                     alert('Por favor, insira um e-mail válido!');
                     return;
                 }
-                window.open('https://wa.me/5535999286246?text=' + encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`), '_blank');
+                window.open('https://wa.me/5535999286246?text=' + encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`), '_blank', 'noopener,noreferrer');
                 document.getElementById('waitlist-email').value = '';
                 alert('Obrigado! Redirecionando para o WhatsApp.');
             });

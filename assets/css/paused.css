@@ -1,0 +1,195 @@
+.paused-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: safe center;
+    justify-content: center;
+    padding: clamp(18px, 3vh, 30px) clamp(18px, 4vw, 42px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: rgb(0 0 0 / 92%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.paused-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.paused-open {
+    overflow: hidden !important;
+}
+
+.paused-panel {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: 100%;
+    padding: clamp(30px, 6vw, 68px);
+    overflow: hidden;
+    scrollbar-color: #f70707 #080808;
+    border: 2px solid #f70707;
+    background:
+        linear-gradient(rgb(8 8 8 / 95%), rgb(8 8 8 / 95%)),
+        url('/assets/media/identity/paper-texture.webp') center / 760px auto;
+    box-shadow: 12px 12px 0 #f70707;
+    color: #f7f7f7;
+    text-align: center;
+}
+
+.paused-panel::before,
+.paused-panel::after {
+    content: "";
+    position: absolute;
+    width: 44px;
+    height: 12px;
+    background: #f70707;
+}
+
+.paused-panel::before {
+    top: -7px;
+    left: 8%;
+    rotate: -2deg;
+}
+
+.paused-panel::after {
+    right: 9%;
+    bottom: 0;
+    rotate: 2deg;
+}
+
+.paused-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #f7f7f7;
+    font: 900 2rem/1 "Source Code Pro", monospace;
+    cursor: pointer;
+}
+
+.paused-close:hover,
+.paused-close:focus-visible {
+    color: #f70707;
+    outline: none;
+}
+
+.paused-art {
+    width: clamp(140px, 26vw, 250px);
+    max-height: 230px;
+    margin: 0 auto 20px;
+    object-fit: contain;
+    filter: drop-shadow(8px 8px 0 #f70707);
+    animation: paused-float 2.8s ease-in-out infinite alternate;
+}
+
+.paused-kicker {
+    margin: 0 0 10px;
+    color: #f70707;
+    font: 800 clamp(0.68rem, 1.5vw, 0.86rem)/1.35 "Source Code Pro", monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.paused-title {
+    max-width: 660px;
+    margin: 0 auto;
+    color: #f7f7f7;
+    font: 900 clamp(2rem, 6vw, 4.8rem)/0.92 "Source Code Pro", monospace;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+}
+
+.paused-copy {
+    max-width: 590px;
+    margin: 22px auto 0;
+    color: rgb(247 247 247 / 76%);
+    font: 500 clamp(0.85rem, 2vw, 1rem)/1.65 "Source Code Pro", monospace;
+}
+
+@keyframes paused-float {
+    from { transform: translateY(-7px) rotate(-1.5deg); }
+    to { transform: translateY(9px) rotate(1deg); }
+}
+
+@media (max-width: 520px) {
+    .paused-panel {
+        padding: 54px 24px 40px;
+        box-shadow: 7px 7px 0 #f70707;
+    }
+
+    .paused-art {
+        max-height: 180px;
+    }
+}
+
+@media (max-height: 820px) {
+    .paused-panel {
+        padding: 34px clamp(26px, 5vw, 54px) 30px;
+    }
+
+    .paused-close {
+        top: 8px;
+        right: 12px;
+        width: 38px;
+        height: 38px;
+        font-size: 1.75rem;
+    }
+
+    .paused-art {
+        width: min(180px, 22vh);
+        max-height: 22vh;
+        margin-bottom: 12px;
+    }
+
+    .paused-kicker {
+        margin-bottom: 6px;
+    }
+
+    .paused-title {
+        font-size: clamp(1.75rem, 5vh, 3.1rem);
+        line-height: 0.95;
+    }
+
+    .paused-copy {
+        margin-top: 14px;
+        line-height: 1.45;
+    }
+}
+
+@media (max-height: 560px) {
+    .paused-overlay {
+        align-items: flex-start;
+        padding-block: 12px;
+    }
+
+    .paused-panel {
+        max-height: calc(100dvh - 24px);
+        padding-block: 28px 22px;
+        overflow-y: auto;
+    }
+
+    .paused-art {
+        width: min(120px, 18vh);
+        max-height: 18vh;
+        margin-bottom: 8px;
+    }
+
+    .paused-copy {
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .paused-overlay,
+    .paused-art {
+        animation: none;
+        transition: none;
+    }
+}

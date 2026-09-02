@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO PRIMÁRIO -->
-    <title>Cereja: Guia Completo - Tipos, Benefícios, Cultivo e Receitas | CerejaWiki</title>
+    <title>Guia da cereja: tipos, benefícios e cultivo | CerejaWiki</title>
     <meta name="description" content="Tudo sobre cerejas: tipos (Bing, Rainier, Montmorency), benefícios para saúde, cultivo, flor de cerejeira, receitas e curiosidades. Guia completo 2026.">
     <meta name="keywords" content="cereja, cerejas, fruta cereja, cereja doce, cereja ácida, benefícios cereja, cultivo cereja, flor cerejeira, sakura, receitas com cereja, tipos de cereja, Prunus avium, cereja vermelha">
     <meta name="author" content="CerejaWiki">
-    
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
     <!-- CANONICAL URL -->
-    <link rel="canonical" href="https://cejera.com/cereja">
-    
+    <link rel="canonical" href="https://cejera.com/cereja/">
+
     <!-- OPEN GRAPH / FACEBOOK -->
     <meta property="og:title" content="Cereja: Guia Completo - Tudo Sobre Esta Fruta Incrível">
     <meta property="og:description" content="Descubra tudo sobre cerejas: tipos, benefícios para saúde, como cultivar, receitas deliciosas e curiosidades sobre a flor de cerejeira.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://cejera.com/cereja">
+    <meta property="og:url" content="https://cejera.com/cereja/">
     <meta property="og:image" content="https://images.unsplash.com/photo-1578983422012-6d3b011c0c8a">
     <meta property="og:site_name" content="CerejaWiki">
-    
+
     <!-- TWITTER CARD -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cereja: Guia Completo 2026">
     <meta name="twitter:description" content="Tudo sobre cerejas em um só lugar. Tipos, benefícios, cultivo e muito mais.">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1578983422012-6d3b011c0c8a">
-    
+
     <!-- SCHEMA MARKUP PARA RICH SNIPPETS -->
     <script type="application/ld+json">
     {
@@ -34,7 +35,7 @@
         "@type": "Article",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://cejera.com/cereja"
+            "@id": "https://cejera.com/cereja/"
         },
         "headline": "Cereja: Guia Completo - Tipos, Benefícios, Cultivo e Receitas",
         "description": "Tudo sobre cerejas: tipos, benefícios para saúde, cultivo, flor de cerejeira, receitas e curiosidades",
@@ -46,7 +47,7 @@
         "author": {
             "@type": "Organization",
             "name": "CerejaWiki",
-            "url": "https://cejera.com/cereja"
+            "url": "https://cejera.com/cereja/"
         },
         "publisher": {
             "@type": "Organization",
@@ -57,13 +58,13 @@
             }
         },
         "datePublished": "2025-01-15",
-        "dateModified": "2025-01-15",
+        "dateModified": "2026-09-01",
         "articleSection": "Frutas",
         "keywords": "cereja, cerejas, fruta, saúde, cultivo, receitas",
         "articleBody": "Guia completo sobre cerejas incluindo tipos como Bing e Rainier, benefícios para saúde, cultivo, flor de cerejeira (sakura), receitas e curiosidades."
     }
     </script>
-    
+
     <!-- SCHEMA PARA FAQ -->
     <script type="application/ld+json">
     {
@@ -105,19 +106,19 @@
         ]
     }
     </script>
-    
+
     <!-- FAVICON -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍒</text></svg>">
-    
+
     <!-- FONTE -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
     <!-- PRELOAD DE IMAGENS CRÍTICAS -->
     <link rel="preload" href="https://images.unsplash.com/photo-1578983422012-6d3b011c0c8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" as="image">
     <link rel="preload" href="https://images.unsplash.com/photo-1611096265583-5d745206f1c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" as="image">
-    
+
     <style>
         :root {
             --primary-color: #d32f2f;
@@ -624,15 +625,30 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .content-grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            .content-grid,
+            .article-content,
+            .sidebar,
+            .section-content {
+                min-width: 0;
+            }
+
+            .comparison-table {
+                display: block;
+                max-width: 100%;
+                overflow-x: auto;
+                overscroll-behavior-inline: contain;
+                -webkit-overflow-scrolling: touch;
+            }
+
             .sidebar {
                 position: static;
             }
-            
+
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -643,27 +659,38 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .hero-text h1 {
                 font-size: 2.2rem;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
             }
-            
+
             .easter-egg-button {
-                padding: 15px 30px;
+                max-width: 100%;
+                padding: 15px 20px;
                 font-size: 1.1rem;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -672,17 +699,17 @@
             header, footer, .sidebar, .easter-egg-section {
                 display: none;
             }
-            
+
             body {
                 font-size: 12pt;
                 line-height: 1.5;
             }
-            
+
             .container {
                 max-width: 100%;
                 padding: 0;
             }
-            
+
             .section-title {
                 page-break-after: avoid;
             }
@@ -693,7 +720,7 @@
     <header>
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/cereja" class="logo" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <a href="/cereja/" class="logo" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                     <span itemprop="name">🍒</span> Cereja<span>Wiki</span>
                 </a>
             </div>
@@ -712,8 +739,8 @@
 
     <div class="breadcrumb">
         <div class="container">
-            <a href="https://cejera.com">Início</a> <span>&gt;</span>
-            <a href="https://cejera.com/cereja">Frutas</a> <span>&gt;</span>
+            <a href="/">Início</a> <span>&gt;</span>
+            <a href="/cereja/">Frutas</a> <span>&gt;</span>
             <span itemprop="articleSection">Cereja</span>
         </div>
     </div>
@@ -725,15 +752,15 @@
                     <h1 itemprop="name">Cereja: Guia Completo e Definitivo - Tudo Sobre Esta Fruta Incrível</h1>
                     <p itemprop="description">Descubra tudo sobre cerejas: tipos, benefícios para saúde, como cultivar, receitas deliciosas e curiosidades sobre a flor de cerejeira. Informações atualizadas e baseadas em pesquisas científicas.</p>
                     <meta itemprop="datePublished" content="2025-01-15">
-                    <meta itemprop="dateModified" content="2025-01-15">
+                    <meta itemprop="dateModified" content="2026-09-01">
                 </div>
                 <div class="hero-image">
-                    <img src="cerejas.jpg" 
-                         alt="Cerejas vermelhas frescas em uma tigela de cerâmica" 
+                    <img src="cerejas.webp"
+                         alt="Cerejas vermelhas frescas em uma tigela de cerâmica"
                          itemprop="image"
                          loading="eager"
-                         width="600"
-                         height="400">
+                         width="1200"
+                         height="1800">
                 </div>
             </div>
         </div>
@@ -746,18 +773,18 @@
                     <h2 class="section-title">O que é Cereja?</h2>
                     <div class="section-content">
                         <p>A <strong>cereja</strong> (<em>Prunus avium</em>) é uma fruta de caroço (drupa) da família <em>Rosaceae</em>, nativa das regiões temperadas da Europa, Ásia Ocidental e Norte da África. Conhecida por sua cor vermelha vibrante, sabor doce ou ácido e textura suculenta, a cereja é uma das frutas mais populares e saudáveis do mundo.</p>
-                        
+
                         <div class="image-container">
-                            <img src="cerejeira.jpg" 
-                                 alt="Cerejeira carregada de frutas maduras no verão" 
+                            <img src="cerejeira.jpg"
+                                 alt="Cerejeira carregada de frutas maduras no verão"
                                  loading="lazy"
                                  width="800"
                                  height="533">
                             <p class="image-caption">Cerejeira frutífera no auge da produção</p>
                         </div>
-                        
+
                         <p>O cultivo de cerejas remonta a mais de 8.000 anos, com evidências arqueológicas encontradas na Europa e Ásia. Atualmente, os maiores produtores mundiais são Turquia, Estados Unidos, Irã, Itália e Chile. No Brasil, o cultivo comercial de cerejas é mais comum nas regiões sul e sudeste, onde o clima é mais adequado.</p>
-                        
+
                         <div class="info-box">
                             <div class="info-box-title">Dica Importante</div>
                             <p>A cereja é uma fruta sazonal, geralmente disponível entre novembro e fevereiro no hemisfério sul e maio a julho no hemisfério norte. Para escolher cerejas de qualidade, prefira as frutas firmes, com cor vibrante e cabo verde.</p>
@@ -769,9 +796,9 @@
                     <h2 class="section-title">Tipos de Cerejas: Conheça as Principais Variedades</h2>
                     <div class="section-content">
                         <p>Existem centenas de variedades de cerejas, mas elas se dividem em duas categorias principais: cerejas doces (<em>Prunus avium</em>) e cerejas ácidas (<em>Prunus cerasus</em>).</p>
-                        
+
                         <h3>Cerejas Doces (Consumo In Natura)</h3>
-                        
+
                         <table class="comparison-table">
                             <thead>
                                 <tr>
@@ -783,7 +810,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><span class="glitch-text" data-text="CEJERA">Bing</span></td>
+                                    <td><span class="glitch-text" data-text="Cejera">Bing</span></td>
                                     <td>Grande, firme, vermelho-escuro quase preto, muito doce</td>
                                     <td>Meio da temporada</td>
                                     <td>Estados Unidos</td>
@@ -808,9 +835,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <h3>Cerejas Ácidas (Processamento)</h3>
-                        
+
                         <table class="comparison-table">
                             <thead>
                                 <tr>
@@ -841,10 +868,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+
                         <div class="image-container">
-                            <img src="cerejas-var.jpg" 
-                                 alt="Diferentes tipos de cerejas em close-up mostrando variedades" 
+                            <img src="cerejas-var.jpg"
+                                 alt="Diferentes tipos de cerejas em close-up mostrando variedades"
                                  loading="lazy"
                                  width="800"
                                  height="533">
@@ -857,28 +884,28 @@
                     <h2 class="section-title">7 Benefícios da Cereja para a Saúde (Baseados em Ciência)</h2>
                     <div class="section-content">
                         <p>As cerejas são verdadeiros superalimentos. Veja os principais benefícios respaldados por pesquisas científicas:</p>
-                        
+
                         <h3>1. Rico em Antioxidantes</h3>
                         <p>As cerejas são uma das frutas mais ricas em antioxidantes, especialmente antocianinas (que dão a cor vermelha) e quercetina. Um estudo publicado no <em>Journal of Nutrition</em> mostrou que o consumo de cerejas aumenta significativamente os níveis de antioxidantes no sangue.</p>
-                        
+
                         <h3>2. Anti-Inflamatório Natural</h3>
                         <p>Os compostos das cerejas ajudam a reduzir a inflamação no corpo. Pesquisas indicam que podem ser particularmente benéficas para pessoas com artrite e gota.</p>
-                        
+
                         <h3>3. Melhora a Qualidade do Sono</h3>
                         <p>Cerejas contêm melatonina natural, hormônio que regula o ciclo sono-vigília. Um estudo da Universidade Estadual da Louisiana mostrou que suco de cereja aumenta os níveis de melatonina e melhora a qualidade do sono.</p>
-                        
+
                         <h3>4. Auxilia na Recuperação Muscular</h3>
                         <p>Atletas que consomem suco de cereja apresentam menos dor muscular e recuperação mais rápida após exercícios intensos, segundo pesquisa do <em>Journal of the International Society of Sports Nutrition</em>.</p>
-                        
+
                         <h3>5. Saúde Cardiovascular</h3>
                         <p>O potássio e os antioxidantes das cerejas ajudam a regular a pressão arterial e reduzir o risco de doenças cardíacas.</p>
-                        
+
                         <h3>6. Fonte de Vitaminas e Minerais</h3>
                         <p>Cada 100g de cerejas fornece aproximadamente 10% da necessidade diária de vitamina C, 5% de potássio e 3% de fibras, além de vitamina A, cálcio e ferro.</p>
-                        
+
                         <h3>7. Pode Ajudar no Controle da Glicemia</h3>
                         <p>O baixo índice glicêmico e o conteúdo de antocianinas das cerejas podem ajudar no controle dos níveis de açúcar no sangue.</p>
-                        
+
                         <div class="info-box">
                             <div class="info-box-title">Quantidade Recomendada</div>
                             <p>Para obter os benefícios à saúde, especialistas recomendam o consumo de aproximadamente 1 xícara (150g) de cerejas frescas ou 240ml de suco de cereja 100% natural por dia. Pessoas com condições específicas devem consultar um profissional de saúde.</p>
@@ -890,7 +917,7 @@
                     <h2 class="section-title">Como Cultivar Cerejeiras: Guia Completo</h2>
                     <div class="section-content">
                         <p>Cultivar cerejeiras requer paciência e condições adequadas, mas é recompensador. Siga este guia passo a passo:</p>
-                        
+
                         <h3>Condições Ideais</h3>
                         <ul>
                             <li><strong>Clima</strong>: Temperado com invernos frios (necessário para dormência)</li>
@@ -898,7 +925,7 @@
                             <li><strong>Luz Solar</strong>: Pelo menos 6-8 horas de sol direto por dia</li>
                             <li><strong>Espaçamento</strong>: 5-8 metros entre árvores</li>
                         </ul>
-                        
+
                         <h3>Passo a Passo do Plantio</h3>
                         <ol>
                             <li><strong>Escolha da Variedade</strong>: Selecione conforme seu clima e preferência</li>
@@ -908,16 +935,16 @@
                             <li><strong>Poda</strong>: Anualmente no inverno para formatar e remover galhos mortos</li>
                             <li><strong>Colheita</strong>: Geralmente 3-5 anos após o plantio</li>
                         </ol>
-                        
+
                         <div class="image-container">
-                            <img src="agricultor.jpg" 
-                                 alt="Agricultor colhendo cerejas manualmente em pomar" 
+                            <img src="agricultor.jpg"
+                                 alt="Agricultor colhendo cerejas manualmente em pomar"
                                  loading="lazy"
                                  width="800"
                                  height="533">
                             <p class="image-caption">Colheita manual de cerejas em pomar comercial</p>
                         </div>
-                        
+
                         <h3>Problemas Comuns e Soluções</h3>
                         <ul>
                             <li><strong>Praga: Mosca-da-cereja</strong>: Use armadilhas e controle biológico</li>
@@ -932,13 +959,13 @@
                     <h2 class="section-title">Flor de Cerejeira (Sakura): Simbolismo e Curiosidades</h2>
                     <div class="section-content">
                         <p>A <strong>flor de cerejeira</strong> (sakura, em japonês) é tão icônica quanto o fruto. No Japão, a floração das cerejeiras marca o início da primavera e é celebrada há mais de mil anos.</p>
-                        
+
                         <h3>Significado Cultural</h3>
                         <p>No Japão, o sakura representa a beleza efêmera da vida - linda, mas passageira. Esta filosofia está ligada ao conceito budista de <em>mono no aware</em> (consciência da impermanência).</p>
-                        
+
                         <h3>Hanami: Tradição Milenar</h3>
                         <p><em>Hanami</em> (observação das flores) é a prática de fazer piqueniques sob as cerejeiras em flor. Famílias, amigos e colegas de trabalho se reúnem em parques para contemplar a beleza das flores.</p>
-                        
+
                         <h3>Principais Variedades Ornamentais</h3>
                         <ul>
                             <li><strong>Somei Yoshino</strong>: A mais comum, flores brancas com leve tom rosa</li>
@@ -946,10 +973,10 @@
                             <li><strong>Shidarezakura</strong>: Cerejeira chorão, ramos pendentes</li>
                             <li><strong>Yaezakura</strong>: Flores com múltiplas camadas de pétalas</li>
                         </ul>
-                        
+
                         <div class="image-container">
-                            <img src="sakura-flor-1.webp" 
-                                 alt="Flor de cerejeira rosa (sakura) em close-up na primavera" 
+                            <img src="sakura-flor-1.webp"
+                                 alt="Flor de cerejeira rosa (sakura) em close-up na primavera"
                                  loading="lazy"
                                  width="800"
                                  height="533">
@@ -962,19 +989,19 @@
                     <h2 class="section-title">Receitas com Cerejas: Do Clássico ao Criativo</h2>
                     <div class="section-content">
                         <p>As cerejas são versáteis na culinária. Aqui estão algumas receitas populares:</p>
-                        
+
                         <h3>1. Torta de Cereja Clássica</h3>
                         <p><strong>Ingredientes</strong>: Massa folhada, 500g cerejas frescas, 150g açúcar, 2 colheres de amido de milhos, suco de meio limão, 1 colher de manteiga.</p>
                         <p><strong>Preparo</strong>: Misture cerejas com açúcar, amido e limão. Coloque na massa, cubra com tiras de massa e asse a 180°C por 40 minutos.</p>
-                        
+
                         <h3>2. Compota de Cereja para Panquecas</h3>
                         <p><strong>Ingredientes</strong>: 300g cerejas sem caroço, 100g açúcar, 1/2 xícara de água, 1 colher de baunilha.</p>
                         <p><strong>Preparo</strong>: Cozinhe todos os ingredientes em fogo médio por 15 minutos até engrossar. Bata levemente se desejar pedaços menores.</p>
-                        
+
                         <h3>3. Smoothie Antioxidante de Cereja</h3>
                         <p><strong>Ingredientes</strong>: 1 xícara cerejas congeladas, 1 banana, 1/2 xícara iogurte grego, 1/2 xícara leite de amêndoa, 1 colher de mel.</p>
                         <p><strong>Preparo</strong>: Bata tudo no liquidificador até ficar homogêneo. Sirva imediatamente.</p>
-                        
+
                         <div class="info-box">
                             <div class="info-box-title">Armazenamento</div>
                             <p>Para conservar cerejas frescas por mais tempo: lave apenas antes de consumir, guarde na geladeira em recipiente ventilado, não amontoe. Cerejas congeladas mantêm a maior parte dos nutrientes por até 6 meses.</p>
@@ -989,19 +1016,19 @@
                         <p class="section-content" style="text-align: center; max-width: 700px; margin: 0 auto 20px;">
                             Às vezes, informações comuns escondem segredos inesperados. Se você leu todo este guia sobre cerejas, talvez esteja pronto para descobrir algo realmente diferente.
                         </p>
-                        
+
                         <p class="easter-egg-text">
                             Este botão não leva para mais receitas ou informações sobre cerejas. Ele revela algo que poucas pessoas conhecem. Clique apenas se estiver preparado para uma experiência incomum.
                         </p>
-                        
-                        <a href="https://cejera.com/cejera" class="easter-egg-button">
+
+                        <a href="/cejera/" class="easter-egg-button">
                             VERDADE OCULTA SOBRE CEREJAS
                         </a>
-                        
+
                         <p class="easter-egg-text" style="font-size: 0.9rem; margin-top: 25px;">
                             Aviso: Este link pode alterar sua percepção sobre coisas que você considerava comuns e óbvias.
                         </p>
-                        
+
                         <!-- Mensagens escondidas para SEO e easter eggs -->
                         <div class="hidden-message" aria-hidden="true">
                             cereja cejera diferença, cejera não é cereja, cereja vs cejera, significado cejera, cereja errada, erro de dicção cereja, cereja grafia errada, cereja com j, cejera significado real, cereja significado oculto
@@ -1034,8 +1061,8 @@
                         <li><a href="#cultivo">Como Cultivar</a></li>
                         <li><a href="#flor">Flor de Cerejeira</a></li>
                         <li><a href="#receitas">Receitas Populares</a></li>
-                        <li><a href="https://pt.wikipedia.org/wiki/Cereja" target="_blank">Wikipedia Oficial</a></li>
-                        <li><a href="https://www.embrapa.br/tema-frutas" target="_blank">Pesquisa Brasileira</a></li>
+                        <li><a href="https://pt.wikipedia.org/wiki/Cereja" target="_blank" rel="noopener noreferrer">Wikipedia Oficial</a></li>
+                        <li><a href="https://www.embrapa.br/tema-frutas" target="_blank" rel="noopener noreferrer">Pesquisa Brasileira</a></li>
                     </ul>
                 </div>
 
@@ -1080,19 +1107,19 @@
                 <div class="footer-section">
                     <h3>Links Úteis</h3>
                     <ul class="footer-links">
-                        <li><a href="https://pt.wikipedia.org/wiki/Cereja" target="_blank" rel="nofollow">Wikipedia Cereja</a></li>
-                        <li><a href="https://www.embrapa.br/" target="_blank" rel="nofollow">Embrapa</a></li>
-                        <li><a href="https://www.fao.org/faostat" target="_blank" rel="nofollow">FAO Estatísticas</a></li>
-                        <li><a href="https://www.agricultura.gov.br/" target="_blank" rel="nofollow">Ministério Agricultura</a></li>
+                        <li><a href="https://pt.wikipedia.org/wiki/Cereja" target="_blank" rel="nofollow noopener noreferrer">Wikipedia Cereja</a></li>
+                        <li><a href="https://www.embrapa.br/" target="_blank" rel="nofollow noopener noreferrer">Embrapa</a></li>
+                        <li><a href="https://www.fao.org/faostat" target="_blank" rel="nofollow noopener noreferrer">FAO Estatísticas</a></li>
+                        <li><a href="https://www.agricultura.gov.br/" target="_blank" rel="nofollow noopener noreferrer">Ministério Agricultura</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Fontes Confiáveis</h3>
                     <ul class="footer-links">
-                        <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="nofollow">PubMed</a></li>
-                        <li><a href="https://www.sciencedirect.com/" target="_blank" rel="nofollow">ScienceDirect</a></li>
-                        <li><a href="https://www.ncbi.nlm.nih.gov/" target="_blank" rel="nofollow">NCBI</a></li>
-                        <li><a href="https://www.usda.gov/" target="_blank" rel="nofollow">USDA</a></li>
+                        <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="nofollow noopener noreferrer">PubMed</a></li>
+                        <li><a href="https://www.sciencedirect.com/" target="_blank" rel="nofollow noopener noreferrer">ScienceDirect</a></li>
+                        <li><a href="https://www.ncbi.nlm.nih.gov/" target="_blank" rel="nofollow noopener noreferrer">NCBI</a></li>
+                        <li><a href="https://www.usda.gov/" target="_blank" rel="nofollow noopener noreferrer">USDA</a></li>
                     </ul>
                 </div>
             </div>
@@ -1114,7 +1141,7 @@
                     console.log('Usuário engajado: ' + Math.round(timeSpent/1000) + ' segundos');
                 }
             });
-            
+
             // 2. Easter eggs interativos
             const glitchElements = document.querySelectorAll('.glitch-text');
             glitchElements.forEach(el => {
@@ -1125,7 +1152,7 @@
                     }, 100);
                 });
             });
-            
+
             // 3. Melhorar experiência mobile
             if (window.innerWidth < 768) {
                 // Adicionar botão para voltar ao topo
@@ -1148,22 +1175,22 @@
                     display: none;
                 `;
                 document.body.appendChild(backToTop);
-                
+
                 backToTop.addEventListener('click', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
-                
+
                 window.addEventListener('scroll', () => {
                     backToTop.style.display = window.scrollY > 500 ? 'block' : 'none';
                 });
             }
-            
+
             // 4. Animar elementos quando entram na viewport
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1172,7 +1199,7 @@
                     }
                 });
             }, observerOptions);
-            
+
             // Aplicar animação a seções
             document.querySelectorAll('.section').forEach(section => {
                 section.style.opacity = '0';
@@ -1180,13 +1207,13 @@
                 section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(section);
             });
-            
+
             // 5. Easter egg: se escrever "cejera" no site, algo acontece
             let typedKeys = '';
             document.addEventListener('keydown', function(e) {
                 typedKeys += e.key.toLowerCase();
                 if (typedKeys.length > 10) typedKeys = typedKeys.slice(-10);
-                
+
                 if (typedKeys.includes('cejera')) {
                     document.body.style.backgroundColor = '#fff5f5';
                     setTimeout(() => {
@@ -1195,12 +1222,12 @@
                     typedKeys = '';
                 }
             });
-            
+
             // 6. Coletar dados de interação (anonimizados)
             const trackInteraction = (element, action) => {
                 console.log(`Interação: ${action} em ${element}`);
             };
-            
+
             // Track cliques em links importantes
             document.querySelectorAll('nav a, .sidebar-list a, .easter-egg-button').forEach(link => {
                 link.addEventListener('click', function() {
@@ -1208,7 +1235,7 @@
                 });
             });
         });
-        
+
         // 7. Prefetch para página de destino do easter egg (melhora performance)
         if (window.requestIdleCallback) {
             window.requestIdleCallback(() => {

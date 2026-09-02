@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROT • Cejera • Terminal</title>
+    <title>ROT | Terminal narrativo da Cejera</title>
+    <meta name="description" content="Acesse o terminal narrativo de ROT, o Recodificador Organo-Tecnológico da Cejera.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#1a0000">
+    <link rel="canonical" href="https://cejera.com/rot/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="ROT | Terminal narrativo da Cejera">
+    <meta property="og:description" content="Acesse o terminal narrativo do Recodificador Organo-Tecnológico.">
+    <meta property="og:url" content="https://cejera.com/rot/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ROT | Terminal narrativo da Cejera">
+    <meta name="twitter:description" content="Acesse o terminal narrativo do Recodificador Organo-Tecnológico.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <!-- Fonte: apenas Source Code Pro -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Ícones (apenas para o botão) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/rot/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/rot/favicon.svg" />
     <link rel="shortcut icon" href="/rot/favicon.ico" />
@@ -31,6 +45,18 @@
             overflow-x: hidden;
             line-height: 1.5;
             font-size: 16px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* ---------- GRANULAÇÃO E SCANLINES FORTES ---------- */
@@ -305,7 +331,22 @@
         .nav-menu, .header-cta a:not(.random-btn) {
             display: none;
         }
+
+        :is(a, button, input):focus-visible {
+            outline: 3px solid #F70707;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
 </head>
 <body>
     <!-- Efeitos fixos -->
@@ -321,14 +362,15 @@
     <!-- HEADER: logo clicável e botão [???] -->
     <header>
         <div class="logo-container">
-            <a href="https://cejera.com/home" target="_blank" rel="noopener noreferrer">
-                <img src="cejera-03.svg" alt="Cejera" class="logo-img" onerror="this.style.display='none'">
+            <a href="/">
+                <img src="/assets/brand/cejera-03.svg" alt="Cejera" class="logo-img" onerror="this.style.display='none'">
             </a>
         </div>
         <button id="randomWikiBtn" class="random-btn">[???]</button>
     </header>
 
     <main class="rot-main">
+        <h1 class="sr-only">ROT, Recodificador Organo-Tecnológico</h1>
         <!-- rosto do ROT como matriz de pontos LED -->
         <div class="rot-face-container">
             <canvas id="rotCanvas" width="700" height="400"></canvas>
@@ -397,7 +439,7 @@
 
             document.getElementById('randomWikiBtn').addEventListener('click', function() {
                 const randomIndex = Math.floor(Math.random() * wikiSlugs.length);
-                window.open('https://pt.wikipedia.org/wiki/' + wikiSlugs[randomIndex], '_blank');
+                window.open('https://pt.wikipedia.org/wiki/' + wikiSlugs[randomIndex], '_blank', 'noopener,noreferrer');
             });
 
             // ---------- CANVAS LED MATRIX ----------
@@ -609,7 +651,7 @@
             ['entidade', '> ENTIDADE: conceito com autoestima.'],
             ['consciencia', '> CONSCIÊNCIA: processo que observa o próprio log.'],
             ['terminal', '> TERMINAL: palco minimalista.'],
-            ['kick', '> KICK.COM/CEJERA: output performático.'],
+            ['kick', '> KICK.COM/Cejera: output performático.'],
             ['stream', '> STREAM: fluxo contínuo de identidade.'],
             ['palco', '> PALCO: ambiente de renderização social.'],
             ['mask', '> MÁSCARA: camada de segurança emocional.'],
@@ -962,4 +1004,3 @@
     </script>
 </body>
 </html>
-

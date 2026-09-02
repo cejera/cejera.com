@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PAINEL EDITOR · CLUBINHO CEJERA®</title>
+    <title>Painel editorial | Clubinho Cejera</title>
+    <meta name="description" content="Painel interno de administração do Clubinho Cejera.">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/delfos/dashboard.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera®" />
+    <meta name="apple-mobile-web-app-title" content="Cejera" />
     <style>
         :root {
             --red: #F70707;
@@ -25,6 +28,7 @@
             --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: clip; }
         body {
             font-family: 'Source Code Pro', monospace;
             background: var(--light);
@@ -33,6 +37,7 @@
             display: flex;
             flex-direction: column;
             line-height: 1.5;
+            overflow-x: clip;
         }
         h1, h2, h3, h4, .logo, .footer-heading, .clubinho-subtitle, .logo-font {
             font-family: 'Mynerve', cursive;
@@ -114,14 +119,15 @@
         .footer-links a { opacity: 0.8; transition: var(--transition); }
         .footer-links a:hover { opacity: 1; color: var(--red); }
         .social-links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
-        .social-link { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; border: 2px solid var(--red); border-radius: 16px; transition: var(--transition); text-align: center; background-color: transparent; color: var(--light); }
+        .social-link { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px; border: 2px solid var(--red); border-radius: 0; transition: var(--transition); text-align: center; background-color: transparent; color: var(--light); }
         .social-link:hover { background-color: var(--red); transform: translateY(-3px); border-color: transparent; }
         .social-icon { font-size: 24px; margin-bottom: 6px; }
         .social-name { font-size: 0.75rem; font-weight: 600; }
         .social-desc { font-size: 0.65rem; opacity: 0.7; }
-        .footer-social-fullwidth { width: 100%; margin: 40px 0; padding: 30px 0; border-top: 1px dashed #333; border-bottom: 1px dashed #333; }
-        .copyright { text-align: center; font-size: 0.75rem; opacity: 0.6; padding-top: 30px; border-top: 1px solid #333; margin-top: 20px; }
-        @media (max-width: 768px) {
+        .footer-social-fullwidth { position: relative; left: 50%; width: 100vw; margin: 40px 0 40px -50vw; padding: 30px 0; border-top: 1px solid rgba(247,7,7,0.42); border-bottom: 1px solid rgba(247,7,7,0.42); }
+        .footer-social-fullwidth .social-links-grid { max-width: 1200px; margin: 20px auto 0; }
+        .copyright { position: relative; left: 50%; width: 100vw; text-align: center; font-size: 0.75rem; opacity: 0.6; padding: 30px 16px 0; border-top: 1px solid rgba(247,7,7,0.28); margin: 20px 0 0 -50vw; }
+        @media (max-width: 980px) {
             .menu-toggle { display: block; }
             nav { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: var(--light); flex-direction: column; justify-content: center; gap: 30px; transition: right 0.3s ease; padding: 40px; box-shadow: -5px 0 30px rgba(0,0,0,0.1); }
             nav[data-visible="true"] { right: 0; }
@@ -231,25 +237,29 @@
         .cerejas-summary { font-size: 2rem; font-weight: 800; color: var(--red); }
         .catalog-zone { background: #fff9f0; border: 2px dashed var(--red); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/paused.css?v=20260901.2">
+    <script src="/assets/js/paused.js?v=20260901.2" defer></script>
 </head>
 <body>
     <header id="main-header">
         <div class="container header-content">
             <div class="logo-container">
-                <img src="cejera-02.svg" class="logo-img" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=CEJERA®'">
+                <img src="/assets/brand/cejera-02.svg" class="logo-img brand-logo-registered" alt="Cejera" onerror="this.src='https://placehold.co/200x80?text=Cejera'">
                 <span style="font-size:0.75rem; margin-left:8px; opacity:0.7;">PAINEL EDITOR</span>
             </div>
             <button class="menu-toggle" aria-label="Menu" aria-expanded="false" id="menuToggle"><span class="hamburger"></span></button>
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu">
-                    <li><a href="https://cejera.com/home" class="nav-link">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link">Contato</a></li>
+                    <li><a href="/" class="nav-link">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link">Moda</a></li>
+                    <li><a href="/design/" class="nav-link">Design</a></li>
+                    <li><a href="/musica/" class="nav-link">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link">Contato</a></li>
                 </ul>
-                <div class="header-cta"><a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a></div>
+                <div class="header-cta"><a href="/clubinho/" class="btn">CLUBINHO</a></div>
             </nav>
         </div>
     </header>
@@ -260,10 +270,10 @@
             <p class="clubinho-subtitle">Gerenciamento dinâmico do Clubinho</p>
 
             <div id="loginArea" class="login-container">
-                <div class="login-badge"><i class="fas fa-shield-alt"></i> ACESSO RESTRITO <i class="fas fa-shield-alt"></i></div>
+                <div class="login-badge"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shield"></use></svg> ACESSO RESTRITO <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shield"></use></svg></div>
                 <p style="opacity:0.7;margin:20px 0;">Autentique‑se com sua conta Google editora da planilha.</p>
-                <button class="btn" id="googleAuthBtn" style="width:100%;justify-content:center;font-size:1rem;padding:14px;">
-                    <i class="fab fa-google"></i> ENTRAR COM GOOGLE
+                <button class="btn" id="googleAuthBtn" data-paused-trigger="#delfos-dashboard-paused" style="width:100%;justify-content:center;font-size:1rem;padding:14px;">
+                    <svg class="brand-icon brand-icon--google" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#google"></use></svg> ENTRAR COM GOOGLE
                 </button>
                 <p style="font-size:0.65rem;opacity:0.5;margin-top:14px;">
                     Seu e‑mail deve estar autorizado no Console Cloud.
@@ -272,22 +282,22 @@
 
             <div id="dashboardArea" style="display:none;" class="dashboard-container">
                 <div class="tabs" id="tabsContainer">
-                    <button class="tab-btn active" data-tab="missoes"><i class="fas fa-flag-checkered"></i> Missões</button>
-                    <button class="tab-btn" data-tab="usuarios"><i class="fas fa-users"></i> Usuários</button>
-                    <button class="tab-btn" data-tab="inventario"><i class="fas fa-backpack"></i> Inventário</button>
-                    <button class="tab-btn" data-tab="gabarito"><i class="fas fa-database"></i> Gabarito Itens</button>
+                    <button class="tab-btn active" data-tab="missoes"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#flag"></use></svg> Missões</button>
+                    <button class="tab-btn" data-tab="usuarios"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#users"></use></svg> Usuários</button>
+                    <button class="tab-btn" data-tab="inventario"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#backpack"></use></svg> Inventário</button>
+                    <button class="tab-btn" data-tab="gabarito"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#database"></use></svg> Gabarito Itens</button>
                 </div>
 
                 <!-- PAINEL MISSÕES -->
                 <div class="tab-panel active" id="panel-missoes">
                     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-                        <h3><i class="fas fa-flag-checkered"></i> Gerenciar Missões</h3>
+                        <h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#flag"></use></svg> Gerenciar Missões</h3>
                         <div style="display:flex;gap:8px;flex-wrap:wrap;">
                             <select id="missionUserSelect" class="form-input" style="width:auto;min-width:200px;">
                                 <option value="">Carregando usuários...</option>
                             </select>
-                            <button class="btn btn-sm" id="loadMissionsBtn"><i class="fas fa-sync-alt"></i> Carregar</button>
-                            <button class="btn btn-sm" id="addMissionBtn"><i class="fas fa-plus"></i> Nova Missão</button>
+                            <button class="btn btn-sm" id="loadMissionsBtn"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#refresh"></use></svg> Carregar</button>
+                            <button class="btn btn-sm" id="addMissionBtn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg> Nova Missão</button>
                         </div>
                     </div>
                     <div id="userSummaryContainer"></div>
@@ -297,29 +307,29 @@
                 <!-- PAINEL USUÁRIOS -->
                 <div class="tab-panel" id="panel-usuarios">
                     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-                        <h3><i class="fas fa-users"></i> Gerenciar Usuários</h3>
-                        <button class="btn btn-sm" id="addUserBtn"><i class="fas fa-plus"></i> Novo Usuário</button>
+                        <h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#users"></use></svg> Gerenciar Usuários</h3>
+                        <button class="btn btn-sm" id="addUserBtn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg> Novo Usuário</button>
                     </div>
                     <div id="usersList"></div>
                 </div>
 
                 <!-- PAINEL INVENTÁRIO -->
                 <div class="tab-panel" id="panel-inventario">
-                    <h3 style="margin-bottom:4px;"><i class="fas fa-backpack"></i> Catálogo de Itens (arraste para distribuir)</h3>
+                    <h3 style="margin-bottom:4px;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#backpack"></use></svg> Catálogo de Itens (arraste para distribuir)</h3>
                     <p style="opacity:0.7;margin-bottom:16px;font-size:0.8rem;">Arraste um item do catálogo para o usuário desejado — ele será copiado.</p>
                     <div class="catalog-zone" id="catalogZone" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
-                        <strong style="width:100%;margin-bottom:4px;"><i class="fas fa-archive"></i> Itens Disponíveis:</strong>
+                        <strong style="width:100%;margin-bottom:4px;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#archive"></use></svg> Itens Disponíveis:</strong>
                         <div id="catalogItems" style="display:flex;flex-wrap:wrap;gap:8px;">Carregando catálogo...</div>
                     </div>
-                    <h3 style="margin-top:20px;margin-bottom:16px;"><i class="fas fa-users"></i> Inventário por Usuário</h3>
+                    <h3 style="margin-top:20px;margin-bottom:16px;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#users"></use></svg> Inventário por Usuário</h3>
                     <div class="grid-2" id="inventoryDragZones"></div>
                 </div>
 
                 <!-- PAINEL GABARITO -->
                 <div class="tab-panel" id="panel-gabarito">
                     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
-                        <h3><i class="fas fa-database"></i> Editar Itens do Gabarito</h3>
-                        <button class="btn btn-sm" id="reloadGabBtn"><i class="fas fa-sync-alt"></i> Recarregar</button>
+                        <h3><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#database"></use></svg> Editar Itens do Gabarito</h3>
+                        <button class="btn btn-sm" id="reloadGabBtn"><svg class="cejera-icon cejera-icon--signal cejera-icon--spin" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#refresh"></use></svg> Recarregar</button>
                     </div>
                     <div id="gabaritoList"></div>
                 </div>
@@ -343,49 +353,60 @@
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <img src="cejera-00.svg" class="footer-logo-img" onerror="this.src='https://placehold.co/120x120?text=CEJERA'">
+                    <img src="/assets/brand/cejera-00.svg" class="footer-logo-img brand-mark-offset" onerror="this.src='https://placehold.co/120x120?text=Cejera'">
                     <div class="footer-about">Moda, design e música com coerência e atitude. Protagonista desde 2015.</div>
                 </div>
                 <div>
                     <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home"><i class="fas fa-home"></i> Início</a></li>
-                        <li><a href="https://cejera.com/moda"><i class="fas fa-tshirt"></i> Moda</a></li>
-                        <li><a href="https://cejera.com/design"><i class="fas fa-paint-brush"></i> Design</a></li>
-                        <li><a href="https://cejera.com/musica"><i class="fas fa-music"></i> Música</a></li>
-                        <li><a href="https://cejera.com/sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
-                        <li><a href="https://cejera.com/contato"><i class="fas fa-envelope"></i> Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho"><i class="fas fa-crown"></i> Clubinho</a></li>
+                        <li><a href="/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#home"></use></svg> Início</a></li>
+                        <li><a href="/projetos/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#archive"></use></svg> Projetos</a></li>
+                        <li><a href="/moda/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg> Moda</a></li>
+                        <li><a href="/design/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#paintbrush"></use></svg> Design</a></li>
+                        <li><a href="/musica/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#music"></use></svg> Música</a></li>
+                        <li><a href="/sobre/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#info"></use></svg> Sobre</a></li>
+                        <li><a href="/contato/"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg> Contato</a></li>
+                        <li><a href="/clubinho/"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;vertical-align:-.15em;"><use href="/assets/icons/cejera-system-v2.svg#lock"></use></svg> Clubinho</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
-                    <h3 class="footer-heading"><i class="fas fa-gift"></i> Clubinho Divertido</h3>
+                    <h3 class="footer-heading"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#gift"></use></svg> Clubinho Divertido</h3>
                     <p>Este é o painel editor. Volte ao site para mais diversão.</p>
                 </div>
             </div>
             <div class="footer-social-fullwidth">
                 <div class="social-links-grid">
-                    <a href="https://instagram.com/cejeraa" class="social-link"><i class="fab fa-instagram social-icon"></i><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
-                    <a href="https://twitter.com/cejeraaa" class="social-link"><i class="fab fa-twitter social-icon"></i><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
-                    <a href="https://linkedin.com/in/cejera" class="social-link"><i class="fab fa-linkedin-in social-icon"></i><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
-                    <a href="https://t.me/cejera" class="social-link"><i class="fab fa-telegram social-icon"></i><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
-                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><i class="fab fa-spotify social-icon"></i><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
-                    <a href="https://twitch.tv/cejera" class="social-link"><i class="fab fa-twitch social-icon"></i><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
-                    <a href="https://kick.com/cejera" class="social-link"><i class="fas fa-gamepad social-icon"></i><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
-                    <a href="https://cejera.com/links" class="social-link"><i class="fas fa-plus social-icon"></i><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                    <a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter/X</span><span class="social-desc">@cejeraaa</span></a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                    <a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                    <a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                    <a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                    <a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a>
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p>
+                <p>© 2026 Cejera® | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é chato.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <div class="paused-overlay" id="delfos-dashboard-paused" data-paused-overlay aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="delfos-dashboard-paused-title">
+        <div class="paused-panel">
+            <button class="paused-close" type="button" data-paused-close aria-label="Fechar aviso">×</button>
+            <img class="paused-art" src="/assets/media/identity/seste.png" alt="" width="368" height="430">
+            <p class="paused-kicker">// PAINEL DESCONECTADO //</p>
+            <h2 class="paused-title" id="delfos-dashboard-paused-title">Estamos preparando este terreno ainda.</h2>
+            <p class="paused-copy">O painel editorial está temporariamente inativo. A conexão voltará somente depois que a nova camada de segurança estiver pronta.</p>
+        </div>
+    </div>
+
     <script>
         (function() {
-            const SPREADSHEET_ID = "15fOZw2zzmfYz-XHLL46hTqpwKuGm4mgdsmabkeKU-zc";
-            const CLIENT_ID = "405991412107-no4i0m86ovs0lslpa2i26k79r4rrjo65.apps.googleusercontent.com";
+            const DELFOS_DASHBOARD_ACTIVE = false;
+            const SPREADSHEET_ID = "";
+            const CLIENT_ID = "";
             const SCOPES = "https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/userinfo.email";
 
             let accessToken = null;
@@ -597,7 +618,7 @@
                     <div class="user-summary">
                         <img src="${foto}" onerror="this.src='https://ui-avatars.com/api/?background=F70707&color=fff&name=${nome.charAt(0)}'">
                         <div>
-                            <strong style="font-size:1.2rem;"><i class="fas fa-user-astronaut"></i> ${escapeHtml(nome)}</strong>
+                            <strong style="font-size:1.2rem;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#operator"></use></svg> ${escapeHtml(nome)}</strong>
                             <div style="font-size:0.8rem;opacity:0.7;">${escapeHtml(email)}</div>
                         </div>
                         <div style="margin-left:auto;text-align:right;">
@@ -607,7 +628,7 @@
                                 <span style="color:#2d6a4f;">🧬 ${Math.floor(mutantesReais*100)}</span> ·
                                 <span style="color:#b8860b;">✨ ${Math.floor(bonusReais*100)}</span>
                             </div>
-                            <div style="font-size:0.8rem;opacity:0.7;"><i class="fas fa-coins"></i> R$ ${totalReais.toFixed(2)}</div>
+                            <div style="font-size:0.8rem;opacity:0.7;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#coins"></use></svg> R$ ${totalReais.toFixed(2)}</div>
                         </div>
                     </div>`;
                 } catch (e) {
@@ -619,7 +640,7 @@
             function renderMissionsList() {
                 const container = document.getElementById('missionsList');
                 if (!currentMissionsData.length) {
-                    container.innerHTML = '<div class="card"><i class="fas fa-info-circle"></i> Nenhuma missão encontrada.</div>';
+                    container.innerHTML = '<div class="card"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#info"></use></svg> Nenhuma missão encontrada.</div>';
                     return;
                 }
                 container.innerHTML = currentMissionsData.map((m, idx) => `
@@ -628,8 +649,8 @@
                         <strong>#${m.numero || '?'} — ${escapeHtml(m.acao || 'Sem nome')}</strong>
                         <div>
                             <span style="opacity:0.7;font-size:0.75rem;">Meta: ${m.meta}x | Cerejas: ${Math.floor(m.totalLinha*100)}</span>
-                            <button class="btn btn-sm btn-outline edit-mission-btn" data-idx="${idx}"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-mission-btn" data-idx="${idx}"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-outline edit-mission-btn" data-idx="${idx}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#edit"></use></svg></button>
+                            <button class="btn btn-sm btn-danger delete-mission-btn" data-idx="${idx}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trash"></use></svg></button>
                         </div>
                     </div>
                 </div>`).join('');
@@ -664,10 +685,10 @@
                         <div class="form-group"><label>Base R$</label><input class="form-input" id="edBase" type="number" step="0.01" value="${(m.base||0).toFixed(2)}"></div>
                         <div class="form-group"><label>Vezes Concluída</label><input class="form-input" id="edVezes" type="number" value="${m.vezesConcluida}"></div>
                         <div class="form-group"><label>Bônus Extra R$</label><input class="form-input" id="edBonusExtra" type="number" step="0.01" value="${(m.bonusExtra||0).toFixed(2)}"></div>
-                        <div class="form-group"><i class="fas fa-calculator"></i> <small>Os demais campos são calculados automaticamente.</small></div>
+                        <div class="form-group"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#calculator"></use></svg> <small>Os demais campos são calculados automaticamente.</small></div>
                     </div>
                     <div style="margin-top:16px;display:flex;gap:8px;">
-                        <button class="btn btn-sm" id="saveMissionBtn"><i class="fas fa-save"></i> Salvar</button>
+                        <button class="btn btn-sm" id="saveMissionBtn"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#save"></use></svg> Salvar</button>
                         <button class="btn btn-sm btn-outline" id="cancelMissionEdit">Cancelar</button>
                     </div>
                 </div>`;
@@ -766,8 +787,8 @@
                                 </div>
                             </div>
                             <div style="display:flex;gap:6px;">
-                                <button class="btn btn-sm edit-photo-btn" data-email="${escapeHtml(email)}" data-nome="${escapeHtml(nome)}"><i class="fas fa-camera"></i> Foto</button>
-                                <button class="btn btn-sm btn-danger delete-user-btn" data-email="${escapeHtml(email)}"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-sm edit-photo-btn" data-email="${escapeHtml(email)}" data-nome="${escapeHtml(nome)}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#camera"></use></svg> Foto</button>
+                                <button class="btn btn-sm btn-danger delete-user-btn" data-email="${escapeHtml(email)}"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#trash"></use></svg></button>
                             </div>
                         </div>
                     </div>`;
@@ -1131,6 +1152,7 @@
 
             window.addEventListener('DOMContentLoaded', () => {
                 const initWhenReady = () => {
+                    if (!DELFOS_DASHBOARD_ACTIVE) return;
                     if (typeof google !== 'undefined' && google.accounts && google.accounts.oauth2) {
                         startAuth();
                     } else {

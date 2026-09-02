@@ -1,6 +1,12 @@
 {
-  "name": "Cejera®",
-  "short_name": "Cejera®",
+  "id": "/",
+  "name": "Cejera",
+  "short_name": "Cejera",
+  "description": "Universos autorais, design, moda e música entre papel, código, imagem e som.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "categories": ["design", "entertainment", "lifestyle"],
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

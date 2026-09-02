@@ -3,10 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cejera - Harmonizador</title>
+  <title>Harmonizador cromático | Cejera</title>
+  <meta name="description" content="Ferramenta da Cejera para testar harmonias cromáticas e relações entre cores.">
+  <meta name="author" content="Cejera">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0d0000">
+  <link rel="canonical" href="https://cejera.com/design/harmonizador/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cejera">
+  <meta property="og:title" content="Harmonizador cromático | Cejera">
+  <meta property="og:description" content="Teste harmonias cromáticas e relações entre cores com a ferramenta da Cejera.">
+  <meta property="og:url" content="https://cejera.com/design/harmonizador/">
+  <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Harmonizador cromático | Cejera">
+  <meta name="twitter:description" content="Teste harmonias cromáticas e relações entre cores.">
+  <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,7 +31,9 @@
     }
 
     body {
-      background-color: #0d0000;
+      background:
+        linear-gradient(rgba(13, 0, 0, 0.95), rgba(13, 0, 0, 0.95)),
+        url('/assets/media/identity/paper-texture.webp') center / 720px auto;
       color: #ffffff;
       line-height: 1.6;
       overflow-x: hidden;
@@ -30,7 +47,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
+      background:
         linear-gradient(to right, rgba(247, 7, 7, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(247, 7, 7, 0.03) 1px, transparent 1px);
       background-size: 30px 30px;
@@ -39,7 +56,7 @@
     }
 
     .header {
-      position: fixed;
+      position: sticky;
       top: 0;
       width: 100%;
       background: rgba(34, 0, 0, 0.9);
@@ -48,6 +65,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #F70707;
+      gap: 1rem;
       z-index: 1000;
     }
 
@@ -69,27 +87,35 @@
     }
 
     .cta-button {
-      background: #F70707;
-      color: #0d0000;
-      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      color: #ffffff;
+      border: 2px solid #F70707;
       padding: 0.8rem 1.5rem;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 7px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      border-radius: 0;
       text-transform: uppercase;
-      font-weight: bold;
+      text-decoration: none !important;
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 900;
+      box-shadow: 5px 5px 0 #F70707;
     }
 
     .cta-button:hover {
-      background: #ffffff;
-      box-shadow: 0 0 15px #F70707;
-      transform: translateY(-2px);
+      color: #ffffff;
+      background: #2b0000;
+      box-shadow: 8px 8px 0 #F70707;
+      transform: translate(-2px, -2px);
+      text-decoration: none;
     }
 
     .container {
       max-width: 1200px;
-      margin: 100px auto 0;
+      margin: 24px auto 0;
       padding: 2rem;
       position: relative;
       z-index: 2;
@@ -113,8 +139,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, 
-        rgba(247, 7, 7, 0.05) 0%, 
+      background: linear-gradient(45deg,
+        rgba(247, 7, 7, 0.05) 0%,
         rgba(247, 7, 7, 0.02) 20%,
         rgba(247, 7, 7, 0.05) 40%,
         rgba(247, 7, 7, 0.08) 60%,
@@ -171,7 +197,7 @@
       justify-content: center;
     }
 
-    .control-title i {
+    .control-title .cejera-icon {
       font-size: 1.5rem;
     }
 
@@ -486,6 +512,25 @@
       opacity: 1;
     }
 
+    .harmonizer,
+    .control-group,
+    .color-preview,
+    .color-input input,
+    .option-btn,
+    .color-card,
+    .hex-code,
+    .generate-btn,
+    .action-btn {
+      border-radius: 0;
+    }
+
+    .cta-button:active,
+    .generate-btn:active,
+    .action-btn:active {
+      transform: translate(5px, 5px);
+      box-shadow: none;
+    }
+
     footer {
       background: #220000;
       padding: 2rem;
@@ -511,47 +556,47 @@
         flex-direction: column;
         padding: 0.8rem;
       }
-      
+
       .header-logo {
         width: 100px;
         margin-bottom: 0.5rem;
       }
-      
+
       .header-title {
         font-size: 1.5rem;
         margin-bottom: 0.8rem;
       }
-      
+
       .container {
         padding: 1.5rem;
-        margin-top: 120px;
+        margin-top: 24px;
       }
-      
+
       .harmonizer {
         padding: 1.5rem;
       }
-      
+
       .harmonizer-title {
         font-size: 2rem;
       }
-      
+
       .input-section {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      
+
       .control-group {
         padding: 1.2rem;
       }
-      
+
       .harmony-display {
         grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
       }
-      
+
       .color-card {
         height: 200px;
       }
-      
+
       .options-grid {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -561,99 +606,115 @@
       .header-title {
         font-size: 1.3rem;
       }
-      
+
       .cta-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
       }
-      
+
       .container {
         padding: 1rem;
-        margin-top: 140px;
+        margin-top: 20px;
       }
-      
+
       .harmonizer {
         padding: 1rem;
       }
-      
+
       .harmonizer-title {
         font-size: 1.8rem;
       }
-      
+
       .control-title {
         font-size: 1.1rem;
       }
-      
+
       .option-btn {
         padding: 0.6rem;
         font-size: 0.8rem;
         max-width: 100px;
       }
-      
+
       .color-card {
         height: 180px;
       }
-      
+
       .hex-code {
         font-size: 0.9rem;
       }
-      
+
       .generate-btn {
         padding: 0.8rem 2rem;
         font-size: 1rem;
       }
-      
+
       .options-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    :is(a, button, input, select):focus-visible,
+    .slider:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
 </head>
 <body>
   <div class="grid-bg"></div>
   <div class="scanlines"></div>
   <div class="crt-effect"></div>
-  
+
   <div class="notification" id="notification">Código HEX copiado!</div>
 
   <header class="header">
-    <a href="https://cejera.com">
-      <img src="cejera-03.svg" class="header-logo" alt="Cejera">
-    </a> 
+    <a href="/">
+      <img src="/assets/brand/cejera-03.svg" class="header-logo" alt="Cejera">
+    </a>
     <h1 class="header-title">HARMONIZADOR</h1>
-    <a href="https://cejera.com/design" class="cta-button">Quem sou eu?</a>
+    <a href="/design/" class="cta-button">Voltar ao design</a>
   </header>
 
   <div class="container">
     <div class="harmonizer">
       <h2 class="harmonizer-title">HARMONIZAÇÃO DE CORES</h2>
-      
+
       <div class="input-section">
         <div class="control-group">
           <div class="control-title">
-            <i class="fas fa-palette"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#palette"></use></svg>
             <span>CORES PRINCIPAIS</span>
           </div>
-          
+
           <div class="color-inputs">
             <div class="color-input">
               <div class="color-preview" id="color1-preview" style="background-color: #F70707;"></div>
               <input type="text" id="color1-input" value="#F70707" placeholder="Cor principal (HEX)">
             </div>
-            
+
             <div class="color-input">
               <div class="color-preview" id="color2-preview" style="background-color: #7c0000;"></div>
               <input type="text" id="color2-input" value="#7c0000" placeholder="Cor secundária (HEX)">
             </div>
           </div>
         </div>
-        
+
         <div class="control-group">
           <div class="control-title">
-            <i class="fas fa-sliders-h"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sliders"></use></svg>
             <span>CONFIGURAÇÕES</span>
           </div>
-          
+
           <div class="slider-container">
             <div class="slider-label">
               <span>Número de cores:</span>
@@ -661,55 +722,55 @@
             </div>
             <input type="range" min="4" max="12" value="7" class="slider" id="color-count">
           </div>
-          
+
           <div class="control-title" style="margin-top: 1.5rem;">
-            <i class="fas fa-object-group"></i>
+            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#layout"></use></svg>
             <span>TIPO DE PALETA</span>
           </div>
-          
+
           <div class="options-grid">
             <div class="option-btn active" data-scheme="monochromatic">
-              <i class="fas fa-circle"></i>
+              <svg class="cejera-icon cejera-icon--signal cejera-icon--fill" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#circle"></use></svg>
               <span>Monocromática</span>
             </div>
             <div class="option-btn" data-scheme="analogous">
-              <i class="fas fa-adjust"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#contrast"></use></svg>
               <span>Análoga</span>
             </div>
             <div class="option-btn" data-scheme="complementary">
-              <i class="fas fa-exchange-alt"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#exchange"></use></svg>
               <span>Complementar</span>
             </div>
             <div class="option-btn" data-scheme="triadic">
-              <i class="fas fa-braille"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#grip"></use></svg>
               <span>Triádica</span>
             </div>
             <div class="option-btn" data-scheme="tetradic">
-              <i class="fas fa-th"></i>
+              <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#grid"></use></svg>
               <span>Tetrádica</span>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="generate-btn-container">
         <button class="generate-btn" id="generate-btn">
-          <i class="fas fa-magic"></i>
+          <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#magic"></use></svg>
           GERAR PALETA DE CORES
         </button>
       </div>
-      
+
       <div class="harmony-display" id="harmony-display">
         <!-- Harmonized colors will be displayed here -->
       </div>
-      
+
       <div class="action-buttons">
         <button class="action-btn" id="copy-all-btn">
-          <i class="fas fa-copy"></i>
+          <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#copy"></use></svg>
           Copiar todos HEX
         </button>
         <button class="action-btn" id="export-btn">
-          <i class="fas fa-download"></i>
+          <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#download"></use></svg>
           Exportar Paleta
         </button>
       </div>
@@ -718,7 +779,7 @@
 
   <footer>
     <div class="footer-content">
-      <p>Todos os direitos reservados | © 2025 Cejera | Ferramentas de design</p>
+      <p>Todos os direitos reservados | © 2026 Cejera® | Ferramentas de design</p>
     </div>
   </footer>
 
@@ -730,7 +791,7 @@
       colorCount: 7,
       scheme: 'monochromatic'
     };
-    
+
     // Elementos DOM
     const color1Input = document.getElementById('color1-input');
     const color2Input = document.getElementById('color2-input');
@@ -743,38 +804,55 @@
     const exportBtn = document.getElementById('export-btn');
     const notification = document.getElementById('notification');
     const harmonyDisplay = document.getElementById('harmony-display');
-    
+
+    function normalizeHex(value) {
+      const trimmed = value.trim();
+      if (!/^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(trimmed)) return null;
+      if (trimmed.length === 4) {
+        return `#${trimmed[1]}${trimmed[1]}${trimmed[2]}${trimmed[2]}${trimmed[3]}${trimmed[3]}`.toUpperCase();
+      }
+      return trimmed.toUpperCase();
+    }
+
+    function updateColorSetting(input, key) {
+      const normalized = normalizeHex(input.value);
+      input.setAttribute('aria-invalid', String(!normalized));
+      if (!normalized) return false;
+      settings[key] = normalized;
+      input.value = normalized;
+      updateColorPreviews();
+      return true;
+    }
+
     // Atualizar visualização das cores
     function updateColorPreviews() {
       color1Preview.style.backgroundColor = settings.color1;
       color2Preview.style.backgroundColor = settings.color2;
     }
-    
+
     // Ouvintes de eventos para os inputs de cores
-    color1Input.addEventListener('input', function() {
-      settings.color1 = this.value;
-      updateColorPreviews();
+    color1Input.addEventListener('change', function() {
+      updateColorSetting(this, 'color1');
     });
-    
-    color2Input.addEventListener('input', function() {
-      settings.color2 = this.value;
-      updateColorPreviews();
+
+    color2Input.addEventListener('change', function() {
+      updateColorSetting(this, 'color2');
     });
-    
+
     color1Preview.addEventListener('click', function() {
       color1Input.select();
     });
-    
+
     color2Preview.addEventListener('click', function() {
       color2Input.select();
     });
-    
+
     // Ouvinte para o controle deslizante
     colorCountSlider.addEventListener('input', function() {
       settings.colorCount = parseInt(this.value);
       colorCountValue.textContent = settings.colorCount;
     });
-    
+
     // Ouvintes para os botões de esquema
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.addEventListener('click', function() {
@@ -785,12 +863,12 @@
         settings.scheme = this.dataset.scheme;
       });
     });
-    
+
     // Função para converter HEX para HSL
     function hexToHSL(hex) {
       // Converter HEX para RGB
       let r = 0, g = 0, b = 0;
-      
+
       if (hex.length === 4) {
         r = parseInt(hex[1] + hex[1], 16);
         g = parseInt(hex[2] + hex[2], 16);
@@ -800,46 +878,46 @@
         g = parseInt(hex[3] + hex[4], 16);
         b = parseInt(hex[5] + hex[6], 16);
       }
-      
+
       // Converter RGB para HSL
       r /= 255;
       g /= 255;
       b /= 255;
-      
+
       const max = Math.max(r, g, b);
       const min = Math.min(r, g, b);
       let h, s, l = (max + min) / 2;
-      
+
       if (max === min) {
         h = s = 0; // Achromatic
       } else {
         const d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        
+
         switch (max) {
           case r: h = (g - b) / d + (g < b ? 6 : 0); break;
           case g: h = (b - r) / d + 2; break;
           case b: h = (r - g) / d + 4; break;
         }
-        
+
         h /= 6;
       }
-      
+
       return {
         h: Math.round(h * 360),
         s: Math.round(s * 100),
         l: Math.round(l * 100)
       };
     }
-    
+
     // Função para converter HSL para HEX
     function hslToHex(h, s, l) {
       h /= 360;
       s /= 100;
       l /= 100;
-      
+
       let r, g, b;
-      
+
       if (s === 0) {
         r = g = b = l; // Achromatic
       } else {
@@ -851,63 +929,63 @@
           if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
           return p;
         };
-        
+
         const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
         const p = 2 * l - q;
-        
+
         r = hue2rgb(p, q, h + 1/3);
         g = hue2rgb(p, q, h);
         b = hue2rgb(p, q, h - 1/3);
       }
-      
+
       const toHex = x => {
         const hex = Math.round(x * 255).toString(16);
         return hex.length === 1 ? '0' + hex : hex;
       };
-      
+
       return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
     }
-    
+
     // Função para gerar paleta estratégica
     function generateStrategicPalette() {
       const baseHSL = hexToHSL(settings.color1);
       const secondaryHSL = settings.color2 ? hexToHSL(settings.color2) : null;
-      
+
       const palette = [];
-      
+
       // Adicionar offwhite (baseado na cor principal) - não branco puro
       const offwhite = hslToHex(
         baseHSL.h,
         Math.max(5, Math.min(15, baseHSL.s * 0.2)),
         Math.min(98, Math.max(95, baseHSL.l + 65))
       );
-      
+
       // Adicionar offblack (baseado na cor principal) - não preto puro
       const offblack = hslToHex(
         baseHSL.h,
         Math.max(20, Math.min(40, baseHSL.s * 0.8)),
         Math.max(5, Math.min(10, baseHSL.l - 75))
       );
-      
+
       // Adicionar cores base
       palette.push({
         hex: settings.color1,
         role: 'Cor Principal'
       });
-      
+
       if (settings.color2) {
         palette.push({
           hex: settings.color2,
           role: 'Cor Secundária'
         });
       }
-      
+
       // Gerar cores adicionais baseadas no esquema
       const additionalColors = settings.colorCount - palette.length - 2; // Subtrair offwhite e offblack
-      
+
       for (let i = 0; i < additionalColors; i++) {
         let h, s, l;
-        
+
         switch(settings.scheme) {
           case 'monochromatic':
             // Variações de matiz, saturação e luminosidade
@@ -915,28 +993,28 @@
             s = Math.max(20, Math.min(100, baseHSL.s + (i % 2 === 0 ? 10 : -10)));
             l = Math.max(20, Math.min(80, baseHSL.l + (i * 10 - 20)));
             break;
-            
+
           case 'analogous':
             // Cores adjacentes
             h = (baseHSL.h + (i - Math.floor(additionalColors/2)) * 30) % 360;
             s = Math.max(30, Math.min(90, baseHSL.s + (i % 3 - 1) * 10));
             l = Math.max(30, Math.min(80, baseHSL.l + (i % 4 - 2) * 5));
             break;
-            
+
           case 'complementary':
             // Cores complementares
             h = (baseHSL.h + 180 + (i - Math.floor(additionalColors/2)) * 20) % 360;
             s = Math.max(40, Math.min(100, baseHSL.s + (i % 2 === 0 ? 5 : -5)));
             l = Math.max(30, Math.min(70, baseHSL.l + (i % 3 - 1) * 10));
             break;
-            
+
           case 'triadic':
             // Cores triádicas
             h = (baseHSL.h + i * 120) % 360;
             s = Math.max(40, Math.min(100, baseHSL.s + (i % 2 === 0 ? 5 : -5)));
             l = Math.max(30, Math.min(70, baseHSL.l + (i % 3 - 1) * 10));
             break;
-            
+
           case 'tetradic':
             // Cores tetrádicas (retângulo)
             h = (baseHSL.h + i * 90) % 360;
@@ -944,60 +1022,60 @@
             l = Math.max(30, Math.min(80, baseHSL.l + (i % 4 - 2) * 5));
             break;
         }
-        
+
         palette.push({
           hex: hslToHex(h, s, l),
           role: `Cor ${i+1}`
         });
       }
-      
+
       // Adicionar offwhite e offblack no início e no final
       palette.unshift({
         hex: offwhite,
         role: 'Offwhite'
       });
-      
+
       palette.push({
         hex: offblack,
         role: 'Offblack'
       });
-      
+
       return palette;
     }
-    
+
     // Exibir paleta gerada
     function displayPalette(palette) {
       harmonyDisplay.innerHTML = '';
-      
+
       palette.forEach((color, index) => {
         const colorCard = document.createElement('div');
         colorCard.className = 'color-card';
-        
+
         const colorPreview = document.createElement('div');
         colorPreview.className = 'color-preview-large';
         colorPreview.style.backgroundColor = color.hex;
         colorPreview.textContent = color.role;
-        colorPreview.style.color = color.hex === '#FFFFFF' ? '#000' : 
-                                 color.hex === '#000000' ? '#FFF' : 
+        colorPreview.style.color = color.hex === '#FFFFFF' ? '#000' :
+                                 color.hex === '#000000' ? '#FFF' :
                                  hexToHSL(color.hex).l > 50 ? '#000' : '#FFF';
-        
+
         const colorRole = document.createElement('div');
         colorRole.className = 'color-role';
         colorRole.textContent = color.role;
         colorRole.style.color = hexToHSL(color.hex).l > 50 ? '#000' : '#FFF';
-        
+
         const colorInfo = document.createElement('div');
         colorInfo.className = 'color-info';
-        
+
         const hexCode = document.createElement('div');
         hexCode.className = 'hex-code';
         hexCode.textContent = color.hex;
-        
+
         hexCode.addEventListener('click', () => {
           copyToClipboard(color.hex);
           showNotification('Código HEX copiado!');
         });
-        
+
         colorInfo.appendChild(hexCode);
         colorPreview.appendChild(colorRole);
         colorCard.appendChild(colorPreview);
@@ -1005,7 +1083,7 @@
         harmonyDisplay.appendChild(colorCard);
       });
     }
-    
+
     // Função para copiar texto para a área de transferência
     function copyToClipboard(text) {
       const textarea = document.createElement('textarea');
@@ -1015,36 +1093,42 @@
       document.execCommand('copy');
       document.body.removeChild(textarea);
     }
-    
+
     // Função para mostrar notificação
     function showNotification(message) {
       notification.textContent = message;
       notification.classList.add('show');
-      
+
       setTimeout(() => {
         notification.classList.remove('show');
       }, 2000);
     }
-    
+
     // Evento para gerar paleta
     generateBtn.addEventListener('click', () => {
+      const validPrimary = updateColorSetting(color1Input, 'color1');
+      const validSecondary = updateColorSetting(color2Input, 'color2');
+      if (!validPrimary || !validSecondary) {
+        showNotification('Use cores HEX como #F70707.');
+        return;
+      }
       const palette = generateStrategicPalette();
       displayPalette(palette);
     });
-    
+
     // Copiar todos os códigos HEX
     copyAllBtn.addEventListener('click', () => {
       const hexCodes = [];
       const hexElements = document.querySelectorAll('.hex-code');
-      
+
       hexElements.forEach(hex => {
         hexCodes.push(hex.textContent);
       });
-      
+
       copyToClipboard(hexCodes.join('\n'));
       showNotification('Todos os códigos HEX copiados!');
     });
-    
+
     // Exportar paleta
     exportBtn.addEventListener('click', () => {
       const palette = generateStrategicPalette();
@@ -1053,7 +1137,7 @@
         created: new Date().toISOString(),
         colors: palette
       };
-      
+
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(paletteData, null, 2));
       const downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href", dataStr);
@@ -1061,13 +1145,13 @@
       document.body.appendChild(downloadAnchorNode);
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
-      
+
       showNotification('Paleta exportada com sucesso!');
     });
-    
+
     // Inicializar
     updateColorPreviews();
-    
+
     // Gerar paleta inicial
     generateBtn.click();
   </script>

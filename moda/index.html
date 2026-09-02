@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEJERA® — LOJA | Supernova Tee já disponível!</title>
-    <meta name="description" content="Loja oficial CEJERA®. Lançamento da coleção ASTRO e BRASIL: camisetas oversized com estampas exclusivas. Moda autêntica e excêntrica.">
+    <title>Moda autoral | Cejera</title>
+    <meta name="description" content="Loja oficial Cejera. Lançamento da coleção ASTRO e BRASIL: camisetas oversized com estampas exclusivas. Moda autêntica e excêntrica.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#f70707">
+    <meta name="google-maps-api-key" content="">
+    <link rel="canonical" href="https://cejera.com/moda/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Moda autoral | Cejera">
+    <meta property="og:description" content="Peças autorais da Cejera com atendimento direto e compra pelo WhatsApp.">
+    <meta property="og:url" content="https://cejera.com/moda/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moda autoral | Cejera">
+    <meta name="twitter:description" content="Peças autorais da Cejera com atendimento direto e compra pelo WhatsApp.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera® - Moda" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Moda" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
         :root {
@@ -289,22 +304,25 @@
         }
 
         .hero-loja {
-            padding: 100px 0 60px;
-            text-align: center;
+            padding: clamp(92px, 11vw, 150px) 0 clamp(64px, 8vw, 104px);
+            text-align: left;
             position: relative;
             overflow: hidden;
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
+            font-size: clamp(4.8rem, 14vw, 11rem);
+            line-height: 0.78;
+            letter-spacing: -0.08em;
+            margin: 0 0 34px;
             position: relative;
-            display: inline-block;
+            display: block;
+            width: fit-content;
         }
 
         .hero-title::before,
         .hero-title::after {
-            content: '•';
+            content: none;
             color: var(--red);
             position: absolute;
             top: 50%;
@@ -322,8 +340,8 @@
 
         .hero-subtitle {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
+            max-width: 720px;
+            margin: 0 0 40px;
             color: #333;
         }
 
@@ -336,8 +354,17 @@
             font-family: 'Mynerve', cursive;
             font-size: 1.8rem;
             color: var(--red);
-            margin: 20px 0;
+            margin: 0 0 28px;
             text-transform: uppercase;
+        }
+
+        .hero-loja .hero-kicker {
+            margin-bottom: 22px;
+        }
+
+        .hero-loja .email-capture,
+        .hero-loja .email-microcopy {
+            width: fit-content;
         }
 
         .colecoes-section {
@@ -475,6 +502,24 @@
             object-fit: cover;
         }
 
+        .carrossel-container::after,
+        .adesivo-imagem::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgb(0 0 0 / 20%) 0,
+                rgb(0 0 0 / 20%) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            mix-blend-mode: multiply;
+            opacity: 0.62;
+        }
+
         .carrossel-btn {
             position: absolute;
             top: 50%;
@@ -584,37 +629,112 @@
             gap: 8px;
         }
 
-        .produto-btn i {
+        .produto-btn .cejera-icon {
             font-size: 1.1rem;
         }
 
         .status-banner {
             background: var(--black);
             color: var(--light);
-            padding: 60px 20px;
+            padding: clamp(34px, 5vw, 64px);
             margin: 60px auto;
-            border-radius: var(--radius);
-            text-align: center;
+            border: 2px solid var(--black);
+            border-radius: 0;
+            max-width: 1280px;
+            box-shadow: 12px 12px 0 var(--red);
+        }
+
+        .studio-invite {
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(1% 2%, 98% 0, 100% 8%, 99% 96%, 72% 100%, 2% 98%, 0 78%);
+        }
+
+        .studio-invite::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent 0 5px, rgb(247 7 7 / 7%) 6px);
+            mix-blend-mode: screen;
+        }
+
+        .studio-invite__grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+            gap: clamp(28px, 5vw, 64px);
+            align-items: center;
+        }
+
+        .studio-invite__copy {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            max-width: 1280px;
-            box-shadow: var(--shadow);
+            align-items: flex-start;
+            gap: 16px;
         }
 
-        .status-banner h2 {
-            font-size: 2.5rem;
-            margin-bottom: 8px;
-            color: var(--light);
-        }
-
-        .status-banner p {
-            font-size: 1.1rem;
-            max-width: 600px;
+        .studio-invite h2 {
+            max-width: 680px;
             margin: 0;
+            color: var(--light);
+            font-size: clamp(2.4rem, 5vw, 5.4rem);
+            line-height: 0.93;
+        }
+
+        .studio-invite p {
+            max-width: 620px;
+            margin: 0;
+            font-size: 1rem;
             opacity: 0.9;
+        }
+
+        .studio-invite__eyebrow,
+        .studio-invite__location {
+            color: var(--red);
+            font-size: 0.78rem !important;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 1 !important;
+        }
+
+        .studio-invite__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .studio-invite__map {
+            position: relative;
+            min-height: 420px;
+            border: 3px solid var(--light);
+            background: #120000;
+            box-shadow: 10px 10px 0 var(--red);
+            transform: rotate(0.6deg);
+        }
+
+        .studio-invite__map iframe {
+            display: block;
+            width: 100%;
+            height: 420px;
+            border: 0;
+            filter: grayscale(1) contrast(1.15) brightness(0.82);
+        }
+
+        .studio-invite__map::after {
+            content: 'MAPA // ESTÚDIO Cejera';
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            padding: 8px 10px;
+            color: var(--light);
+            background: var(--black);
+            border: 1px solid var(--red);
+            font: 800 0.7rem/1 'Source Code Pro', monospace;
+            letter-spacing: 0.08em;
         }
 
         .highlight {
@@ -623,21 +743,38 @@
         }
 
         .btn-estudio {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background: #F70707;
             color: white;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: 0.2s;
+            padding: 13px 20px;
+            border: 2px solid #F70707;
+            border-radius: 0;
+            box-shadow: 5px 5px 0 #fff;
+            font-weight: 900;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
             text-decoration: none;
             font-family: 'Source Code Pro', monospace;
+            text-transform: uppercase;
         }
 
         .btn-estudio:hover {
-            background: #ff4444;
-            transform: scale(1.02);
+            background: #9f0000;
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 #fff;
+        }
+
+        .btn-estudio:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+
+        .btn-estudio--ghost {
+            color: var(--light);
+            background: transparent;
+            border-color: var(--light);
+            box-shadow: 5px 5px 0 var(--red);
         }
 
         .adesivos-section {
@@ -973,7 +1110,7 @@
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 980px) {
             .menu-toggle {
                 display: flex;
             }
@@ -1184,7 +1321,10 @@
             color: #999;
         }
         .astro-section .preco-atual {
-            color: #fff;
+            padding: 5px 10px;
+            background: #f7f7f7;
+            color: #000;
+            box-shadow: 4px 4px 0 var(--red);
         }
         .astro-section .produto-badge {
             background: var(--red);
@@ -1254,7 +1394,11 @@
             color: #ccc;
         }
         .brasil-section .produto-card {
-            background: rgba(10, 30, 20, 0.9);
+            background-color: rgba(5, 16, 11, 0.96) !important;
+            background-image:
+                linear-gradient(rgb(5 16 11 / 96%), rgb(5 16 11 / 96%)),
+                url('/assets/media/identity/paper-texture.webp') !important;
+            background-size: auto, 760px auto !important;
             border: 1px solid var(--green);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
             transition: all 0.3s;
@@ -1267,7 +1411,8 @@
             transform: translateY(-10px);
         }
         .brasil-section .produto-nome {
-            color: #fff;
+            color: #fff !important;
+            text-shadow: 2px 2px 0 #000;
         }
         .brasil-section .produto-descricao {
             color: #ccc;
@@ -1276,7 +1421,19 @@
             color: var(--green);
         }
         .brasil-section .preco-atual {
-            color: #fff;
+            color: #fff !important;
+        }
+
+        @media (max-width: 860px) {
+            .studio-invite__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .studio-invite__map,
+            .studio-invite__map iframe {
+                min-height: 340px;
+                height: 340px;
+            }
         }
         .btn-brasil {
             background: linear-gradient(90deg, var(--green), var(--blue));
@@ -1311,14 +1468,16 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="site-shell legacy-page">
 
-    <header id="main-header">
+    <header data-header-cut id="main-header">
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/home">
-                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera Logo" class="logo-img brand-logo-registered">
                 </a>
             </div>
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
@@ -1326,15 +1485,16 @@
             </button>
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu" role="menubar">
-                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link active" role="menuitem" aria-current="page">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                    <li><a href="/" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link" role="menuitem">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link active" role="menuitem" aria-current="page">Moda</a></li>
+                    <li><a href="/design/" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="/musica/" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link" role="menuitem">Contato</a></li>
                 </ul>
                 <div class="header-cta">
-                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
                     <p class="cta-microcopy">Exclusivo para membros</p>
                 </div>
             </nav>
@@ -1343,40 +1503,63 @@
 
     <main id="main-content">
         <section class="hero-loja container">
+            <p class="hero-kicker">// PEÇAS AUTORAIS PARA CORPOS PROTAGONISTAS //</p>
             <h1 class="hero-title">LOJA</h1>
             <p class="slogan">Vista sua excentricidade</p>
             <p class="hero-subtitle">
-                <strong>Moda autêntica</strong>, <strong>peças limitadas</strong> e <strong>edições especiais</strong>. 
+                <strong>Moda autêntica</strong>, <strong>peças limitadas</strong> e <strong>edições especiais</strong>.
                 Porque ser normal é muito chato e se vestir com autenticidade é nosso superpoder.
             </p>
             <div class="email-capture">
                 <button type="button" id="pedido-btn" class="btn">Fazer pedido geral</button>
             </div>
-            <p class="email-microcopy"> • Pedidos via WhatsApp •</p>
+            <p class="email-microcopy">PEDIDOS VIA WHATSAPP</p>
         </section>
 
-        <div class="status-banner container">
-            <h2>• INAUGURAÇÃO DO ESTÚDIO CEJERA #01 •</h2>
-            <p>Visite nosso estúdio e garanta condições exclusivas no lançamento de coleções e outras novidades!</p>
-            <a href="https://share.google/uRd0XBwDGFTyI9iEJ" target="_blank" class="btn-estudio">📍Onde estamos</a>
-            <p style="margin-top: 20px;">A coleção <span class="highlight">AKA</span> já está em <span class="highlight">PRÉ-VENDA</span> com lançamento previsto para <span class="highlight">DEZEMBRO</span>. Reserve a sua!</p>
-        </div>
+        <section class="status-banner studio-invite container" aria-labelledby="studio-invite-title">
+            <div class="studio-invite__grid">
+                <div class="studio-invite__copy">
+                    <p class="studio-invite__eyebrow">// UM CONVITE PARA SAIR DA TELA //</p>
+                    <h2 id="studio-invite-title">CONHEÇA O ESTÚDIO Cejera #01</h2>
+                    <p>Conheça o espaço onde as coleções, identidades e ideias da Cejera ganham corpo. Visitas são combinadas diretamente para que a experiência não pareça atendimento de balcão.</p>
+                    <p class="studio-invite__location">AV. ÂNGELO CALAFIORI, 724A // MOCOQUINHA // SÃO SEBASTIÃO DO PARAÍSO, MG // 37957-118</p>
+                    <p>A coleção <span class="highlight">AKA</span> está em <span class="highlight">PRÉ-VENDA</span>. Confirme sua visita para combinar o melhor horário e conhecer as peças de perto.</p>
+                    <div class="studio-invite__actions">
+                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%2C%20Cejera!%20Quero%20confirmar%20uma%20visita%20ao%20est%C3%BAdio%20e%20receber%20a%20localiza%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="btn-estudio">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg>
+                            Confirmar visita
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118" target="_blank" rel="noopener noreferrer" class="btn-estudio btn-estudio--ghost">Abrir no Google Maps</a>
+                    </div>
+                </div>
+                <div class="studio-invite__map">
+                    <iframe
+                        id="studio-map"
+                        title="Mapa do Estúdio Cejera na Avenida Ângelo Calafiori, em São Sebastião do Paraíso"
+                        src="https://www.google.com/maps?q=Av.%20%C3%82ngelo%20Calafiori%2C%20724A%20-%20Mocoquinha%2C%20S%C3%A3o%20Sebasti%C3%A3o%20do%20Para%C3%ADso%20-%20MG%2C%2037957-118&amp;output=embed"
+                        data-map-query="Av. Ângelo Calafiori, 724A - Mocoquinha, São Sebastião do Paraíso - MG, 37957-118"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
 
         <!-- ========== COLEÇÃO SUPERNOVA ========== -->
         <section class="supernova-section" id="supernova">
             <div class="supernova-stars"></div>
             <div class="container supernova-content">
                 <div class="collection-header">
-                    <h2 class="collection-title">✦ SUPERNOVA ✦</h2>
+                    <h2 class="collection-title">SUPERNOVA</h2>
                     <p class="collection-subtitle">A explosão que ilumina o universo da moda. Peça única, presença absoluta.</p>
-                    <span class="collection-status collection-status--available">• LANÇAMENTO •</span>
+                    <span class="collection-status collection-status--available">LANÇAMENTO</span>
                 </div>
 
                 <div class="supernova-destaque">
                     <div class="carrossel-container" id="carrossel-supernova">
                         <div class="carrossel-slides">
                             <div class="carrossel-slide">
-                                <img src="supernovatee.png" alt="Supernova Tee - Camiseta exclusiva" class="produto-imagem">
+                                <img src="/assets/media/home/supernova-tee.webp" alt="Supernova Tee - Camiseta exclusiva" class="produto-imagem" width="1080" height="1350" loading="eager" fetchpriority="high">
                             </div>
                         </div>
                         <span class="produto-badge">✦ SUPERNOVA</span>
@@ -1385,13 +1568,13 @@
                         <h3 class="produto-nome">Supernova Tee</h3>
                         <p class="produto-descricao">
                             Camiseta oversized com estampa explosiva. Feita para quem brilha intensamente.
-                            Edição limitada • uma peça, um momento, uma estrela. (Parte do projeto <a href="https://cejera.com/supernova" style="font-weight: bold;" target="_blank">SUPERNOVA</a>)
+                            Edição limitada • uma peça, um momento, uma estrela. (Parte do projeto <a href="/supernova/" style="font-weight: bold;">SUPERNOVA</a>)
                         </p>
                         <div class="produto-preco" style="justify-content: center;">
                             <span class="preco-atual">R$99,90</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a Supernova Tee (R$99,90)." class="btn produto-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Garantir a minha
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a Supernova Tee (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Garantir a minha
                         </a>
                     </div>
                 </div>
@@ -1402,16 +1585,16 @@
         <section class="astro-section" id="astro">
             <div class="container astro-content">
                 <div class="collection-header">
-                    <h2 class="collection-title">✦ ASTRO ✦</h2>
+                    <h2 class="collection-title">ASTRO</h2>
                     <p class="collection-subtitle">Camisetas oversized com estampas cósmicas nas costas. Edição limitada — <strong>agora disponível novamente!</strong></p>
-                    <span class="collection-status collection-status--available">• DISPONÍVEL •</span>
+                    <span class="collection-status collection-status--available">DISPONÍVEL</span>
                 </div>
                 <div class="produtos-grid">
                     <!-- Card 1 -->
                     <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
-                                <div class="carrossel-slide"><img src="astro1.png" alt="Carta de tarot Arcano VII - A Cereja" class="produto-imagem"></div>
+                                <div class="carrossel-slide"><img src="astro1.webp" alt="Carta de tarot Arcano VII - A Cereja" class="produto-imagem" loading="lazy" decoding="async"></div>
                             </div>
                             <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
                         </div>
@@ -1421,8 +1604,8 @@
                             <div class="produto-preco">
                                 <span class="preco-atual">R$99,90</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Arcano VII - A Cereja (R$99,90)." class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Arcano VII - A Cereja (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                             </a>
                         </div>
                     </article>
@@ -1431,7 +1614,7 @@
                     <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
-                                <div class="carrossel-slide"><img src="astro2.png" alt="Constelação de Cereja" class="produto-imagem"></div>
+                                <div class="carrossel-slide"><img src="astro2.webp" alt="Constelação de Cereja" class="produto-imagem" loading="lazy" decoding="async"></div>
                             </div>
                             <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
                         </div>
@@ -1441,8 +1624,8 @@
                             <div class="produto-preco">
                                 <span class="preco-atual">R$99,90</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Constelação de Cereja (R$99,90)." class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Constelação de Cereja (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                             </a>
                         </div>
                     </article>
@@ -1451,7 +1634,7 @@
                     <article class="produto-card astro-glow" style="position: relative; overflow: hidden;">
                         <div class="carrossel-container" style="background:#111122;">
                             <div class="carrossel-slides">
-                                <div class="carrossel-slide"><img src="astro3.png" alt="Supergigante Vermelha - Cereja Estrela" class="produto-imagem"></div>
+                                <div class="carrossel-slide"><img src="astro3.webp" alt="Supergigante Vermelha - Cereja Estrela" class="produto-imagem" loading="lazy" decoding="async"></div>
                             </div>
                             <span class="produto-badge" style="background:var(--red);">✦ ASTRO</span>
                         </div>
@@ -1461,8 +1644,8 @@
                             <div class="produto-preco">
                                 <span class="preco-atual">R$99,90</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Supergigante Vermelha (R$99,90)." class="btn produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            <a href="https://wa.me/5535999286246?text=Olá, Cejera! Quero a camiseta Supergigante Vermelha (R$99,90)." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                             </a>
                         </div>
                     </article>
@@ -1478,14 +1661,14 @@
                 <div class="collection-header">
                     <h2 class="collection-title">BRASIL</h2>
                     <p class="collection-subtitle">Coleção que veste a alma verde amarela e azul. Camisetas oversized com três variações de estampa.</p>
-                    <span class="collection-status" style="background: linear-gradient(90deg, var(--green), var(--blue));">• DISPONÍVEL •</span>
+                    <span class="collection-status" style="background: linear-gradient(90deg, var(--green), var(--blue));">DISPONÍVEL</span>
                 </div>
                 <div class="produtos-grid" style="max-width: 900px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
                     <!-- Card Verde -->
                     <article class="produto-card">
                         <div class="carrossel-container" style="background: #0a2a1a; height: 380px;">
                             <div class="carrossel-slides">
-                                <div class="carrossel-slide"><img src="brasil2.jpg" alt="Camiseta Brasil Verde" class="produto-imagem"></div>
+                                <div class="carrossel-slide"><img src="brasil2.webp" alt="Camiseta Brasil Verde" class="produto-imagem" loading="lazy" decoding="async"></div>
                             </div>
                             <span class="produto-badge" style="background: var(--green);">BRASIL</span>
                         </div>
@@ -1500,8 +1683,8 @@
                             <div class="produto-preco">
                                 <span class="preco-atual">R$99,90</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Verde. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Verde. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                             </a>
                         </div>
                     </article>
@@ -1510,7 +1693,7 @@
                     <article class="produto-card">
                         <div class="carrossel-container" style="background: #0a1a2a; height: 380px;">
                             <div class="carrossel-slides">
-                                <div class="carrossel-slide"><img src="brasil3.jpg" alt="Camiseta Brasil Azul" class="produto-imagem"></div>
+                                <div class="carrossel-slide"><img src="brasil3.webp" alt="Camiseta Brasil Azul" class="produto-imagem" loading="lazy" decoding="async"></div>
                             </div>
                             <span class="produto-badge" style="background: var(--blue);">BRASIL</span>
                         </div>
@@ -1525,14 +1708,14 @@
                             <div class="produto-preco">
                                 <span class="preco-atual">R$99,90</span>
                             </div>
-                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Azul. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank">
-                                <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                            <a href="https://wa.me/5535999286246?text=Olá! Quero a camiseta BRASIL - Azul. Vou escolher a variação de estampa no chat. (Grande no peito, Grande nas costas ou Pequena peito esquerdo)" class="btn btn-brasil produto-btn" target="_blank" rel="noopener noreferrer">
+                                <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                             </a>
                         </div>
                     </article>
                 </div>
                 <div style="text-align: center; margin-top: 25px;">
-                    <p style="color:#00a651; font-size:0.9rem;"><i class="fas fa-tshirt"></i> Escolha sua estampa no atendimento via WhatsApp <i class="fas fa-tshirt"></i></p>
+                    <p style="color:#00a651; font-size:0.9rem;"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg> Escolha sua estampa no atendimento via WhatsApp <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#shirt"></use></svg></p>
                 </div>
             </div>
         </section>
@@ -1547,7 +1730,7 @@
             <div class="produtos-grid">
                 <article class="produto-card">
                     <div class="carrossel-container">
-                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-preto.png" alt="Moletom Preto Rot" class="produto-imagem"></div></div>
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-preto.webp" alt="Moletom Preto Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
                         <span class="produto-badge produto-badge--lancamento">— ROT</span>
                     </div>
                     <div class="produto-info">
@@ -1558,12 +1741,12 @@
                             <span class="preco-atual">R$179,82</span>
                             <span class="desconto">10%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Preto Rot." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Preto Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
                     </div>
                 </article>
                 <article class="produto-card">
                     <div class="carrossel-container">
-                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-branco.png" alt="Moletom Branco Rot" class="produto-imagem"></div></div>
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-branco.webp" alt="Moletom Branco Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
                         <span class="produto-badge produto-badge--lancamento">— ROT</span>
                     </div>
                     <div class="produto-info">
@@ -1574,12 +1757,12 @@
                             <span class="preco-atual">R$179,82</span>
                             <span class="desconto">10%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Branco Rot." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Branco Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
                     </div>
                 </article>
                 <article class="produto-card">
                     <div class="carrossel-container">
-                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-vermelho.png" alt="Moletom Vermelho Rot" class="produto-imagem"></div></div>
+                        <div class="carrossel-slides"><div class="carrossel-slide"><img src="moletom-rot-vermelho.webp" alt="Moletom Vermelho Rot" class="produto-imagem" loading="lazy" decoding="async"></div></div>
                         <span class="produto-badge produto-badge--lancamento">— ROT</span>
                     </div>
                     <div class="produto-info">
@@ -1590,7 +1773,7 @@
                             <span class="preco-atual">R$179,82</span>
                             <span class="desconto">10%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Vermelho Rot." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar um Moletom Vermelho Rot." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a>
                     </div>
                 </article>
             </div>
@@ -1603,17 +1786,17 @@
                 <p class="collection-subtitle">O básico que funciona (para causar impacto)</p>
                 <span class="collection-status collection-status--available">LANÇAMENTO: JÁ DISPONÍVEL!</span>
             </div>
-            
+
             <div class="produtos-grid">
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-camiseta-bazika">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="Camiseta+Preta.jpg" alt="Camiseta Bazika - Preta" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Camiseta+Vermelha.jpg" alt="Camiseta Bazika - Vermelha" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Camiseta+Branca.jpg" alt="Camiseta Bazika - Branca" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="Camiseta+Preta.webp" alt="Camiseta Bazika - Preta" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta+Vermelha.webp" alt="Camiseta Bazika - Vermelha" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta+Branca.webp" alt="Camiseta Bazika - Branca" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active" data-slide="0"></span>
                             <span class="indicador" data-slide="1"></span>
@@ -1629,8 +1812,8 @@
                             <span class="preco-atual">R$49,90</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika." class="btn produto-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar uma Camiseta Bazika." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                         </a>
                     </div>
                 </article>
@@ -1638,12 +1821,12 @@
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-calca-cargo">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="calca-bazika1.jpg" alt="Calça Cargo Bazika - Areia" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="calca-bazika2.jpg" alt="Calça Cargo Bazika - Cinza" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="calca-bazika3.jpg" alt="Calça Cargo Bazika - Preta" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="calca-bazika1.webp" alt="Calça Cargo Bazika - Areia" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="calca-bazika2.webp" alt="Calça Cargo Bazika - Cinza" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="calca-bazika3.webp" alt="Calça Cargo Bazika - Preta" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active" data-slide="0"></span>
                             <span class="indicador" data-slide="1"></span>
@@ -1659,8 +1842,8 @@
                             <span class="preco-atual">R$119,90</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar a Calça Bazika Cargo." class="btn produto-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar a Calça Bazika Cargo." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                         </a>
                     </div>
                 </article>
@@ -1668,12 +1851,12 @@
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-corta-vento-bazika">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="Corta-vento+Preto.jpg" alt="Corta-vento Bazika - Preto" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Corta-vento+Vermelho.jpg" alt="Corta-vento Bazika - Vermelho" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Corta-vento+Branco.jpg" alt="Corta-vento Bazika - Branco" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="Corta-vento+Preto.webp" alt="Corta-vento Bazika - Preto" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Corta-vento+Vermelho.webp" alt="Corta-vento Bazika - Vermelho" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Corta-vento+Branco.webp" alt="Corta-vento Bazika - Branco" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev" aria-label="Imagem anterior"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next" aria-label="Próxima imagem"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active" data-slide="0"></span>
                             <span class="indicador" data-slide="1"></span>
@@ -1689,8 +1872,8 @@
                             <span class="preco-atual">R$149,90</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar o Corta-vento Bazika." class="btn produto-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir via WhatsApp
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de solicitar o Corta-vento Bazika." class="btn produto-btn" target="_blank" rel="noopener noreferrer">
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir via WhatsApp
                         </a>
                     </div>
                 </article>
@@ -1702,19 +1885,19 @@
             <div class="collection-header">
                 <h2 class="collection-title">AKA</h2>
                 <p class="collection-subtitle">Feita pra quem também é conhecido como.</p>
-                <span class="collection-status collection-status--available">PRÉ-VENDA — LANÇAMENTO EM JULHO</span>
+                <span class="collection-status collection-status--available">PRÉ-VENDA — LANÇAMENTO PREVISTO: DEZEMBRO/2026</span>
             </div>
             <div class="produtos-grid">
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-camiseta-aka">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="Camiseta-aka+Preta.jpg" alt="Camiseta AKA - Preto" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Camiseta-aka+Branca.jpg" alt="Camiseta AKA - Branca" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Camiseta-aka+Vermelha.jpg" alt="Camiseta AKA - Vermelha" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Camiseta-aka+Cinza.jpg" alt="Camiseta AKA - Cinza" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Preta.webp" alt="Camiseta AKA - Preto" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Branca.webp" alt="Camiseta AKA - Branca" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Vermelha.webp" alt="Camiseta AKA - Vermelha" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Camiseta-aka+Cinza.webp" alt="Camiseta AKA - Cinza" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span><span class="indicador"></span>
                         </div>
@@ -1728,19 +1911,19 @@
                             <span class="preco-atual">R$77,70</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA da Camiseta AKA." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> PRÉ-VENDA</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA da Camiseta AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
                     </div>
                 </article>
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-short-aka">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="Short+Preto.jpg" alt="Short AKA" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Short+Branco.jpg" alt="Short AKA" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Short+Vermelho.jpg" alt="Short AKA" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="Short+Cinza.jpg" alt="Short AKA" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="Short+Preto.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Branco.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Vermelho.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="Short+Cinza.webp" alt="Short AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span><span class="indicador"></span>
                         </div>
@@ -1754,18 +1937,18 @@
                             <span class="preco-atual">R$77,70</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Short AKA." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> PRÉ-VENDA</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Short AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
                     </div>
                 </article>
                 <article class="produto-card">
                     <div class="carrossel-container" id="carrossel-conjunto-aka">
                         <div class="carrossel-slides">
-                            <div class="carrossel-slide"><img src="conjuntoaka01.png" alt="Conjunto AKA" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="conjuntoaka02.png" alt="Conjunto AKA" class="produto-imagem"></div>
-                            <div class="carrossel-slide"><img src="conjuntoaka03.png" alt="Conjunto AKA" class="produto-imagem"></div>
+                            <div class="carrossel-slide"><img src="conjuntoaka01.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="conjuntoaka02.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
+                            <div class="carrossel-slide"><img src="conjuntoaka03.webp" alt="Conjunto AKA" class="produto-imagem" loading="lazy" decoding="async"></div>
                         </div>
-                        <button class="carrossel-btn carrossel-btn--prev"><i class="fas fa-chevron-left"></i></button>
-                        <button class="carrossel-btn carrossel-btn--next"><i class="fas fa-chevron-right"></i></button>
+                        <button class="carrossel-btn carrossel-btn--prev"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-left"></use></svg></button>
+                        <button class="carrossel-btn carrossel-btn--next"><svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#chevron-right"></use></svg></button>
                         <div class="carrossel-indicadores">
                             <span class="indicador active"></span><span class="indicador"></span><span class="indicador"></span>
                         </div>
@@ -1779,7 +1962,7 @@
                             <span class="preco-atual">R$139,90</span>
                             <span class="desconto">50%</span>
                         </div>
-                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Conjunto AKA." class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> PRÉ-VENDA</a>
+                        <a href="https://wa.me/5535999286246?text=Olá, Cejera! Gostaria de fazer a PRÉ-COMPRA do Conjunto AKA." class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> PRÉ-VENDA</a>
                     </div>
                 </article>
             </div>
@@ -1789,19 +1972,21 @@
         <section class="adesivos-section container">
             <div class="collection-header">
                 <h2 class="collection-title">ADESIVOS</h2>
-                <p class="collection-subtitle">Personalize com a autenticidade Cejera®</p>
+                <p class="collection-subtitle">Personalize com a autenticidade da Cejera</p>
             </div>
             <div class="adesivos-grid">
-                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set01.png" alt="Adesivos 1"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 1</h3><p class="adesivo-descricao">Primeira coleção de adesivos oficiais Cejera®.</p><span class="preco-antigo">R$30,00</span><span class="preco-atual">R$15,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 1" class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a></div></div>
-                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set02.png" alt="Adesivos 2"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 2</h3><p class="adesivo-descricao">Adesivos estilizados + nametags personalizadas.</p><span class="preco-antigo">R$46,00</span><span class="preco-atual">R$23,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 2" class="btn produto-btn" target="_blank"><i class="fab fa-whatsapp"></i> Pedir</a></div></div>
+                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set01.webp" alt="Adesivos 1" loading="lazy" decoding="async"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 1</h3><p class="adesivo-descricao">Primeira coleção de adesivos oficiais da Cejera.</p><span class="preco-antigo">R$30,00</span><span class="preco-atual">R$15,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 1" class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a></div></div>
+                <div class="adesivo-card"><div class="adesivo-imagem"><img src="set02.webp" alt="Adesivos 2" loading="lazy" decoding="async"></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 2</h3><p class="adesivo-descricao">Adesivos estilizados + nametags personalizadas.</p><span class="preco-antigo">R$46,00</span><span class="preco-atual">R$23,00</span><a href="https://wa.me/5535999286246?text=Set de Adesivos 2" class="btn produto-btn" target="_blank" rel="noopener noreferrer"><svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg> Pedir</a></div></div>
                 <div class="adesivo-card"><div class="adesivo-imagem"><div class="placeholder-em-breve"><span>EM BREVE</span></div></div><div class="adesivo-info"><h3 class="adesivo-nome">Set de Adesivos 3</h3><p class="adesivo-descricao">Novo set em desenvolvimento.</p><button class="btn produto-btn btn-disabled" disabled>EM BREVE</button></div></div>
             </div>
         </section>
 
         <div class="status-banner container">
             <h2>INFORMAÇÕES IMPORTANTES</h2>
-            <p><span class="highlight">*Frete não está incluso no valor</span>; o frete é calculado no momento do pedido com base em sua localização.</p>
-            <p style="margin-top: 15px;">Todos os pedidos são feitos sob demanda via WhatsApp. Entre em contato para mais informações!</p>
+            <p><span class="highlight">• Frete não está incluso no valor:</span> o frete é calculado no momento do pedido com base em sua localização.</p>
+            <p style="margin-top: 15px;"><span class="highlight">• Compras presenciais podem receber descontos especiais</span>, definidos conforme a peça e a disponibilidade no estúdio.</p>
+            <p style="margin-top: 15px;"><span class="highlight">• É altamente recomendado:</span> Verificar disponibilidade do estoque. As coleções são limitadas e não possuem relançamento.</p>
+            <p style="margin-top: 15px;">• Os pedidos podem ser feitos sob demanda via WhatsApp. Algumas peças também estão disponíveis no <span class="highlight">Mercado Livre</span>.</p>
         </div>
     </main>
 
@@ -1809,19 +1994,20 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
                     <div class="footer-about">Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.</div>
                 </div>
                 <div class="footer-links-container">
                     <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home">Início</a></li>
-                        <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="https://cejera.com/design">Design</a></li>
-                        <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
-                        <li><a href="https://cejera.com/contato">Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
@@ -1838,18 +2024,18 @@
         <div class="footer-social-fullwidth">
             <div class="container">
                 <div class="social-links-grid">
-                    <a href="https://instagram.com/cejeraa" class="social-link"><i class="fab fa-instagram social-icon"></i><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
-                    <a href="https://twitter.com/cejeraaa" class="social-link"><i class="fab fa-twitter social-icon"></i><span class="social-name">Twitter</span><span class="social-desc">@cejeraaa</span></a>
-                    <a href="https://linkedin.com/in/cejera" class="social-link"><i class="fab fa-linkedin-in social-icon"></i><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
-                    <a href="https://t.me/cejera" class="social-link"><i class="fab fa-telegram social-icon"></i><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
-                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><i class="fab fa-spotify social-icon"></i><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
-                    <a href="https://twitch.tv/cejera" class="social-link"><i class="fab fa-twitch social-icon"></i><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
-                    <a href="https://kick.com/cejera" class="social-link"><i class="fas fa-gamepad social-icon"></i><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
-                    <a href="https://cejera.com/links" class="social-link"><i class="fas fa-plus social-icon"></i><span class="social-name">7+</span><span class="social-desc">links</span></a>
+                    <a href="https://instagram.com/cejeraa" class="social-link"><svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg><span class="social-name">Instagram</span><span class="social-desc">@cejeraa</span></a>
+                    <a href="https://twitter.com/cejeraaa" class="social-link"><svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg><span class="social-name">Twitter</span><span class="social-desc">@cejeraaa</span></a>
+                    <a href="https://linkedin.com/in/cejera" class="social-link"><svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg><span class="social-name">LinkedIn</span><span class="social-desc">/in/cejera</span></a>
+                    <a href="https://t.me/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg><span class="social-name">Telegram</span><span class="social-desc">@cejera</span></a>
+                    <a href="https://open.spotify.com/user/mr.xandoso" class="social-link"><svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg><span class="social-name">Spotify</span><span class="social-desc">Cejera</span></a>
+                    <a href="https://twitch.tv/cejera" class="social-link"><svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg><span class="social-name">Twitch</span><span class="social-desc">cejera</span></a>
+                    <a href="https://kick.com/cejera" class="social-link"><svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg><span class="social-name">Kick</span><span class="social-desc">cejera</span></a>
+                    <a href="/links/" class="social-link"><svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg><span class="social-name">7+</span><span class="social-desc">links</span></a>
                 </div>
             </div>
         </div>
-        <div class="container"><div class="copyright"><p>© 2026 Cejera® — LOJA | EXCENTRICIDADE E AUTENTICIDADE.</p></div></div>
+        <div class="container"><div class="copyright"><p>© 2026 Cejera® | LOJA | EXCENTRICIDADE E AUTENTICIDADE.</p></div></div>
     </footer>
 
     <script>
@@ -1899,7 +2085,7 @@
         });
 
         document.getElementById('pedido-btn')?.addEventListener('click', function() {
-            window.open('https://wa.me/5535999286246?text=Olá%2C%20Cejera!%20Gostaria%20de%20fazer%20um%20pedido%20na%20sua%20loja.', '_blank');
+            window.open('https://wa.me/5535999286246?text=Olá%2C%20Cejera!%20Gostaria%20de%20fazer%20um%20pedido%20na%20sua%20loja.', '_blank', 'noopener,noreferrer');
         });
 
         document.getElementById('waitlist-form')?.addEventListener('submit', function(e) {
@@ -1909,12 +2095,20 @@
                 alert('Por favor, insira um e-mail válido!');
                 return;
             }
-            window.open(`https://wa.me/5535999286246?text=Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${encodeURIComponent(email)}`, '_blank');
+            window.open(`https://wa.me/5535999286246?text=Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${encodeURIComponent(email)}`, '_blank', 'noopener,noreferrer');
             document.getElementById('waitlist-email').value = '';
             alert('Obrigado! Redirecionando para o WhatsApp.');
         });
 
-        // Carrosséis (genérico)
+        // Carrosséis: autoplay apenas quando o card está visível e a guia está ativa.
+        const carouselMotionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const carouselControllers = [];
+        const carouselObserver = !carouselMotionReduced && 'IntersectionObserver' in window
+            ? new IntersectionObserver((entries) => {
+                entries.forEach((entry) => entry.target.__setCarouselVisible?.(entry.isIntersecting));
+            }, { threshold: 0.2 })
+            : null;
+
         document.querySelectorAll('.carrossel-container').forEach((carrossel) => {
             const slides = carrossel.querySelector('.carrossel-slides');
             if (!slides || slides.children.length <= 1) return;
@@ -1923,15 +2117,77 @@
             const nextBtn = carrossel.querySelector('.carrossel-btn--next');
             const indicadores = carrossel.querySelectorAll('.indicador');
             let currentSlide = 0;
+            let intervalId = 0;
+            let isVisible = !carouselObserver;
+            let isPaused = false;
+
             function updateCarrossel() {
                 slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-                indicadores.forEach((ind, i) => ind.classList.toggle('active', i === currentSlide));
+                indicadores.forEach((ind, i) => {
+                    const isCurrent = i === currentSlide;
+                    ind.classList.toggle('active', isCurrent);
+                    ind.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+                });
             }
+
+            const stopAutoplay = () => {
+                if (!intervalId) return;
+                window.clearInterval(intervalId);
+                intervalId = 0;
+            };
+
+            const syncAutoplay = () => {
+                stopAutoplay();
+                if (carouselMotionReduced || document.hidden || !isVisible || isPaused) return;
+                intervalId = window.setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateCarrossel();
+                }, 4000);
+            };
+
+            carrossel.__setCarouselVisible = (visible) => {
+                isVisible = visible;
+                syncAutoplay();
+            };
+
+            prevBtn?.setAttribute('aria-label', 'Imagem anterior');
+            nextBtn?.setAttribute('aria-label', 'Próxima imagem');
             if (prevBtn) prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + slideCount) % slideCount; updateCarrossel(); });
             if (nextBtn) nextBtn.addEventListener('click', () => { currentSlide = (currentSlide + 1) % slideCount; updateCarrossel(); });
-            indicadores.forEach((ind, i) => ind.addEventListener('click', () => { currentSlide = i; updateCarrossel(); }));
-            setInterval(() => { currentSlide = (currentSlide + 1) % slideCount; updateCarrossel(); }, 4000);
+            indicadores.forEach((ind, i) => {
+                ind.setAttribute('role', 'button');
+                ind.setAttribute('tabindex', '0');
+                ind.setAttribute('aria-label', `Ir para a imagem ${i + 1}`);
+                const selectSlide = () => { currentSlide = i; updateCarrossel(); };
+                ind.addEventListener('click', selectSlide);
+                ind.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        selectSlide();
+                    }
+                });
+            });
+
+            carrossel.addEventListener('mouseenter', () => { isPaused = true; syncAutoplay(); });
+            carrossel.addEventListener('mouseleave', () => { isPaused = false; syncAutoplay(); });
+            carrossel.addEventListener('focusin', () => { isPaused = true; syncAutoplay(); });
+            carrossel.addEventListener('focusout', () => {
+                window.setTimeout(() => {
+                    isPaused = carrossel.matches(':focus-within');
+                    syncAutoplay();
+                }, 0);
+            });
+
+            updateCarrossel();
+            carouselControllers.push({ syncAutoplay });
+            if (carouselObserver) carouselObserver.observe(carrossel);
+            else syncAutoplay();
+        });
+
+        document.addEventListener('visibilitychange', () => {
+            carouselControllers.forEach(({ syncAutoplay }) => syncAutoplay());
         });
     </script>
+    <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
