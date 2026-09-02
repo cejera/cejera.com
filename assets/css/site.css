@@ -1,0 +1,1066 @@
+:root {
+    --cejera-red: #f70707;
+    --cejera-black: #000;
+    --cejera-paper: #f7f7f7;
+    --cejera-muted: #5f5f5f;
+    --cejera-border: 2px solid var(--cejera-red);
+    --cejera-radius-sm: 0;
+    --cejera-radius-md: 0;
+    --cejera-radius-pill: 0;
+    --cejera-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+    --cejera-shadow-hover: 0 10px 28px rgb(247 7 7 / 16%);
+    --cejera-font-display: "Source Code Pro", monospace;
+    --cejera-font-body: "Source Code Pro", monospace;
+    --cejera-font-handwritten: "Mynerve", cursive;
+    --cejera-content-width: 1280px;
+    --cejera-transition: 180ms ease;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    overflow-x: clip;
+}
+
+body.site-shell {
+    --radius: 0;
+    --radius-lg: 0;
+    min-width: 320px;
+    margin: 0;
+    background-color: var(--cejera-paper);
+    background-image:
+        linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+        url('/assets/media/identity/paper-texture.webp');
+    background-size: auto, 760px auto;
+    color: var(--cejera-black);
+    font-family: var(--cejera-font-body);
+    line-height: 1.6;
+    overflow-x: clip;
+}
+
+.site-shell:not(.legacy-page) img,
+.site-shell:not(.legacy-page) picture,
+.site-shell:not(.legacy-page) video,
+.site-shell:not(.legacy-page) canvas,
+.site-shell:not(.legacy-page) svg {
+    display: block;
+    max-width: 100%;
+}
+
+.site-shell:not(.legacy-page) img,
+.site-shell:not(.legacy-page) video {
+    height: auto;
+}
+
+.site-shell button,
+.site-shell input,
+.site-shell textarea,
+.site-shell select {
+    font: inherit;
+}
+
+.site-shell button,
+.site-shell a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Mynerve funciona como anotação manual da marca e aparece sempre em caixa alta. */
+.site-shell :is(
+    .banner-title,
+    .slogan,
+    .hero-slogan,
+    .collection-title,
+    .dictionary-title,
+    .section-heading,
+    .footer-heading,
+    .footer-logo,
+    .contato-title,
+    .contato-subtitle,
+    .contact-btn-title,
+    .termos-title,
+    .termos-subtitle,
+    .termos-section-title,
+    .privacidade-title,
+    .privacidade-subtitle,
+    .politica-section-title,
+    .sobre-title,
+    .sobre-subtitle,
+    .historia-title,
+    .timeline-content h3,
+    .emphasis,
+    .timeline-year,
+    .question-mark,
+    .clubinho-manifest-note,
+    #curiosityPopup h3
+) {
+    text-transform: uppercase !important;
+}
+
+.site-shell.design-page :is(h1, h2, h3),
+.site-shell.musica-page :is(h1, h2, h3, h4) {
+    text-transform: uppercase;
+}
+
+.cejera-icon {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    flex: 0 0 auto;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    vertical-align: -0.18em;
+}
+
+.cejera-icon--signal {
+    filter: drop-shadow(1.5px 0 0 rgb(247 7 7 / 55%));
+    transform: rotate(-2deg);
+}
+
+.brand-mark-offset {
+    filter: none;
+    transform: none;
+    transition: opacity var(--cejera-transition);
+}
+
+.brand-mark-offset:hover {
+    filter: none;
+    transform: none;
+    opacity: 0.86;
+}
+
+.site-shell .review-icon.cejera-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    stroke-width: 1.75;
+    filter: drop-shadow(3px 2px 0 var(--cejera-red));
+    transition: filter var(--cejera-transition), transform var(--cejera-transition);
+}
+
+.site-shell .review-card:hover .review-icon,
+.site-shell .review-card:focus-within .review-icon {
+    filter: drop-shadow(5px 3px 0 var(--cejera-red));
+    transform: translate(-1px, -2px) rotate(1deg) skewX(-2deg);
+}
+
+@media (max-width: 480px) {
+    .site-shell .section-title {
+        max-width: 100%;
+        font-size: clamp(1.65rem, 7.2vw, 2rem);
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+    }
+}
+
+.site-shell .container {
+    width: 100%;
+    max-width: var(--cejera-content-width);
+    margin-inline: auto;
+    padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.site-shell :focus-visible {
+    outline: 3px solid var(--cejera-red);
+    outline-offset: 3px;
+}
+
+.site-shell .skip-link {
+    position: fixed;
+    z-index: 9999;
+    top: 12px;
+    left: 12px;
+    padding: 10px 16px;
+    border-radius: var(--cejera-radius-sm);
+    background: var(--cejera-black);
+    color: var(--cejera-paper);
+    transform: translateY(-160%);
+    transition: transform var(--cejera-transition);
+}
+
+/*
+ * Formas de interação da marca:
+ * - technical-cut: placa chanfrada para sistema/ROT;
+ * - paper-cut: recorte irregular para ações autorais.
+ */
+.site-shell .btn,
+.site-shell .club-link,
+.site-shell .button-technical {
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, calc(100% - 11px) 0, 100% 11px, 100% 100%, 11px 100%, 0 calc(100% - 11px));
+    box-shadow: none !important;
+    filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 88%));
+    font-family: var(--cejera-font-display) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.025em;
+    animation: none;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, filter 160ms ease, transform 90ms ease !important;
+}
+
+.site-shell .btn:hover,
+.site-shell .club-link:hover,
+.site-shell .button-technical:hover {
+    filter: drop-shadow(6px 6px 0 rgb(0 0 0 / 90%));
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .site-shell .btn:not(.button-paper):not(:disabled),
+    .site-shell .club-link,
+    .site-shell .button-technical:not(:disabled) {
+        background-color: #760000 !important;
+        border-color: var(--cejera-red) !important;
+        color: var(--cejera-paper) !important;
+    }
+
+    .site-shell .btn:not(.button-paper):not(:disabled):hover,
+    .site-shell .btn:not(.button-paper):not(:disabled):focus-visible,
+    .site-shell .club-link:hover,
+    .site-shell .club-link:focus-visible,
+    .site-shell .button-technical:not(:disabled):hover,
+    .site-shell .button-technical:not(:disabled):focus-visible {
+        background-color: var(--cejera-red) !important;
+        filter: drop-shadow(0 0 8px rgb(247 7 7 / 82%)) drop-shadow(5px 5px 0 rgb(0 0 0 / 92%));
+        transform: translate(-1px, -1px);
+    }
+}
+
+.site-shell .btn:not(:disabled):active,
+.site-shell .club-link:active,
+.site-shell .button-technical:not(:disabled):active,
+.site-shell .button-paper:not(:disabled):active,
+.site-shell .btn.is-pressing,
+.site-shell .club-link.is-pressing,
+.site-shell .button-technical.is-pressing,
+.site-shell .button-paper.is-pressing {
+    animation: cejera-button-press 170ms steps(1, end) both;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+@keyframes cejera-button-press {
+    0% {
+        clip-path: inset(0);
+        transform: translate(0, 0);
+        text-shadow: none;
+    }
+    24% {
+        clip-path: inset(0);
+        transform: translate(-2px, 1px);
+        text-shadow: 3px 0 0 var(--cejera-red), -3px 0 0 rgb(0 255 255 / 55%);
+    }
+    48% {
+        clip-path: inset(0);
+        transform: translate(2px, -1px);
+        text-shadow: -3px 0 0 var(--cejera-red), 2px 0 0 rgb(0 255 255 / 45%);
+    }
+    72% {
+        clip-path: inset(0);
+        transform: translate(-1px, 0);
+        text-shadow: 2px 0 0 var(--cejera-red);
+    }
+    100% {
+        clip-path: inset(0);
+        transform: translate(0, 0);
+        text-shadow: none;
+    }
+}
+
+.site-shell .button-paper {
+    border: 2px solid var(--cejera-black);
+    border-radius: 0 !important;
+    background: var(--cejera-paper);
+    color: var(--cejera-black);
+    clip-path: polygon(2% 4%, 96% 0, 100% 18%, 97% 94%, 12% 100%, 0 84%);
+    box-shadow: none !important;
+    filter: drop-shadow(5px 6px 0 var(--cejera-red));
+    font-family: var(--cejera-font-display) !important;
+    font-weight: 900 !important;
+}
+
+.site-shell .menu-toggle {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+.site-shell .menu-toggle::before,
+.site-shell .menu-toggle::after {
+    content: none !important;
+}
+
+.site-shell .hamburger,
+.site-shell .hamburger::before,
+.site-shell .hamburger::after {
+    display: block;
+    height: 4px;
+    border-radius: 0 !important;
+    background: var(--cejera-red);
+    clip-path: polygon(0 24%, 8% 0, 100% 18%, 94% 100%, 4% 78%);
+    transition: transform var(--cejera-transition), opacity var(--cejera-transition), width var(--cejera-transition);
+}
+
+.site-shell .hamburger {
+    position: relative;
+    width: 28px;
+    margin-inline: auto;
+    clip-path: none;
+    transform: rotate(-2deg);
+}
+
+.site-shell .hamburger::before,
+.site-shell .hamburger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.site-shell .hamburger::before {
+    top: -9px;
+    width: 23px;
+    transform: translateX(4px) rotate(5deg);
+}
+
+.site-shell .hamburger::after {
+    bottom: -9px;
+    width: 31px;
+    transform: translateX(-3px) rotate(-3deg);
+}
+
+.site-shell .menu-toggle[aria-expanded="true"] .hamburger {
+    background: transparent;
+    transform: rotate(0);
+}
+
+.site-shell .menu-toggle[aria-expanded="true"] .hamburger::before {
+    top: 0;
+    width: 30px;
+    transform: translateX(-1px) rotate(43deg);
+}
+
+.site-shell .menu-toggle[aria-expanded="true"] .hamburger::after {
+    bottom: 0;
+    width: 30px;
+    transform: translateX(-1px) rotate(-47deg);
+}
+
+.site-shell.legacy-page .banner-card,
+.site-shell.legacy-page .social-proof,
+.site-shell.legacy-page .review-card,
+.site-shell.legacy-page .social-item,
+.site-shell.legacy-page .footer-input,
+.site-shell.legacy-page .login-container,
+.site-shell.legacy-page .dashboard-container,
+.site-shell.legacy-page .mission-card,
+.site-shell.legacy-page .item-slot,
+.site-shell.legacy-page .item-tooltip,
+.site-shell.legacy-page .curiosity-popup,
+.site-shell.legacy-page .form-input,
+.site-shell.legacy-page .card-description,
+.site-shell.legacy-page .social-link,
+.site-shell.legacy-page .timer-container,
+.site-shell.legacy-page .prank-message,
+.site-shell.legacy-page #toastMsg {
+    border-radius: 0 !important;
+}
+
+.site-shell.legacy-page .banner-badge,
+.site-shell.legacy-page .login-badge,
+.site-shell.legacy-page .secure-badge,
+.site-shell.legacy-page .breakdown-item {
+    border-radius: 0 !important;
+    clip-path: polygon(2% 8%, 94% 0, 100% 22%, 96% 92%, 10% 100%, 0 80%);
+}
+
+.site-shell.legacy-page :is(
+    .produto-card,
+    .testimonial-card,
+    .link-card,
+    .social-card,
+    .historia-content,
+    .termos-section,
+    .politica-section,
+    .text-section,
+    .expertise-item,
+    .skill-item,
+    .credencial-item,
+    .contact-card,
+    .contact-method,
+    .service-card,
+    .definition-item
+) {
+    border-radius: 0 !important;
+    border-color: var(--cejera-black) !important;
+    clip-path: none !important;
+    background-image:
+        linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+        url('/assets/media/identity/paper-texture.webp');
+    background-size: auto, 760px auto;
+    background-blend-mode: normal;
+    box-shadow: 8px 8px 0 var(--cejera-red) !important;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease !important;
+}
+
+.site-shell.legacy-page :is(.envelope-container, .contact-btn) {
+    border-radius: 0 !important;
+    border: 2px solid var(--cejera-black) !important;
+    clip-path: none !important;
+    background-image:
+        linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+        url('/assets/media/identity/paper-texture.webp');
+    background-size: auto, 760px auto;
+    background-blend-mode: normal;
+    box-shadow: 9px 9px 0 var(--cejera-red) !important;
+}
+
+.site-shell.legacy-page .contact-btn {
+    background: var(--cejera-black) !important;
+    color: var(--cejera-paper) !important;
+}
+
+.site-shell.legacy-page .contact-btn:hover {
+    border-color: var(--cejera-black) !important;
+    background: var(--cejera-red) !important;
+    box-shadow: 12px 12px 0 var(--cejera-black) !important;
+}
+
+.site-shell .envelope-background.cejera-icon {
+    width: min(75%, 420px);
+    height: auto;
+    stroke-width: 0.85;
+}
+
+.site-shell .contact-icon.cejera-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.site-shell .page-collage-card {
+    position: absolute;
+    z-index: 4;
+    display: block;
+    height: auto;
+    pointer-events: none;
+    filter: drop-shadow(7px 7px 0 rgb(247 7 7 / 62%));
+}
+
+.site-shell .page-collage-card--contact {
+    top: 92px;
+    right: clamp(18px, 5vw, 72px);
+    width: clamp(105px, 13vw, 175px);
+    transform: rotate(6deg);
+}
+
+.site-shell .page-collage-card--about {
+    top: 76px;
+    right: clamp(18px, 4vw, 58px);
+    width: clamp(150px, 20vw, 260px);
+    transform: rotate(2deg);
+}
+
+@media (max-width: 920px) {
+    .site-shell .page-collage-card {
+        display: none;
+    }
+}
+
+.site-shell.musica-page header .nav-link {
+    color: var(--cejera-paper);
+}
+
+body.site-shell.links-page,
+body.site-shell.musica-page {
+    background-color: var(--cejera-black);
+    background-image:
+        linear-gradient(rgb(0 0 0 / 95%), rgb(0 0 0 / 95%)),
+        url('/assets/media/identity/paper-texture.webp');
+    background-size: auto, 760px auto;
+    color: var(--cejera-paper);
+}
+
+.site-shell.musica-page .hero {
+    margin-top: clamp(28px, 5vw, 64px);
+    margin-bottom: clamp(28px, 5vw, 64px);
+    border: 3px solid var(--cejera-red);
+    background: var(--cejera-black);
+    color: var(--cejera-paper);
+    clip-path: polygon(1% 3%, 97% 0, 100% 10%, 99% 96%, 72% 100%, 2% 97%, 0 31%);
+    box-shadow: 12px 12px 0 var(--cejera-red);
+}
+
+.site-shell.musica-page .expertise-item {
+    color: var(--cejera-paper) !important;
+    background-color: #0a0a0a !important;
+    background-image:
+        linear-gradient(rgb(10 10 10 / 95%), rgb(10 10 10 / 95%)),
+        url('/assets/media/identity/paper-texture.webp') !important;
+    background-size: auto, 520px auto !important;
+    border-color: rgb(247 7 7 / 58%) !important;
+    box-shadow: 5px 5px 0 rgb(247 7 7 / 32%) !important;
+}
+
+.site-shell.musica-page .expertise-item:hover {
+    box-shadow: 8px 8px 0 var(--cejera-red) !important;
+}
+
+.site-shell.musica-page .service-card {
+    color: var(--cejera-paper) !important;
+    background-color: #101010 !important;
+    background-image:
+        linear-gradient(rgb(16 16 16 / 95%), rgb(16 16 16 / 95%)),
+        url('/assets/media/identity/paper-texture.webp') !important;
+    background-size: auto, 620px auto !important;
+    border-color: rgb(247 7 7 / 52%) !important;
+    box-shadow: 7px 7px 0 rgb(247 7 7 / 30%) !important;
+}
+
+.site-shell.musica-page .service-card :is(.service-title, .service-description) {
+    color: var(--cejera-paper) !important;
+}
+
+.site-shell.musica-page .service-card .service-description {
+    opacity: 0.82;
+}
+
+.site-shell.design-page .skill-item {
+    color: var(--cejera-paper) !important;
+    background-color: #0a0a0a !important;
+    background-image:
+        linear-gradient(rgb(10 10 10 / 95%), rgb(10 10 10 / 95%)),
+        url('/assets/media/identity/paper-texture.webp') !important;
+    background-size: auto, 520px auto !important;
+    border-color: rgb(247 7 7 / 56%) !important;
+    box-shadow: 5px 5px 0 rgb(247 7 7 / 34%) !important;
+}
+
+.site-shell.design-page .skill-icon.cejera-icon {
+    color: var(--cejera-paper) !important;
+    filter: drop-shadow(3px 3px 0 var(--cejera-red)) !important;
+}
+
+.site-shell.design-page .skill-desc {
+    color: rgb(255 255 255 / 76%);
+}
+
+.site-shell.legacy-page :is(
+    .produto-card,
+    .testimonial-card,
+    .link-card,
+    .social-card,
+    .historia-content,
+    .termos-section,
+    .politica-section,
+    .text-section,
+    .expertise-item,
+    .skill-item,
+    .credencial-item,
+    .contact-card,
+    .contact-method,
+    .service-card,
+    .definition-item
+):nth-child(even) {
+    clip-path: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .site-shell.legacy-page :is(
+        .produto-card,
+        .testimonial-card,
+        .link-card,
+        .social-card,
+        .historia-content,
+        .termos-section,
+        .politica-section,
+        .text-section,
+        .expertise-item,
+        .skill-item,
+        .credencial-item,
+        .contact-card,
+        .contact-method,
+        .service-card,
+        .definition-item
+    ):hover {
+        border-color: var(--cejera-red) !important;
+        box-shadow: 12px 12px 0 var(--cejera-black) !important;
+        transform: translateY(-3px) !important;
+    }
+}
+
+.site-shell.legacy-page :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+    border-radius: 0 !important;
+    border-width: 2px;
+}
+
+.site-shell.legacy-page :is(.section-title, .collection-title, .page-title, .hero-title) {
+    font-family: var(--cejera-font-display) !important;
+    font-weight: 900 !important;
+    text-wrap: balance;
+}
+
+.site-shell :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    .slogan,
+    .banner-title,
+    .section-title,
+    .collection-title,
+    .page-title,
+    .hero-title,
+    .footer-heading,
+    .clubinho-subtitle,
+    .privacidade-subtitle,
+    .termos-subtitle,
+    .sobre-subtitle,
+    .contato-subtitle,
+    .question-mark,
+    .emphasis,
+    .timeline-year,
+    .collage-note,
+    .home-collage-note,
+    .reference-mark
+) {
+    text-transform: uppercase;
+}
+
+.site-shell .skip-link:focus {
+    transform: translateY(0);
+}
+
+.site-shell .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+[data-header-cut] {
+    border-bottom: 0 !important;
+}
+
+[data-header-cut]::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 5px;
+    background: var(--cejera-red);
+    clip-path: polygon(
+        0 38%, 8% 20%, 17% 42%, 27% 28%, 38% 45%, 49% 25%,
+        61% 39%, 71% 22%, 82% 40%, 92% 26%, 100% 43%,
+        100% 67%, 91% 82%, 81% 64%, 70% 80%, 60% 63%,
+        49% 79%, 38% 61%, 27% 78%, 16% 62%, 7% 80%, 0 66%
+    );
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.site-shell .hero-kicker {
+    width: fit-content;
+    margin: 0 0 14px;
+    color: var(--cejera-red);
+    font-family: var(--cejera-font-display);
+    font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.site-shell :is(.slogan, .sobre-subtitle, .contato-subtitle) {
+    width: fit-content;
+    transform-origin: center;
+}
+
+.site-shell .slogan {
+    transform: rotate(-1.1deg);
+}
+
+.site-shell .sobre-subtitle {
+    transform: rotate(0.7deg);
+}
+
+.site-shell .contato-subtitle {
+    transform: rotate(-0.8deg);
+}
+
+.site-shell.legacy-page .historia-content,
+.site-shell.legacy-page .historia-content:nth-child(even) {
+    padding-right: clamp(34px, 5vw, 52px);
+    border: 2px solid var(--cejera-black) !important;
+    border-left: 4px solid var(--cejera-red) !important;
+    clip-path: polygon(0 0, 96% 0, 100% 12%, 97% 30%, 100% 48%, 97% 68%, 100% 88%, 96% 100%, 0 100%) !important;
+    background-image:
+        linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+        url('/assets/media/identity/paper-texture.webp');
+    filter: drop-shadow(7px 6px 0 rgb(247 7 7 / 18%));
+}
+
+.site-shell.sobre-page .historia-content,
+.site-shell.sobre-page .historia-content:nth-child(even) {
+    padding-right: 24px;
+    clip-path: none !important;
+    filter: none;
+}
+
+.site-shell.legacy-page .envelope-container {
+    width: min(650px, calc(100% - 40px));
+    padding: clamp(44px, 7vw, 68px) clamp(30px, 6vw, 52px) !important;
+    border: 2px solid var(--cejera-black) !important;
+    clip-path: polygon(2% 1%, 96% 0, 100% 9%, 98% 31%, 100% 51%, 98% 74%, 100% 93%, 94% 100%, 5% 98%, 0 91%, 1% 12%) !important;
+    background-color: var(--cejera-paper) !important;
+    background-image:
+        linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+        url('/assets/media/identity/paper-texture.webp') !important;
+    background-size: auto, 700px auto !important;
+    box-shadow: none !important;
+    filter: none;
+}
+
+.site-shell.legacy-page .contact-note-shell {
+    width: min(650px, calc(100% - 40px));
+    margin: 0 auto 60px;
+    filter: drop-shadow(11px 11px 0 var(--cejera-red));
+    transform: rotate(-0.35deg);
+}
+
+.site-shell.legacy-page .contact-note-shell .envelope-container {
+    width: 100%;
+    margin: 0;
+    transform: none;
+}
+
+/* Convite presencial compartilhado entre Moda e Contato. */
+.site-shell .studio-invite {
+    position: relative;
+    width: min(var(--cejera-content-width), calc(100% - 32px));
+    margin: clamp(42px, 7vw, 72px) auto;
+    padding: clamp(34px, 5vw, 64px);
+    overflow: hidden;
+    border: 2px solid var(--cejera-black);
+    background: var(--cejera-black);
+    color: var(--cejera-paper);
+    box-shadow: 12px 12px 0 var(--cejera-red);
+    clip-path: polygon(1% 2%, 98% 0, 100% 8%, 99% 96%, 72% 100%, 2% 98%, 0 78%);
+}
+
+.site-shell .studio-invite::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 5px, rgb(247 7 7 / 7%) 6px);
+    mix-blend-mode: screen;
+}
+
+.site-shell .studio-invite__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+}
+
+.site-shell .studio-invite__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.site-shell .studio-invite h2 {
+    max-width: 680px;
+    margin: 0;
+    color: var(--cejera-paper);
+    font: 900 clamp(2.4rem, 5vw, 5.4rem)/0.93 var(--cejera-font-display);
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+.site-shell .studio-invite p {
+    max-width: 620px;
+    margin: 0;
+    color: var(--cejera-paper);
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.site-shell .studio-invite :is(.studio-invite__eyebrow, .studio-invite__location) {
+    color: var(--cejera-red);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+.site-shell .studio-invite__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.site-shell .studio-invite__map {
+    position: relative;
+    min-height: 420px;
+    border: 3px solid var(--cejera-paper);
+    background: #120000;
+    box-shadow: 10px 10px 0 var(--cejera-red);
+    transform: rotate(0.6deg);
+}
+
+.site-shell .studio-invite__map iframe {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    filter: grayscale(1) contrast(1.15) brightness(0.82);
+}
+
+.site-shell .studio-invite__map::after {
+    content: "MAPA // ESTÚDIO Cejera";
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    padding: 8px 10px;
+    border: 1px solid var(--cejera-red);
+    background: var(--cejera-black);
+    color: var(--cejera-paper);
+    font: 800 0.7rem/1 var(--cejera-font-display);
+    letter-spacing: 0.08em;
+}
+
+.site-shell .btn-estudio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 20px;
+    border: 2px solid var(--cejera-red);
+    border-radius: 0;
+    background: var(--cejera-red);
+    box-shadow: 5px 5px 0 var(--cejera-paper);
+    color: var(--cejera-paper);
+    font: 900 0.9rem/1.2 var(--cejera-font-display);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.site-shell .btn-estudio:hover,
+.site-shell .btn-estudio:focus-visible {
+    background: #9f0000;
+    box-shadow: 8px 8px 0 var(--cejera-paper);
+    transform: translate(-2px, -2px);
+}
+
+.site-shell .btn-estudio:active {
+    box-shadow: none;
+    transform: translate(5px, 5px);
+}
+
+.site-shell .btn-estudio--ghost {
+    border-color: var(--cejera-paper);
+    background: transparent;
+    box-shadow: 5px 5px 0 var(--cejera-red);
+    color: var(--cejera-paper);
+}
+
+@media (max-width: 860px) {
+    .site-shell .studio-invite__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .site-shell .studio-invite__map,
+    .site-shell .studio-invite__map iframe {
+        min-height: 340px;
+        height: 340px;
+    }
+}
+
+@media (max-width: 520px) {
+    .site-shell .studio-invite {
+        width: calc(100% - 24px);
+        padding: 38px 24px 44px;
+        box-shadow: 7px 7px 0 var(--cejera-red);
+        clip-path: polygon(2% 1%, 97% 0, 100% 5%, 98% 97%, 70% 100%, 3% 98%, 0 82%);
+    }
+
+    .site-shell .studio-invite h2 {
+        font-size: clamp(2.15rem, 13vw, 3.25rem);
+    }
+
+    .site-shell .studio-invite__actions,
+    .site-shell .btn-estudio {
+        width: 100%;
+    }
+
+    .site-shell .studio-invite__map,
+    .site-shell .studio-invite__map iframe {
+        min-height: 290px;
+        height: 290px;
+    }
+}
+
+.site-shell .page-collage-card--contact {
+    top: 52px;
+    right: clamp(20px, 5vw, 72px);
+    width: clamp(180px, 22vw, 300px);
+    transform: rotate(5deg);
+    animation: cejera-note-drift 6.2s ease-in-out infinite alternate;
+}
+
+.site-shell .page-collage-card--contact-seste {
+    top: 26%;
+    left: clamp(12px, 3vw, 44px);
+    width: clamp(105px, 13vw, 170px);
+    transform: rotate(-8deg);
+    animation: cejera-note-drift-reverse 7.1s ease-in-out infinite alternate;
+}
+
+.site-shell .page-collage-card--contact-piramesde {
+    right: clamp(14px, 2vw, 34px);
+    top: 46%;
+    bottom: auto;
+    width: clamp(110px, 14vw, 185px);
+    transform: rotate(8deg);
+    animation: cejera-note-drift 7.8s ease-in-out infinite alternate;
+}
+
+@keyframes cejera-note-drift {
+    from { translate: 0 0; }
+    to { translate: 0 -10px; }
+}
+
+@keyframes cejera-note-drift-reverse {
+    from { translate: 0 -6px; }
+    to { translate: 0 8px; }
+}
+
+.site-shell.legacy-page:not(.musica-page) footer .footer-social-fullwidth {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    border-top: 1px solid rgb(247 7 7 / 42%) !important;
+    border-bottom: 1px solid rgb(247 7 7 / 42%) !important;
+    padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.site-shell.legacy-page:not(.musica-page) footer .footer-social-fullwidth .social-links-grid {
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.site-shell.legacy-page:not(.musica-page) footer .copyright {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    padding-inline: clamp(16px, 4vw, 32px);
+}
+
+.site-shell .footer-newsletter {
+    transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.site-shell footer .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.58em;
+}
+
+.site-shell footer .footer-links .footer-nav-icon,
+.site-shell footer .footer-links > li > a > .cejera-icon {
+    width: 1em;
+    height: 1em;
+    color: var(--cejera-red);
+    filter: drop-shadow(1.5px 0 0 rgb(247 7 7 / 42%));
+}
+
+.site-shell.musica-page .hero .slogan {
+    margin-inline: auto;
+    text-align: center;
+}
+
+.site-shell .footer-newsletter.is-waitlist-highlight {
+    background: rgb(247 7 7 / 14%);
+    box-shadow: 0 0 0 4px var(--cejera-red), 10px 10px 0 rgb(247 7 7 / 42%);
+    transform: translateY(-3px);
+}
+
+@keyframes cejera-waitlist-signal {
+    0%, 100% { box-shadow: 0 0 0 4px var(--cejera-red), 10px 10px 0 rgb(247 7 7 / 42%); }
+    50% { box-shadow: 0 0 0 8px rgb(247 7 7 / 28%), 5px 5px 0 var(--cejera-red); }
+}
+
+.site-shell .footer-newsletter.is-waitlist-highlight {
+    animation: cejera-waitlist-signal 520ms steps(2, end) 3;
+}
+
+@media (max-width: 980px) {
+    .site-shell.legacy-page nav {
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}
+
+@media (max-width: 860px) {
+    .site-shell .hero-kicker {
+        margin-inline: auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .site-shell :is(.secondary-grid, .reviews-grid, .produtos-grid) {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    .site-shell :is(.secondary-grid, .reviews-grid, .produtos-grid) > * {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-shell .container {
+        padding-inline: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

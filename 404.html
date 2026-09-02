@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada | Cejera</title>
+    <meta name="description" content="A página procurada não existe ou mudou de endereço. Continue navegando pelos universos da Cejera.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#f70707">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <style>
+        :root {
+            --red: #f70707;
+            --paper: #f7f7f7;
+            --black: #000;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--paper);
+            background:
+                linear-gradient(rgb(0 0 0 / 95%), rgb(0 0 0 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 760px auto;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .error-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 104px;
+            padding: 18px clamp(22px, 5vw, 64px);
+            border-bottom: 4px solid var(--red);
+        }
+
+        .error-logo { width: clamp(130px, 18vw, 190px); }
+
+        .error-code {
+            color: var(--red);
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            min-height: calc(100vh - 164px);
+            padding: clamp(46px, 9vw, 110px) 22px;
+        }
+
+        .error-note {
+            width: min(980px, 100%);
+            padding: clamp(34px, 7vw, 76px);
+            color: var(--black);
+            border: 3px solid var(--black);
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            box-shadow: 14px 14px 0 var(--red);
+            clip-path: polygon(1% 2%, 97% 0, 100% 9%, 99% 92%, 94% 100%, 4% 98%, 0 88%);
+        }
+
+        .error-kicker {
+            margin: 0 0 16px;
+            color: var(--red);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(4.5rem, 18vw, 12rem);
+            font-weight: 900;
+            line-height: 0.78;
+            letter-spacing: -0.09em;
+        }
+
+        .error-message {
+            max-width: 720px;
+            margin: 36px 0 30px;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
+            line-height: 1.65;
+        }
+
+        .error-message strong { color: var(--red); }
+
+        .error-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+        .error-button {
+            display: inline-flex;
+            padding: 13px 20px;
+            color: var(--paper);
+            border: 2px solid var(--black);
+            background: var(--black);
+            box-shadow: 6px 6px 0 var(--red);
+            font-weight: 900;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .error-button:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 var(--red); }
+        .error-button:active { transform: translate(6px, 6px); box-shadow: none; }
+
+        footer {
+            padding: 20px;
+            color: rgb(247 247 247 / 65%);
+            text-align: center;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="error-header">
+        <a href="/" aria-label="Voltar para o início da Cejera">
+            <img class="error-logo" src="/assets/brand/cejera-00.svg" alt="Cejera">
+        </a>
+        <span class="error-code">ERRO // ROTA INEXISTENTE</span>
+    </header>
+
+    <main id="main-content">
+        <section class="error-note" aria-labelledby="error-title">
+            <p class="error-kicker">// O MAPA ACABOU ANTES DA HISTÓRIA //</p>
+            <h1 id="error-title">404</h1>
+            <p class="error-message">Este endereço não leva a lugar nenhum. A página pode ter mudado, sido removida ou escapado para outro universo. <strong>O sistema continua vivo.</strong></p>
+            <div class="error-actions">
+                <a class="error-button" href="/">Voltar ao início</a>
+                <a class="error-button" href="/projetos/">Explorar projetos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>© 2026 Cejera® // EXCENTRICIDADE E AUTENTICIDADE</footer>
+</body>
+</html>

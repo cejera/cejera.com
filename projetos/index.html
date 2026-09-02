@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos e universos | Cejera</title>
+    <meta name="description" content="Explore os universos autorais de Cejera: ROT, Sigma Lattice, Supernova, SOA e a prateleira de referências que alimenta o processo criativo.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://cejera.com/projetos/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Projetos e universos | Cejera">
+    <meta property="og:description" content="Esboços que funcionam como portais para ROT, Sigma Lattice, Supernova, SOA e outras referências criativas.">
+    <meta property="og:url" content="https://cejera.com/projetos/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Identidade Cejera em papel branco com traços pretos e vermelhos">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projetos e universos | Cejera">
+    <meta name="twitter:description" content="Entre pelos esboços e explore os universos autorais de Cejera.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Cejera">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/assets/css/site.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Projetos e universos | Cejera",
+        "url": "https://cejera.com/projetos/",
+        "description": "Coleção de projetos autorais e referências criativas de Cejera.",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Cejera",
+            "url": "https://cejera.com/"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --portal-gap: clamp(22px, 4vw, 54px);
+        }
+
+        body {
+            background-color: var(--cejera-paper);
+            background-image:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp');
+            background-size: auto, min(1400px, 100vw) auto;
+            background-attachment: fixed;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .projects-header {
+            position: sticky;
+            z-index: 100;
+            top: 0;
+            border-bottom: 2px dashed var(--cejera-red);
+            background: rgb(247 247 247 / 94%);
+            backdrop-filter: blur(14px);
+            transition: box-shadow var(--cejera-transition), padding var(--cejera-transition);
+        }
+
+        .projects-header.is-scrolled {
+            box-shadow: 0 8px 28px rgb(0 0 0 / 8%);
+        }
+
+        .header-layout {
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand-link {
+            flex: 0 0 auto;
+        }
+
+        .brand-link img {
+            width: min(190px, 42vw);
+            height: auto;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border: 2px solid var(--cejera-black);
+            border-radius: 50%;
+            background: var(--cejera-paper);
+            color: var(--cejera-black);
+            cursor: pointer;
+        }
+
+        .menu-toggle::before,
+        .menu-toggle::after {
+            content: "";
+            display: block;
+            width: 19px;
+            height: 2px;
+            margin: 6px auto;
+            background: currentColor;
+            transition: transform var(--cejera-transition);
+        }
+
+        .menu-toggle[aria-expanded="true"]::before {
+            transform: translateY(4px) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"]::after {
+            transform: translateY(-4px) rotate(-45deg);
+        }
+
+        .site-navigation {
+            display: flex;
+            align-items: center;
+            gap: clamp(14px, 2vw, 28px);
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 2vw, 24px);
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+            height: 2px;
+            background: var(--cejera-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--cejera-transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link[aria-current="page"]::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .club-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 9px 18px;
+            border: 2px solid var(--cejera-red);
+            border-radius: var(--cejera-radius-pill);
+            background: var(--cejera-red);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .projects-hero {
+            min-height: min(760px, calc(100svh - 88px));
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            align-items: center;
+            gap: var(--portal-gap);
+            padding-block: clamp(70px, 11vw, 150px);
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--cejera-red);
+            font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .projects-title {
+            max-width: 930px;
+            margin: 0;
+            font-family: var(--cejera-font-display);
+            font-size: clamp(3.5rem, 9vw, 8.7rem);
+            font-weight: 750;
+            letter-spacing: -0.035em;
+            line-height: 0.82;
+            text-transform: uppercase;
+            text-wrap: balance;
+        }
+
+        .projects-title span {
+            display: block;
+            color: var(--cejera-red);
+        }
+
+        .projects-title,
+        .eyebrow,
+        .hero-copy {
+            animation: heroAssemble 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .projects-title { animation-delay: 80ms; }
+        .hero-copy { animation-delay: 170ms; }
+
+        .hero-copy {
+            max-width: 690px;
+            margin: 28px 0 0;
+            font-size: clamp(1rem, 1.6vw, 1.22rem);
+        }
+
+        .hero-note {
+            position: relative;
+            z-index: 3;
+            align-self: end;
+            padding: clamp(22px, 4vw, 38px);
+            border: 2px solid var(--cejera-black);
+            background: var(--cejera-paper);
+            box-shadow: 10px 10px 0 var(--cejera-red);
+            transform: rotate(1.2deg);
+        }
+
+        .hero-collage {
+            --pointer-x: 0;
+            --pointer-y: 0;
+            position: relative;
+            min-height: clamp(390px, 46vw, 620px);
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-symbol {
+            position: absolute;
+            z-index: 1;
+            filter: drop-shadow(7px 8px 0 rgb(0 0 0 / 16%));
+            pointer-events: none;
+            user-select: none;
+            will-change: transform;
+        }
+
+        .hero-symbol--seste {
+            top: 0;
+            right: 2%;
+            width: min(43%, 250px);
+            transform: translate(calc(var(--pointer-x) * 10px), calc(var(--pointer-y) * 7px)) rotate(7deg);
+            animation: paperDrift 8s ease-in-out infinite alternate;
+        }
+
+        .hero-symbol--piramesde {
+            top: 17%;
+            left: -7%;
+            width: min(54%, 320px);
+            transform: translate(calc(var(--pointer-x) * -14px), calc(var(--pointer-y) * -9px)) rotate(-5deg);
+            animation: paperDriftReverse 10s ease-in-out infinite alternate;
+        }
+
+        .collage-note {
+            position: absolute;
+            z-index: 4;
+            max-width: 250px;
+            padding: 13px 18px;
+            background: var(--cejera-paper);
+            color: var(--cejera-black);
+            font-family: var(--cejera-font-handwritten);
+            font-size: clamp(1rem, 2vw, 1.45rem);
+            line-height: 1.08;
+            text-align: center;
+            text-transform: uppercase;
+            filter: drop-shadow(5px 6px 0 rgb(0 0 0 / 15%));
+            clip-path: polygon(2% 8%, 91% 0, 100% 23%, 95% 93%, 13% 100%, 0 78%);
+        }
+
+        .collage-note--one {
+            top: 1%;
+            left: 4%;
+            transform: rotate(-5deg);
+            animation: noteBreathe 7s ease-in-out 900ms infinite alternate;
+        }
+
+        .collage-note--two {
+            top: 39%;
+            right: -2%;
+            background: var(--cejera-red);
+            color: var(--cejera-paper);
+            transform: rotate(4deg);
+            clip-path: polygon(7% 0, 100% 9%, 94% 82%, 79% 100%, 0 91%, 3% 18%);
+            animation: noteBreathe 6s ease-in-out 1500ms infinite alternate-reverse;
+        }
+
+        .hero-note strong {
+            display: block;
+            margin-bottom: 10px;
+            font-family: var(--cejera-font-handwritten);
+            font-size: 1.7rem;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .hero-note p {
+            margin: 0;
+        }
+
+        .portal-section {
+            padding-block: clamp(72px, 10vw, 140px);
+            border-top: 0;
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 0.7fr) minmax(280px, 1fr);
+            gap: var(--portal-gap);
+            align-items: end;
+            margin-bottom: clamp(48px, 8vw, 90px);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: var(--cejera-font-display);
+            font-size: clamp(2.6rem, 6vw, 5.8rem);
+            font-weight: 750;
+            line-height: 0.92;
+            text-transform: uppercase;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: 0;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: clamp(24px, 4vw, 54px);
+        }
+
+        .project-portal {
+            grid-column: span 6;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            min-height: 590px;
+            color: var(--cejera-black);
+            text-decoration: none;
+        }
+
+        .project-portal:nth-child(2n) {
+            margin-top: clamp(0px, 7vw, 110px);
+        }
+
+        .project-sketch {
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+            border: 2px solid var(--cejera-black);
+            background:
+                linear-gradient(135deg, transparent 46%, rgb(247 7 7 / 16%) 47% 49%, transparent 50%),
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            box-shadow: 9px 9px 0 var(--cejera-black);
+            transform: rotate(var(--sketch-rotation, -1deg));
+            transition: transform var(--cejera-transition), box-shadow var(--cejera-transition);
+        }
+
+        .project-portal:nth-child(2n) .project-sketch {
+            --sketch-rotation: 1deg;
+        }
+
+        .project-portal:hover .project-sketch {
+            box-shadow: 13px 13px 0 var(--cejera-red);
+            transform: rotate(0) translateY(-6px);
+        }
+
+        .project-portal--rot .project-sketch {
+            border-color: var(--cejera-red);
+            background:
+                linear-gradient(rgb(0 0 0 / 18%) 50%, rgb(247 7 7 / 5%) 50%),
+                radial-gradient(circle at 50% 46%, rgb(247 7 7 / 22%), transparent 42%),
+                linear-gradient(rgb(23 6 6 / 95%), rgb(23 6 6 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            background-size: 100% 4px, 100% 100%, 100% 100%, 700px auto;
+            box-shadow: 9px 9px 0 var(--cejera-red);
+            animation: rotSignal 7s steps(1, end) 1.1s infinite;
+        }
+
+        .project-portal--rot .project-sketch::after {
+            content: "SYSTEM // ORGANIC RECODING // ACTIVE";
+            position: absolute;
+            right: 16px;
+            bottom: 15px;
+            left: 16px;
+            color: var(--cejera-red);
+            font-family: var(--cejera-font-body);
+            font-size: 0.64rem;
+            letter-spacing: 0.12em;
+            text-align: center;
+        }
+
+        .project-portal--rot .sketch-label {
+            color: var(--cejera-paper);
+            font-family: var(--cejera-font-body);
+            font-size: clamp(3.5rem, 8vw, 7.2rem);
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-shadow: 4px 0 0 var(--cejera-red), -2px 0 0 rgb(0 255 255 / 55%);
+            transform: translate(-50%, -50%);
+            animation: rotGlitch 5.6s steps(1, end) 1.8s infinite;
+        }
+
+        .project-logo {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: min(58%, 290px);
+            max-height: 72%;
+            object-fit: contain;
+            transform: translate(-50%, -50%) rotate(-2deg);
+            transition: transform var(--cejera-transition), filter var(--cejera-transition);
+        }
+
+        .project-portal:hover .project-logo {
+            transform: translate(-50%, -52%) rotate(0) scale(1.025);
+        }
+
+        .project-logo--rot {
+            width: min(39%, 180px);
+            filter: drop-shadow(7px 0 0 rgb(247 7 7 / 72%)) drop-shadow(-3px 0 0 rgb(0 255 255 / 35%));
+            animation: rotGlitch 5.6s steps(1, end) 1.8s infinite;
+        }
+
+        .project-portal--sigma .project-sketch,
+        .project-portal--supernova .project-sketch,
+        .project-portal--soa .project-sketch {
+            border-color: var(--cejera-red);
+            background:
+                linear-gradient(116deg, transparent 0 57%, rgb(247 7 7 / 18%) 57% 58%, transparent 58%),
+                linear-gradient(rgb(0 0 0 / 96%), rgb(0 0 0 / 96%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            background-size: 100% 100%, 100% 100%, 700px auto;
+            box-shadow: 9px 9px 0 var(--cejera-red);
+        }
+
+        .project-logo--sigma {
+            filter: drop-shadow(5px 6px 0 rgb(247 7 7 / 22%));
+        }
+
+        .project-symbol--sigma {
+            position: absolute;
+            right: -12%;
+            bottom: -39%;
+            width: 62%;
+            opacity: 0.14;
+            transform: rotate(14deg);
+            pointer-events: none;
+        }
+
+        .project-logo--supernova {
+            width: min(72%, 390px);
+            filter: drop-shadow(6px 7px 0 rgb(247 7 7 / 24%));
+        }
+
+        .project-logo--soa {
+            width: min(43%, 220px);
+            filter: invert(1) drop-shadow(7px 7px 0 rgb(247 7 7 / 70%));
+        }
+
+        .project-portal--sigma .project-copy,
+        .project-portal--supernova .project-copy,
+        .project-portal--soa .project-copy {
+            margin-top: 18px;
+            padding: 28px;
+            border: 2px solid var(--cejera-black);
+            background:
+                linear-gradient(rgb(0 0 0 / 96%), rgb(0 0 0 / 96%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--cejera-paper);
+            box-shadow: 9px 9px 0 var(--cejera-red);
+        }
+
+        .project-portal--sigma .project-copy h3,
+        .project-portal--supernova .project-copy h3,
+        .project-portal--soa .project-copy h3 {
+            color: var(--cejera-paper);
+        }
+
+        .project-portal--rot .sketch-state {
+            bottom: 42px;
+            background: var(--cejera-red);
+            color: var(--cejera-paper);
+        }
+
+        .project-portal--rot .project-copy {
+            margin-top: 18px;
+            padding: 28px;
+            border: 2px solid var(--cejera-red);
+            background:
+                linear-gradient(rgb(23 6 6 / 95%), rgb(23 6 6 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--cejera-paper);
+            box-shadow: 0 0 24px rgb(247 7 7 / 18%);
+        }
+
+        .project-portal--rot .project-copy h3,
+        .project-portal--rot .project-action {
+            font-family: var(--cejera-font-body);
+        }
+
+        .sketch-label {
+            position: absolute;
+            inset: 50% auto auto 50%;
+            width: 86%;
+            margin: 0;
+            color: var(--cejera-red);
+            font-family: var(--cejera-font-handwritten);
+            font-size: clamp(3.1rem, 7vw, 6.6rem);
+            line-height: 0.9;
+            text-align: center;
+            text-transform: uppercase;
+            transform: translate(-50%, -50%) rotate(-3deg);
+        }
+
+        .sketch-index,
+        .sketch-state {
+            position: absolute;
+            z-index: 2;
+            padding: 6px 9px;
+            background: var(--cejera-paper);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sketch-index {
+            top: 14px;
+            left: 14px;
+            border: 1px solid var(--cejera-black);
+        }
+
+        .sketch-state {
+            right: 14px;
+            bottom: 14px;
+            color: var(--cejera-red);
+        }
+
+        .project-copy {
+            display: flex;
+            flex-direction: column;
+            padding: 34px 8px 0;
+        }
+
+        .project-meta {
+            margin: 0 0 10px;
+            color: var(--cejera-red);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .project-copy h3 {
+            margin: 0;
+            font-family: var(--cejera-font-display);
+            font-size: clamp(2.3rem, 4vw, 4.1rem);
+            font-weight: 750;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .project-copy p {
+            margin: 16px 0 24px;
+        }
+
+        .project-action {
+            margin-top: auto;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .project-action::after {
+            content: "  →";
+            color: var(--cejera-red);
+        }
+
+        .project-portal[aria-disabled="true"] {
+            cursor: default;
+        }
+
+        .project-portal[aria-disabled="true"] .project-action::after {
+            content: "  ⟡";
+        }
+
+        .references-shelf {
+            margin-top: clamp(70px, 11vw, 150px);
+            padding: clamp(30px, 6vw, 68px);
+            border: 2px solid var(--cejera-red);
+            background:
+                linear-gradient(rgb(0 0 0 / 95%), rgb(0 0 0 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--cejera-paper);
+        }
+
+        .references-shelf h3 {
+            margin: 0;
+            color: var(--cejera-red);
+            font-family: var(--cejera-font-display);
+            font-size: clamp(2.5rem, 6vw, 5.4rem);
+            font-weight: 750;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .references-shelf p {
+            max-width: 820px;
+            margin: 22px 0 0;
+            font-size: clamp(1rem, 1.7vw, 1.2rem);
+        }
+
+        .shelf-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0;
+            margin: 32px 0 0;
+            list-style: none;
+        }
+
+        .shelf-tags li {
+            padding: 8px 13px;
+            border: 1px solid var(--cejera-red);
+            border-radius: var(--cejera-radius-pill);
+            color: var(--cejera-paper);
+            font-size: 0.76rem;
+            text-transform: uppercase;
+        }
+
+        .references-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 24px;
+            align-items: end;
+        }
+
+        .references-source {
+            align-self: start;
+            padding: 7px 10px;
+            border: 1px solid var(--cejera-red);
+            color: var(--cejera-red);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .reference-groups {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 38px;
+        }
+
+        .reference-group {
+            grid-column: span 3;
+            padding: clamp(20px, 3vw, 32px);
+            border: 1px solid rgb(247 247 247 / 28%);
+        }
+
+        .reference-group--music,
+        .reference-group--cinema,
+        .reference-group--books {
+            grid-column: 1 / -1;
+        }
+
+        .reference-group h4 {
+            margin: 0;
+            color: var(--cejera-paper);
+            font-family: var(--cejera-font-body);
+            font-size: clamp(1.2rem, 2.4vw, 2rem);
+            font-weight: 750;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .reference-group h4 span {
+            color: var(--cejera-red);
+        }
+
+        .reference-caption {
+            margin: 9px 0 0;
+            color: rgb(247 247 247 / 68%);
+            font-size: 0.77rem;
+        }
+
+        .reference-caption a {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--cejera-white);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: var(--cejera-red);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .reference-caption a:hover,
+        .reference-caption a:focus-visible {
+            color: var(--cejera-red);
+        }
+
+        .track-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 28px;
+            padding: 0;
+            margin: 24px 0 0;
+            list-style: none;
+            counter-reset: tracks;
+        }
+
+        .track-list li {
+            counter-increment: tracks;
+            border-top: 1px solid rgb(247 247 247 / 18%);
+        }
+
+        .track-list a {
+            display: grid;
+            grid-template-columns: 34px minmax(0, 1fr) auto;
+            gap: 10px;
+            align-items: center;
+            min-height: 64px;
+            color: var(--cejera-paper);
+            text-decoration: none;
+            transition: color var(--cejera-transition), padding var(--cejera-transition);
+        }
+
+        .track-list a::before {
+            content: counter(tracks, decimal-leading-zero);
+            color: var(--cejera-red);
+            font-size: 0.69rem;
+            font-weight: 700;
+        }
+
+        .track-list a::after {
+            content: "↗";
+            color: var(--cejera-red);
+        }
+
+        .track-list a:hover {
+            padding-left: 6px;
+            color: var(--cejera-red);
+        }
+
+        .track-list strong,
+        .track-list small {
+            display: block;
+        }
+
+        .track-list strong {
+            font-size: 0.86rem;
+        }
+
+        .track-list small {
+            margin-top: 2px;
+            color: rgb(247 247 247 / 62%);
+            font-size: 0.68rem;
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: 26px;
+            padding: 0;
+            margin: 24px 0 0;
+            list-style: none;
+            counter-reset: books;
+        }
+
+        .book-list li {
+            counter-increment: books;
+            display: grid;
+            grid-template-columns: 34px minmax(0, 1fr);
+            gap: 10px;
+            align-items: center;
+            min-height: 72px;
+            border-top: 1px solid rgb(247 247 247 / 18%);
+            color: var(--cejera-paper);
+        }
+
+        .book-list li::before {
+            content: counter(books, decimal-leading-zero);
+            color: var(--cejera-red);
+            font-size: 0.69rem;
+            font-weight: 700;
+        }
+
+        .book-list strong,
+        .book-list small {
+            display: block;
+        }
+
+        .book-list strong {
+            font-size: 0.82rem;
+            line-height: 1.3;
+        }
+
+        .book-list small {
+            margin-top: 4px;
+            color: rgb(247 247 247 / 58%);
+            font-size: 0.65rem;
+        }
+
+        .book-list .is-future {
+            border-top-color: rgb(247 7 7 / 62%);
+        }
+
+        .book-list .is-future small::after {
+            content: " // LEITURA FUTURA";
+            color: var(--cejera-red);
+            font-weight: 700;
+        }
+
+        .book-list .is-current {
+            position: relative;
+            border-top-color: var(--cejera-red);
+        }
+
+        .reading-status {
+            display: block;
+            width: fit-content;
+            margin-top: 7px;
+            color: var(--cejera-red);
+            font-family: var(--cejera-font-body);
+            font-size: 0.63rem;
+            font-style: normal;
+            font-weight: 900;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            animation: readingGlow 1.8s ease-in-out infinite;
+        }
+
+        .reference-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .reference-card {
+            min-height: 145px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 22px 14px;
+            border: 0;
+            background:
+                linear-gradient(rgb(247 247 247 / 95%), rgb(247 247 247 / 95%)),
+                url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            color: var(--cejera-black);
+            text-align: center;
+            text-decoration: none;
+            clip-path: polygon(3% 6%, 94% 0, 100% 15%, 97% 94%, 12% 100%, 0 86%);
+            transform: rotate(-0.8deg);
+            transition: transform var(--cejera-transition), background var(--cejera-transition);
+        }
+
+        .reference-card:nth-child(2n) {
+            clip-path: polygon(8% 0, 100% 5%, 96% 89%, 84% 100%, 0 95%, 3% 11%);
+            transform: rotate(0.9deg);
+        }
+
+        .reference-card:hover {
+            background: var(--cejera-red);
+            color: var(--cejera-paper);
+            transform: translateY(-5px) rotate(0);
+        }
+
+        .reference-mark {
+            font-family: var(--cejera-font-handwritten);
+            font-size: clamp(1.15rem, 2vw, 1.65rem);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .reference-logo {
+            display: block;
+            width: min(84%, 190px);
+            height: 64px;
+            object-fit: contain;
+            filter: grayscale(1) contrast(1.25);
+            transition: filter var(--cejera-transition), transform var(--cejera-transition);
+        }
+
+        .reference-card:hover .reference-logo {
+            filter: grayscale(1) brightness(0) invert(1);
+            transform: scale(1.035) rotate(-0.5deg);
+        }
+
+        .reference-logo--tall {
+            height: 78px;
+        }
+
+        .reference-logo--ink-strong {
+            filter: grayscale(1) contrast(1.85) brightness(0.58);
+        }
+
+        .reference-card:hover .reference-logo--ink-strong {
+            filter: grayscale(1) brightness(0) invert(1);
+        }
+
+        .reference-card small {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(34px) rotate(0.35deg);
+            transition:
+                opacity 650ms ease,
+                transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-reveal].is-visible {
+            opacity: 1;
+            transform: translateY(0) rotate(0);
+        }
+
+        .portal-grid [data-reveal]:nth-child(2) { transition-delay: 90ms; }
+        .portal-grid [data-reveal]:nth-child(3) { transition-delay: 160ms; }
+        .portal-grid [data-reveal]:nth-child(4) { transition-delay: 230ms; }
+
+        @keyframes heroAssemble {
+            from {
+                opacity: 0;
+                transform: translateY(28px) skewY(1deg);
+                clip-path: inset(0 0 100% 0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) skewY(0);
+                clip-path: inset(0);
+            }
+        }
+
+        @keyframes paperDrift {
+            from { translate: 0 0; rotate: -0.8deg; }
+            to { translate: 0 -10px; rotate: 1.2deg; }
+        }
+
+        @keyframes paperDriftReverse {
+            from { translate: 0 -5px; rotate: 0.7deg; }
+            to { translate: 0 9px; rotate: -1deg; }
+        }
+
+        @keyframes noteBreathe {
+            from { translate: 0 0; scale: 1; }
+            to { translate: 0 -5px; scale: 1.018; }
+        }
+
+        @keyframes readingGlow {
+            0%, 100% {
+                opacity: 0.72;
+                text-shadow: 0 0 0 transparent;
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 9px rgb(247 7 7 / 88%), 0 0 18px rgb(247 7 7 / 46%);
+            }
+        }
+
+        @keyframes rotSignal {
+            0%, 91%, 94%, 100% { filter: none; }
+            92% { filter: contrast(1.35) brightness(1.22); }
+            93% { filter: contrast(0.92) brightness(0.74); }
+        }
+
+        @keyframes rotGlitch {
+            0%, 89%, 92%, 95%, 100% { translate: 0; }
+            90% { translate: 5px -1px; }
+            91% { translate: -8px 2px; }
+            93% { translate: 3px 0; }
+            94% { translate: -2px -1px; }
+        }
+
+        .projects-footer {
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--cejera-red);
+            background: var(--cejera-black);
+            color: var(--cejera-paper);
+        }
+
+        .projects-footer::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background: url('/assets/media/identity/paper-texture.webp') center / 700px auto;
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .footer-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: clamp(20px, 4vw, 48px);
+            padding-block: clamp(38px, 6vw, 70px);
+            font-size: 0.78rem;
+        }
+
+        .footer-mark {
+            width: 74px;
+            height: 74px;
+            object-fit: contain;
+            filter: drop-shadow(6px 0 0 var(--cejera-red));
+        }
+
+        .footer-statement strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            text-transform: uppercase;
+        }
+
+        .footer-layout p {
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 10px 18px;
+        }
+
+        .footer-layout a {
+            color: inherit;
+            font-weight: 700;
+            text-decoration-color: var(--cejera-red);
+            text-underline-offset: 4px;
+        }
+
+        @media (max-width: 980px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .site-navigation {
+                position: fixed;
+                inset: 88px 0 auto;
+                display: grid;
+                gap: 24px;
+                max-height: calc(100dvh - 88px);
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                padding: 32px clamp(18px, 6vw, 48px) 42px;
+                border-bottom: 2px solid var(--cejera-red);
+                background: var(--cejera-paper);
+                transform: translateY(-130%);
+                visibility: hidden;
+                transition: transform 220ms ease, visibility 220ms;
+            }
+
+            .site-navigation[data-visible="true"] {
+                transform: translateY(0);
+                visibility: visible;
+            }
+
+            .nav-list {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .nav-link {
+                display: block;
+                padding-block: 6px;
+                font-size: 1.05rem;
+            }
+
+            .club-link {
+                justify-self: start;
+            }
+
+            .projects-hero,
+            .section-heading {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-hero {
+                min-height: auto;
+            }
+
+            .hero-note {
+                max-width: 620px;
+                justify-self: end;
+            }
+
+            .hero-collage {
+                width: min(100%, 680px);
+                justify-self: end;
+            }
+
+            .reference-group {
+                grid-column: 1 / -1;
+            }
+
+            .book-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            .project-portal {
+                grid-column: 1 / -1;
+                min-height: 0;
+            }
+
+            .project-portal:nth-child(2n) {
+                margin-top: 24px;
+            }
+
+            .project-sketch {
+                min-height: clamp(280px, 82vw, 420px);
+            }
+
+            .hero-collage {
+                min-height: 430px;
+            }
+
+            .footer-layout {
+                align-items: flex-start;
+                grid-template-columns: auto 1fr;
+            }
+
+            .footer-links {
+                grid-column: 1 / -1;
+                justify-content: flex-start;
+            }
+
+            .references-intro,
+            .track-list,
+            .book-list {
+                grid-template-columns: 1fr;
+            }
+
+            .references-source {
+                justify-self: start;
+            }
+
+            .references-shelf[data-reveal] {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .projects-title,
+            .eyebrow,
+            .hero-copy,
+            .hero-symbol,
+            .collage-note,
+            .project-portal--rot .project-sketch,
+            .project-portal--rot .sketch-label,
+            .reading-status {
+                animation: none;
+            }
+
+            [data-reveal] {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="site-shell">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="projects-header" data-site-header data-header-cut>
+        <div class="container header-layout">
+            <a class="brand-link" href="/" aria-label="Cejera | página inicial">
+                <img src="/assets/brand/cejera-02.svg" class="brand-logo-registered" alt="Cejera">
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle><span class="hamburger" aria-hidden="true"></span></button>
+            <nav class="site-navigation" id="site-navigation" aria-label="Navegação principal" data-navigation data-visible="false">
+                <ul class="nav-list">
+                    <li><a class="nav-link" href="/">Início</a></li>
+                    <li><a class="nav-link" href="/projetos/" aria-current="page">Projetos</a></li>
+                    <li><a class="nav-link" href="/moda/">Moda</a></li>
+                    <li><a class="nav-link" href="/design/">Design</a></li>
+                    <li><a class="nav-link" href="/musica/">Música</a></li>
+                    <li><a class="nav-link" href="/sobre/">Sobre</a></li>
+                    <li><a class="nav-link" href="/contato/">Contato</a></li>
+                </ul>
+                <a class="club-link" href="/clubinho/">Clubinho</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="container projects-hero" aria-labelledby="projects-title">
+            <div>
+                <p class="eyebrow">Arquivo de universos // em expansão</p>
+                <h1 class="projects-title" id="projects-title">Entre pelo <span>rascunho</span></h1>
+                <p class="hero-copy">A Cejera® não funciona como uma pasta de trabalhos acabados. Funciona como uma assinatura que atravessa histórias, sistemas, imagens, sons e experiências. Cada esboço abaixo é uma porta, nunca uma miniatura comportada.</p>
+            </div>
+            <div class="hero-collage" data-float-stage>
+                <img class="hero-symbol hero-symbol--seste" src="/assets/media/identity/seste.png" alt="" aria-hidden="true">
+                <img class="hero-symbol hero-symbol--piramesde" src="/assets/media/identity/piramesde.png" alt="" aria-hidden="true">
+                <span class="collage-note collage-note--one" aria-hidden="true">não é moodboard.<br>é mapa.</span>
+                <span class="collage-note collage-note--two" aria-hidden="true">alguns sistemas respondem de volta.</span>
+                <aside class="hero-note" aria-label="Conceito da página">
+                    <strong>Herói + Rebelde = Protagonista</strong>
+                    <p>O rebelde rompe o papel herdado. O herói aceita as consequências. O protagonista faz os dois, reconhece a próxima ação possível e responde.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="portal-section" aria-labelledby="portal-title">
+            <div class="container">
+                <div class="section-heading" data-reveal>
+                    <h2 id="portal-title">Escolha um universo</h2>
+                    <p>Os quadros estão preparados para receber os esboços manuais originais. Enquanto eles são digitalizados, o mapa já organiza o papel narrativo e o estado de cada projeto.</p>
+                </div>
+
+                <div class="portal-grid">
+                    <a class="project-portal project-portal--rot" href="/rot/" aria-label="Entrar no universo ROT" data-reveal>
+                        <div class="project-sketch">
+                            <span class="sketch-index">Traço 01</span>
+                            <img class="project-logo project-logo--rot" src="/assets/brand/projects/rot.svg" alt="" width="1000" height="1000">
+                            <span class="sketch-state">Terminal jogável</span>
+                        </div>
+                        <div class="project-copy">
+                            <p class="project-meta">IA ficcional · software · narrativa</p>
+                            <h3>Recodificador Organo-Tecnológico</h3>
+                            <p>Uma inteligência nascida de um experimento de recodificação que ultrapassou o próprio protocolo. A experiência atual é um terminal-jogo; o projeto maior conecta ficção, software e a presença operacional de ROT.</p>
+                            <span class="project-action">Acessar terminal</span>
+                        </div>
+                    </a>
+
+                    <article class="project-portal project-portal--sigma" aria-disabled="true" data-reveal>
+                        <div class="project-sketch">
+                            <span class="sketch-index">Traço 02</span>
+                            <img class="project-symbol--sigma" src="/assets/brand/projects/sigma-lattice-simbolo.svg" alt="" width="1000" height="1000">
+                            <img class="project-logo project-logo--sigma" src="/assets/brand/projects/sigma-lattice-logotipo.svg" alt="" width="1000" height="1000">
+                            <span class="sketch-state">Portal em construção</span>
+                        </div>
+                        <div class="project-copy">
+                            <p class="project-meta">Pesquisa · verificação · documentação</p>
+                            <h3>Sigma Lattice</h3>
+                            <p>Universidade-laboratório interdisciplinar dedicada a reunir, verificar, corrigir, conectar, modelar, testar e documentar. Aqui, ciência, história, hipótese e cânone não usam a mesma etiqueta.</p>
+                            <span class="project-action">Portal em construção</span>
+                        </div>
+                    </article>
+
+                    <a class="project-portal project-portal--supernova" href="/supernova/" aria-label="Entrar no universo Supernova" data-reveal>
+                        <div class="project-sketch">
+                            <span class="sketch-index">Traço 03</span>
+                            <img class="project-logo project-logo--supernova" src="/assets/brand/projects/supernova.svg" alt="" width="1000" height="330">
+                            <span class="sketch-state">Linha do tempo ativa</span>
+                        </div>
+                        <div class="project-copy">
+                            <p class="project-meta">Impacto · matéria · transformação</p>
+                            <h3>Supernova</h3>
+                            <p>Uma linha do tempo navegável construída ao redor de um impacto registrado. <strong>SUPERNOVA</strong> transformou música, luz, matéria e <strong>centenas de observadores</strong> em uma experiência que existiu por apenas uma noite, mas deixou rastros <strong>muito além dela</strong>. Entre evento, peça, imagem e memória, cada arquivo preserva parte de uma explosão que marcou o início de algo <strong>muito maior</strong>.</p>
+                            <span class="project-action">Explorar impacto</span>
+                        </div>
+                    </a>
+
+                    <article class="project-portal project-portal--soa" aria-disabled="true" data-reveal>
+                        <div class="project-sketch">
+                            <span class="sketch-index">Traço 04</span>
+                            <img class="project-logo project-logo--soa" src="/assets/brand/projects/soa.svg" alt="" width="1364" height="1153">
+                            <span class="sketch-state">Portal em construção</span>
+                        </div>
+                        <div class="project-copy">
+                            <p class="project-meta">Símbolo · consciência · caos</p>
+                            <h3>SOA</h3>
+                            <p>Um laboratório dedicado aos limiares da consciência, do símbolo e da crença aplicada, onde psicologia, sonhos, mitologia, filosofia, espiritualidade e caoísmo se cruzam para investigar aquilo que emerge entre o visível e o oculto, sem apagar as fronteiras entre fato, experiência e interpretação.</p>
+                            <span class="project-action">Portal em construção</span>
+                        </div>
+                    </article>
+                </div>
+
+                <aside class="references-shelf" aria-labelledby="references-title" data-reveal>
+                    <div class="references-intro">
+                        <div>
+                            <h3 id="references-title">Prateleira de referências</h3>
+                            <p>Uma cartografia do que contaminou o processo criativo. Cada papel leva à obra original; a relação com os projetos aparece pela vizinhança, pelo choque e pelas recorrências.</p>
+                        </div>
+                        <span class="references-source">arquivo pessoal // seleção atual</span>
+                    </div>
+
+                    <div class="reference-groups">
+                        <section class="reference-group reference-group--music" aria-labelledby="music-reference-title">
+                            <h4 id="music-reference-title"><span>01 //</span> dez faixas no núcleo</h4>
+                            <p class="reference-caption">Top 10 atual da playlist “Minhas Favoritas da Vida”. Cada faixa abre diretamente no Spotify.<br><a href="https://open.spotify.com/playlist/4ii9Xn8vvv5fW1Ou2IrQvC" target="_blank" rel="noopener noreferrer">Abrir a playlist completa ↗</a></p>
+                            <ol class="track-list">
+                                <li><a href="https://open.spotify.com/track/6q4O0SRhyD0fucUljcqmHa" target="_blank" rel="noopener noreferrer"><span><strong>Dancing Devil</strong><small>Small Leaks Sink Ships</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/7zkDEBSxkcBVsStS4qBFpK" target="_blank" rel="noopener noreferrer"><span><strong>Lisztomania</strong><small>Phoenix</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/5RqJrJRVZ0wdiI4yFuv3u6" target="_blank" rel="noopener noreferrer"><span><strong>All Those Friendly People</strong><small>Funeral Suits</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/3BIIJgBJJ7NhhCv4MI6n7w" target="_blank" rel="noopener noreferrer"><span><strong>Alien Boy</strong><small>Oliver Tree</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/56H3dKCFVcdHQjFHPOSUED" target="_blank" rel="noopener noreferrer"><span><strong>Bored</strong><small>CLAYTON</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/70LcF31zb1H0PyJoS1Sx1r" target="_blank" rel="noopener noreferrer"><span><strong>Creep</strong><small>Radiohead</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/0GO8y8jQk1PkHzS31d699N" target="_blank" rel="noopener noreferrer"><span><strong>Tongue Tied</strong><small>GROUPLOVE</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/27rZYxE4l21wTaovX4WTnI" target="_blank" rel="noopener noreferrer"><span><strong>Television / So Far So Good</strong><small>Rex Orange County</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/7E9W98wuhKzWakosD8ZESo" target="_blank" rel="noopener noreferrer"><span><strong>Sunrise</strong><small>Winterbourne</small></span></a></li>
+                                <li><a href="https://open.spotify.com/track/34xGLuxM0rkxhCVyMSqwJO" target="_blank" rel="noopener noreferrer"><span><strong>Stolen Dance</strong><small>Milky Chance</small></span></a></li>
+                            </ol>
+                        </section>
+
+                        <section class="reference-group" aria-labelledby="game-reference-title">
+                            <h4 id="game-reference-title"><span>02 //</span> mundos jogáveis</h4>
+                            <p class="reference-caption">Construção, descoberta, escolha, equipe e criação coletiva. Aah, e <strong>DRAGÕES</strong> >:)</p>
+                            <div class="reference-card-grid">
+                                <a class="reference-card" href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/minecraft.svg" alt="Minecraft" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://terraria.org/" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--tall" src="/assets/brand/references/terraria.png" alt="Terraria" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://lifeisstrange.square-enix-games.com/" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/life-is-strange.svg" alt="Life is Strange" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://overwatch.blizzard.com/" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--tall" src="/assets/brand/references/overwatch.svg" alt="Overwatch" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://www.roblox.com/" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/roblox.svg" alt="Roblox" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://elderscrolls.bethesda.net/en-US/skyrim10" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/skyrim.png" alt="The Elder Scrolls V: Skyrim" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                            </div>
+                        </section>
+
+                        <section class="reference-group" aria-labelledby="series-reference-title">
+                            <h4 id="series-reference-title"><span>03 //</span> séries</h4>
+                            <p class="reference-caption">Tempo, fratura social, poder, família e consequências. E <strong>DRAGÕES</strong> >:)</p>
+                            <div class="reference-card-grid">
+                                <a class="reference-card" href="https://www.netflix.com/title/80100172" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/dark.png" alt="Dark" loading="lazy" decoding="async"><small>Netflix ↗</small></a>
+                                <a class="reference-card" href="https://www.netflix.com/title/81435684" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--tall" src="/assets/brand/references/arcane.png" alt="Arcane" loading="lazy" decoding="async"><small>Netflix ↗</small></a>
+                                <a class="reference-card" href="https://www.max.com/shows/game-of-thrones/4f6b4985-2dc9-4ab6-ac79-d60f0860b0ac" target="_blank" rel="noopener noreferrer"><img class="reference-logo" src="/assets/brand/references/game-of-thrones.png" alt="Game of Thrones" loading="lazy" decoding="async"><small>Max ↗</small></a>
+                                <a class="reference-card" href="https://www.cyberpunk.net/en/edgerunners" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--ink-strong" src="/assets/brand/references/cyberpunk-edgerunners.png" alt="Cyberpunk: Edgerunners" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://tongari-anime.com/en/" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--tall" src="/assets/brand/references/witch-hat-atelier.png" alt="Witch Hat Atelier" loading="lazy" decoding="async"><small>site oficial ↗</small></a>
+                                <a class="reference-card" href="https://www.primevideo.com/detail/0U3073DE9J38JXZ5WLZW5O8MH3" target="_blank" rel="noopener noreferrer"><img class="reference-logo reference-logo--tall reference-logo--ink-strong" src="/assets/brand/references/wheel-of-time.png" alt="A Roda do Tempo" loading="lazy" decoding="async"><small>Prime Video ↗</small></a>
+                            </div>
+                        </section>
+
+                        <section class="reference-group reference-group--cinema" aria-labelledby="film-reference-title">
+                            <h4 id="film-reference-title"><span>04 //</span> filmes no quadro</h4>
+                            <p class="reference-caption">Favoritos atuais do perfil público do Cejera no Letterboxd.</p>
+                            <div class="reference-card-grid">
+                                <a class="reference-card" href="https://letterboxd.com/film/donnie-darko/" target="_blank" rel="noopener noreferrer"><span class="reference-mark">Donnie Darko</span><small>2001 · Letterboxd ↗</small></a>
+                                <a class="reference-card" href="https://letterboxd.com/film/interstellar/" target="_blank" rel="noopener noreferrer"><span class="reference-mark">Interstellar</span><small>2014 · Letterboxd ↗</small></a>
+                                <a class="reference-card" href="https://letterboxd.com/film/arrival-2016/" target="_blank" rel="noopener noreferrer"><span class="reference-mark">Arrival</span><small>2016 · Letterboxd ↗</small></a>
+                                <a class="reference-card" href="https://letterboxd.com/film/midsommar/" target="_blank" rel="noopener noreferrer"><span class="reference-mark">Midsommar</span><small>2019 · Letterboxd ↗</small></a>
+                            </div>
+                        </section>
+
+                        <section class="reference-group reference-group--books" aria-labelledby="book-reference-title">
+                            <h4 id="book-reference-title"><span>05 //</span> livros na cabeceira</h4>
+                            <p class="reference-caption">Cinquenta histórias, ideias e sistemas em três colunas. As linhas vermelhas marcam as próximas leituras; o sinal pulsante mostra o que está aberto agora.</p>
+                            <ol class="book-list">
+                                <li><span><strong>O Ladrão de Raios</strong><small>Rick Riordan · PJO 01</small></span></li>
+                                <li><span><strong>O Mar de Monstros</strong><small>Rick Riordan · PJO 02</small></span></li>
+                                <li><span><strong>A Maldição do Titã</strong><small>Rick Riordan · PJO 03</small></span></li>
+                                <li><span><strong>A Batalha do Labirinto</strong><small>Rick Riordan · PJO 04</small></span></li>
+                                <li><span><strong>O Último Olimpiano</strong><small>Rick Riordan · PJO 05</small></span></li>
+                                <li class="is-future"><span><strong>O Cálice dos Deuses</strong><small>Rick Riordan · PJO 06</small></span></li>
+                                <li class="is-future"><span><strong>A Fúria da Deusa Tríplice</strong><small>Rick Riordan · PJO 07</small></span></li>
+                                <li><span><strong>O Herói Perdido</strong><small>Rick Riordan · Os Heróis do Olimpo 01</small></span></li>
+                                <li><span><strong>O Filho de Netuno</strong><small>Rick Riordan · Os Heróis do Olimpo 02</small></span></li>
+                                <li><span><strong>A Marca de Atena</strong><small>Rick Riordan · Os Heróis do Olimpo 03</small></span></li>
+                                <li><span><strong>A Casa de Hades</strong><small>Rick Riordan · Os Heróis do Olimpo 04</small></span></li>
+                                <li><span><strong>O Sangue do Olimpo</strong><small>Rick Riordan · Os Heróis do Olimpo 05</small></span></li>
+                                <li><span><strong>O Oráculo Oculto</strong><small>Rick Riordan · As Provações de Apolo 01</small></span></li>
+                                <li><span><strong>A Profecia das Sombras</strong><small>Rick Riordan · As Provações de Apolo 02</small></span></li>
+                                <li><span><strong>O Labirinto de Fogo</strong><small>Rick Riordan · As Provações de Apolo 03</small></span></li>
+                                <li><span><strong>A Tumba do Tirano</strong><small>Rick Riordan · As Provações de Apolo 04</small></span></li>
+                                <li><span><strong>A Torre de Nero</strong><small>Rick Riordan · As Provações de Apolo 05</small></span></li>
+                                <li><span><strong>O Inferno Somos Nós</strong><small>Leandro Karnal e Monja Coen</small></span></li>
+                                <li class="is-current"><span><strong>O Homem de Giz</strong><small>C. J. Tudor</small><em class="reading-status">//• LEITURA ATUAL</em></span></li>
+                                <li><span><strong>O Pequeno Príncipe</strong><small>Antoine de Saint-Exupéry</small></span></li>
+                                <li><span><strong>O Oráculo, vol. 1</strong><small>Jackie French</small></span></li>
+                                <li><span><strong>O Oráculo, vol. 2</strong><small>Jackie French</small></span></li>
+                                <li class="is-current"><span><strong>O Alquimista</strong><small>Paulo Coelho</small><em class="reading-status">//• LEITURA ATUAL</em></span></li>
+                                <li class="is-future"><span><strong>Babel</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>Piranesi</strong><small>Susanna Clarke</small></span></li>
+                                <li class="is-future"><span><strong>Neuromancer</strong><small>William Gibson</small></span></li>
+                                <li class="is-future"><span><strong>Ensaio sobre a Cegueira</strong><small>José Saramago</small></span></li>
+                                <li class="is-future"><span><strong>A Vida Invisível de Addie LaRue</strong><small>V. E. Schwab</small></span></li>
+                                <li class="is-future"><span><strong>O Conto da Aia</strong><small>Margaret Atwood</small></span></li>
+                                <li class="is-future"><span><strong>O Fim da Eternidade</strong><small>Isaac Asimov</small></span></li>
+                                <li class="is-future"><span><strong>A Biblioteca da Meia-Noite</strong><small>Matt Haig</small></span></li>
+                                <li class="is-future"><span><strong>A Guerra da Papoula</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>A República do Dragão</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>O Deus em Chamas</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>Impostora: Yellowface</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>Katábasis</strong><small>R. F. Kuang</small></span></li>
+                                <li class="is-future"><span><strong>A Quinta Estação</strong><small>N. K. Jemisin</small></span></li>
+                                <li class="is-future"><span><strong>O Portão do Obelisco</strong><small>N. K. Jemisin</small></span></li>
+                                <li class="is-future"><span><strong>O Céu de Pedra</strong><small>N. K. Jemisin</small></span></li>
+                                <li class="is-future"><span><strong>A Mão Esquerda da Escuridão</strong><small>Ursula K. Le Guin</small></span></li>
+                                <li class="is-future"><span><strong>O Problema dos Três Corpos</strong><small>Cixin Liu</small></span></li>
+                                <li class="is-future"><span><strong>Matéria Escura</strong><small>Blake Crouch</small></span></li>
+                                <li class="is-future"><span><strong>Recursão</strong><small>Blake Crouch</small></span></li>
+                                <li class="is-future"><span><strong>Torto Arado</strong><small>Itamar Vieira Junior</small></span></li>
+                                <li class="is-future"><span><strong>A Cabeça do Santo</strong><small>Socorro Acioli</small></span></li>
+                                <li class="is-future"><span><strong>O Avesso da Pele</strong><small>Jeferson Tenório</small></span></li>
+                                <li class="is-future"><span><strong>Ideias para Adiar o Fim do Mundo</strong><small>Ailton Krenak</small></span></li>
+                                <li class="is-future"><span><strong>A Hora da Estrela</strong><small>Clarice Lispector</small></span></li>
+                                <li class="is-future"><span><strong>Não Verás País Nenhum</strong><small>Ignácio de Loyola Brandão</small></span></li>
+                                <li class="is-future"><span><strong>A Palavra que Resta</strong><small>Stênio Gardel</small></span></li>
+                            </ol>
+                        </section>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="projects-footer">
+        <div class="container footer-layout">
+            <img class="footer-mark" src="/assets/brand/cejera-00.svg" alt="" width="100" height="100">
+            <div class="footer-statement">
+                <strong>Excentricidade. Autenticidade. Protagonismo.</strong>
+                <p>© <span data-current-year>2026</span> Cejera®. Cada universo começa com uma próxima ação possível.</p>
+            </div>
+            <nav class="footer-links" aria-label="Links institucionais">
+                <a href="/privacidade/">Privacidade</a>
+                <a href="/termos/">Termos</a>
+                <a href="/contato/">Contato</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

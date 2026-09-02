@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEJERA® — MÚSICA | Experiências Sonoras Únicas</title>
-    <meta name="description" content="DJ e produtor musical especializado em experiências sonoras únicas. Sinestesia, excentricidade e autenticidade em cada set. Funk, techno, house e fusões experimentais.">
-    <meta name="keywords" content="Cejera, DJ, música, festas, eventos, techno, funk, house, mixagem, sets personalizados, sinestesia">
+    <title>Música e experiências sonoras | Cejera</title>
+    <meta name="description" content="Sets e experiências sonoras do Cejera entre rock, funk, techno, house e fusões experimentais, com sinestesia e autenticidade.">
+    <meta name="keywords" content="Cejera, DJ, música, festas, eventos, rock, techno, funk, house, mixagem, sets personalizados, sinestesia">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://cejera.com/musica/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cejera">
+    <meta property="og:title" content="Música e experiências sonoras | Cejera">
+    <meta property="og:description" content="Sets e produções do Cejera construídos entre sinestesia, ritmo e experimentação.">
+    <meta property="og:url" content="https://cejera.com/musica/">
+    <meta property="og:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Música e experiências sonoras | Cejera">
+    <meta name="twitter:description" content="Sets e produções do Cejera construídos entre sinestesia, ritmo e experimentação.">
+    <meta name="twitter:image" content="https://cejera.com/assets/media/social/og-cejera.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Biblioteca de ícones Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+    <!-- Identidade e ícones locais -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera® - Música" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Música" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
         /* CSS Variables - Design System Baseado em Neurodesign */
@@ -319,14 +333,16 @@
         }
 
         .hero-title {
-            margin-bottom: 20px;
+            width: min(100%, 900px);
+            margin: 0 auto 20px;
             position: relative;
-            display: inline-block;
+            display: block;
+            text-align: center;
         }
 
         .hero-title::before,
         .hero-title::after {
-            content: '♪';
+            content: none;
             color: var(--red);
             position: absolute;
             top: 50%;
@@ -360,7 +376,8 @@
             font-family: 'Mynerve', cursive;
             font-size: 1.8rem;
             color: var(--red);
-            margin: 30px 0;
+            margin: 30px auto;
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -453,6 +470,13 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            padding: 12px 14px;
+            color: var(--light);
+            background:
+                linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.95)),
+                url('/assets/media/identity/paper-texture.webp') center / 520px auto;
+            border: 1px solid rgba(247, 7, 7, 0.42);
+            box-shadow: 4px 4px 0 rgba(247, 7, 7, 0.22);
         }
 
         .expertise-icon {
@@ -539,12 +563,18 @@
 
         .service-title {
             margin-bottom: 15px;
-            color: var(--light);
+            color: var(--light) !important;
         }
 
         .service-description {
-            color: #aaa;
+            color: #d6d6d6 !important;
             line-height: 1.6;
+        }
+
+        @media (min-width: 981px) {
+            .footer-links-container {
+                padding-left: clamp(18px, 2.2vw, 34px);
+            }
         }
 
         /* Seção Playlists */
@@ -602,12 +632,12 @@
             font-size: 0.9rem;
         }
 
-        .playlist-link i {
+        .playlist-link .cejera-icon {
             margin-left: 8px;
             transition: var(--transition);
         }
 
-        .playlist-link:hover i {
+        .playlist-link:hover .cejera-icon {
             transform: translateX(5px);
         }
 
@@ -784,14 +814,14 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(247, 7, 7, 0.3);
         }
-        
+
 
         .newsletter-note {
             font-size: 0.8rem;
             opacity: 0.7;
             margin-top: 8px;
         }
-        
+
 
         .copyright {
             text-align: center;
@@ -807,14 +837,14 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            
+
             .about-image {
                 max-width: 500px;
                 margin: 0 auto;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
             .menu-toggle {
                 display: flex;
             }
@@ -873,12 +903,12 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .hero-cta .btn {
                 width: 100%;
                 max-width: 300px;
             }
-            
+
             .social-links-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -889,23 +919,17 @@
             }
         }
 
-        @media (min-width: 768px) {
-            .footer-form {
-                flex-direction: row;
-            }
-        }
-
         @media (max-width: 480px) {
             .services-grid,
             .playlists-grid,
             .contact-options {
                 grid-template-columns: 1fr;
             }
-            
+
             .hero {
                 padding: 80px 0 60px;
             }
-            
+
             .hero-title::before,
             .hero-title::after {
                 display: none;
@@ -943,15 +967,17 @@
             outline-offset: 2px;
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="site-shell legacy-page musica-page">
 
     <!-- Header -->
-    <header id="main-header">
+    <header data-header-cut id="main-header">
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/home">
-                    <img src="cejera-03.svg" alt="Cejera Logo" class="logo-img">
+                <a href="/">
+                    <img src="/assets/brand/cejera-03.svg" alt="Cejera" class="logo-img">
                 </a>
             </div>
 
@@ -965,12 +991,13 @@
 
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu" role="menubar">
-                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link active" role="menuitem" aria-current="page">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                    <li><a href="/" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link" role="menuitem">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="/design/" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="/musica/" class="nav-link active" role="menuitem" aria-current="page">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link" role="menuitem">Contato</a></li>
                 </ul>
                 <div class="header-cta">
                     <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." class="btn">CONTRATAR DJ</a>
@@ -986,12 +1013,12 @@
             <h1 class="hero-title">"SINESTESIA": Já ouviu falar?</h1>
             <p class="slogan">Música que você ouve, vê e sente</p>
             <p class="hero-subtitle">
-                <strong>DJ e produtor musical</strong> especializado em criar <strong>experiências únicas</strong> que transcendem o som. 
-                Cada set é uma jornada sensorial onde funk, techno, house e fusões experimentais se encontram.
+                <strong>DJ e produtor musical</strong> especializado em criar <strong>experiências únicas</strong> que transcendem o som.
+                Cada set é uma jornada sensorial onde rock, funk, techno, house e fusões experimentais se encontram.
             </p>
             <div class="hero-cta">
                 <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." class="btn">SOLICITAR ORÇAMENTO</a>
-                <a href="https://open.spotify.com/user/mr.xandoso" class="btn btn-outline">OUVIR SETS</a>
+                <a href="https://open.spotify.com/playlist/0oO6OmT8KfWHaRowBFwFuf?si=6495dbbbe82746fa" class="btn btn-outline" target="_blank" rel="noopener noreferrer">OUVIR ÚLTIMO SET</a>
             </div>
         </section>
 
@@ -1004,31 +1031,31 @@
                         <p>Sou Cejera, DJ e produtor com uma abordagem única para a música. Minha filosofia é simples: <strong>a música deve ser sentida, não apenas ouvida</strong>.</p>
                         <p>Com 5 anos de experiência em pistas de dança e estúdios, desenvolvi um estilo que mescla técnica apurada com intuição musical, criando sets que são verdadeiras jornadas emocionais.</p>
                         <p>Minha especialidade está em ler a energia do ambiente e moldar o som ao redor dela, garantindo que cada evento tenha uma identidade sonora única e memorável.</p>
-                        
+
                         <div class="expertise-list">
                             <div class="expertise-item">
-                                <i class="fas fa-music expertise-icon"></i>
+                                <svg class="cejera-icon cejera-icon--signal expertise-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#music"></use></svg>
                                 <span>Mixagem criativa entre gêneros</span>
                             </div>
                             <div class="expertise-item">
-                                <i class="fas fa-sliders-h expertise-icon"></i>
+                                <svg class="cejera-icon cejera-icon--signal expertise-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#sliders"></use></svg>
                                 <span>Transições suaves e impactantes</span>
                             </div>
                             <div class="expertise-item">
-                                <i class="fas fa-bolt expertise-icon"></i>
+                                <svg class="cejera-icon cejera-icon--signal expertise-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#zap"></use></svg>
                                 <span>Sensibilidade para a energia da pista</span>
                             </div>
                             <div class="expertise-item">
-                                <i class="fas fa-headphones expertise-icon"></i>
+                                <svg class="cejera-icon cejera-icon--signal expertise-icon" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#headphones"></use></svg>
                                 <span>Setlist personalizada para cada evento</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="about-image fade-in-up">
-                        <img src="fotocejera.png" alt="Cejera - DJ e Produtor Musical">
+                        <img src="/assets/media/identity/cejera-portrait-square.webp" alt="Cejera, DJ e produtor musical" loading="lazy" decoding="async">
                         <div class="image-overlay">
-                            <h3>CEJERA (sou eu)</h3>
+                            <h3>Cejera (sou eu)</h3>
                             <p>DJ & Produtor | Especialista em Experiências Sonoras</p>
                         </div>
                     </div>
@@ -1043,23 +1070,23 @@
                 <div class="services-grid">
                     <div class="service-card fade-in-up">
                         <div class="service-icon">
-                            <i class="fas fa-glass-cheers"></i>
+                            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#celebration"></use></svg>
                         </div>
                         <h3 class="service-title">DJ PARA EVENTOS</h3>
                         <p class="service-description">Sets personalizados para festas privadas, casamentos, lançamentos e eventos corporativos. Criamos a trilha sonora perfeita para sua ocasião especial.</p>
                     </div>
-                    
+
                     <div class="service-card fade-in-up">
                         <div class="service-icon">
-                            <i class="fas fa-volume-up"></i>
+                            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#volume"></use></svg>
                         </div>
                         <h3 class="service-title">SETS TEMÁTICOS</h3>
                         <p class="service-description">Experiências musicais imersivas com temas específicos: anos 80/90, underground, brasileiro, eletrônico. Cada set é uma viagem.</p>
                     </div>
-                    
+
                     <div class="service-card fade-in-up">
                         <div class="service-icon">
-                            <i class="fas fa-compact-disc"></i>
+                            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#disc"></use></svg>
                         </div>
                         <h3 class="service-title">PRODUÇÃO MUSICAL</h3>
                         <p class="service-description">Criação de trilhas originais, edições exclusivas e remixes personalizados para marcas, projetos audiovisuais ou lançamentos próprios.</p>
@@ -1074,29 +1101,29 @@
                 <h2 class="section-title fade-in-up">EXPLORE MINHAS PLAYLISTS</h2>
                 <div class="playlists-grid">
                     <div class="playlist-card fade-in-up">
-                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c15febd84412ee344445a7da6" alt="Playlist do protagonista" class="playlist-image">
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c15febd84412ee344445a7da6" alt="Playlist do protagonista" class="playlist-image" loading="lazy" decoding="async">
                         <div class="playlist-content">
                             <h3 class="playlist-title">Cejera</h3>
                             <p class="playlist-description">Minha playlist de protagonista. Indie rock, alternativo... parece trilha sonora de série ;)</p>
-                            <a href="https://open.spotify.com/playlist/06S7u1IvEiotSp8pk9aIsD" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                            <a href="https://open.spotify.com/playlist/06S7u1IvEiotSp8pk9aIsD" target="_blank" rel="noopener noreferrer" class="playlist-link">OUVIR NO SPOTIFY <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#arrow-right"></use></svg></a>
                         </div>
                     </div>
-                    
+
                     <div class="playlist-card fade-in-up">
-                        <img src="https://image-cdn-fa.spotifycdn.com/image/ab676d610000d906622ee396681c61e68e0d8a9d" alt="FAVORITAS" class="playlist-image">
+                        <img src="https://image-cdn-fa.spotifycdn.com/image/ab676d610000d906622ee396681c61e68e0d8a9d" alt="FAVORITAS" class="playlist-image" loading="lazy" decoding="async">
                         <div class="playlist-content">
                             <h3 class="playlist-title">Minhas favoritas</h3>
                             <p class="playlist-description">Playlist de músicas favoritas. Apenas as que eu mais gosto.</p>
-                            <a href="https://open.spotify.com/playlist/4ii9Xn8vvv5fW1Ou2IrQvC" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                            <a href="https://open.spotify.com/playlist/4ii9Xn8vvv5fW1Ou2IrQvC" target="_blank" rel="noopener noreferrer" class="playlist-link">OUVIR NO SPOTIFY <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#arrow-right"></use></svg></a>
                         </div>
                     </div>
-                    
+
                     <div class="playlist-card fade-in-up">
-                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c0f1cfafdb9081082de74bdc0" alt="Pra ouvir com sono" class="playlist-image">
+                        <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000d72c0f1cfafdb9081082de74bdc0" alt="Pra ouvir com sono" class="playlist-image" loading="lazy" decoding="async">
                         <div class="playlist-content">
                             <h3 class="playlist-title">Playlist pra ouvir "com sono"</h3>
                             <p class="playlist-description">Se é que você me entende ;)</p>
-                            <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" target="_blank" class="playlist-link">OUVIR NO SPOTIFY <i class="fas fa-arrow-right"></i></a>
+                            <a href="https://open.spotify.com/playlist/3RQyibbliCIzVRWgtE9IkF" target="_blank" rel="noopener noreferrer" class="playlist-link">OUVIR NO SPOTIFY <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#arrow-right"></use></svg></a>
                         </div>
                     </div>
                 </div>
@@ -1107,30 +1134,30 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h2 class="fade-in-up">PRONTO PARA TRANSFORMAR SEU EVENTO?</h2>
-                <p class="contact-subtitle fade-in-up">Entre em contato para discutirmos como posso criar uma experiência sonora única para sua ocasião especial.<br><strong>Condições especiais para sua primeira festa</strong> à partir de <strong>R$149,90</strong>/hora.<br>*Condições apenas até julho/2026.</p>
-                
+                <p class="contact-subtitle fade-in-up">Entre em contato para alinharmos uma experiência sonora adequada ao seu evento. Duração, formato, estrutura e valores são definidos de acordo com cada ocasião.</p>
+
                 <div class="contact-options">
                     <div class="contact-option fade-in-up">
                         <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
+                            <svg class="brand-icon brand-icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#whatsapp"></use></svg>
                         </div>
                         <h3>WHATSAPP</h3>
                         <p>Respostas rápidas e diretas para orçamentos e consultas.</p>
-                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." target="_blank" class="btn">ENVIAR MENSAGEM</a>
+                        <a href="https://wa.me/5535999286246?text=Ol%C3%A1%20Cejera!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20set%20de%20DJ." target="_blank" rel="noopener noreferrer" class="btn">ENVIAR MENSAGEM</a>
                     </div>
-                    
+
                     <div class="contact-option fade-in-up">
                         <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#mail"></use></svg>
                         </div>
                         <h3>E-MAIL</h3>
                         <p>Para propostas detalhadas e briefings mais elaborados.</p>
                         <a href="mailto:contato@cejera.com" class="btn btn-outline">ENVIAR E-MAIL</a>
                     </div>
-                    
+
                     <div class="contact-option fade-in-up">
                         <div class="contact-icon">
-                            <i class="fas fa-calendar-alt"></i>
+                            <svg class="cejera-icon cejera-icon--signal" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#calendar"></use></svg>
                         </div>
                         <h3>AGENDAMENTO</h3>
                         <p>Verifique disponibilidade para sua data e localização.</p>
@@ -1146,28 +1173,28 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
                     <div class="footer-about">
                         Criando experiências sonoras únicas desde 2021. Sinestesia, energia e autenticidade em cada set. Transforme seu evento com som que se sente.
                     </div>
                     <div class="social-links-grid">
                         <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
-                            <i class="fab fa-instagram social-icon"></i>
+                            <svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg>
                             <span class="social-name">Instagram</span>
                             <span class="social-desc">@cejeraa</span>
                         </a>
                         <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
-                            <i class="fab fa-spotify social-icon"></i>
+                            <svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg>
                             <span class="social-name">Spotify</span>
                             <span class="social-desc">Cejera</span>
                         </a>
                         <a href="https://soundcloud.com/cejera" class="social-link" aria-label="SoundCloud">
-                            <i class="fab fa-soundcloud social-icon"></i>
+                            <svg class="brand-icon brand-icon--soundcloud social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#soundcloud"></use></svg>
                             <span class="social-name">SoundCloud</span>
                             <span class="social-desc">/cejera</span>
                         </a>
                         <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in social-icon"></i>
+                            <svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg>
                             <span class="social-name">LinkedIn</span>
                             <span class="social-desc">/in/cejera</span>
                         </a>
@@ -1177,13 +1204,14 @@
                 <div class="footer-links-container">
                     <h3 class="footer-heading">NAVEGAÇÃO</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home">Início</a></li>
-                        <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="https://cejera.com/design">Design</a></li>
-                        <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
-                        <li><a href="https://cejera.com/contato">Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
                     </ul>
                 </div>
 
@@ -1191,9 +1219,9 @@
                     <h3 class="footer-heading">Clubinho Divertido</h3>
                     <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
                     <form class="footer-form" id="waitlist-form">
-                        <input type="email" 
+                        <input type="email"
                                id="waitlist-email"
-                               class="footer-input" 
+                               class="footer-input"
                                placeholder="seu@email.com"
                                aria-label="Insira seu e-mail para a lista de espera"
                                required>
@@ -1201,14 +1229,14 @@
                     </form>
                     <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
                     <p style="margin-top: 20px; font-size: 0.8rem;">
-                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
-                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                        <a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> /
+                        <a href="/termos/" style="color: var(--red);">Termos de uso</a>
                     </p>
                 </div>
             </div>
 
             <div class="copyright">
-                <p>© 2026 Cejera® — "SINESTESIA": Já ouviu falar? Porque a música deve ser sentida, não apenas ouvida.</p>
+                <p>© 2026 Cejera® | "SINESTESIA": Já ouviu falar? Porque a música deve ser sentida, não apenas ouvida.</p>
             </div>
         </div>
     </footer>
@@ -1222,12 +1250,12 @@
 
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            
+
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            
+
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
-            
+
             if (!isExpanded) {
                 body.style.overflow = 'hidden';
                 navLinks[0].focus();
@@ -1245,10 +1273,10 @@
         });
 
         document.addEventListener('click', (e) => {
-            if (nav.getAttribute('data-visible') === 'true' && 
-                !nav.contains(e.target) && 
+            if (nav.getAttribute('data-visible') === 'true' &&
+                !nav.contains(e.target) &&
                 !menuToggle.contains(e.target)) {
-                
+
                 menuToggle.setAttribute('aria-expanded', 'false');
                 nav.setAttribute('data-visible', 'false');
                 body.style.overflow = '';
@@ -1272,33 +1300,22 @@
             } else {
                 header.classList.remove('header-scroll');
             }
-            
-            // Ativar animações de entrada quando elementos estão visíveis
-            const fadeElements = document.querySelectorAll('.fade-in-up');
-            fadeElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
+
         });
 
         // Formulário de lista de espera
         document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const emailInput = document.getElementById('waitlist-email');
             const email = emailInput.value.trim();
-            
+
             if (!email) {
                 alert('Por favor, insira seu e-mail!');
                 emailInput.focus();
                 return;
             }
-            
+
             // Validar formato de e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
@@ -1306,35 +1323,20 @@
                 emailInput.focus();
                 return;
             }
-            
+
             // Criar mensagem personalizada com o e-mail
             const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
-            
+
             // Abrir WhatsApp
-            window.open(whatsappUrl, '_blank');
-            
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
             // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
         });
 
-        // Inicializar animações de entrada
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-in-up');
-            fadeElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            });
-            
-            // Disparar scroll event para ativar animações iniciais
-            window.dispatchEvent(new Event('scroll'));
-        });
     </script>
+    <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
-
-
-
-

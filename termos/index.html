@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMOS DE USO — CEJERA® | Excentricidade e Autenticidade</title>
-    <meta name="description" content="Termos de Uso da Cejera®. Conheça as regras e condições para uso do nosso site e serviços.">
+    <title>Termos de Uso | Cejera</title>
+    <meta name="description" content="Termos de Uso da Cejera. Conheça as regras e condições para uso do site e dos serviços.">
+    <meta name="author" content="Cejera">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f70707">
+    <link rel="canonical" href="https://cejera.com/termos/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Biblioteca de ícones Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&family=Source+Code+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Identidade e ícones locais -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Cejera® - Termos" />
+    <meta name="apple-mobile-web-app-title" content="Cejera | Termos" />
     <link rel="manifest" href="/site.webmanifest" />
     <style>
         /* CSS Variables - Design System */
@@ -273,7 +276,7 @@
 
         .termos-title::before,
         .termos-title::after {
-            content: '✱';
+            content: none;
             color: var(--red);
             position: absolute;
             top: 50%;
@@ -302,7 +305,7 @@
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            padding: 50px;
+            padding: clamp(58px, 7vw, 82px);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             border: 2px solid var(--red);
@@ -618,7 +621,7 @@
             }
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 980px) {
             .menu-toggle {
                 display: block;
             }
@@ -667,7 +670,7 @@
             }
 
             .termos-container {
-                padding: 30px 20px;
+                padding: 38px 28px;
             }
 
             /* Footer social fullwidth no mobile - cards com altura uniforme */
@@ -703,15 +706,17 @@
             stroke-width: 2;
         }
     </style>
+    <link rel="stylesheet" href="/assets/css/icons.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
-<body>
+<body class="site-shell legacy-page">
 
     <!-- Header (idêntico ao primeiro código) -->
-    <header id="main-header">
+    <header data-header-cut id="main-header">
         <div class="container header-content">
             <div class="logo-container">
-                <a href="https://cejera.com/home">
-                    <img src="cejera-02.svg" alt="Cejera Logo" class="logo-img">
+                <a href="/">
+                    <img src="/assets/brand/cejera-02.svg" alt="Cejera Logo" class="logo-img brand-logo-registered">
                 </a>
             </div>
 
@@ -721,15 +726,16 @@
 
             <nav id="primary-navigation" data-visible="false">
                 <ul class="nav-menu" role="menubar">
-                    <li><a href="https://cejera.com/home" class="nav-link" role="menuitem">Início</a></li>
-                    <li><a href="https://cejera.com/moda" class="nav-link" role="menuitem">Moda</a></li>
-                    <li><a href="https://cejera.com/design" class="nav-link" role="menuitem">Design</a></li>
-                    <li><a href="https://cejera.com/musica" class="nav-link" role="menuitem">Música</a></li>
-                    <li><a href="https://cejera.com/sobre" class="nav-link" role="menuitem">Sobre</a></li>
-                    <li><a href="https://cejera.com/contato" class="nav-link" role="menuitem">Contato</a></li>
+                    <li><a href="/" class="nav-link" role="menuitem">Início</a></li>
+                    <li><a href="/projetos/" class="nav-link" role="menuitem">Projetos</a></li>
+                    <li><a href="/moda/" class="nav-link" role="menuitem">Moda</a></li>
+                    <li><a href="/design/" class="nav-link" role="menuitem">Design</a></li>
+                    <li><a href="/musica/" class="nav-link" role="menuitem">Música</a></li>
+                    <li><a href="/sobre/" class="nav-link" role="menuitem">Sobre</a></li>
+                    <li><a href="/contato/" class="nav-link" role="menuitem">Contato</a></li>
                 </ul>
                 <div class="header-cta">
-                    <a href="https://cejera.com/clubinho" class="btn">CLUBINHO</a>
+                    <a href="/clubinho/" class="btn">CLUBINHO</a>
                     <p class="cta-microcopy">Exclusivo para membros</p>
                 </div>
             </nav>
@@ -741,22 +747,22 @@
         <section class="termos-hero container">
             <h1 class="termos-title">Termos de Uso</h1>
             <p class="termos-subtitle">Excentricidade e Autenticidade</p>
-            
+
             <div class="termos-container">
                 <div class="termos-data">
-                    Última atualização: <span>26 de fevereiro de 2026</span>
+                    Última atualização: <span>01/09/2026</span>
                 </div>
-                
+
                 <div class="termos-intro">
-                    Estes Termos de Uso regem o acesso e uso do site da <span class="termos-highlight">Cejera®</span> 
-                    (https://cejera.com). Ao acessar ou usar nosso site, você concorda com estes termos. 
+                    Estes Termos de Uso regem o acesso e uso do site da <span class="termos-highlight">Cejera</span>
+                    (https://cejera.com). Ao acessar ou usar nosso site, você concorda com estes termos.
                     Se não concordar, por favor, não use nosso site.
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">1. Aceitação dos Termos</h2>
                     <p class="termos-text">
-                        Ao acessar e usar o site da Cejera®, você declara que:
+                        Ao acessar e usar o site da Cejera, você declara que:
                     </p>
                     <ul class="termos-list">
                         <li>Leu, compreendeu e concordou com estes Termos de Uso</li>
@@ -765,11 +771,11 @@
                         <li>Usará o site apenas para fins lícitos</li>
                     </ul>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">2. Uso do Site</h2>
                     <p class="termos-text">
-                        Você concorda em usar o site da Cejera® de maneira responsável e legal:
+                        Você concorda em usar o site da Cejera de maneira responsável e legal:
                     </p>
                     <ul class="termos-list">
                         <li>Não tentar acessar áreas restritas sem autorização</li>
@@ -778,53 +784,53 @@
                         <li>Não copiar, reproduzir ou distribuir conteúdo sem autorização</li>
                         <li>Não enviar conteúdo ofensivo, difamatório ou prejudicial</li>
                     </ul>
-                    
+
                     <div class="termos-important">
-                        <p>O site da Cejera® não coleta dados pessoais automaticamente. 
-                        Quaisquer informações fornecidas através dos campos de contato são 
-                        processadas localmente no seu dispositivo e exigem sua aprovação explícita 
+                        <p>O site da Cejera não coleta dados pessoais automaticamente.
+                        Quaisquer informações fornecidas através dos campos de contato são
+                        processadas localmente no seu dispositivo e exigem sua aprovação explícita
                         para envio através de plataformas de terceiros.</p>
                     </div>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">3. Propriedade Intelectual</h2>
                     <p class="termos-text">
-                        Todo o conteúdo do site da Cejera® é protegido por direitos autorais e propriedade intelectual:
+                        Todo o conteúdo do site da Cejera é protegido por direitos autorais e propriedade intelectual:
                     </p>
                     <ul class="termos-list">
-                        <li><span class="termos-highlight">Marca Cejera®:</span> Registrada e protegida por lei</li>
-                        <li><span class="termos-highlight">Design e Layout:</span> Direitos autorais da Cejera®</li>
+                        <li><span class="termos-highlight">Marca Cejera:</span> Registrada e protegida por lei</li>
+                        <li><span class="termos-highlight">Design e Layout:</span> Direitos autorais da Cejera</li>
                         <li><span class="termos-highlight">Conteúdo Textual:</span> Original e protegido</li>
                         <li><span class="termos-highlight">Imagens e Elementos Visuais:</span> Direitos reservados</li>
                     </ul>
                     <p class="termos-text">
-                        Você não pode copiar, reproduzir, distribuir, modificar ou criar obras derivadas 
-                        do conteúdo do site sem autorização por escrito da Cejera®.
+                        Você não pode copiar, reproduzir, distribuir, modificar ou criar obras derivadas
+                        do conteúdo do site sem autorização por escrito da Cejera.
                     </p>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">4. Conteúdo do Usuário</h2>
                     <p class="termos-text">
-                        Ao enviar conteúdo para a Cejera® através de plataformas de terceiros:
+                        Ao enviar conteúdo para a Cejera através de plataformas de terceiros:
                     </p>
                     <ul class="termos-list">
                         <li>Você é responsável pelo conteúdo enviado</li>
                         <li>Garante que possui direitos sobre o conteúdo</li>
-                        <li>Concede à Cejera® o direito de usar o conteúdo para responder</li>
+                        <li>Concede à Cejera o direito de usar o conteúdo para responder</li>
                         <li>Não envia informações confidenciais ou proprietárias</li>
                     </ul>
                     <p class="termos-text">
-                        A Cejera® não se responsabiliza por conteúdo enviado por usuários e 
+                        A Cejera não se responsabiliza por conteúdo enviado por usuários e
                         reserva-se o direito de não responder ou bloquear contatos inadequados.
                     </p>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">5. Limitação de Responsabilidade</h2>
                     <p class="termos-text">
-                        O site da Cejera® é fornecido "como está", sem garantias de qualquer tipo:
+                        O site da Cejera é fornecido "como está", sem garantias de qualquer tipo:
                     </p>
                     <ul class="termos-list">
                         <li>Não garantimos disponibilidade contínua ou ininterrupta</li>
@@ -833,11 +839,11 @@
                         <li>Não nos responsabilizamos por ações de terceiros</li>
                     </ul>
                     <p class="termos-text">
-                        Você usa o site por sua conta e risco. Em nenhuma circunstância a Cejera® 
+                        Você usa o site por sua conta e risco. Em nenhuma circunstância a Cejera
                         será responsável por quaisquer danos decorrentes do uso ou incapacidade de uso do site.
                     </p>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">6. Links para Terceiros</h2>
                     <p class="termos-text">
@@ -850,17 +856,17 @@
                         <li>Redes sociais: Instagram, Twitter, LinkedIn, etc.</li>
                     </ul>
                     <p class="termos-text">
-                        Não controlamos e não somos responsáveis pelo conteúdo, 
-                        políticas de privacidade ou práticas de sites de terceiros. 
+                        Não controlamos e não somos responsáveis pelo conteúdo,
+                        políticas de privacidade ou práticas de sites de terceiros.
                         O uso dessas plataformas está sujeito aos seus próprios termos.
                     </p>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">7. Indenização</h2>
                     <p class="termos-text">
-                        Você concorda em indenizar e isentar a Cejera®, seus diretores, 
-                        funcionários e parceiros de qualquer reclamação, dano, obrigação, 
+                        Você concorda em indenizar e isentar a Cejera, seus diretores,
+                        funcionários e parceiros de qualquer reclamação, dano, obrigação,
                         perda, responsabilidade, custo ou dívida decorrente de:
                     </p>
                     <ul class="termos-list">
@@ -870,11 +876,11 @@
                         <li>Qualquer atividade relacionada ao seu uso do site</li>
                     </ul>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">8. Modificações</h2>
                     <p class="termos-text">
-                        A Cejera® reserva-se o direito de modificar estes Termos de Uso a qualquer momento:
+                        A Cejera reserva-se o direito de modificar estes Termos de Uso a qualquer momento:
                     </p>
                     <ul class="termos-list">
                         <li>As alterações serão publicadas nesta página</li>
@@ -883,23 +889,23 @@
                         <li>Recomendamos revisar periodicamente estes termos</li>
                     </ul>
                 </div>
-                
+
                 <div class="termos-section">
                     <h2 class="termos-section-title">9. Lei Aplicável</h2>
                     <p class="termos-text">
-                        Estes Termos de Uso são regidos pelas leis do Brasil. 
-                        Qualquer disputa relacionada a estes termos será resolvida 
+                        Estes Termos de Uso são regidos pelas leis do Brasil.
+                        Qualquer disputa relacionada a estes termos será resolvida
                         nos tribunais competentes.
                     </p>
                 </div>
-                
+
                 <div class="termos-warning">
                     <h3 class="termos-section-title" style="border: none; text-align: center;">⚠️ Aviso Importante</h3>
-                    <p>O site da Cejera® contém elementos de humor, ironia e autenticidade. 
-                    Nem tudo deve ser levado a sério, mas estes termos sim. 
+                    <p>O site da Cejera contém elementos de humor, ironia e autenticidade.
+                    Nem tudo deve ser levado a sério, mas estes termos sim.
                     Seja excêntrico, seja autêntico, mas sempre legal.</p>
                 </div>
-                
+
                 <div class="termos-contact">
                     <h2 class="termos-section-title">Contato</h2>
                     <p>Para questões sobre estes Termos de Uso, entre em contato:</p>
@@ -921,7 +927,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="cejera-00.svg" alt="Cejera Logo" class="footer-logo-img">
+                    <img src="/assets/brand/cejera-00.svg" alt="Cejera Logo" class="footer-logo-img brand-mark-offset">
                     <div class="footer-about">
                         Moda, design e música com coerência e atitude. Protagonista de tudo desde 2015.
                         Ouça, veja, vista. Seja protagonista!
@@ -931,22 +937,23 @@
                 <div class="footer-links-container">
                     <h3 class="footer-heading">Navegação</h3>
                     <ul class="footer-links">
-                        <li><a href="https://cejera.com/home">Início</a></li>
-                        <li><a href="https://cejera.com/moda">Moda</a></li>
-                        <li><a href="https://cejera.com/design">Design</a></li>
-                        <li><a href="https://cejera.com/musica">Música</a></li>
-                        <li><a href="https://cejera.com/sobre">Sobre</a></li>
-                        <li><a href="https://cejera.com/contato">Contato</a></li>
-                        <li><a href="https://cejera.com/clubinho">Clubinho</a></li>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/projetos/">Projetos</a></li>
+                        <li><a href="/moda/">Moda</a></li>
+                        <li><a href="/design/">Design</a></li>
+                        <li><a href="/musica/">Música</a></li>
+                        <li><a href="/sobre/">Sobre</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                        <li><a href="/clubinho/">Clubinho</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
                     <h3 class="footer-heading">Clubinho Divertido</h3>
                     <p>Entre para a lista de espera do clubinho e seja notificado quando abrir novas vagas!</p>
                     <form class="footer-form" id="waitlist-form">
-                        <input type="email" 
+                        <input type="email"
                                id="waitlist-email"
-                               class="footer-input" 
+                               class="footer-input"
                                placeholder="seu@email.com"
                                aria-label="Insira seu e-mail para a lista de espera"
                                required>
@@ -954,52 +961,53 @@
                     </form>
                     <p class="newsletter-note">1 email por semana no máximo. Sorteio mensal de adesivos para membros!</p>
                     <p style="margin-top: 20px; font-size: 0.8rem;">
-                        <a href="https://cejera.com/privacidade" style="color: var(--red);">Política de privacidade</a> • 
-                        <a href="https://cejera.com/termos" style="color: var(--red);">Termos de uso</a>
+                        <a href="/privacidade/" style="color: var(--red);">Política de privacidade</a> /
+                        <a href="/termos/" style="color: var(--red);">Termos de uso</a>
                     </p>
                 </div>
             </div>
+        </div>
         <!-- NOVA SEÇÃO: Cards de Redes Sociais Centralizados na Página -->
         <div class="footer-social-fullwidth">
             <div class="container">
                 <div class="social-links-grid">
                     <a href="https://instagram.com/cejeraa" class="social-link" aria-label="Instagram">
-                        <i class="fab fa-instagram social-icon"></i>
+                        <svg class="brand-icon brand-icon--instagram social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#instagram"></use></svg>
                         <span class="social-name">Instagram</span>
                         <span class="social-desc">@cejeraa</span>
                     </a>
                     <a href="https://twitter.com/cejeraaa" class="social-link" aria-label="Twitter/X">
-                        <i class="fab fa-twitter social-icon"></i>
+                        <svg class="brand-icon brand-icon--x social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#x"></use></svg>
                         <span class="social-name">Twitter/X</span>
                         <span class="social-desc">@cejeraaa</span>
                     </a>
                     <a href="https://linkedin.com/in/cejera" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <svg class="brand-icon brand-icon--linkedin social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#linkedin"></use></svg>
                         <span class="social-name">LinkedIn</span>
                         <span class="social-desc">/in/cejera</span>
                     </a>
                     <a href="https://t.me/cejera" class="social-link" aria-label="Telegram">
-                        <i class="fab fa-telegram social-icon"></i>
+                        <svg class="social-icon brand-icon brand-icon--telegram" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#telegram"></use></svg>
                         <span class="social-name">Telegram</span>
                         <span class="social-desc">@cejera</span>
                     </a>
                     <a href="https://open.spotify.com/user/mr.xandoso" class="social-link" aria-label="Spotify">
-                        <i class="fab fa-spotify social-icon"></i>
+                        <svg class="brand-icon brand-icon--spotify social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#spotify"></use></svg>
                         <span class="social-name">Spotify</span>
                         <span class="social-desc">Cejera</span>
                     </a>
                     <a href="https://twitch.tv/cejera" class="social-link" aria-label="Twitch">
-                        <i class="fab fa-twitch social-icon"></i>
+                        <svg class="brand-icon brand-icon--twitch social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#twitch"></use></svg>
                         <span class="social-name">Twitch</span>
                         <span class="social-desc">cejera</span>
                     </a>
                     <a href="https://kick.com/cejera" class="social-link" aria-label="Kick">
-                        <i class="fas fa-gamepad social-icon"></i>
+                        <svg class="social-icon brand-icon brand-icon--kick" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-brands-v2.svg#kick"></use></svg>
                         <span class="social-name">Kick</span>
                         <span class="social-desc">cejera</span>
                     </a>
-                    <a href="https://cejera.com/links" class="social-link" aria-label="Mais links">
-                        <i class="fas fa-plus social-icon"></i>
+                    <a href="/links/" class="social-link" aria-label="Mais links">
+                        <svg class="social-icon cejera-icon cejera-icon--more" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="/assets/icons/cejera-system-v2.svg#plus"></use></svg>
                         <span class="social-name">7+</span>
                         <span class="social-desc">links</span>
                     </a>
@@ -1009,7 +1017,7 @@
 
         <div class="container">
             <div class="copyright">
-                <p>© 2026 Cejera® — EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
+                <p>© 2026 Cejera® | EXCENTRICIDADE E AUTENTICIDADE. Porque ser normal é muito chato e ser autêntico é meu superpoder.</p>
             </div>
         </div>
     </footer>
@@ -1024,7 +1032,7 @@
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             nav.setAttribute('data-visible', !isExpanded);
-            
+
             // Trap focus no menu quando aberto
             if (!isExpanded) {
                 navLinks[0].focus();
@@ -1052,16 +1060,16 @@
         // Formulário de lista de espera (mesmo do primeiro código)
         document.getElementById('waitlist-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const emailInput = document.getElementById('waitlist-email');
             const email = emailInput.value.trim();
-            
+
             if (!email) {
                 alert('Por favor, insira seu e-mail!');
                 emailInput.focus();
                 return;
             }
-            
+
             // Validar formato de e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
@@ -1069,14 +1077,14 @@
                 emailInput.focus();
                 return;
             }
-            
+
             // Criar mensagem personalizada com o e-mail
             const message = encodeURIComponent(`Olá, Cejera! Quero entrar na lista de espera do clubinho. Meu e-mail é: ${email}`);
             const whatsappUrl = `https://wa.me/5535999286246?text=${message}`;
-            
+
             // Abrir WhatsApp
-            window.open(whatsappUrl, '_blank');
-            
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
             // Limpar campo e mostrar confirmação
             emailInput.value = '';
             alert('Obrigado! Redirecionando para o WhatsApp para completar sua inscrição na lista de espera.');
@@ -1093,6 +1101,6 @@
             }
         });
     </script>
+    <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
-
