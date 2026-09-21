@@ -1,6 +1,8 @@
 import { BADGE_CODES, today } from './domain.mjs';
 import { CATALOG } from './catalog.mjs';
 import { creationAudit } from './audit.mjs';
+import { roleFor } from './permissions.mjs';
+import { prepareNewLead } from './creation-policy.mjs';
 export function demoData() {
   const date = today(), month = date.slice(0,7);
   const leads = [
@@ -18,9 +20,10 @@ export function demoData() {
 }
 export class DemoRepository {
   constructor(){this.data=demoData();this.data.Badges=structuredClone(CATALOG);this.data.Equipe[0].permissao='Admin';this.data.Equipe[1].permissao='Vendedor';this.data.Equipe.push({email:'ziero.true@gmail.com',nome:'Ziero',comissao:.04,nivel:1,permissao:'Gerente'});this.data.Conquistas=[{id:'demo-first',email:'cejerag@gmail.com',badge_id:'147',concedido_em:today(),mensagem:'A primeira colheita do ciclo.'}];this.canEdit=true;this.admin=true;this.role='Admin';this.permissions={Leads:true,Equipe:true,Metas:true,Badges:true,Conquistas:true};this.user={email:'cejerag@gmail.com',name:'Cejera'};}
-  canStage(lead){return !!lead&&!lead.excluido_em;}
-  async load(){this.permissions.manageLeads=true;this.data.Leads=this.data.Leads.map((l,i)=>({...l,gerente:l.gerente||'cejerag@gmail.com',ordem:l.ordem??(i+1)*1024,criado_por:l.criado_por||'cejerag@gmail.com'}));return structuredClone(this.data);}
+  useRole(role){const profile=this.data.Equipe.find(m=>roleFor(m.email,this.data.Equipe)===role);if(profile)this.user={email:profile.email,name:profile.nome};}
+  canStage(lead){return !!lead&&!lead.excluido_em&&(this.permissions.manageLeads||lead.responsavel===this.user.email);}
+  async load(){this.role=roleFor(this.user.email,this.data.Equipe);this.admin=this.role==='Admin';this.permissions={Leads:true,createLeads:true,manageLeads:this.role!=='Vendedor',Equipe:this.admin,Badges:this.admin,Metas:this.role!=='Vendedor',Conquistas:this.role!=='Vendedor'};this.data.Leads=this.data.Leads.map((l,i)=>({...l,gerente:l.gerente||'cejerag@gmail.com',ordem:l.ordem??(i+1)*1024,criado_por:l.criado_por||'cejerag@gmail.com'}));return structuredClone(this.data);}
   async syncPermissions(){return this.load();}
-  async save(name,record,base){const key=name==='Equipe'?'email':'id',id=record[key];const index=this.data[name].findIndex(r=>r[key]===id);if(name==='Leads')record=creationAudit(record,index<0?null:this.data[name][index],this.user.email);if(index<0)this.data[name].push(record);else this.data[name][index]={...this.data[name][index],...record};return this.load();}
+  async save(name,record,base){const key=name==='Equipe'?'email':'id',id=record[key];const index=this.data[name].findIndex(r=>r[key]===id);if(name==='Leads'){if(index<0)record=prepareNewLead(record,this.user.email,this.data.Equipe,this.data.Equipe.map(m=>m.email));record=creationAudit(record,index<0?null:this.data[name][index],this.user.email);}if(index<0)this.data[name].push(record);else this.data[name][index]={...this.data[name][index],...record};return this.load();}
   destroy(){this.data=null;}
 }

@@ -1,4 +1,5 @@
 import { validDate, money, TYPES } from './domain.mjs';
+import { participates } from './lead-tools.mjs';
 export const RARITIES = ['Básico','Comum','Cinza','Verde','Azul','Roxo','Lendário','Mítico'];
 export const METRICS = {
   vendas: 'Vendas fechadas', leads: 'Leads sob responsabilidade', leads_completos: 'Leads com descrição e contato',
@@ -10,7 +11,9 @@ export const METRICS = {
 };
 const positive = value => Number.isFinite(Number(value)) && Number(value) > 0 ? Number(value) : 0;
 export function achievementStats(leads, goals, email) {
-  const own = leads.filter(l => l.responsavel === email && !l.excluido_em && l.status !== 'Lixeira');
+  const account = String(email || '').trim().toLowerCase();
+  // Count a lead once per participant, even when the seller and manager are the same person.
+  const own = leads.filter(l => participates(l, account) && !l.excluido_em && l.status !== 'Lixeira');
   const won = own.filter(l => l.status === 'Fechado' && validDate(l.fechado_em) && positive(l.valor));
   const monthly = new Map();
   for (const lead of won) {
@@ -18,7 +21,7 @@ export function achievementStats(leads, goals, email) {
     current.revenue += Math.round(positive(lead.valor) * 100); current.count++; monthly.set(month,current);
   }
   const met = new Set(goals.filter(g => {
-    if (g.email !== email || !/^\d{4}-(0[1-9]|1[0-2])$/.test(g.mes)) return false;
+    if (String(g.email || '').trim().toLowerCase() !== account || !/^\d{4}-(0[1-9]|1[0-2])$/.test(g.mes)) return false;
     const revenue = positive(g.faturamento), count = positive(g.vendas), actual = monthly.get(g.mes);
     return actual && (revenue > 0 || count > 0) && (!revenue || actual.revenue >= Math.round(revenue * 100)) && (!count || actual.count >= count);
   }).map(g => g.mes));

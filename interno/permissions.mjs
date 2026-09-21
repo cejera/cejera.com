@@ -13,7 +13,7 @@ export function permissionsFor(email, team, sheets, canEdit) {
     p.range?.sheetId === sheets[name].properties.sheetId &&
     !p.range.startRowIndex && p.range.endRowIndex == null && !p.range.startColumnIndex && p.range.endColumnIndex == null && !p.unprotectedRanges?.length);
   const manageLeads=!!canEdit&&['Admin','Gerente'].includes(role)&&!!sheets.Leads?.protectedRanges?.some(p=>p.description==='CRM: leads e atribuicoes'&&!p.warningOnly&&p.requestingUserCanEdit===true);
-  return { role, Leads: !!canEdit, manageLeads, Equipe: role === 'Admin' && allowed('Equipe'), Badges: role === 'Admin' && allowed('Badges'),
+  return { role, Leads: !!canEdit, createLeads: !!canEdit, manageLeads, Equipe: role === 'Admin' && allowed('Equipe'), Badges: role === 'Admin' && allowed('Badges'),
     Metas: ['Admin','Gerente'].includes(role) && allowed('Metas'), Conquistas: ['Admin','Gerente'].includes(role) && allowed('Conquistas') };
 }
 export function protectionUpdates(team, sheets) {

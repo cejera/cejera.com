@@ -4,6 +4,8 @@ import { permissionsFor, protectionUpdates, validateMember, canChangeStage, asse
 import { validateBadge } from './achievements.mjs';
 import { commissionSplit } from './commissions.mjs';
 import { creationAudit } from './audit.mjs';
+import { CREATE_LEAD_URL } from './service-config.mjs';
+import { googleErrorMessage } from './google-errors.mjs';
 const SCOPE = 'https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/userinfo.email';
 export class GoogleError extends Error { constructor(status,message){super(message);this.status=status;} }
 let client, pending, token='', expires=0, expiryTimer, automatic=false;
@@ -34,8 +36,8 @@ async function request(url,options={}) {
   if(!token||Date.now()>=expires)throw new GoogleError(401,'Sua sessão expirou. Entre novamente com Google.');
   const response=await fetch(url,{...options,headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},cache:'no-store',signal:AbortSignal.timeout(25000)});
   if(!response.ok){
-    const message=response.status===401?'Sua sessão expirou. Entre novamente com Google.':response.status===403?'O Google não permitiu esta operação. Confira suas permissões na planilha.':response.status===404?'A planilha não está disponível para esta conta.':response.status===429?'Muitas atualizações. Aguarde alguns segundos para tentar novamente.':'Não foi possível concluir a operação no Google. Tente novamente.';
-    throw new GoogleError(response.status,message);
+    const detail=await response.json().catch(()=>({}));
+    throw new GoogleError(response.status,googleErrorMessage(response.status,detail));
   }
   return response.status===204?{}:response.json();
 }
@@ -79,6 +81,7 @@ export class SheetsRepository {
     const team=(await this.readSheets(['Equipe'])).Equipe;
     this.applyPermissions(team);
     if(!this.permissions[name])throw new Error('Seu nível de permissão não permite esta alteração.');
+    if(name==='Leads'&&!base)return this.createLead(record);
     if(name==='Equipe')record=validateMember(record);
     if(name==='Badges')record=validateBadge(record);
     ++this.generation;
@@ -130,6 +133,25 @@ export class SheetsRepository {
       }else await request(this.base+'/values/'+encodeURIComponent(`'${name}'!A1`)+':append?valueInputOption=RAW&insertDataOption=OVERWRITE',{method:'POST',body:JSON.stringify({values:[currentHeaders.map(k=>sheetValue(k,record[k]))]})});
     }
     try { return await this.load(); } catch(error) { error.saved=true; throw error; }
+  }
+  async createLead(record){
+    if(!this.permissions.createLeads)throw new Error('Seu acesso não permite criar leads.');
+    if(!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(CREATE_LEAD_URL))throw new Error('O serviço de cadastros ainda não foi configurado. Peça a Cejera para concluir a instalação do hotfix.');
+    if(!token||Date.now()>=expires)throw new GoogleError(401,'Sua sessão expirou. Entre novamente com Google.');
+    ++this.generation;
+    let result;
+    try{
+      const response=await fetch(CREATE_LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'createLead',access_token:token,lead:record}),credentials:'omit',redirect:'follow',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(45000)});
+      if(!response.ok)throw new Error('O serviço de cadastros não respondeu.');
+      result=await response.json();
+    }catch(error){
+      // A lost response is not proof of failure. Check the same ID before offering a retry.
+      try{const next=await this.load();if(next.Leads.some(l=>l.id===record.id&&l.criado_por===this.user.email))return next;}catch{}
+      throw new Error('Não foi possível confirmar o cadastro. Mantenha este formulário e tente salvar novamente: o mesmo identificador evita duplicações.');
+    }
+    if(!result.ok)throw new GoogleError(Number(result.status)||503,result.message||'Não foi possível salvar o cadastro.');
+    if(result.id!==record.id)throw new Error('O serviço respondeu com um identificador diferente. Atualize o painel antes de continuar.');
+    try{return await this.load();}catch(error){error.saved=true;throw error;}
   }
   async syncPermissions(){
     await this.load();

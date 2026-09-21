@@ -1,5 +1,7 @@
 import { CONFIG } from './config.mjs';
 import { activeLeads } from './pipeline.mjs';
+import { participates } from './lead-tools.mjs';
+import { validDate } from './domain.mjs';
 export function commissionSplit(lead,team) {
   const rateFor=email=>{
     const value=team.find(m=>m.email===email)?.comissao;
@@ -22,8 +24,9 @@ export function commissionSplit(lead,team) {
   ].filter(p=>p.rate>0);
 }
 export function commercialStats(leads,team,member,month) {
-  const all=activeLeads(leads),own=all.filter(l=>l.responsavel===member.email),won=own.filter(l=>l.status==='Fechado'&&l.fechado_em?.startsWith(month));
-  const totalWon=all.filter(l=>l.status==='Fechado'&&l.fechado_em?.startsWith(month));
+  const all=activeLeads(leads),own=all.filter(l=>participates(l,member.email));
+  const isWon=l=>l.status==='Fechado'&&validDate(l.fechado_em)&&l.fechado_em.startsWith(month)&&Number(l.valor)>0;
+  const won=own.filter(isWon),totalWon=all.filter(isWon);
   let commission=0,invalid=0;
   for(const lead of totalWon){try{commission+=commissionSplit(lead,team).filter(p=>p.email===member.email).reduce((sum,p)=>sum+Math.round(p.amount*100),0);}catch{invalid++;}}
   return {leads:own.length,won:won.length,revenue:won.reduce((sum,l)=>sum+Math.round(Number(l.valor||0)*100),0)/100,commission:commission/100,invalid,rate:member.comissao===''||member.comissao==null?CONFIG.defaultCommission:Number(member.comissao)};
