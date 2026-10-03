@@ -23,7 +23,10 @@
   <meta name="twitter:image" content="https://cejera.com/aleteia/assets/social-soa.jpg">
   <link rel="preload" href="assets/fonts/SourceCodePro-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="assets/portal.css">
+  <link rel="stylesheet" href="assets/refinamentos.css">
+  <script src="assets/ticket.js" defer></script>
   <script src="assets/portal.js" defer></script>
+  <script src="assets/refinamentos.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
@@ -88,6 +91,15 @@
     <section class="section wrap ego-section" id="grau-zero" aria-labelledby="ego-title" data-stage="Grau zero"><div class="section-mark"><span>00</span><p class="eyebrow">A quebra do ego</p></div><div class="ego-grid"><h2 id="ego-title">Você não precisa<br>defender tudo<br><span class="muted-heading">o que já foi.</span></h2><div class="prose"><p>O ego organiza uma história: quem sou, o que defendo, o que não posso admitir. Essa história ajuda a atravessar o mundo. Torna-se prisão quando é confundida com uma identidade impossível de revisar.</p><p>Quebrar o ego, aqui, não é apagar a pessoa. É desfazer a fusão entre você e suas máscaras, crenças e papéis. Reconhecer: <em>tenho este padrão</em> não é o mesmo que <em>sou este padrão para sempre.</em></p><p>O Grau Zero começa por observar sem defender imediatamente. Abertura não exige submissão: autonomia, limites e discernimento permanecem.</p><blockquote>Posso estar enganado.<br>E continuo capaz de escolher.</blockquote></div></div><details class="last-veil"><summary>O que existe depois da última camada? <span aria-hidden="true">＋</span></summary><p>Não uma resposta que precisa ser obedecida.<br>Um espaço onde outra pergunta pode nascer.</p></details></section>
     <section class="closing wrap" aria-label="Encerramento do percurso"><p class="eyebrow">O arquivo permanece aberto.</p><p>Não entregue a ninguém<br>o direito de pensar por você.</p><a class="button" href="#limiar">Reler o primeiro fragmento <span aria-hidden="true">↑</span></a></section>
   </main>
-  <footer class="site-footer"><div class="wrap"><div class="footer-top"><a class="identity" href="#limiar"><img src="assets/soa.svg" width="64" height="54" alt="Brasão SOA"><span>S.O.A<span>Suprema Ordem de Aleteia</span></span></a><span>O desenho não termina no desenho.</span><a href="/projetos/">Outros universos ↗</a></div><details class="marginalia"><summary>Notas à margem <span aria-hidden="true">＋</span></summary><p>A leitura de crença como ferramenta dialoga com <a href="https://specularium.org/wizardry" target="_blank" rel="noopener noreferrer">Peter J. Carroll — Chaos Magic in a Nutshell</a>. Os símbolos e suas funções pertencem à gramática própria da Ordem; não são apresentados como equivalências universais.</p></details><div class="footer-bottom"><p>SOA / Arquivo de leitura<br>Um universo de Cejera.</p><p>Este site pertence a um universo cuja codificação difere da do universo que o hospeda.<br>Por isso, pode haver discordâncias.</p></div></div></footer>
+  <footer class="site-footer"><div class="wrap"><div class="footer-top"><a class="identity" href="#limiar"><img src="assets/soa.svg" width="64" height="54" alt="Brasão SOA"><span>S.O.A<span>Suprema Ordem de Aleteia</span></span></a><span>O desenho não termina no desenho.</span><a href="/projetos/">Outros universos ↗</a></div><details class="marginalia"><summary>Notas à margem <span aria-hidden="true">＋</span></summary><p>A leitura de crença como ferramenta dialoga com <a href="https://specularium.org/wizardry" target="_blank" rel="noopener noreferrer">Peter J. Carroll — Chaos Magic in a Nutshell</a>. Os símbolos e suas funções pertencem à gramática própria da Ordem; não são apresentados como equivalências universais.</p><div class="initiation-entry" hidden><p>Um ingresso não encerra a pergunta.<br>Abre um percurso que precisa de validação.</p><button class="button" id="initiation-launch" type="button">Gerar ingresso à Ordem ↗</button></div><noscript><p>Ative JavaScript para gerar o ingresso em PNG. A leitura deste arquivo permanece disponível.</p></noscript></details><div class="footer-bottom"><p>SOA / Arquivo de leitura<br>Um universo de Cejera.</p><p>Este site pertence a um universo cuja codificação difere da do universo que o hospeda.<br>Por isso, pode haver discordâncias.</p></div></div></footer>
+  <dialog class="initiation-dialog" id="initiation-dialog" aria-labelledby="initiation-title" aria-describedby="initiation-instruction">
+    <button type="button" class="dialog-close" aria-label="Fechar ingresso">×</button>
+    <p class="eyebrow">SOA / O limiar</p><h2 id="initiation-title">O próximo gesto<br>é seu.</h2>
+    <p id="initiation-instruction">Envie este ingresso a um M.S. para validar a iniciação na Ordem.</p>
+    <div class="initiation-ticket"><img id="initiation-image" width="1800" height="1000" alt="Ingresso da Suprema Ordem de Aleteia com código de referência" hidden><p class="initiation-code" id="initiation-code" role="status"></p></div>
+    <p class="initiation-error" id="initiation-error" role="alert" hidden></p>
+    <p class="initiation-note">A emissão não substitui a validação de um M.S. Este portal não recebe dados pessoais nem envia o ingresso por você.</p>
+    <div class="initiation-actions"><button type="button" class="button" id="initiation-download" disabled>Baixar ingresso PNG ↓</button><button type="button" class="button" id="initiation-regenerate">Gerar outro código ↻</button></div>
+  </dialog>
 </body>
 </html>
