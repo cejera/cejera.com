@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Oficina de sigilação da Suprema Ordem de Aleteia. Reduza uma intenção, acompanhe seu traçado e preserve o sigilo em imagem.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Sigillum — S.O.A.</title>
+  <link rel="canonical" href="https://cejera.com/aleteia/sigilo/">
+  <link rel="icon" href="assets/soa.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/sigillum.css">
+  <script src="assets/model.js" defer></script>
+  <script src="assets/renderer.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#oficina">Ir para a oficina</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="identity" href="../" aria-label="Voltar à Suprema Ordem de Aleteia">
+        <img src="assets/soa.svg" width="56" height="48" alt="">
+        <span>S.O.A.<small>Suprema Ordem de Aleteia</small></span>
+      </a>
+      <a class="back-link" href="../">Voltar à Ordem <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="oficina" class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">SIGILLUM / OFICINA DE SIGILAÇÃO</p>
+        <h1 id="page-title">A intenção<br>muda de forma.</h1>
+      </div>
+      <div class="intro-aside">
+        <p>Escreva o que pretende.<br>O restante é redução, direção e limite.</p>
+        <span class="local-indicator"><i aria-hidden="true"></i> Processamento local / sem registro</span>
+      </div>
+    </section>
+    <noscript><p class="notice">Esta oficina precisa de JavaScript para animar o traçado e gerar o PNG. Nenhuma intenção é enviada a um servidor.</p></noscript>
+    <section class="workbench" aria-label="Gerar e preservar um sigilo">
+      <div class="input-panel">
+        <div class="section-mark"><span>01</span><h2>A formulação</h2></div>
+        <form id="sigil-form" novalidate>
+          <label for="intention">Sua intenção</label>
+          <textarea id="intention" name="intention" rows="3" maxlength="240" placeholder="Ex.: Eu preservo o que importa." aria-describedby="intention-help" required spellcheck="false" autocomplete="off"></textarea>
+          <div class="field-note"><span id="intention-help">Curta, afirmativa e sob sua responsabilidade.</span><span id="character-count">0 / 240</span></div>
+          <label for="keyword">Palavra-chave</label>
+          <input id="keyword" name="keyword" type="text" maxlength="140" placeholder="7 letras ou símbolos" required autocomplete="off" spellcheck="false" aria-describedby="keyword-help key-preview">
+          <div class="field-note"><span id="keyword-help">Exatamente 7 caracteres. Unicode permitido. Sem espaços.</span><span id="key-count">0 / 7</span></div>
+          <div class="key-preview" id="key-preview"><span>SETE PONTAS / SETE CARACTERES</span><strong id="glyph-preview">—</strong><small id="key-meaning">Uma inscrição decorativa, não uma tradução.</small></div>
+          <div class="key-options">
+            <div><label for="key-direction">Sentido de leitura</label><select id="key-direction"><option value="clockwise">Horário</option><option value="counterclockwise">Anti-horário</option></select></div>
+            <div><label for="key-facing">Orientação das letras</label><select id="key-facing"><option value="inward">Radial / para o núcleo</option><option value="outward">Radial / para fora</option><option value="upright">Normal / todas em pé</option></select></div>
+          </div>
+          <details class="options" id="method-options">
+            <summary>Regras do traçado <span aria-hidden="true">＋</span></summary>
+            <div class="options-body">
+              <label class="checkbox"><input id="remove-vowels" type="checkbox"> Remover também as vogais</label>
+              <p class="field-note">Opcional. As letras repetidas sempre são removidas, preservando a primeira ocorrência.</p>
+              <p class="field-note">A matriz é o septagrama: sete pontos periféricos e Tempo no centro. A=1, B=2… H=8; o ciclo recomeça em I=1. Vida=1, Sol=7, Tempo=8.</p>
+              <p class="field-note">A runa do primeiro ponto marca o início. A runa do último ponto marca o fim. Só essas duas permanecem quando a matriz desaparece.</p>
+              <label class="checkbox"><input id="instant-mode" type="checkbox"> Gerar sem animação</label>
+            </div>
+          </details>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <div class="form-actions"><button class="button primary" id="generate" type="submit">Gerar sigilo <span aria-hidden="true">↗</span></button><button class="button quiet" id="clear" type="button">Limpar</button></div>
+        </form>
+        <div class="method-note"><span class="eyebrow">NÚCLEO / CHAVE / FRONTEIRA</span><p>A intenção define o núcleo.<br>Sete caracteres ocupam sete pontas.<br>Dois círculos delimitam a forma.</p></div>
+      </div>
+      <div class="result-panel">
+        <div class="result-heading"><div class="section-mark"><span>02</span><h2>A inscrição</h2></div><span id="result-state" class="eyebrow">EM ESPERA</span></div>
+        <div class="canvas-shell" id="canvas-shell">
+          <canvas id="sigil-canvas" width="1000" height="1000" role="img" aria-label="Área de construção do sigilo" aria-describedby="result-description"></canvas>
+          <div class="empty-caption" id="empty-caption"><span>∅</span><p>Nenhuma forma<br>antes da intenção.</p></div>
+          <span class="canvas-coordinate" aria-hidden="true">S-8 / SIGILLUM</span>
+        </div>
+        <p id="result-description" class="sr-only">Informe uma intenção e uma palavra-chave para acompanhar a construção.</p>
+        <div class="phase-heading"><p id="phase-label" role="status" aria-live="polite">Aguardando formulação.</p><span id="phase-count">00 / 08</span></div>
+        <div class="progress-track" id="progress-track" role="progressbar" aria-label="Construção do sigilo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress-fill"></div></div>
+        <ol class="stages" aria-label="Etapas da construção"><li>Normalizar</li><li>Reduzir</li><li>Numerar</li><li>Traçar</li><li>Ocultar matriz</li><li>Domínio</li><li>Contenção</li><li>Inscrever chave</li></ol>
+        <div class="playback"><button class="button quiet" id="pause" type="button" disabled>Pausar</button><button class="button quiet" id="skip" type="button" disabled>Concluir agora</button><button class="button quiet" id="replay" type="button" disabled>Rever processo</button></div>
+        <details class="audit" id="audit" hidden>
+          <summary>Ver a redução <span aria-hidden="true">＋</span></summary>
+          <div class="audit-body"><p class="eyebrow">INTENÇÃO NORMALIZADA</p><p id="normalized-text" class="breakable"></p><p class="eyebrow">PRIMEIRAS OCORRÊNCIAS → MATRIZ</p><div id="letter-tokens" class="letter-tokens"></div><p class="field-note" id="audit-note"></p></div>
+        </details>
+        <section class="export-panel" aria-labelledby="export-title">
+          <div class="export-heading"><h3 id="export-title">Preservar em imagem</h3><span class="eyebrow">PNG</span></div>
+          <fieldset><legend>Contraste</legend><label class="choice"><input type="radio" name="palette" value="dark" checked><span class="swatch dark" aria-hidden="true"></span> Branco / preto</label><label class="choice"><input type="radio" name="palette" value="light"><span class="swatch light" aria-hidden="true"></span> Preto / branco</label></fieldset>
+          <fieldset class="ratios"><legend>Formato</legend><label class="choice"><input type="radio" name="ratio" value="square" checked><span>1:1<small>1600 × 1600</small></span></label><label class="choice"><input type="radio" name="ratio" value="landscape"><span>16:9<small>1920 × 1080</small></span></label><label class="choice"><input type="radio" name="ratio" value="portrait"><span>9:16<small>1080 × 1920</small></span></label></fieldset>
+          <button class="button primary download" id="download" type="button" disabled>Baixar sigilo <span aria-hidden="true">↓</span></button>
+          <p id="export-note" class="field-note" role="status">A imagem estará disponível ao concluir o traçado.</p>
+        </section>
+      </div>
+    </section>
+    <section class="reading" aria-labelledby="reading-title"><div class="section-mark"><span>03</span><h2 id="reading-title">O que você decide preservar?</h2></div><div class="reading-grid"><p>O processo revela suas decisões: a frase que você escolheu, o que retirou dela e o limite que impôs à forma. O que essa intenção diz sobre quem a escreveu?</p><div><details><summary>Como as letras viram um traçado?</summary><p>A frase é convertida para A–Z, sem acentos, espaços ou pontuação. Cada letra aparece uma vez, na ordem original. A numeração percorre um ciclo de oito: A/I/Q/Y=1, B/J/R/Z=2, C/K/S=3, D/L/T=4, E/M/U=5, F/N/V=6, G/O/W=7, H/P/X=8.</p><p>Os oito pontos pertencem ao septagrama: 1/Vida, 2/Fogo, 3/Terra, 4/Água, 5/Ar, 6/Energia, 7/Sol, 8/Tempo. Sol fica no topo; Tempo, no centro. Os pontos são ligados na sequência, sem ordenar ou eliminar números repetidos. Duas letras consecutivas no mesmo ponto produzem um pequeno retorno. As runas dos pontos inicial e final marcam as extremidades. A matriz desaparece, não o percurso.</p></details><details><summary>O que os dois círculos delimitam?</summary><p>O interno delimita o domínio. O externo acrescenta contenção. O sentido de leitura da chave e a orientação radial são controles independentes: horário não significa, por si, entrada; anti-horário não significa, por si, saída.</p></details><details><summary>Como a chave ocupa o círculo?</summary><p>Exatamente sete caracteres visíveis, um por ponta da estrela, separados por 360°/7. O primeiro ocupa o eixo do Sol. O sentido escolhido distribui os seis seguintes. A chave preserva seus caracteres e maiúsculas ou minúsculas; não é traduzida nem repetida.</p><p>Cambria Math é priorizada quando disponível. Uma fonte matemática local acompanha a oficina para os demais dispositivos. Caracteres combinados, como uma letra com acento, contam como um único caractere visível.</p></details><details><summary>O que fica registrado?</summary><p>Nada é enviado nem salvo pela oficina. A intenção fica somente nesta página enquanto ela estiver aberta. O PNG contém a forma, não sua frase. “Limpar” remove os campos e a imagem da sessão atual. A geração produz um desenho; não declara ativação ritual.</p></details></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a href="../">S.O.A. / ALETEIA</a><p>O que muda quando a palavra deixa de ser legível?</p><span>SIGILLUM / FORMA NÃO É PROVA</span></div></footer>
+</body>
+</html>
